@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PracticeJSONCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fnw-0m-vC1">
+                                <rect key="frame" x="118" y="228" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Future Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ade-fc-MKi">
+                                <rect key="frame" x="118" y="199" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hl5-cW-8Op">
+                                <rect key="frame" x="253" y="228" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="GO"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnq-tT-mqh">
+                                <rect key="frame" x="253" y="228" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="GO"/>
+                                <connections>
+                                    <action selector="searchEvents:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yki-7F-nbw"/>
+                                    <segue destination="XoV-gT-C25" kind="presentation" id="FQQ-RA-MEM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="futureDaysField" destination="fnw-0m-vC1" id="NL1-S1-ji4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
+        </scene>
+        <!--Event Table View Controller-->
+        <scene sceneID="Vq1-HE-Js0">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SxR-MZ-YvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="XoV-gT-C25" customClass="EventTableViewController" customModule="PracticeJSONCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dlW-Ky-1fR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventTableViewCell" rowHeight="100" id="CQa-n6-4js" customClass="EventTableViewCell" customModule="PracticeJSONCalendar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CQa-n6-4js" id="XDf-jF-f2k">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZg-hp-eqT">
+                                            <rect key="frame" x="130" y="5" width="264" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="6Qm-OD-Thh"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="264" id="Fe6-Zc-ypO"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS7-s1-eLl">
+                                            <rect key="frame" x="130" y="39" width="249" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWh-zn-Srn">
+                                            <rect key="frame" x="130" y="68" width="234" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IQk-3d-t3q">
+                                            <rect key="frame" x="0.0" y="-8" width="122" height="115"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="115" id="mQ7-Ve-VvZ"/>
+                                                <constraint firstAttribute="width" constant="122" id="yFJ-17-1GH"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IQk-3d-t3q" firstAttribute="top" secondItem="XDf-jF-f2k" secondAttribute="top" constant="-15" id="40i-iZ-cBT"/>
+                                        <constraint firstItem="FZg-hp-eqT" firstAttribute="top" secondItem="XDf-jF-f2k" secondAttribute="topMargin" constant="-6" id="Bza-ug-IPx"/>
+                                        <constraint firstItem="eS7-s1-eLl" firstAttribute="top" secondItem="FZg-hp-eqT" secondAttribute="bottom" constant="4" id="IyN-1X-4aC"/>
+                                        <constraint firstItem="nWh-zn-Srn" firstAttribute="top" secondItem="eS7-s1-eLl" secondAttribute="bottom" constant="8" symbolic="YES" id="PNJ-vH-gOr"/>
+                                        <constraint firstItem="IQk-3d-t3q" firstAttribute="centerY" secondItem="XDf-jF-f2k" secondAttribute="centerY" id="WZH-8Q-9PF"/>
+                                        <constraint firstItem="FZg-hp-eqT" firstAttribute="leading" secondItem="IQk-3d-t3q" secondAttribute="trailing" constant="8" id="gis-kK-bfZ"/>
+                                        <constraint firstItem="IQk-3d-t3q" firstAttribute="leading" secondItem="XDf-jF-f2k" secondAttribute="leading" id="hLd-Xo-z5W"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nWh-zn-Srn" secondAttribute="trailing" constant="30" id="tV0-i0-c30"/>
+                                        <constraint firstItem="FZg-hp-eqT" firstAttribute="leading" secondItem="eS7-s1-eLl" secondAttribute="leading" id="ucZ-zt-7Dj"/>
+                                        <constraint firstItem="FZg-hp-eqT" firstAttribute="leading" secondItem="nWh-zn-Srn" secondAttribute="leading" id="v0K-2F-gcT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="eS7-s1-eLl" id="WR1-1j-xRN"/>
+                                    <outlet property="locationLabel" destination="nWh-zn-Srn" id="qO6-S6-MEq"/>
+                                    <outlet property="nameLabel" destination="FZg-hp-eqT" id="mUY-9P-UXq"/>
+                                    <outlet property="photoImageView" destination="IQk-3d-t3q" id="I3m-7B-0vd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XoV-gT-C25" id="to4-UH-jT9"/>
+                            <outlet property="delegate" destination="XoV-gT-C25" id="DHm-DI-Oyq"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="986.95652173913049" y="80.357142857142847"/>
+        </scene>
+    </scenes>
+</document>

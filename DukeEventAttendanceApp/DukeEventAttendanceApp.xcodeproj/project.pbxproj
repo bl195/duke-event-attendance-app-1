@@ -14,6 +14,10 @@
 		07193E7A22A9A301000F5A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */; };
 		07193E8522A9A301000F5A2C /* DukeEventAttendanceAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E8422A9A301000F5A2C /* DukeEventAttendanceAppTests.swift */; };
 		07193E9022A9A301000F5A2C /* DukeEventAttendanceAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E8F22A9A301000F5A2C /* DukeEventAttendanceAppUITests.swift */; };
+		07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */; };
+		07193EA022A9AB4B000F5A2C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E9F22A9AB4B000F5A2C /* Event.swift */; };
+		07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */; };
+		07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193EA322A9ABCD000F5A2C /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		07193E8B22A9A301000F5A2C /* DukeEventAttendanceAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeEventAttendanceAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07193E8F22A9A301000F5A2C /* DukeEventAttendanceAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeEventAttendanceAppUITests.swift; sourceTree = "<group>"; };
 		07193E9122A9A301000F5A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		07193E9F22A9AB4B000F5A2C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		07193EA322A9ABCD000F5A2C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
+				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
+				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
+				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
+				07193E9F22A9AB4B000F5A2C /* Event.swift */,
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
@@ -256,7 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */,
+				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
+				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
+				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
