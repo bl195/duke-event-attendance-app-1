@@ -10,7 +10,6 @@ import UIKit
 
 class EventTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var photoImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,6 +17,8 @@ class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var backgroundCard: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

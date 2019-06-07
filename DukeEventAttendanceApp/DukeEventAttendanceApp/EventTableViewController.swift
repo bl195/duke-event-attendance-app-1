@@ -41,22 +41,24 @@ class EventTableViewController: UITableViewController {
                         if let date = formatterInput.date(from: start_time){
                             let formatterOutput = DateFormatter()
                             //formatterOutput.dateFormat = "d"
+                            formatterOutput.dateFormat = "MMM d, yyyy"
                             formatterOutput.locale = Locale(identifier: "en_US")
-                            formatterOutput.dateStyle = .short
-                            formatterOutput.timeStyle = .short
+                            //formatterOutput.dateStyle = .short
+                            //formatterOutput.timeStyle = .short
                             date_beg = formatterOutput.string(from: date)
                         }
                     }
+                    
                     
                     var date_end:String = ""
                     if let start_time = event["end_timestamp"] as? String{
                         let formatterInput = ISO8601DateFormatter()
                         if let date = formatterInput.date(from: start_time){
                             let formatterOutput = DateFormatter()
-                            formatterOutput.dateFormat = "d"
+                            formatterOutput.dateFormat = "MMM d, yyyy"
                             formatterOutput.locale = Locale(identifier: "en_US")
-                            formatterOutput.dateStyle = .short
-                            formatterOutput.timeStyle = .short
+                            //formatterOutput.dateStyle = .short
+                            //formatterOutput.timeStyle = .short
                             date_end = formatterOutput.string(from: date)
                         }
                     }
@@ -76,7 +78,7 @@ class EventTableViewController: UITableViewController {
                                              link: event["link"] as? String ?? "",
                                              event_url: event["event_url"] as? String ?? "",
                                              series_name: event["series_name"] as? String ?? "",
-                                             image_url: event["image"] as? String ?? "")
+                                             image_url: event["image"] as? String ?? self.getRandomImageURL() )
                         else{
                             fatalError("Unable to instantiate event")
                     }
@@ -92,6 +94,15 @@ class EventTableViewController: UITableViewController {
                 //}
             }
         }
+    }
+    
+    func getRandomImageURL() -> String{
+        let imageURLs:[String] = ["https://calendar.duke.edu/assets/v2016/featured-event-4.png",
+        "https://calendar.duke.edu/assets/v2016/featured-event-3.png",
+        "https://calendar.duke.edu/assets/v2016/featured-event-4.png",
+        "https://calendar.duke.edu/assets/v2016/featured-event-5.png"]
+        let randomNumber = Int.random(in: 0...3)
+        return imageURLs[randomNumber]
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -126,10 +137,21 @@ class EventTableViewController: UITableViewController {
                 }
             }
         }
-        //cell.photoImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        
+        // scell.photoImageView.contentMode = UIView.ContentMode.center
+        cell.photoImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        cell.photoImageView.layer.cornerRadius = 10.0
+        cell.photoImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        cell.photoImageView.clipsToBounds = true
+        
+        cell.backgroundCard.layer.cornerRadius = 10.0
+        cell.backgroundCard.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        cell.backgroundCard.clipsToBounds = true
+        
         //cell.photoImageView.clipsToBounds = true
         cell.dateLabel.text = event.start_time
         cell.locationLabel.text = event.address
+        
         
         
         return cell
