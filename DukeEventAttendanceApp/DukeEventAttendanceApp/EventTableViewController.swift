@@ -34,44 +34,10 @@ class EventTableViewController: UITableViewController {
             if let events = jsonData["events"] as? Array<Dictionary<String,Any>>{
                 
                 for event in events{
-                    
-                    var date_beg:String = ""
-                    var mon_beg:String = ""
-                    var day_beg:String = ""
-                    if let start_time = event["start_timestamp"] as? String{
-                        let formatterInput = ISO8601DateFormatter()
-                        if let date = formatterInput.date(from: start_time){
-                            let formatterOutput = DateFormatter()
-                            //formatterOutput.dateFormat = "d"
-                            formatterOutput.dateFormat = "MMM d, yyyy"
-                            formatterOutput.locale = Locale(identifier: "en_US")
-                            //formatterOutput.dateStyle = .short
-                            //formatterOutput.timeStyle = .short
-                            date_beg = formatterOutput.string(from: date)
-                            formatterOutput.dateFormat = "MMM"
-                            mon_beg = formatterOutput.string(from: date)
-                            formatterOutput.dateFormat = "d"
-                            day_beg = formatterOutput.string(from: date)
-                        }
-                    }
-                    
-                    var date_end:String = ""
-                    if let start_time = event["end_timestamp"] as? String{
-                        let formatterInput = ISO8601DateFormatter()
-                        if let date = formatterInput.date(from: start_time){
-                            let formatterOutput = DateFormatter()
-                            formatterOutput.dateFormat = "MMM d, yyyy"
-                            formatterOutput.locale = Locale(identifier: "en_US")
-                            //formatterOutput.dateStyle = .short
-                            //formatterOutput.timeStyle = .short
-                            date_end = formatterOutput.string(from: date)
-                        }
-                    }
-                    
-                    
+  
                     guard let event0 = Event(id: event["id"] as? String ?? "",
-                                             start_time: date_beg,
-                                             end_time: date_end,
+                                             start_date: event["start_timestamp"] as? String ?? "",
+                                             end_date: event["end_timestamp"] as? String ?? "",
                                              summary: event["summary"] as? String ?? "",
                                              description: event["description"] as? String ?? "",
                                              status: event["status"] as? String ?? "",
@@ -83,9 +49,7 @@ class EventTableViewController: UITableViewController {
                                              link: event["link"] as? String ?? "",
                                              event_url: event["event_url"] as? String ?? "",
                                              series_name: event["series_name"] as? String ?? "",
-                                             image_url: event["image"] as? String ?? "",
-                                             start_month: mon_beg,
-                                             start_day: day_beg)
+                                             image_url: event["image"] as? String ?? "")
                         else{
                             fatalError("Unable to instantiate event")
                     }
@@ -157,7 +121,7 @@ class EventTableViewController: UITableViewController {
         cell.backgroundCard.clipsToBounds = true
         
         //cell.photoImageView.clipsToBounds = true
-        cell.dateLabel.text = event.start_time
+        cell.dateLabel.text = event.start_date
         cell.locationLabel.text = event.address
         
         
@@ -172,25 +136,9 @@ class EventTableViewController: UITableViewController {
         vc?.sml = self.eventArray[indexPath.row].startmonth
         vc?.ll = self.eventArray[indexPath.row].address
         vc?.imageURL = self.eventArray[indexPath.row].image_url
-        //vc?.tl = self.eventArray[indexPath.row].tim
+        vc?.tl = self.eventArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
         vc?.dl = self.eventArray[indexPath.row].description
-        vc?.ldl = self.eventArray[indexPath.row].start_time
-        
-        //vc?.imageURL = URL(string:  self.eventArray[indexPath.row].image_url )
-        
-//        if let imageUrl = URL(string: self.eventArray[indexPath.row].image_url) {
-//            // This is a network call and needs to be run on non-UI thread
-//            DispatchQueue.global().async {
-//                let imageData = try! Data(contentsOf: imageUrl)
-//                let img = UIImage(data: imageData)
-//                DispatchQueue.main.async {
-//                    vc?.image = img ?? UIImage()
-//                }
-//            }
-//        }
-        
-        
-        
+        vc?.ldl = self.eventArray[indexPath.row].start_date
         vc?.sl = self.eventArray[indexPath.row].sponsor
         
         self.navigationController?.pushViewController(vc!, animated: true)

@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "menubarsmall.png",
       "scale" : "1x"
     },
     {

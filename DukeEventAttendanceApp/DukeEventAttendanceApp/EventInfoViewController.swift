@@ -22,6 +22,19 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var sponsorLabel: UILabel!
     
+    @IBAction func showSummary(_ sender: Any) {
+       descriptionLabel.numberOfLines = 0
+        
+    }
+    
+    
+    @IBOutlet weak var calIcon: UIImageView!
+    @IBOutlet weak var timeIcon: UIImageView!
+    @IBOutlet weak var locIcon: UIImageView!
+    
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var sum = ""
     var sdl = ""
     var sml = ""
@@ -38,6 +51,12 @@ class EventInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
+        descriptionLabel.numberOfLines = 4
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 200)
+            
+            //CGSizeMake(self.view.frame.width, self.view.frame.height + 100)
+        
         summaryLabel.text = sum
         shortDayLabel.text = sdl
         shortMonthLabel.text = sml
@@ -58,6 +77,12 @@ class EventInfoViewController: UIViewController {
                 }
             }
         }
+        
+        imageLabel.contentMode = UIView.ContentMode.scaleAspectFill
+        imageLabel.clipsToBounds = true
+        
+        
+        
         
     }
     
