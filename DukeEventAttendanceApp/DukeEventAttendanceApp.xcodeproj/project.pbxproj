@@ -19,6 +19,7 @@
 		07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */; };
 		07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193EA322A9ABCD000F5A2C /* NetworkManager.swift */; };
 		0750692222AB1E710094A577 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750692122AB1E710094A577 /* MenuController.swift */; };
+		0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750692322AB36DB0094A577 /* EventInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		07193EA322A9ABCD000F5A2C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		0750692122AB1E710094A577 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		0750692322AB36DB0094A577 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
 				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
 				07193E9F22A9AB4B000F5A2C /* Event.swift */,
+				0750692322AB36DB0094A577 /* EventInfoViewController.swift */,
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
@@ -284,6 +287,7 @@
 				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
 				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
+				0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 			);

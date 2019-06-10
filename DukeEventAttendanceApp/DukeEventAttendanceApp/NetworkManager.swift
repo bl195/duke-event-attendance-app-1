@@ -9,7 +9,7 @@
 import Foundation
 
 
-var day_range = "10"
+var day_range = "90"
 var filter = "" //&gfu[]=Career%20Center"
 var spec_url = "https://calendar.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&feed_type=simple"
 
