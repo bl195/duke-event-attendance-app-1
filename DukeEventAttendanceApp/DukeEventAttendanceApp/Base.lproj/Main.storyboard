@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dukecheck" translatesAutoresizingMaskIntoConstraints="NO" id="Czr-3L-vsB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DukeCheck" translatesAutoresizingMaskIntoConstraints="NO" id="Czr-3L-vsB">
                                 <rect key="frame" x="87" y="244" width="240" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -94,6 +94,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dukecheck" width="267" height="198"/>
+        <image name="DukeCheck" width="267" height="198"/>
     </resources>
 </document>

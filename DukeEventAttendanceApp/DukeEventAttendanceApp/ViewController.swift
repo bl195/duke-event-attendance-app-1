@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.photoImageView.image = UIImage(named: "dukecheck")
+        self.photoImageView.image = UIImage(named: "DukeCheck")
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleAspectFit
         setUpLayout()
