@@ -14,6 +14,7 @@
 		07193E7A22A9A301000F5A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */; };
 		07193E8522A9A301000F5A2C /* DukeEventAttendanceAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E8422A9A301000F5A2C /* DukeEventAttendanceAppTests.swift */; };
 		07193E9022A9A301000F5A2C /* DukeEventAttendanceAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E8F22A9A301000F5A2C /* DukeEventAttendanceAppUITests.swift */; };
+		C8760EF622ADE0E000CCA2D6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EF522ADE0E000CCA2D6 /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		07193E8B22A9A301000F5A2C /* DukeEventAttendanceAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeEventAttendanceAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07193E8F22A9A301000F5A2C /* DukeEventAttendanceAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeEventAttendanceAppUITests.swift; sourceTree = "<group>"; };
 		07193E9122A9A301000F5A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8760EF522ADE0E000CCA2D6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
 				07193E7B22A9A301000F5A2C /* Info.plist */,
+				C8760EF522ADE0E000CCA2D6 /* LogInViewController.swift */,
 			);
 			path = DukeEventAttendanceApp;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
+				C8760EF622ADE0E000CCA2D6 /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
