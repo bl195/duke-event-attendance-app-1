@@ -29,7 +29,11 @@ class EventTableViewController: UITableViewController {
     
     private func loadSampleEvents(){
         
-        NetworkManager.downloadCalendarInfo { jsonData in
+        var day_range = "90"
+        var filter = "" //&gfu[]=Career%20Center"
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&feed_type=simple"
+        
+        NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in
             
             if let events = jsonData["events"] as? Array<Dictionary<String,Any>>{
                 
@@ -67,15 +71,6 @@ class EventTableViewController: UITableViewController {
         }
     }
     
-//    func getRandomImageURL() -> String{
-//        let imageURLs:[String] = ["https://calendar.duke.edu/assets/v2016/featured-event-4.png",
-//        "https://calendar.duke.edu/assets/v2016/featured-event-3.png",
-//        "https://calendar.duke.edu/assets/v2016/featured-event-4.png",
-//        "https://calendar.duke.edu/assets/v2016/featured-event-5.png"]
-//        let randomNumber = Int.random(in: 0...3)
-//        return imageURLs[randomNumber]
-//    }
-//    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1

@@ -9,15 +9,11 @@
 import Foundation
 
 
-var day_range = "90"
-var filter = "" //&gfu[]=Career%20Center"
-var spec_url = "https://calendar.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&feed_type=simple"
-
 class NetworkManager{
-    static func downloadCalendarInfo(completion:@escaping ([String: Any]) -> () ){
+    static func downloadCalendarInfo(specific_url: String, completion:@escaping ([String: Any]) -> () ){
         
         
-        let url = URL(string: spec_url)
+        let url = URL(string: specific_url)
         let task = URLSession.shared.dataTask(with: url!){ data, response, error in //respoonse is HTTP response, data is data
             
             if let error = error{
