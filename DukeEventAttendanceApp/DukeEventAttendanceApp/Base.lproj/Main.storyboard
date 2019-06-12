@@ -328,7 +328,7 @@
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-QF-2lN">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-QF-2lN">
                                                 <rect key="frame" x="72" y="520" width="22" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="Asc-ME-qa8"/>
@@ -462,8 +462,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" width="102" height="92"/>
         <image name="calendar-icon" width="24" height="24"/>
-        <image name="calendar-icon.png" width="51" height="46"/>
         <image name="clock" width="92" height="92"/>
         <image name="home" width="24" height="24"/>
         <image name="loclabel" width="66" height="68"/>
