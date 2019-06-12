@@ -21,6 +21,9 @@
 		0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */; };
 		0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750692322AB36DB0094A577 /* EventInfoViewController.swift */; };
 		C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */; };
+		C8760EFC22B1601400CCA2D6 /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EFB22B1601400CCA2D6 /* CalendarVar.swift */; };
+		C8760EFE22B1603200CCA2D6 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EFD22B1603200CCA2D6 /* DateCollectionViewCell.swift */; };
+		C8760F0022B1606100CCA2D6 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EFF22B1606100CCA2D6 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0750692322AB36DB0094A577 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		C8760EFB22B1601400CCA2D6 /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarVar.swift; path = ../../../../../Downloads/CalendarVar.swift; sourceTree = "<group>"; };
+		C8760EFD22B1603200CCA2D6 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateCollectionViewCell.swift; path = ../../../../../Downloads/DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		C8760EFF22B1606100CCA2D6 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ../../../../../Downloads/CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +119,10 @@
 			children = (
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
+				C8760EFF22B1606100CCA2D6 /* CalendarViewController.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
+				C8760EFB22B1601400CCA2D6 /* CalendarVar.swift */,
+				C8760EFD22B1603200CCA2D6 /* DateCollectionViewCell.swift */,
 				0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */,
 				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
 				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
@@ -278,10 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */,
+				C8760EFE22B1603200CCA2D6 /* DateCollectionViewCell.swift in Sources */,
+				C8760F0022B1606100CCA2D6 /* CalendarViewController.swift in Sources */,
 				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
 				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
 				0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */,
+				C8760EFC22B1601400CCA2D6 /* CalendarVar.swift in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,

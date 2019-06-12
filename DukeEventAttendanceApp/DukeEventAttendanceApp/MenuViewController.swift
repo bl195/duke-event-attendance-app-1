@@ -15,6 +15,7 @@ class MenuViewController: UITableViewController {
     var menuArray = ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"]
     
     override func viewDidLoad() {
+        self.title = "Topic"
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
