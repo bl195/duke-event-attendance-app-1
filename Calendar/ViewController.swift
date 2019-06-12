@@ -1,5 +1,7 @@
 import UIKit
 
+var dateString = ""
+
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
@@ -28,6 +30,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var LeapYearCounter = 2
     
     var dayCounter = 0
+    
+    var highlightdate = -1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +79,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //--------------------------------------------------(Next and back buttons)-------------------------------------------------------------
     @IBAction func Next(_ sender: Any) {
+        highlightdate = -1
         switch currentMonth {
         case "December":
             Direction = 1
@@ -115,6 +120,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @IBAction func Back(_ sender: Any) {
+        highlightdate = -1
         switch currentMonth {
         case "January":
             Direction = -1
@@ -207,9 +213,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.DrawCircle()
             
         }
+        
+        if highlightdate == indexPath.row{
+            cell.backgroundColor = UIColor.red
+        }
+        
+        
         return cell
         
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        
+        dateString = "\(indexPath.row - PositionIndex + 1) \(currentMonth) \(year)"
+        
+        performSegue(withIdentifier: "NextView", sender: self)
+        
+        highlightdate = indexPath.row
+        collectionView.reloadData()
     }
     
 }

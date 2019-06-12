@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C74CF4DA22B02DBB00EE61D9 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CF4D922B02DBA00EE61D9 /* NextViewController.swift */; };
 		C76C713322A8098600E7F06D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C713222A8098600E7F06D /* AppDelegate.swift */; };
 		C76C713522A8098600E7F06D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C713422A8098600E7F06D /* ViewController.swift */; };
 		C76C713822A8098600E7F06D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C76C713622A8098600E7F06D /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C74CF4D922B02DBA00EE61D9 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		C76C712F22A8098600E7F06D /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76C713222A8098600E7F06D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C76C713422A8098600E7F06D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				C76C713222A8098600E7F06D /* AppDelegate.swift */,
 				C76C716222A8115500E7F06D /* CalendarVar.swift */,
 				C76C713422A8098600E7F06D /* ViewController.swift */,
+				C74CF4D922B02DBA00EE61D9 /* NextViewController.swift */,
 				C76C713622A8098600E7F06D /* Main.storyboard */,
 				C76C713922A8098800E7F06D /* Assets.xcassets */,
 				C76C713B22A8098800E7F06D /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74CF4DA22B02DBB00EE61D9 /* NextViewController.swift in Sources */,
 				C76C716522A81B3800E7F06D /* DateCollectionViewCell.swift in Sources */,
 				C76C713522A8098600E7F06D /* ViewController.swift in Sources */,
 				C76C713322A8098600E7F06D /* AppDelegate.swift in Sources */,

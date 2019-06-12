@@ -59,13 +59,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKC-Zj-ELm">
-                                                    <rect key="frame" x="3" y="3" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <segue destination="WHU-Iz-Gll" kind="presentation" id="P3C-4t-DgK"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -228,36 +221,55 @@
                     <connections>
                         <outlet property="Calendar" destination="aYg-l0-1g6" id="5Qo-4Y-hm8"/>
                         <outlet property="MonthLabel" destination="Krj-d3-njs" id="8nE-0R-EM8"/>
+                        <segue destination="WHU-Iz-Gll" kind="show" identifier="NextView" id="d48-WL-AXf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2.8985507246376816" y="147.32142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Next View Controller-->
         <scene sceneID="r5I-d3-sH5">
             <objects>
-                <viewController id="WHU-Iz-Gll" sceneMemberID="viewController">
+                <viewController id="WHU-Iz-Gll" customClass="NextViewController" customModule="Calendar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A9L-j3-EEN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6T-u0-KQ2">
-                                <rect key="frame" x="40" y="60" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8A-NB-65c">
+                                <rect key="frame" x="75" y="110" width="265" height="91"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoK-3o-lYC">
+                                <rect key="frame" x="32" y="70" width="40" height="40"/>
+                                <state key="normal" title="Button" image="calendar"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="LXA-Tl-zkO"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="frK-zN-bRK"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GEt-lx-pvF" firstAttribute="bottom" secondItem="YoK-3o-lYC" secondAttribute="bottom" constant="752" id="85i-9z-yAu"/>
+                            <constraint firstItem="A8A-NB-65c" firstAttribute="top" secondItem="GEt-lx-pvF" secondAttribute="top" constant="66" id="H5s-Fd-yax"/>
+                            <constraint firstItem="A8A-NB-65c" firstAttribute="leading" secondItem="GEt-lx-pvF" secondAttribute="leading" constant="75" id="IP6-SF-mBP"/>
+                            <constraint firstItem="GEt-lx-pvF" firstAttribute="trailing" secondItem="YoK-3o-lYC" secondAttribute="trailing" constant="342" id="KGd-Bb-oSC"/>
+                            <constraint firstItem="YoK-3o-lYC" firstAttribute="leading" secondItem="GEt-lx-pvF" secondAttribute="leading" constant="32" id="NP5-k8-nUG"/>
+                            <constraint firstItem="GEt-lx-pvF" firstAttribute="trailing" secondItem="A8A-NB-65c" secondAttribute="trailing" constant="74" id="RZS-xy-iLj"/>
+                            <constraint firstItem="GEt-lx-pvF" firstAttribute="bottom" secondItem="A8A-NB-65c" secondAttribute="bottom" constant="661" id="e8L-v7-0QT"/>
+                            <constraint firstItem="YoK-3o-lYC" firstAttribute="top" secondItem="GEt-lx-pvF" secondAttribute="top" constant="26" id="oMe-VO-mrl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GEt-lx-pvF"/>
                     </view>
+                    <connections>
+                        <outlet property="DateLabel" destination="A8A-NB-65c" id="Idv-Su-46U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qt3-hj-Yhs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688" y="147"/>
+            <point key="canvasLocation" x="686.95652173913049" y="146.65178571428569"/>
         </scene>
     </scenes>
     <resources>
