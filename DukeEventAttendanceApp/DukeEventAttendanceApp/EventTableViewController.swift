@@ -11,14 +11,24 @@ import UIKit
 class EventTableViewController: UITableViewController {
     
     var eventArray = [Event]()
+    var filteredEvents = [Event]()
     var filtername = ""
+    var encodedate = ""
+    var searchController = UISearchController(searchResultsController: nil)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.loadSampleEvents(filter: filtername)
-        
+        self.loadSampleEvents(filter: filtername, date: encodedate)
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Events"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -28,7 +38,21 @@ class EventTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    private func loadSampleEvents(filter: String){
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredEvents = eventArray.filter({( event:Event) -> Bool in
+            return event.summary.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    
+    private func loadSampleEvents(filter: String, date: String){
         let filtername1 = filter.replacingOccurrences(of: " ", with: "+")
         filtername = "&topic=" + filtername1
         filtername.replacingOccurrences(of: "/", with: "%2F")
@@ -40,7 +64,9 @@ class EventTableViewController: UITableViewController {
             filtername = ""
         }
  */
-        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername + "&future_days=" + day_range + "&feed_type=simple"
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple"
+        
+        print(spec_url)
         
         NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in
             
@@ -80,6 +106,11 @@ class EventTableViewController: UITableViewController {
         }
     }
     
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -87,6 +118,10 @@ class EventTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if isFiltering(){
+            return filteredEvents.count
+        }
+        
         return eventArray.count
     }
     
@@ -96,7 +131,12 @@ class EventTableViewController: UITableViewController {
             fatalError("the cell is not an instance of the table view cell")
         }
         // Configure the cell...
-        let event = self.eventArray[indexPath.row]
+        let event:Event
+        if isFiltering(){
+            event = self.filteredEvents[indexPath.row]
+        } else{
+            event = self.eventArray[indexPath.row]
+        }
         cell.nameLabel.text = event.summary
         
         // Need to check if url can be created successfully
@@ -135,15 +175,22 @@ class EventTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
-        vc?.sum = self.eventArray[indexPath.row].summary
-        vc?.sdl = self.eventArray[indexPath.row].startday
-        vc?.sml = self.eventArray[indexPath.row].startmonth
-        vc?.ll = self.eventArray[indexPath.row].address
-        vc?.imageURL = self.eventArray[indexPath.row].image_url
-        vc?.tl = self.eventArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
-        vc?.dl = self.eventArray[indexPath.row].description
-        vc?.ldl = self.eventArray[indexPath.row].start_date
-        vc?.sl = self.eventArray[indexPath.row].sponsor
+        var thisArray = [Event]()
+        if isFiltering(){
+            thisArray = filteredEvents
+        }
+        else{
+            thisArray = eventArray
+        }
+        vc?.sum = thisArray[indexPath.row].summary
+        vc?.sdl = thisArray[indexPath.row].startday
+        vc?.sml = thisArray[indexPath.row].startmonth
+        vc?.ll = thisArray[indexPath.row].address
+        vc?.imageURL = thisArray[indexPath.row].image_url
+        vc?.tl = thisArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
+        vc?.dl = thisArray[indexPath.row].description
+        vc?.ldl = thisArray[indexPath.row].start_date
+        vc?.sl = thisArray[indexPath.row].sponsor
         
         self.navigationController?.pushViewController(vc!, animated: true)
         //present(vc!, animated: true)
@@ -197,3 +244,8 @@ class EventTableViewController: UITableViewController {
     
 }
 
+extension EventTableViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}

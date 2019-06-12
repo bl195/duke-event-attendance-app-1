@@ -46,7 +46,7 @@ class Event{
         self.start_date = start_date
         self.end_date = end_date
         self.summary = summary
-        self.description = description
+        self.description = description.replacingOccurrences(of: "0x0A", with: "\n")
         self.status = status
         self.sponsor = sponsor
         self.co_sponsors = co_sponsors

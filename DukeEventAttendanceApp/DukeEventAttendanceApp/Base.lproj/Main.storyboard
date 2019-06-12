@@ -103,13 +103,6 @@
                                 <segue destination="cu6-fU-hsK" kind="show" id="uB5-Jf-wC6"/>
                             </connections>
                         </barButtonItem>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="rKS-7E-t6s">
-                            <rect key="frame" x="99" y="7" width="216" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="calendar-icon" id="4Kw-2F-scW">
                             <color key="tintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                             <connections>
@@ -511,20 +504,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MonthLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLs-dn-ew8">
-                                <rect key="frame" x="140.5" y="284" width="135" height="20.5"/>
+                                <rect key="frame" x="140.5" y="289" width="135" height="20.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="MonthLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Next" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z66-r4-Www">
-                                <rect key="frame" x="283" y="284" width="32" height="24"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Next"/>
-                                <state key="normal" title="Next" image="menu"/>
-                                <connections>
-                                    <action selector="Next:" destination="HQg-Ed-Jqc" eventType="touchUpInside" id="SZu-id-gdn"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cOB-Zy-fxt">
                                 <rect key="frame" x="60" y="400" width="301" height="255"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -536,7 +521,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Calendar" id="pEv-uW-qkT" customClass="DateCollectionViewCell" customModule="Calendar" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Calendar" id="pEv-uW-qkT" customClass="DateCollectionViewCell" customModule="DukeEventAttendanceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -625,28 +610,38 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Back" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdQ-fn-2hP">
-                                <rect key="frame" x="98" y="284" width="34" height="24"/>
+                                <rect key="frame" x="98" y="288" width="24" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Back"/>
-                                <state key="normal" title="Back" image="menu"/>
+                                <state key="normal" title="Back" image="left"/>
                                 <connections>
                                     <action selector="Back:" destination="HQg-Ed-Jqc" eventType="touchUpInside" id="0ZF-eI-wkV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Next" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z66-r4-Www">
+                                <rect key="frame" x="288" y="287" width="24" height="24"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Next"/>
+                                <state key="normal" title="Next" image="rightarrow"/>
+                                <connections>
+                                    <action selector="Next:" destination="HQg-Ed-Jqc" eventType="touchUpInside" id="SZu-id-gdn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="98" id="1jd-QJ-dJQ"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="IdQ-fn-2hP" secondAttribute="bottom" constant="644" id="Ndu-Yg-NTE"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="SGm-a9-TQk"/>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="8.5" id="a6p-Y6-PaD"/>
-                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="bCT-Cg-xc9"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="99" id="cDs-KI-jbm"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="282" id="fiL-8v-Vjv"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="z66-r4-Www" secondAttribute="bottom" constant="644" id="k4c-nM-zTN"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="xLs-dn-ew8" secondAttribute="bottom" constant="645.5" id="xBN-aV-YzD"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="283" id="xMk-r0-FSt"/>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="yY5-nW-uiI"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="7.5" id="zVb-8M-Twt"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="149" id="3dS-Ac-TkO"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="z66-r4-Www" secondAttribute="bottom" constant="502" id="972-br-QCM"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="292" id="EZa-t4-D50"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="102" id="Wxr-kj-Pfe"/>
+                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="98" id="dai-fs-QwC"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="140.5" id="iTO-za-3rh"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="147" id="jSL-ed-80e"/>
+                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="148" id="o6u-8f-fbT"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="18.5" id="oVM-hP-tfg"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="IdQ-fn-2hP" secondAttribute="bottom" constant="501" id="qVm-x9-iQz"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="288" id="qao-6Q-MeC"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="bottom" secondItem="e1S-G7-duR" secondAttribute="bottom" constant="-503.5" id="tKD-fw-yRp"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="138.5" id="tKg-im-xNq"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="12.5" id="vMp-b5-A8D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e1S-G7-duR"/>
                     </view>
@@ -657,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCQ-G9-gh3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4745" y="-763"/>
+            <point key="canvasLocation" x="4743.4782608695659" y="-763.39285714285711"/>
         </scene>
     </scenes>
     <resources>
@@ -665,9 +660,11 @@
         <image name="calendar-icon" width="24" height="24"/>
         <image name="clock" width="92" height="92"/>
         <image name="home" width="24" height="24"/>
+        <image name="left" width="42.666667938232422" height="42.666667938232422"/>
         <image name="loclabel" width="66" height="68"/>
         <image name="menu" width="24" height="24"/>
         <image name="profile" width="24" height="24"/>
+        <image name="rightarrow" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uB5-Jf-wC6"/>
