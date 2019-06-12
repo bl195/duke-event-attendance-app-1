@@ -11,12 +11,13 @@ import UIKit
 class EventTableViewController: UITableViewController {
     
     var eventArray = [Event]()
+    var filtername = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.loadSampleEvents()
+        self.loadSampleEvents(filter: filtername)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,11 +28,19 @@ class EventTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    private func loadSampleEvents(){
-        
+    private func loadSampleEvents(filter: String){
+        let filtername1 = filter.replacingOccurrences(of: " ", with: "+")
+        filtername = "&topic=" + filtername1
+        filtername.replacingOccurrences(of: "/", with: "%2F")
+        filtername.replacingOccurrences(of: "&", with: "%26")
         var day_range = "90"
-        var filter = "" //&gfu[]=Career%20Center"
-        var spec_url = "https://calendar.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&feed_type=simple"
+        //var filter = "" //&gfu[]=Career%20Center"
+        /*
+        if filter == "Home" {
+            filtername = ""
+        }
+ */
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername + "&future_days=" + day_range + "&feed_type=simple"
         
         NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in
             
@@ -137,6 +146,7 @@ class EventTableViewController: UITableViewController {
         vc?.sl = self.eventArray[indexPath.row].sponsor
         
         self.navigationController?.pushViewController(vc!, animated: true)
+        //present(vc!, animated: true)
     }
     
     
