@@ -59,6 +59,7 @@ class EventInfoViewController: UIViewController {
         locationLabel.text = ll
         timeLabel.text = tl
         descriptionLabel.text = dl
+       
         longDateLabel.text = ldl
         //imageLabel.image = image
         sponsorLabel.text = sl

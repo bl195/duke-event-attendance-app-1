@@ -536,7 +536,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Calendar" id="pEv-uW-qkT" customClass="DateCollectionViewCell" customModule="Calendar" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Calendar" id="pEv-uW-qkT" customClass="DateCollectionViewCell" customModule="DukeEventAttendanceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -577,7 +577,7 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Jg1-VC-irX">
-                                <rect key="frame" x="61" y="335" width="307" height="20"/>
+                                <rect key="frame" x="61" y="335" width="306.5" height="20.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikQ-dJ-cMb">
@@ -636,17 +636,18 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="IdQ-fn-2hP" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="98" id="1jd-QJ-dJQ"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="140.5" id="7WF-mo-C6r"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="7.5" id="D6k-ce-WiS"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="8.5" id="KbS-qj-23h"/>
                             <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="IdQ-fn-2hP" secondAttribute="bottom" constant="644" id="Ndu-Yg-NTE"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="SGm-a9-TQk"/>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="8.5" id="a6p-Y6-PaD"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="UI0-Tu-uFy"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="xLs-dn-ew8" secondAttribute="bottom" constant="647.5" id="Z2q-j5-tu1"/>
                             <constraint firstItem="IdQ-fn-2hP" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="bCT-Cg-xc9"/>
                             <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="99" id="cDs-KI-jbm"/>
                             <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="282" id="fiL-8v-Vjv"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="z66-r4-Www" secondAttribute="bottom" constant="644" id="k4c-nM-zTN"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="xLs-dn-ew8" secondAttribute="bottom" constant="645.5" id="xBN-aV-YzD"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="138.5" id="gU4-iz-KvD"/>
                             <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="283" id="xMk-r0-FSt"/>
                             <constraint firstItem="xLs-dn-ew8" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="144" id="yY5-nW-uiI"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="7.5" id="zVb-8M-Twt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e1S-G7-duR"/>
                     </view>
