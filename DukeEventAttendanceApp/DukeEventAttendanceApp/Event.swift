@@ -60,7 +60,7 @@ class Event{
         
         //initialize image URL, assigning random default image if there is none passed in the parameters
         if( image_url != ""){
-            self.image_url = image_url
+            self.image_url = image_url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         }
         else{
             self.image_url = getRandomImageURL()
