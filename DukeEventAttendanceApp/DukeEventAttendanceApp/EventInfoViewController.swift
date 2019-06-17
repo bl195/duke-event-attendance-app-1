@@ -25,6 +25,11 @@ class EventInfoViewController: UIViewController {
         }
     }
     
+    @IBAction func onShareTapped(_ sender: Any) {
+        let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var shortDayLabel: UILabel!
     @IBOutlet weak var shortMonthLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
