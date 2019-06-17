@@ -24,6 +24,15 @@
 		C8760F0822B177B900CCA2D6 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F0722B177B900CCA2D6 /* CalendarViewController.swift */; };
 		C8760F0A22B177CF00CCA2D6 /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F0922B177CF00CCA2D6 /* CalendarVar.swift */; };
 		C8760F0C22B177DB00CCA2D6 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F0B22B177DB00CCA2D6 /* DateCollectionViewCell.swift */; };
+		C8760F0F22B2DFCB00CCA2D6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8760F0E22B2DFCB00CCA2D6 /* CoreData.framework */; };
+		C8760F1522B41C0600CCA2D6 /* AgendaData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8760F1322B41C0600CCA2D6 /* AgendaData.xcdatamodeld */; };
+		C8760F3822B41E7500CCA2D6 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F3722B41E7500CCA2D6 /* PersistenceService.swift */; };
+		C8760F3F22B4237500CCA2D6 /* EventID+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F3D22B4237500CCA2D6 /* EventID+CoreDataClass.swift */; };
+		C8760F4022B4237500CCA2D6 /* EventID+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F3E22B4237500CCA2D6 /* EventID+CoreDataProperties.swift */; };
+		C8760F4222B6FE6300CCA2D6 /* AgendaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F4122B6FE6300CCA2D6 /* AgendaTableViewController.swift */; };
+		C8760F4422B6FF9700CCA2D6 /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F4322B6FF9700CCA2D6 /* AgendaTableViewCell.swift */; };
+		C8760F4E22B7342B00CCA2D6 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F4D22B7342B00CCA2D6 /* Items.swift */; };
+		C8760F5222B73A8100CCA2D6 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760F5122B73A8100CCA2D6 /* StateController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +76,15 @@
 		C8760F0722B177B900CCA2D6 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C8760F0922B177CF00CCA2D6 /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVar.swift; sourceTree = "<group>"; };
 		C8760F0B22B177DB00CCA2D6 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		C8760F0E22B2DFCB00CCA2D6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C8760F1422B41C0600CCA2D6 /* AgendaData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AgendaData.xcdatamodel; sourceTree = "<group>"; };
+		C8760F3722B41E7500CCA2D6 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		C8760F3D22B4237500CCA2D6 /* EventID+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventID+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C8760F3E22B4237500CCA2D6 /* EventID+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventID+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C8760F4122B6FE6300CCA2D6 /* AgendaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewController.swift; sourceTree = "<group>"; };
+		C8760F4322B6FF9700CCA2D6 /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
+		C8760F4D22B7342B00CCA2D6 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		C8760F5122B73A8100CCA2D6 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8760F0F22B2DFCB00CCA2D6 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +120,7 @@
 				07193E8322A9A301000F5A2C /* DukeEventAttendanceAppTests */,
 				07193E8E22A9A301000F5A2C /* DukeEventAttendanceAppUITests */,
 				07193E6D22A9A300000F5A2C /* Products */,
+				C8760F0D22B2DFCA00CCA2D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,7 +137,10 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				C8760F3D22B4237500CCA2D6 /* EventID+CoreDataClass.swift */,
+				C8760F3E22B4237500CCA2D6 /* EventID+CoreDataProperties.swift */,
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
+				C8760F1322B41C0600CCA2D6 /* AgendaData.xcdatamodeld */,
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
 				C8760F0722B177B900CCA2D6 /* CalendarViewController.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
@@ -133,6 +156,11 @@
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
 				07193E7B22A9A301000F5A2C /* Info.plist */,
 				C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */,
+				C8760F3722B41E7500CCA2D6 /* PersistenceService.swift */,
+				C8760F4122B6FE6300CCA2D6 /* AgendaTableViewController.swift */,
+				C8760F4322B6FF9700CCA2D6 /* AgendaTableViewCell.swift */,
+				C8760F4D22B7342B00CCA2D6 /* Items.swift */,
+				C8760F5122B73A8100CCA2D6 /* StateController.swift */,
 			);
 			path = DukeEventAttendanceApp;
 			sourceTree = "<group>";
@@ -153,6 +181,14 @@
 				07193E9122A9A301000F5A2C /* Info.plist */,
 			);
 			path = DukeEventAttendanceAppUITests;
+			sourceTree = "<group>";
+		};
+		C8760F0D22B2DFCA00CCA2D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C8760F0E22B2DFCB00CCA2D6 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,13 +324,21 @@
 			files = (
 				07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */,
 				C8760F0A22B177CF00CCA2D6 /* CalendarVar.swift in Sources */,
+				C8760F3F22B4237500CCA2D6 /* EventID+CoreDataClass.swift in Sources */,
 				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
+				C8760F1522B41C0600CCA2D6 /* AgendaData.xcdatamodeld in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
 				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
 				0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */,
+				C8760F4222B6FE6300CCA2D6 /* AgendaTableViewController.swift in Sources */,
+				C8760F5222B73A8100CCA2D6 /* StateController.swift in Sources */,
+				C8760F3822B41E7500CCA2D6 /* PersistenceService.swift in Sources */,
 				C8760F0822B177B900CCA2D6 /* CalendarViewController.swift in Sources */,
+				C8760F4022B4237500CCA2D6 /* EventID+CoreDataProperties.swift in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
+				C8760F4422B6FF9700CCA2D6 /* AgendaTableViewCell.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
+				C8760F4E22B7342B00CCA2D6 /* Items.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
 				C8760F0C22B177DB00CCA2D6 /* DateCollectionViewCell.swift in Sources */,
@@ -620,6 +664,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C8760F1322B41C0600CCA2D6 /* AgendaData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C8760F1422B41C0600CCA2D6 /* AgendaData.xcdatamodel */,
+			);
+			currentVersion = C8760F1422B41C0600CCA2D6 /* AgendaData.xcdatamodel */;
+			name = AgendaData.xcdatamodeld;
+			path = ../AgendaData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 07193E6422A9A300000F5A2C /* Project object */;
 }
