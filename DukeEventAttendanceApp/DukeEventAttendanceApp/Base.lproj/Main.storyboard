@@ -550,15 +550,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MonthLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLs-dn-ew8">
-                                <rect key="frame" x="140.5" y="289" width="135" height="20.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="MonthLabel"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-Uy-11X">
+                                <rect key="frame" x="58" y="193" width="307" height="49"/>
+                                <color key="backgroundColor" red="0.083986536050000005" green="0.1289264265" blue="0.34974744099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="MonthLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLs-dn-ew8">
+                                <rect key="frame" x="119" y="209" width="178" height="21"/>
+                                <color key="backgroundColor" red="0.083986536050000005" green="0.1289264265" blue="0.34974744099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MonthLabel"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cOB-Zy-fxt">
-                                <rect key="frame" x="60" y="400" width="301" height="255"/>
+                                <rect key="frame" x="57" y="320" width="301" height="255"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="D3h-fr-MRw">
@@ -609,7 +617,7 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Jg1-VC-irX">
-                                <rect key="frame" x="61" y="335" width="306.5" height="20.5"/>
+                                <rect key="frame" x="58" y="255" width="306.5" height="20.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikQ-dJ-cMb">
@@ -657,17 +665,17 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Back" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdQ-fn-2hP">
-                                <rect key="frame" x="98" y="288" width="24" height="24"/>
+                                <rect key="frame" x="71" y="207" width="24" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Back"/>
-                                <state key="normal" title="Back" image="left"/>
+                                <state key="normal" title="Back" image="Screen Shot 2019-06-13 at 2.13.14 PM"/>
                                 <connections>
                                     <action selector="Back:" destination="HQg-Ed-Jqc" eventType="touchUpInside" id="0ZF-eI-wkV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Next" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z66-r4-Www">
-                                <rect key="frame" x="288" y="287" width="24" height="24"/>
+                                <rect key="frame" x="334" y="207" width="24" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Next"/>
-                                <state key="normal" title="Next" image="rightarrow"/>
+                                <state key="normal" title="Next" image="Screen Shot 2019-06-13 at 2.13.02 PM"/>
                                 <connections>
                                     <action selector="Next:" destination="HQg-Ed-Jqc" eventType="touchUpInside" id="SZu-id-gdn"/>
                                 </connections>
@@ -675,20 +683,22 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="149" id="3dS-Ac-TkO"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="z66-r4-Www" secondAttribute="bottom" constant="502" id="972-br-QCM"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="292" id="EZa-t4-D50"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="102" id="Wxr-kj-Pfe"/>
-                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="98" id="dai-fs-QwC"/>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="140.5" id="iTO-za-3rh"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="147" id="jSL-ed-80e"/>
-                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="148" id="o6u-8f-fbT"/>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="18.5" id="oVM-hP-tfg"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="IdQ-fn-2hP" secondAttribute="bottom" constant="501" id="qVm-x9-iQz"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="288" id="qao-6Q-MeC"/>
-                            <constraint firstItem="xLs-dn-ew8" firstAttribute="bottom" secondItem="e1S-G7-duR" secondAttribute="bottom" constant="-503.5" id="tKD-fw-yRp"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="138.5" id="tKg-im-xNq"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="12.5" id="vMp-b5-A8D"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="69" id="3dS-Ac-TkO"/>
+                            <constraint firstItem="2fE-Uy-11X" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="58" id="6vD-kB-dVd"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="2fE-Uy-11X" secondAttribute="bottom" constant="571" id="7Cd-lL-NUr"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="z66-r4-Www" secondAttribute="bottom" constant="582" id="972-br-QCM"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="2fE-Uy-11X" secondAttribute="trailing" constant="49" id="DBW-IV-yEu"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="56" id="Wxr-kj-Pfe"/>
+                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="71" id="dai-fs-QwC"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="119" id="iTO-za-3rh"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="67" id="jSL-ed-80e"/>
+                            <constraint firstItem="2fE-Uy-11X" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="53" id="lfx-nH-fdG"/>
+                            <constraint firstItem="IdQ-fn-2hP" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="67" id="o6u-8f-fbT"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="24" id="oVM-hP-tfg"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="IdQ-fn-2hP" secondAttribute="bottom" constant="582" id="qVm-x9-iQz"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="334" id="qao-6Q-MeC"/>
+                            <constraint firstItem="xLs-dn-ew8" firstAttribute="bottom" secondItem="e1S-G7-duR" secondAttribute="bottom" constant="-583.5" id="tKD-fw-yRp"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="37" id="vMp-b5-A8D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e1S-G7-duR"/>
                     </view>
@@ -703,15 +713,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Screen Shot 2019-06-13 at 2.13.02 PM" width="55" height="51"/>
+        <image name="Screen Shot 2019-06-13 at 2.13.14 PM" width="54" height="53"/>
         <image name="calendar" width="102" height="92"/>
         <image name="calendar-icon" width="24" height="24"/>
         <image name="clock" width="92" height="92"/>
         <image name="home" width="24" height="24"/>
-        <image name="left" width="42.666667938232422" height="42.666667938232422"/>
         <image name="loclabel" width="66" height="68"/>
         <image name="menu" width="24" height="24"/>
         <image name="profile" width="24" height="24"/>
-        <image name="rightarrow" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uB5-Jf-wC6"/>

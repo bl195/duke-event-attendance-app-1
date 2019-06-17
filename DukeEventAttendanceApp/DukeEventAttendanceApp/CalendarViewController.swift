@@ -39,6 +39,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var datecode = ""
     
+    var cellsArray : [UICollectionViewCell] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Choose Your Date"
@@ -110,6 +111,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
             
+            MoveAnimationNext(Label: MonthLabel)
+            
             Calendar.reloadData()
         default:
             Direction = 1
@@ -120,7 +123,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
-            
+            MoveAnimationNext(Label: MonthLabel)
             Calendar.reloadData()
         }
     }
@@ -148,6 +151,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
+            MoveAnimationBack(Label: MonthLabel)
             Calendar.reloadData()
             
         default:
@@ -159,6 +163,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
+            MoveAnimationBack(Label: MonthLabel)
             Calendar.reloadData()
         }
     }
@@ -225,7 +230,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             cell.backgroundColor = UIColor.blue
         }
         
-        
+        cellsArray.append(cell)
         return cell
         
         
@@ -269,5 +274,20 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         return ans
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
+        cell.layer.transform = CATransform3DMakeScale(0.5,0.5,0.5)
+        
+        for x in cellsArray{
+            let cell : UICollectionViewCell = x
+            
+            UIView.animate(withDuration: 1, delay: 0.01 * Double(indexPath.row), usingSpringWithDamping: 0.8, initialSpringVelocity: 0,options: .curveEaseOut, animations: {
+                cell.alpha = 1
+                cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+            })
+        }
+    }
 }
+
+
 
