@@ -30,6 +30,8 @@ class Event{
     var end_date: String        //raw JSON date, indicated by "end_timestamp" e.g "2019-01-19T15:00:00Z"
     var startmonth: String      //parsed JSON, start month
     var startday: String        //parsed JSON, start day
+    var endmonth: String
+    var endday: String
     var starttime: String       //parsed JSON, start time
     var endtime: String         //parsed JSON, end time
     
@@ -37,6 +39,8 @@ class Event{
     var contact_email: String
     var address: String
     var maps_link: String
+    
+    var ongoing: Bool
 
     
     init?(id: String, start_date: String, end_date: String, summary: String, description: String, status: String, sponsor: String, co_sponsors: String, location: Dictionary<String, String>, contact: Dictionary<String, String>, categories: [String], link: String, event_url: String, series_name: String, image_url: String) {
@@ -46,7 +50,7 @@ class Event{
         self.start_date = start_date
         self.end_date = end_date
         self.summary = summary
-        self.description = description
+        self.description = description.replacingOccurrences(of: "0x0A", with: "\n")
         self.status = status
         self.sponsor = sponsor
         self.co_sponsors = co_sponsors
@@ -57,10 +61,11 @@ class Event{
         self.event_url = event_url
         self.series_name = series_name
         self.location = location
+        //self.ongoing = ongoing
         
         //initialize image URL, assigning random default image if there is none passed in the parameters
         if( image_url != ""){
-            self.image_url = image_url
+            self.image_url = image_url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         }
         else{
             self.image_url = getRandomImageURL()
@@ -73,8 +78,12 @@ class Event{
         self.maps_link = ""
         self.startmonth = ""
         self.startday = ""
+        self.endmonth = ""
+        self.endday = ""
         self.starttime = ""
         self.endtime = ""
+        self.ongoing = false
+        
         
         //call method to initialize startmonth, startday, starttime, and endtime
         simpTimeStamp(starttimestamp: start_date, endtimestamp: end_date)
@@ -114,10 +123,17 @@ class Event{
             formatterOutput.locale = Locale(identifier: "en_US")
             end_date = formatterOutput.string(from: date)
             formatterOutput.dateFormat = "MMM"
+            endmonth = formatterOutput.string(from: date)
+            formatterOutput.dateFormat = "d"
+            endday = formatterOutput.string(from: date)
             formatterOutput.dateFormat = "h:mm a"
             endtime = formatterOutput.string(from: date)
         }
         
+    }
+    
+    func makeOngoing(){
+        self.ongoing = true
     }
     
 }
@@ -130,4 +146,5 @@ func getRandomImageURL() -> String{
     let randomNumber = Int.random(in: 0...3)
     return imageURLs[randomNumber]
 }
+
 

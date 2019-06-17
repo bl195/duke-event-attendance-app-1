@@ -8,17 +8,46 @@
 
 import UIKit
 
+
 class EventTableViewController: UITableViewController {
-    
+    var agendavc = MyAgendaTableViewController().myAgendaArray
     var eventArray = [Event]()
+    var myAgendaArray = [Event]()
+    var filteredEvents = [Event]()
     var filtername = ""
+    
+    var menuFilterName = ""
+    var encodedate = ""
+    var ongoing: Bool = false
+    var switchOn: Bool = false
+    var searchController = UISearchController(searchResultsController: nil)
+    var menuFilter: Bool = false
+    var dateFilter: Bool = false
+    
+    
+    
+    @IBOutlet weak var cal: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view")
+        let my_switch = UISwitch(frame: .zero)
+        my_switch.isOn = switchOn
+        my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
+        let switch_display = UIBarButtonItem(customView: my_switch)
+        navigationItem.rightBarButtonItems = [cal, switch_display]
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.loadSampleEvents(filter: filtername)
-        
+        self.loadSampleEvents(filter: filtername, date: encodedate, ongoing: ongoing)
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Events"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -26,13 +55,59 @@ class EventTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    
+    
+    
     // MARK: - Table view data source
     
-    private func loadSampleEvents(filter: String){
-        let filtername1 = filter.replacingOccurrences(of: " ", with: "+")
-        filtername = "&topic=" + filtername1
-        filtername.replacingOccurrences(of: "/", with: "%2F")
-        filtername.replacingOccurrences(of: "&", with: "%26")
+    @IBAction func switchToggled(_ sender: UISwitch) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
+        if sender.isOn {
+            vc?.ongoing = true
+            vc?.switchOn = true
+        }
+        else{
+            vc?.ongoing = false
+            vc?.switchOn = false
+        }
+        vc?.encodedate = self.encodedate
+        vc?.filtername = self.filtername
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredEvents = eventArray.filter({( event:Event) -> Bool in
+            return event.summary.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "calendarSegue") {
+            let calVC = segue.destination as? CalendarViewController
+            calVC?.filter = filtername 
+        }
+        
+        if (segue.identifier == "menuSegue") {
+            let menuVC = segue.destination as? MenuViewController
+            menuVC?.thisDateCode = encodedate
+        }
+    }
+
+    
+    private func loadSampleEvents(filter: String, date: String, ongoing: Bool){
+        var filtername1 = filter.replacingOccurrences(of: " ", with: "+")
+        filtername1 = "&topic=" + filtername1
+        //filtername = filter.replacingOccurrences(of: " ", with: "+")
+        filtername1.replacingOccurrences(of: "/", with: "%2F")
+        filtername1.replacingOccurrences(of: "&", with: "%26")
+        print(filter)
         var day_range = "90"
         //var filter = "" //&gfu[]=Career%20Center"
         /*
@@ -40,7 +115,8 @@ class EventTableViewController: UITableViewController {
             filtername = ""
         }
  */
-        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername + "&future_days=" + day_range + "&feed_type=simple"
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername1 + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple"
+        
         
         NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in
             
@@ -66,8 +142,29 @@ class EventTableViewController: UITableViewController {
                         else{
                             fatalError("Unable to instantiate event")
                     }
+
+                    var eventOngoing:Bool = true
+                    if( (event0.startmonth + event0.startday) == (event0.endmonth + event0.endday) ){
+                        eventOngoing = false
+                    }
+                    if( eventOngoing ){
+                        event0.makeOngoing()
+                    }
                     
-                    self.eventArray.append( event0 )
+                    if( !ongoing && !eventOngoing){
+                        self.eventArray.append( event0 )
+                    }
+                    
+                    if( ongoing ){
+                        self.eventArray.append( event0 )
+                    }
+                    
+//                    if( event0.inAgenda ){
+//                        print("this if statement")
+//                        self.myAgendaArray.append( event0 )
+//                    }
+                    
+                    
                     
                 }
                 
@@ -80,6 +177,11 @@ class EventTableViewController: UITableViewController {
         }
     }
     
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -87,6 +189,10 @@ class EventTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if isFiltering(){
+            return filteredEvents.count
+        }
+        
         return eventArray.count
     }
     
@@ -96,7 +202,12 @@ class EventTableViewController: UITableViewController {
             fatalError("the cell is not an instance of the table view cell")
         }
         // Configure the cell...
-        let event = self.eventArray[indexPath.row]
+        let event:Event
+        if isFiltering(){
+            event = self.filteredEvents[indexPath.row]
+        } else{
+            event = self.eventArray[indexPath.row]
+        }
         cell.nameLabel.text = event.summary
         
         // Need to check if url can be created successfully
@@ -123,29 +234,53 @@ class EventTableViewController: UITableViewController {
         cell.backgroundCard.layer.cornerRadius = 10.0
         cell.backgroundCard.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         cell.backgroundCard.clipsToBounds = true
+        cell.backgroundCard.backgroundColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
+        cell.dateLabel.textColor = UIColor.white
+        cell.nameLabel.textColor = UIColor.white
+        cell.locationLabel.textColor = UIColor.white
         
-        //cell.photoImageView.clipsToBounds = true
         cell.dateLabel.text = event.start_date
         cell.locationLabel.text = event.address
         
+        if( event.ongoing ){
+            cell.backgroundCard.backgroundColor = UIColor(red: 226/255, green: 230/255, blue:237/255, alpha: 1.0)
+            cell.dateLabel.textColor = UIColor.black
+            cell.nameLabel.textColor = UIColor.black
+            cell.locationLabel.textColor = UIColor.black
+            cell.dateLabel.text = "Ongoing"
+        }
         
-        
+   
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
-        vc?.sum = self.eventArray[indexPath.row].summary
-        vc?.sdl = self.eventArray[indexPath.row].startday
-        vc?.sml = self.eventArray[indexPath.row].startmonth
-        vc?.ll = self.eventArray[indexPath.row].address
-        vc?.imageURL = self.eventArray[indexPath.row].image_url
-        vc?.tl = self.eventArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
-        vc?.dl = self.eventArray[indexPath.row].description
-        vc?.ldl = self.eventArray[indexPath.row].start_date
-        vc?.sl = self.eventArray[indexPath.row].sponsor
-        
-        self.navigationController?.pushViewController(vc!, animated: true)
+        var thisArray = [Event]()
+        if isFiltering(){
+            thisArray = filteredEvents
+        }
+        else{
+            thisArray = eventArray
+        }
+        vc?.event = thisArray[indexPath.row]
+        vc?.sum = thisArray[indexPath.row].summary
+        vc?.sdl = thisArray[indexPath.row].startday
+        vc?.sml = thisArray[indexPath.row].startmonth
+        vc?.ll = thisArray[indexPath.row].address
+        vc?.imageURL = thisArray[indexPath.row].image_url
+        vc?.tl = thisArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
+        if( thisArray[indexPath.row].ongoing ){
+            vc?.tl = "Ongoing"
+        }
+        vc?.dl = thisArray[indexPath.row].description
+        print(thisArray[indexPath.row].description)
+        vc?.ldl = thisArray[indexPath.row].start_date
+        if( thisArray[indexPath.row].ongoing ){
+            vc?.ldl = thisArray[indexPath.row].start_date + " - " + thisArray[indexPath.row].end_date
+        }
+        vc?.sl = thisArray[indexPath.row].sponsor
+        self.navigationController?.show(vc!, sender: true)
         //present(vc!, animated: true)
     }
     
@@ -197,3 +332,8 @@ class EventTableViewController: UITableViewController {
     
 }
 
+extension EventTableViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}

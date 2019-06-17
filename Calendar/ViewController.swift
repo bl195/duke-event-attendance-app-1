@@ -2,9 +2,9 @@ import UIKit
 
 var dateString = ""
 
-class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var filter = ""
+    
     @IBOutlet weak var Calendar: UICollectionView!
     @IBOutlet weak var MonthLabel: UILabel!
     
@@ -31,19 +31,13 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var dayCounter = 0
     
-    var highlightdate = -1
-    
-    var datemonth = ""
-    
-    var dateday = ""
-    
-    var datecode = ""
+    var highlightdate = -1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Choose Your Date"
+        
         currentMonth = Months[month]
-        self.MonthLabel.text = "\(currentMonth) \(year)"
+        MonthLabel.text = "\(currentMonth) \(year)"
         if weekday == 0 {
             weekday = 7
         }
@@ -221,8 +215,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         if highlightdate == indexPath.row{
-            
-            cell.backgroundColor = UIColor.blue
+            cell.backgroundColor = UIColor.red
         }
         
         
@@ -235,38 +228,10 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         dateString = "\(indexPath.row - PositionIndex + 1) \(currentMonth) \(year)"
         
-        //performSegue(withIdentifier: "NextView", sender: self)
+        performSegue(withIdentifier: "NextView", sender: self)
         
-        dateday = convertdate(date: "\(indexPath.row - PositionIndex + 1)")
-        
-        datemonth = convertdate(date: String(Months.firstIndex(of: currentMonth)!+1))
-        
-        datecode = datemonth + "%2F" + dateday + "%2F" + "\(year)"
-        
-        let viewc2 = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
-        
-        viewc2?.title = dateString
-        viewc2?.encodedate = datecode
-        viewc2?.filtername = filter
-        
-        self.navigationController?.pushViewController(viewc2!, animated: true)
         highlightdate = indexPath.row
         collectionView.reloadData()
-    }
-    
-    
-    private func convertdate(date: String) -> String{
-        
-        let size = date.count
-        var ans = ""
-        
-        if( size == 1){
-            ans = "0" + date
-        }
-        else{
-            ans = date
-        }
-        return ans
     }
     
 }
