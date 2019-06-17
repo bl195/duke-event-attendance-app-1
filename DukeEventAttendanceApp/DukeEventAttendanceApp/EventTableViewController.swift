@@ -9,14 +9,32 @@
 import UIKit
 
 class EventTableViewController: UITableViewController {
+   
     
-    var eventArray = [Event]()
+    var agendaEvents = [Event]()
     var filtername = ""
+    
+    var stateController: StateController?
+    var agendaOnly = false
+
+    var eventArray = [Event]()
+    
+    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        //let tbc = self.tabBarController as! eventTabBarController
+        //tbc.agendaEvents = self.agendaEvents
+        
+//        let barviewcontrollers = self.tabBarController?.viewControllers
+//        print(barviewcontrollers?.count)
+//        let avc = barviewcontrollers![1] as! AgendaTableViewController
+//        avc.agendaEvents = self.agendaEvents
+        
         self.loadSampleEvents(filter: filtername)
         
         // Uncomment the following line to preserve selection between presentations
@@ -28,7 +46,13 @@ class EventTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     private func loadSampleEvents(filter: String){
+        
         let filtername1 = filter.replacingOccurrences(of: " ", with: "+")
         filtername = "&topic=" + filtername1
         filtername.replacingOccurrences(of: "/", with: "%2F")
@@ -68,6 +92,7 @@ class EventTableViewController: UITableViewController {
                     }
                     
                     self.eventArray.append( event0 )
+                    Items.sharedInstance.eventArray = self.eventArray
                     
                 }
                 
@@ -133,8 +158,10 @@ class EventTableViewController: UITableViewController {
         return cell
     }
     
+    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
+        vc?.identity = self.eventArray[indexPath.row].id
         vc?.sum = self.eventArray[indexPath.row].summary
         vc?.sdl = self.eventArray[indexPath.row].startday
         vc?.sml = self.eventArray[indexPath.row].startmonth
@@ -145,10 +172,59 @@ class EventTableViewController: UITableViewController {
         vc?.ldl = self.eventArray[indexPath.row].start_date
         vc?.sl = self.eventArray[indexPath.row].sponsor
         
-        self.navigationController?.pushViewController(vc!, animated: true)
+        //self.navigationController?.pushViewController(vc!, animated: true)
         //present(vc!, animated: true)
     }
+ */
     
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "eventInfoSegue" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let vc = segue.destination as! EventInfoViewController
+                vc.event = self.eventArray[indexPath.row]
+                vc.sum = self.eventArray[indexPath.row].summary
+                vc.sdl = self.eventArray[indexPath.row].startday
+                vc.sml = self.eventArray[indexPath.row].startmonth
+                vc.ll = self.eventArray[indexPath.row].address
+                vc.imageURL = self.eventArray[indexPath.row].image_url
+                vc.tl = self.eventArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
+                vc.dl = self.eventArray[indexPath.row].description
+                vc.ldl = self.eventArray[indexPath.row].start_date
+                vc.sl = self.eventArray[indexPath.row].sponsor
+                
+            }
+        }
+    }
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let agendaAction = UITableViewRowAction (style: .default, title: "Add to Agenda") { [weak self] (_, indexPath) in
+            guard let agendaEvent = self?.eventArray[indexPath.row] else {
+                return
+            }
+            self?.agendaEvents.append(agendaEvent)
+            let ev = EventID(context: PersistenceService.context )
+            ev.id = self?.eventArray[indexPath.row].id
+            PersistenceService.saveContext()
+            
+            Items.sharedInstance.agendaEvents.append(agendaEvent)
+            self?.stateController?.agendaEvents.append(agendaEvent)
+            //tbc.agendaEvents.append(agendaEvent)
+        }
+        
+        /*
+        for event in agendaEvents {
+            print(event.summary)
+        }
+ */
+        print(agendaEvents.count)
+        print(Items.sharedInstance.agendaEvents.count)
+        for item in Items.sharedInstance.agendaEvents {
+            print(item.summary)
+        }
+        return [agendaAction]
+        
+    }
     
     /*
      // Override to support conditional editing of the table view.

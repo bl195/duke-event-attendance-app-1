@@ -7,9 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
 class EventInfoViewController: UIViewController {
-
+    var sum = ""
+    var sdl = ""
+    var sml = ""
+    var ll = ""
+    var tl = ""
+    var dl = ""
+    var ldl = ""
+    var image = UIImage()
+    var imageURL = ""
+    var sl = ""
+    var identity = ""
+    var agendaArray = [EventID]()
+    var agendaEventsArray = [Event]()
+    var event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")
+    
     @IBOutlet weak var summaryLabel: UILabel!
     
     
@@ -32,16 +47,20 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var sum = ""
-    var sdl = ""
-    var sml = ""
-    var ll = ""
-    var tl = ""
-    var dl = ""
-    var ldl = ""
-    var image = UIImage()
-    var imageURL = ""
-    var sl = ""
+    
+    @IBAction func agendaButton(_ sender: Any) {
+        
+        agendaEventsArray.append(event!)
+        print(agendaEventsArray.count)
+        let ev = EventID(context: PersistenceService.context )
+        ev.id = sum
+        PersistenceService.saveContext()
+        agendaArray.append(ev)
+        print(agendaArray.count)
+        //print(agendaArray)
+    }
+    
+    
     
 
     
@@ -50,6 +69,14 @@ class EventInfoViewController: UIViewController {
         super.viewDidLoad()
         self.title = ""
         //descriptionLabel.numberOfLines = 0
+        
+        let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()
+        
+        do {
+            let agendaArray = try PersistenceService.context.fetch(fetchRequest)
+            self.agendaArray = agendaArray
+        } catch {}
+        
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
             //CGSizeMake(self.view.frame.width, self.view.frame.height + 100)
         
