@@ -34,7 +34,8 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var sponsorLabel: UILabel!
     
-
+    @IBOutlet weak var shareButton: UIButton!
+    
     
     
     
@@ -44,6 +45,8 @@ class EventInfoViewController: UIViewController {
     
 
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     
     var sum = ""
     var sdl = ""
@@ -113,13 +116,22 @@ class EventInfoViewController: UIViewController {
         imageLabel.contentMode = UIView.ContentMode.scaleAspectFill
         imageLabel.clipsToBounds = true
         
+
         
         
         
     }
     
+<<<<<<< HEAD
     
 
+=======
+    @IBAction func onShareTapped(_ sender: Any) {
+        let activityController = UIActivityViewController(activityItems: ["Come attend " +  "\(sum)" + "on" + "\(sml)" + "\(sdl)" + "at" + "\(ll)"], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+    }
+    
+>>>>>>> a180130edf505fd1888d41fef16c52c460212cbd
     /*
     // MARK: - Navigation
 

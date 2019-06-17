@@ -24,6 +24,7 @@
 		C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510922B17A2000FF90DC /* CalendarViewController.swift */; };
 		C76A510C22B17A3B00FF90DC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */; };
 		C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510D22B17A5A00FF90DC /* CalendarVar.swift */; };
+		C76A511222B2CF5E00FF90DC /* Animations .swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A511122B2CF5E00FF90DC /* Animations .swift */; };
 		C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		C76A510922B17A2000FF90DC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		C76A510D22B17A5A00FF90DC /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVar.swift; sourceTree = "<group>"; };
+		C76A511122B2CF5E00FF90DC /* Animations .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animations .swift"; sourceTree = "<group>"; };
 		C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,17 +122,21 @@
 			isa = PBXGroup;
 			children = (
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
-				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
-				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
-				07193E7122A9A300000F5A2C /* ViewController.swift */,
+				C76A511122B2CF5E00FF90DC /* Animations .swift */,
 				C76A510D22B17A5A00FF90DC /* CalendarVar.swift */,
+				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
 				C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */,
 				0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */,
 				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
 				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
 				07193E9F22A9AB4B000F5A2C /* Event.swift */,
 				0750692322AB36DB0094A577 /* EventInfoViewController.swift */,
+<<<<<<< HEAD
 				073283CC22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift */,
+=======
+				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
+				07193E7122A9A300000F5A2C /* ViewController.swift */,
+>>>>>>> a180130edf505fd1888d41fef16c52c460212cbd
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
@@ -298,6 +304,7 @@
 				C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
+				C76A511222B2CF5E00FF90DC /* Animations .swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 				073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
