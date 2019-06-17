@@ -10,7 +10,10 @@ import UIKit
 
 class MenuViewController: UITableViewController {
     
+    var menuFilterSelected: Bool = false
     var didTapMenuType: ((String) -> Void)?
+    var filtername:String = ""
+    var thisDateCode = ""
 
     var menuArray = ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"]
     
@@ -42,7 +45,7 @@ class MenuViewController: UITableViewController {
         let viewcontroller = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
         viewcontroller?.title = menuArray[indexPath.row]
         viewcontroller?.filtername = menuArray[indexPath.row]
-        print(menuArray[indexPath.row])
+        viewcontroller?.encodedate = thisDateCode
         self.navigationController?.pushViewController(viewcontroller!, animated:true)
         
     }

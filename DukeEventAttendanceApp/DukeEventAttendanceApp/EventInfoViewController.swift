@@ -12,6 +12,18 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var summaryLabel: UILabel!
     
+    @IBOutlet weak var extendButton: UIButton!
+    var tapCount = 0
+    @IBAction func extendText(_ sender: Any) {
+        if( tapCount%2 == 0){
+            descriptionLabel.numberOfLines = 0
+            tapCount += 1
+        }
+        else{
+            descriptionLabel.numberOfLines = 4
+            tapCount += 1
+        }
+    }
     
     @IBOutlet weak var shortDayLabel: UILabel!
     @IBOutlet weak var shortMonthLabel: UILabel!
@@ -23,6 +35,7 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var sponsorLabel: UILabel!
     
 
+    
     
     
     @IBOutlet weak var calIcon: UIImageView!
@@ -42,8 +55,28 @@ class EventInfoViewController: UIViewController {
     var image = UIImage()
     var imageURL = ""
     var sl = ""
+    var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     
-
+    //var agendaArray = [Event]()
+    //var agendavc = MyAgendaTableViewController().myAgendaArray
+    
+    @IBAction func addToAgenda(_ sender: Any) {
+        
+        //EventTableViewController().agendavc.append(event)
+        //agendaArray.append(event)
+        //agendavc.append(event)
+//        let agendavc = storyboard?.instantiateViewController(withIdentifier: "MyAgendaTableViewController") as? MyAgendaTableViewController
+        //MyAgendaTableViewController().addToArray(event: event)
+        //print("going to add " + event.summary)
+        //event.addToAgenda()
+        let agendavc = storyboard?.instantiateViewController(withIdentifier: "MyAgendaTableViewController") as? MyAgendaTableViewController
+        agendavc?.addEventToFile(eventID: event.id)
+        agendavc?.readTextFile()
+//        print(EventTableViewController().agendavc.count)
+//        print(agendaArray.count)
+//        print(agendavc.count)
+//        agendavc?.addToArray(event: event)
+    }
     
     
     override func viewDidLoad() {
@@ -58,7 +91,10 @@ class EventInfoViewController: UIViewController {
         shortMonthLabel.text = sml
         locationLabel.text = ll
         timeLabel.text = tl
-        descriptionLabel.text = dl
+       descriptionLabel.numberOfLines = 4
+        descriptionLabel.attributedText = dl.htmlToAttributedString
+        descriptionLabel.font = UIFont.systemFont(ofSize: 17.0)
+        descriptionLabel.textColor = UIColor(red: 102/255, green: 102/255, blue:102/255, alpha: 1.0)
         longDateLabel.text = ldl
         //imageLabel.image = image
         sponsorLabel.text = sl
@@ -82,6 +118,7 @@ class EventInfoViewController: UIViewController {
         
     }
     
+    
 
     /*
     // MARK: - Navigation
@@ -93,4 +130,20 @@ class EventInfoViewController: UIViewController {
     }
     */
 
+    
+    
+}
+
+extension String {
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
 }

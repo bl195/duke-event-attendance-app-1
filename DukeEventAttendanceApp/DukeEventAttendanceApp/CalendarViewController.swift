@@ -4,7 +4,7 @@ var dateString = ""
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    var filter = ""
     @IBOutlet weak var Calendar: UICollectionView!
     @IBOutlet weak var MonthLabel: UILabel!
     
@@ -247,6 +247,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         viewc2?.title = dateString
         viewc2?.encodedate = datecode
+        viewc2?.filtername = filter
         
         self.navigationController?.pushViewController(viewc2!, animated: true)
         highlightdate = indexPath.row
