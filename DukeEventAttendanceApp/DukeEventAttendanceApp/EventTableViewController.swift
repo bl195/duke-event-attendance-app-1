@@ -219,9 +219,7 @@ class EventTableViewController: UITableViewController {
  */
         print(agendaEvents.count)
         print(Items.sharedInstance.agendaEvents.count)
-        for item in Items.sharedInstance.agendaEvents {
-            print(item.summary)
-        }
+       
         return [agendaAction]
         
     }

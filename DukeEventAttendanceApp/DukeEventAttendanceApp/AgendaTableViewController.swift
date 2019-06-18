@@ -29,9 +29,12 @@ class AgendaTableViewController: UITableViewController {
         let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()
         
         do {
-            let agendaArray1 = try PersistenceService.context.fetch(fetchRequest)
-            for agenda in agendaArray1 {
-                //print(agenda.id)
+            deleteAllData("EventID")
+            
+            var agendaArray1 = try PersistenceService.context.fetch(fetchRequest)
+            //agendaArray1.removeAll()
+            for event in agendaArray1{
+                print(event)
             }
             for event in Items.sharedInstance.eventArray{
                 var e = EventID(context: PersistenceService.context)
@@ -40,7 +43,6 @@ class AgendaTableViewController: UITableViewController {
                     var id = idobj.id
                     if( (id?.isEqual(e.id))! ){
                         Items.sharedInstance.agendaEvents.append(event)
-                        //print("THIS" + id!)
                     }
                 }
             }
@@ -60,6 +62,29 @@ class AgendaTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    func deleteAllData(_ entity:String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "EventID")
+        fetchRequest.returnsObjectsAsFaults = false
+        do {
+            let results = try PersistenceService.context.fetch(fetchRequest)
+            for object in results {
+                guard let objectData = object as? NSManagedObject else {continue}
+                PersistenceService.context.delete(objectData)
+                PersistenceService.saveContext()
+            }
+        } catch let error {
+            print("Delete all data in \(entity) error :", error)
+        }
+    }
+    
+//    func deleteAllData(entity: String)
+//    {
+//        let ReqVar = NSFetchRequest(entityName: entity)
+//        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
+//        do { try ContxtVar.executeRequest(DelAllReqVar) }
+//        catch { print(error) }
+//    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         agendaEvents = Items.sharedInstance.agendaEvents
@@ -67,9 +92,9 @@ class AgendaTableViewController: UITableViewController {
         
         do {
             let agendaArray = try PersistenceService.context.fetch(fetchRequest)
-            for agenda in agendaArray {
-                //print(agenda.id)
-            }
+//            for agenda in agendaArray {
+//                //print(agenda.id)
+//            }
             //self.agendaEvents = agendaEvents
             //self.tableView.reloadData()
         } catch {}
@@ -96,7 +121,7 @@ class AgendaTableViewController: UITableViewController {
 
         // Configure the cell...
 
-        let agendaEv = self.agendaEvents[indexPath.row]
+        let agendaEv = Items.sharedInstance.agendaEvents[indexPath.row]
         cell.nameLabel.text = agendaEv.summary
         if let imageUrl = URL(string: agendaEv.image_url) {
             DispatchQueue.global().async {
