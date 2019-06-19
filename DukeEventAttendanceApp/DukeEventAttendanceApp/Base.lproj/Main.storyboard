@@ -509,6 +509,7 @@
                         <outlet property="summaryLabel" destination="z3q-dw-LQp" id="an2-3G-NAP"/>
                         <outlet property="timeIcon" destination="0KD-de-YP0" id="y3c-uP-bZ4"/>
                         <outlet property="timeLabel" destination="ULA-5G-6Sr" id="G1b-iC-WD3"/>
+                        <outlet property="webLinkButton" destination="qjk-1H-iti" id="dI4-LY-4Az"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yun-jM-AJ0" sceneMemberID="firstResponder"/>

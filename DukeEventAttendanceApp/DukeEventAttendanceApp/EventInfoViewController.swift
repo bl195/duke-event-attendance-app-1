@@ -12,9 +12,13 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var summaryLabel: UILabel!
     
+    @IBOutlet weak var webLinkButton: UIButton!
+    
     @IBAction func webLink(_ sender: Any) {
         UIApplication.shared.open(URL(string: webEventURL) ?? URL(string: "")!, options: [:], completionHandler: nil)
     }
+    
+    
     @IBOutlet weak var extendButton: UIButton!
     var tapCount = 0
     @IBAction func extendText(_ sender: Any) {
@@ -69,6 +73,7 @@ class EventInfoViewController: UIViewController {
     //var agendaArray = [Event]()
     //var agendavc = MyAgendaTableViewController().myAgendaArray
     
+    
     @IBAction func addToAgenda(_ sender: Any) {
         
         //EventTableViewController().agendavc.append(event)
@@ -86,7 +91,6 @@ class EventInfoViewController: UIViewController {
 //        print(agendavc.count)
 //        agendavc?.addToArray(event: event)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +126,12 @@ class EventInfoViewController: UIViewController {
         imageLabel.contentMode = UIView.ContentMode.scaleAspectFill
         imageLabel.clipsToBounds = true
         
-        
+        webLinkButton.isEnabled = true
+        webLinkButton.tintColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
+        if( self.webEventURL == ""){
+            webLinkButton.isEnabled = false
+            webLinkButton.tintColor = UIColor.white
+        }
         
         
     }
