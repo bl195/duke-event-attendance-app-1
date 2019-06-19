@@ -74,24 +74,6 @@ class EventInfoViewController: UIViewController {
     //var agendavc = MyAgendaTableViewController().myAgendaArray
     
     
-    @IBAction func addToAgenda(_ sender: Any) {
-        
-        //EventTableViewController().agendavc.append(event)
-        //agendaArray.append(event)
-        //agendavc.append(event)
-//        let agendavc = storyboard?.instantiateViewController(withIdentifier: "MyAgendaTableViewController") as? MyAgendaTableViewController
-        //MyAgendaTableViewController().addToArray(event: event)
-        //print("going to add " + event.summary)
-        //event.addToAgenda()
-        let agendavc = storyboard?.instantiateViewController(withIdentifier: "MyAgendaTableViewController") as? MyAgendaTableViewController
-        agendavc?.addEventToFile(eventID: event.id)
-        agendavc?.readTextFile()
-//        print(EventTableViewController().agendavc.count)
-//        print(agendaArray.count)
-//        print(agendavc.count)
-//        agendavc?.addToArray(event: event)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""

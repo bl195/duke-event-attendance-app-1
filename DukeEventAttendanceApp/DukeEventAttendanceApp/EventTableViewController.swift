@@ -10,9 +10,7 @@ import UIKit
 
 
 class EventTableViewController: UITableViewController {
-    var agendavc = MyAgendaTableViewController().myAgendaArray
     var eventArray = [Event]()
-    var myAgendaArray = [Event]()
     var filteredEvents = [Event]()
     var filtername = ""
     
@@ -159,15 +157,9 @@ class EventTableViewController: UITableViewController {
                         self.eventArray.append( event0 )
                     }
                     
-//                    if( event0.inAgenda ){
-//                        print("this if statement")
-//                        self.myAgendaArray.append( event0 )
-//                    }
-                    
-                    
                     
                 }
-                
+                Items.sharedInstance.eventArray = self.eventArray
                 // Downloading data from network is asynchronous, after download is done, need to inform table view to reload data to refresh UI.
                 // UI refresh needs to happen on main UI thread and the completion handler is already called on main thread.
                 //DispatchQueue.main.async() {
@@ -285,6 +277,14 @@ class EventTableViewController: UITableViewController {
         //present(vc!, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let agendaAction = UITableViewRowAction (style: .default, title: "Add to Agenda"){ [weak self] (_, indexPath ) in
+            let ev = EventID(context: PersistenceService.context )
+            ev.id = self?.eventArray[indexPath.row].id
+            PersistenceService.saveContext()
+        }
+        return [agendaAction]
+    }
     
     /*
      // Override to support conditional editing of the table view.
