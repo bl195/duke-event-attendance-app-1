@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         logInButton.widthAnchor.constraint(equalToConstant: 156).isActive = true
         logInButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         logInButton.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
-        
+        logInButton.backgroundColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
         
         
         

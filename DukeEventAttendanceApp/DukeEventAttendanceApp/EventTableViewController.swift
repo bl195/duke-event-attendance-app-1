@@ -283,6 +283,7 @@ class EventTableViewController: UITableViewController {
             ev.id = self?.eventArray[indexPath.row].id
             PersistenceService.saveContext()
         }
+        agendaAction.backgroundColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
         return [agendaAction]
     }
     
