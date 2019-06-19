@@ -681,7 +681,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Next" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z66-r4-Www">
-                                <rect key="frame" x="334" y="207" width="24" height="24"/>
+                                <rect key="frame" x="327" y="207" width="24" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Next"/>
                                 <state key="normal" title="Next" image="Screen Shot 2019-06-13 at 2.13.02 PM"/>
                                 <connections>
@@ -696,7 +696,7 @@
                             <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="2fE-Uy-11X" secondAttribute="bottom" constant="571" id="7Cd-lL-NUr"/>
                             <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="z66-r4-Www" secondAttribute="bottom" constant="582" id="972-br-QCM"/>
                             <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="2fE-Uy-11X" secondAttribute="trailing" constant="49" id="DBW-IV-yEu"/>
-                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="56" id="Wxr-kj-Pfe"/>
+                            <constraint firstItem="e1S-G7-duR" firstAttribute="trailing" secondItem="z66-r4-Www" secondAttribute="trailing" constant="63" id="Wxr-kj-Pfe"/>
                             <constraint firstItem="IdQ-fn-2hP" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="71" id="dai-fs-QwC"/>
                             <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="119" id="iTO-za-3rh"/>
                             <constraint firstItem="z66-r4-Www" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="67" id="jSL-ed-80e"/>
@@ -704,9 +704,9 @@
                             <constraint firstItem="IdQ-fn-2hP" firstAttribute="top" secondItem="e1S-G7-duR" secondAttribute="top" constant="67" id="o6u-8f-fbT"/>
                             <constraint firstItem="xLs-dn-ew8" firstAttribute="leading" secondItem="IdQ-fn-2hP" secondAttribute="trailing" constant="24" id="oVM-hP-tfg"/>
                             <constraint firstItem="e1S-G7-duR" firstAttribute="bottom" secondItem="IdQ-fn-2hP" secondAttribute="bottom" constant="582" id="qVm-x9-iQz"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="334" id="qao-6Q-MeC"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="e1S-G7-duR" secondAttribute="leading" constant="327" id="qao-6Q-MeC"/>
                             <constraint firstItem="xLs-dn-ew8" firstAttribute="bottom" secondItem="e1S-G7-duR" secondAttribute="bottom" constant="-583.5" id="tKD-fw-yRp"/>
-                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="37" id="vMp-b5-A8D"/>
+                            <constraint firstItem="z66-r4-Www" firstAttribute="leading" secondItem="xLs-dn-ew8" secondAttribute="trailing" constant="30" id="vMp-b5-A8D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e1S-G7-duR"/>
                     </view>
