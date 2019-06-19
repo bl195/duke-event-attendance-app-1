@@ -19,6 +19,12 @@
 		07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */; };
 		07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193EA322A9ABCD000F5A2C /* NetworkManager.swift */; };
 		073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073283CC22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift */; };
+		07434C4022BAC74200BC19A0 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434C3F22BAC74200BC19A0 /* Items.swift */; };
+		07434C4322BAC77400BC19A0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07434C4122BAC77400BC19A0 /* DataModel.xcdatamodeld */; };
+		07434C4622BAC7A000BC19A0 /* EventID+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434C4422BAC7A000BC19A0 /* EventID+CoreDataClass.swift */; };
+		07434C4722BAC7A000BC19A0 /* EventID+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434C4522BAC7A000BC19A0 /* EventID+CoreDataProperties.swift */; };
+		07434C4922BAC7D100BC19A0 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434C4822BAC7D100BC19A0 /* PersistenceService.swift */; };
+		07434C4B22BAC98D00BC19A0 /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434C4A22BAC98D00BC19A0 /* AgendaTableViewCell.swift */; };
 		0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */; };
 		0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750692322AB36DB0094A577 /* EventInfoViewController.swift */; };
 		C70E314C22B82B0D00F2E8D4 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E314B22B82B0D00F2E8D4 /* Animations.swift */; };
@@ -64,6 +70,12 @@
 		07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		07193EA322A9ABCD000F5A2C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		073283CC22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAgendaTableViewController.swift; sourceTree = "<group>"; };
+		07434C3F22BAC74200BC19A0 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		07434C4222BAC77400BC19A0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		07434C4422BAC7A000BC19A0 /* EventID+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventID+CoreDataClass.swift"; sourceTree = "<group>"; };
+		07434C4522BAC7A000BC19A0 /* EventID+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventID+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		07434C4822BAC7D100BC19A0 /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		07434C4A22BAC98D00BC19A0 /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
 		0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0750692322AB36DB0094A577 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		C70E314B22B82B0D00F2E8D4 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
@@ -121,19 +133,25 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				07434C4422BAC7A000BC19A0 /* EventID+CoreDataClass.swift */,
+				07434C4522BAC7A000BC19A0 /* EventID+CoreDataProperties.swift */,
 				C70E314B22B82B0D00F2E8D4 /* Animations.swift */,
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
 				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
+				07434C4822BAC7D100BC19A0 /* PersistenceService.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
 				C76A510D22B17A5A00FF90DC /* CalendarVar.swift */,
 				C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */,
 				0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */,
+				07434C3F22BAC74200BC19A0 /* Items.swift */,
+				07434C4122BAC77400BC19A0 /* DataModel.xcdatamodeld */,
 				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
 				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
 				07193E9F22A9AB4B000F5A2C /* Event.swift */,
 				0750692322AB36DB0094A577 /* EventInfoViewController.swift */,
 				073283CC22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift */,
+				07434C4A22BAC98D00BC19A0 /* AgendaTableViewCell.swift */,
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
@@ -293,19 +311,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */,
+				07434C4022BAC74200BC19A0 /* Items.swift in Sources */,
+				07434C4722BAC7A000BC19A0 /* EventID+CoreDataProperties.swift in Sources */,
 				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
 				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
+				07434C4622BAC7A000BC19A0 /* EventID+CoreDataClass.swift in Sources */,
 				0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */,
 				C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */,
 				C70E314C22B82B0D00F2E8D4 /* Animations.swift in Sources */,
 				C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */,
+				07434C4922BAC7D100BC19A0 /* PersistenceService.swift in Sources */,
+				07434C4322BAC77400BC19A0 /* DataModel.xcdatamodeld in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 				073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
 				C76A510C22B17A3B00FF90DC /* DateCollectionViewCell.swift in Sources */,
+				07434C4B22BAC98D00BC19A0 /* AgendaTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +652,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		07434C4122BAC77400BC19A0 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				07434C4222BAC77400BC19A0 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 07434C4222BAC77400BC19A0 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 07193E6422A9A300000F5A2C /* Project object */;
 }
