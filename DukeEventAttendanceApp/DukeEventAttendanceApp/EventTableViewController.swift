@@ -48,27 +48,92 @@ class EventTableViewController: UITableViewController {
                 
                 for event in events{
   
-                    guard let event0 = Event(id: event["id"] as? String ?? "",
-                                             start_date: event["start_timestamp"] as? String ?? "",
-                                             end_date: event["end_timestamp"] as? String ?? "",
-                                             summary: event["summary"] as? String ?? "",
-                                             description: event["description"] as? String ?? "",
-                                             status: event["status"] as? String ?? "",
-                                             sponsor: event["sponsor"] as? String ?? "",
-                                             co_sponsors: event["co_sponsors"] as? String ?? "",
-                                             location: event["location"] as! Dictionary<String,String>,
-                                             contact: event["contact"] as! Dictionary<String,String>,
-                                             categories: event["categories"] as? [String] ?? ["no category"],
-                                             link: event["link"] as? String ?? "",
-                                             event_url: event["event_url"] as? String ?? "",
-                                             series_name: event["series_name"] as? String ?? "",
-                                             image_url: event["image"] as? String ?? "")
-                        else{
-                            fatalError("Unable to instantiate event")
+//                    guard let event0 = Event(id: event["id"] as? String ?? "",
+//                                             start_date: event["start_timestamp"] as? String ?? "",
+//                                             end_date: event["end_timestamp"] as? String ?? "",
+//                                             summary: event["summary"] as? String ?? "",
+//                                             description: event["description"] as? String ?? "",
+//                                             status: event["status"] as? String ?? "",
+//                                             sponsor: event["sponsor"] as? String ?? "",
+//                                             co_sponsors: event["co_sponsors"] as? String ?? "",
+//                                             location: event["location"] as! Dictionary<String,String>,
+//                                             contact: event["contact"] as! Dictionary<String,String>,
+//                                             categories: event["categories"] as? [String] ?? ["no category"],
+//                                             link: event["link"] as? String ?? "",
+//                                             event_url: event["event_url"] as? String ?? "",
+//                                             series_name: event["series_name"] as? String ?? "",
+//                                             image_url: event["image"] as? String ?? "")
+//                        else{
+//                            fatalError("Unable to instantiate event")
+//                    }
+                    
+                    
+                    func getRandomImageURL() -> String{
+                        let imageURLs:[String] = ["https://calendar.duke.edu/assets/v2016/featured-event-4.png",
+                                                  "https://calendar.duke.edu/assets/v2016/featured-event-3.png",
+                                                  "https://calendar.duke.edu/assets/v2016/featured-event-4.png",
+                                                  "https://calendar.duke.edu/assets/v2016/featured-event-5.png"]
+                        let randomNumber = Int.random(in: 0...3)
+                        return imageURLs[randomNumber]
                     }
                     
-                    self.eventArray.append( event0 )
+                    let event0 = Event(context: PersistenceService.context)
+                    event0.id = event["id"] as? String ?? ""
+                    event0.start_date = event["start_timestamp"] as? String ?? ""
+                    event0.end_date = event["end_timestamp"] as? String ?? ""
+                    event0.summary = event["summary"] as? String ?? ""
+                    event0.status = event["status"] as? String ?? ""
+                    event0.sponsor = event["sponsor"] as? String ?? ""
+                    event0.co_sponsors = event["co_sponsors"] as? String ?? ""
+                    let locationDict = event["location"] as! Dictionary<String,String>
+                    event0.maps_link = locationDict["link"] as? String ?? ""
+                    event0.address = locationDict["address"] as? String ?? ""
+                    let contact = event["contact"] as! Dictionary<String,String>
+                    event0.contact_name = contact["name"] as? String ?? ""
+                    event0.contact_email = contact["email"] as? String ?? ""
+                    event0.duke_cal_link = event["link"] as? String ?? ""
+                    event0.ext_event_link = event["event_url"] as? String ?? ""
+                    event0.series_name = event["series_name"] as? String ?? ""
+                    var image_url = event["image"] as? String ?? ""
+                    if( image_url != ""){
+                        event0.image_url = image_url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    }
+                    else{
+                        event0.image_url = getRandomImageURL()
+                    }
+                    event0.desc = event["description"] as? String ?? ""
                     
+                    func simpTimeStamp(starttimestamp: String, endtimestamp: String){
+                        let formatterInput = ISO8601DateFormatter()
+                        if let date = formatterInput.date(from: starttimestamp){
+                            let formatterOutput = DateFormatter()
+                            formatterOutput.dateFormat = "MMM d, yyyy"
+                            formatterOutput.locale = Locale(identifier: "en_US")
+                            //formatterOutput.dateStyle = .short
+                            //formatterOutput.timeStyle = .short
+                            event0.start_date = formatterOutput.string(from: date)
+                            formatterOutput.dateFormat = "MMM"
+                            event0.start_month = formatterOutput.string(from: date)
+                            formatterOutput.dateFormat = "d"
+                            event0.start_day = formatterOutput.string(from: date)
+                            formatterOutput.dateFormat = "h:mm a"
+                            event0.start_time = formatterOutput.string(from: date)
+                        }
+                
+                        if let date = formatterInput.date(from: endtimestamp){
+                            let formatterOutput = DateFormatter()
+                            formatterOutput.dateFormat = "MMM d, yyyy"
+                            formatterOutput.locale = Locale(identifier: "en_US")
+                            event0.end_date = formatterOutput.string(from: date)
+                            formatterOutput.dateFormat = "MMM"
+                            formatterOutput.dateFormat = "h:mm a"
+                            event0.end_time = formatterOutput.string(from: date)
+                        }
+                
+                    }
+                
+                    simpTimeStamp(starttimestamp: event["start_timestamp"] as! String, endtimestamp: event["end_timestamp"] as! String)
+                    self.eventArray.append( event0 )
                 }
                 
                 // Downloading data from network is asynchronous, after download is done, need to inform table view to reload data to refresh UI.
@@ -102,7 +167,7 @@ class EventTableViewController: UITableViewController {
         // Need to check if url can be created successfully
         //if let imageUrl = URL(string: event.image_url) {
         //  TESTING with a fixed image url as event's image_url is empty
-        if let imageUrl = URL(string: event.image_url) {
+        if let imageUrl = URL(string: event.image_url!) {
             // This is a network call and needs to be run on non-UI thread
             DispatchQueue.global().async {
                 let imageData = try! Data(contentsOf: imageUrl)
@@ -135,20 +200,47 @@ class EventTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
-        vc?.sum = self.eventArray[indexPath.row].summary
-        vc?.sdl = self.eventArray[indexPath.row].startday
-        vc?.sml = self.eventArray[indexPath.row].startmonth
-        vc?.ll = self.eventArray[indexPath.row].address
-        vc?.imageURL = self.eventArray[indexPath.row].image_url
-        vc?.tl = self.eventArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
-        vc?.dl = self.eventArray[indexPath.row].description
-        vc?.ldl = self.eventArray[indexPath.row].start_date
-        vc?.sl = self.eventArray[indexPath.row].sponsor
+        vc?.sum = self.eventArray[indexPath.row].summary!
+        vc?.sdl = self.eventArray[indexPath.row].start_day!
+        vc?.sml = self.eventArray[indexPath.row].start_month!
+        vc?.ll = self.eventArray[indexPath.row].address!
+        vc?.imageURL = self.eventArray[indexPath.row].image_url!
+        vc?.tl = self.eventArray[indexPath.row].start_time! + " - " + self.eventArray[indexPath.row].end_time!
+        vc?.dl = self.eventArray[indexPath.row].desc!
+        vc?.ldl = self.eventArray[indexPath.row].start_date!
+        vc?.sl = self.eventArray[indexPath.row].sponsor!
         
         self.navigationController?.pushViewController(vc!, animated: true)
         //present(vc!, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let agendaAction = UITableViewRowAction(style: .default, title: "Add to Agenda"){[weak self] (_, indexPath) in
+            guard let agendaEvent = self?.eventArray[indexPath.row] else{
+                return
+            }
+            //let ev = self?.eventArray[indexPath.row]
+            var ev = Event(context: PersistenceService.context)
+            ev.address = agendaEvent.address
+            ev.co_sponsors = agendaEvent.co_sponsors
+            ev.contact_email = agendaEvent.contact_email
+            ev.contact_name = agendaEvent.contact_name
+            ev.desc = agendaEvent.desc
+            ev.duke_cal_link = agendaEvent.duke_cal_link
+            
+            
+            PersistenceService.saveContext()
+            Items.sharedInstance.agendaEvents.append(agendaEvent)
+            print("appended " + agendaEvent.summary!)
+        }
+        //self.tableView.reloadData()
+        return [agendaAction]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     /*
      // Override to support conditional editing of the table view.

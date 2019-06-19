@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E6F22A9A300000F5A2C /* AppDelegate.swift */; };
 		07193E7222A9A300000F5A2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E7122A9A300000F5A2C /* ViewController.swift */; };
 		07193E7522A9A300000F5A2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07193E7322A9A300000F5A2C /* Main.storyboard */; };
 		07193E7722A9A301000F5A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07193E7622A9A301000F5A2C /* Assets.xcassets */; };
@@ -21,6 +20,13 @@
 		0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */; };
 		0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750692322AB36DB0094A577 /* EventInfoViewController.swift */; };
 		076148A522BA8941007E15AE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 076148A322BA8941007E15AE /* DataModel.xcdatamodeld */; };
+		07DEB4DF22BA90DA0033E9CE /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DEB4DE22BA90DA0033E9CE /* PersistenceService.swift */; };
+		07DEB4E322BA914B0033E9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DEB4E022BA914A0033E9CE /* AppDelegate.swift */; };
+		07E58EE422BA929600B7457E /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E58EE222BA929600B7457E /* Event+CoreDataClass.swift */; };
+		07E58EE522BA929600B7457E /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E58EE322BA929600B7457E /* Event+CoreDataProperties.swift */; };
+		07E58EE722BA9ECF00B7457E /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E58EE622BA9ECF00B7457E /* Items.swift */; };
+		07E58EE922BAA3B900B7457E /* AgendaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E58EE822BAA3B900B7457E /* AgendaTableViewController.swift */; };
+		07E58EEB22BAA44A00B7457E /* AgendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E58EEA22BAA44A00B7457E /* AgendaTableViewCell.swift */; };
 		C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		07193E6C22A9A300000F5A2C /* DukeEventAttendanceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventAttendanceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		07193E6F22A9A300000F5A2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07193E7122A9A300000F5A2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07193E7422A9A300000F5A2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07193E7622A9A301000F5A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +67,13 @@
 		0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0750692322AB36DB0094A577 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		076148A422BA8941007E15AE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		07DEB4DE22BA90DA0033E9CE /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		07DEB4E022BA914A0033E9CE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../../../Downloads/AppDelegate.swift; sourceTree = "<group>"; };
+		07E58EE222BA929600B7457E /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		07E58EE322BA929600B7457E /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		07E58EE622BA9ECF00B7457E /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		07E58EE822BAA3B900B7457E /* AgendaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewController.swift; sourceTree = "<group>"; };
+		07E58EEA22BAA44A00B7457E /* AgendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewCell.swift; sourceTree = "<group>"; };
 		C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,16 +125,22 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
-				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
+				07E58EE222BA929600B7457E /* Event+CoreDataClass.swift */,
+				07E58EE322BA929600B7457E /* Event+CoreDataProperties.swift */,
+				07DEB4DE22BA90DA0033E9CE /* PersistenceService.swift */,
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
 				0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */,
+				07E58EE622BA9ECF00B7457E /* Items.swift */,
 				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
+				076148A322BA8941007E15AE /* DataModel.xcdatamodeld */,
 				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
 				07193E9F22A9AB4B000F5A2C /* Event.swift */,
+				07E58EE822BAA3B900B7457E /* AgendaTableViewController.swift */,
+				07DEB4E022BA914A0033E9CE /* AppDelegate.swift */,
 				0750692322AB36DB0094A577 /* EventInfoViewController.swift */,
+				07E58EEA22BAA44A00B7457E /* AgendaTableViewCell.swift */,
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
-				076148A322BA8941007E15AE /* DataModel.xcdatamodeld */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
 				07193E7B22A9A301000F5A2C /* Info.plist */,
@@ -280,15 +298,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E58EE922BAA3B900B7457E /* AgendaTableViewController.swift in Sources */,
 				07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */,
+				07DEB4DF22BA90DA0033E9CE /* PersistenceService.swift in Sources */,
 				076148A522BA8941007E15AE /* DataModel.xcdatamodeld in Sources */,
 				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
+				07E58EE722BA9ECF00B7457E /* Items.swift in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
+				07E58EEB22BAA44A00B7457E /* AgendaTableViewCell.swift in Sources */,
 				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
 				0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */,
+				07E58EE422BA929600B7457E /* Event+CoreDataClass.swift in Sources */,
+				07DEB4E322BA914B0033E9CE /* AppDelegate.swift in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
+				07E58EE522BA929600B7457E /* Event+CoreDataProperties.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
-				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
