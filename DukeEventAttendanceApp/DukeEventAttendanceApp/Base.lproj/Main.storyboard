@@ -311,21 +311,6 @@
                                                 <color key="textColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-fT-yEj">
-                                                <rect key="frame" x="0.0" y="423" width="207" height="71"/>
-                                                <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="207" id="HdP-4y-0WL"/>
-                                                    <constraint firstAttribute="height" constant="71" id="q1X-lm-bE0"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <state key="normal" title="ADD TO AGENDA">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addToAgenda:" destination="vG1-JB-xAy" eventType="touchUpInside" id="6cc-kQ-uCA"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6N-tk-G2N">
                                                 <rect key="frame" x="207" y="423" width="207" height="71"/>
                                                 <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -417,10 +402,25 @@
                                                     <action selector="webLink:" destination="vG1-JB-xAy" eventType="touchUpInside" id="qd5-Ox-5o7"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-fT-yEj">
+                                                <rect key="frame" x="10" y="423" width="199" height="71"/>
+                                                <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="199" id="HdP-4y-0WL"/>
+                                                    <constraint firstAttribute="height" constant="71" id="q1X-lm-bE0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <state key="normal" title="ADD TO AGENDA">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addToAgenda:" destination="vG1-JB-xAy" eventType="touchUpInside" id="6cc-kQ-uCA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="k6N-tk-G2N" firstAttribute="leading" secondItem="vKC-fT-yEj" secondAttribute="trailing" id="1bt-4p-haE"/>
+                                            <constraint firstItem="k6N-tk-G2N" firstAttribute="leading" secondItem="vKC-fT-yEj" secondAttribute="trailing" constant="-2" id="1bt-4p-haE"/>
                                             <constraint firstItem="0KD-de-YP0" firstAttribute="leading" secondItem="RT8-Lu-Yyi" secondAttribute="leading" constant="72" id="4Vd-ea-ghM"/>
                                             <constraint firstItem="vKC-fT-yEj" firstAttribute="top" secondItem="mdb-Ep-xHZ" secondAttribute="bottom" constant="41" id="6XW-Tx-lif"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z3q-dw-LQp" secondAttribute="trailing" constant="20" symbolic="YES" id="6do-Nf-8MU"/>
@@ -437,7 +437,7 @@
                                             <constraint firstItem="pXs-SM-dMZ" firstAttribute="leading" secondItem="RT8-Lu-Yyi" secondAttribute="leading" constant="32" id="Fcf-wC-Dho"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ULA-5G-6Sr" secondAttribute="trailing" constant="20" symbolic="YES" id="HUL-SG-XzH"/>
                                             <constraint firstAttribute="bottom" secondItem="pXs-SM-dMZ" secondAttribute="bottom" constant="45.5" id="HtY-50-dGw"/>
-                                            <constraint firstItem="vKC-fT-yEj" firstAttribute="leading" secondItem="WsT-WK-AeB" secondAttribute="leading" id="IT9-F9-Nqa"/>
+                                            <constraint firstItem="vKC-fT-yEj" firstAttribute="leading" secondItem="WsT-WK-AeB" secondAttribute="leading" constant="10" id="IT9-F9-Nqa"/>
                                             <constraint firstItem="qjk-1H-iti" firstAttribute="top" secondItem="IcE-as-DEm" secondAttribute="bottom" constant="10" id="JBj-fw-rAM"/>
                                             <constraint firstItem="z3q-dw-LQp" firstAttribute="leading" secondItem="1fT-SV-NZi" secondAttribute="trailing" constant="53" id="JC3-Zy-c33"/>
                                             <constraint firstItem="ULA-5G-6Sr" firstAttribute="leading" secondItem="0KD-de-YP0" secondAttribute="trailing" constant="9" id="MmX-qv-7Ap"/>
