@@ -269,6 +269,7 @@ class EventTableViewController: UITableViewController {
         vc?.sml = thisArray[indexPath.row].startmonth
         vc?.ll = thisArray[indexPath.row].address
         vc?.imageURL = thisArray[indexPath.row].image_url
+        vc?.webEventURL = thisArray[indexPath.row].event_url
         vc?.tl = thisArray[indexPath.row].starttime + " - " + self.eventArray[indexPath.row].endtime
         if( thisArray[indexPath.row].ongoing ){
             vc?.tl = "Ongoing"

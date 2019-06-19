@@ -12,6 +12,9 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var summaryLabel: UILabel!
     
+    @IBAction func webLink(_ sender: Any) {
+        UIApplication.shared.open(URL(string: webEventURL) ?? URL(string: "")!, options: [:], completionHandler: nil)
+    }
     @IBOutlet weak var extendButton: UIButton!
     var tapCount = 0
     @IBAction func extendText(_ sender: Any) {
@@ -59,6 +62,7 @@ class EventInfoViewController: UIViewController {
     var ldl = ""
     var image = UIImage()
     var imageURL = ""
+    var webEventURL = ""
     var sl = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     
@@ -96,7 +100,7 @@ class EventInfoViewController: UIViewController {
         shortMonthLabel.text = sml
         locationLabel.text = ll
         timeLabel.text = tl
-       descriptionLabel.numberOfLines = 4
+        descriptionLabel.numberOfLines = 4
         descriptionLabel.attributedText = dl.htmlToAttributedString
         descriptionLabel.font = UIFont.systemFont(ofSize: 17.0)
         descriptionLabel.textColor = UIColor(red: 102/255, green: 102/255, blue:102/255, alpha: 1.0)
