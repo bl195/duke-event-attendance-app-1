@@ -10,6 +10,9 @@ import Foundation
 
 class Items {
     static let sharedInstance = Items()
+    
+    var id_event_dict = [String:Event]()
+    
     var eventArray = [Event]()
     var agendaEvents = [Event]()
 }

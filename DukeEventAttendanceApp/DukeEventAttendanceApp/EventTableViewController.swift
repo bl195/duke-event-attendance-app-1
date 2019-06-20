@@ -92,6 +92,7 @@ class EventTableViewController: UITableViewController {
                     }
                     
                     self.eventArray.append( event0 )
+                    Items.sharedInstance.id_event_dict[event0.id] = event0
                     Items.sharedInstance.eventArray = self.eventArray
                     
                 }
@@ -217,8 +218,9 @@ class EventTableViewController: UITableViewController {
             print(event.summary)
         }
  */
-        print(agendaEvents.count)
-        print(Items.sharedInstance.agendaEvents.count)
+        //print(agendaEvents.count)
+        //print(Items.sharedInstance.agendaEvents.count)
+    
        
         return [agendaAction]
         
