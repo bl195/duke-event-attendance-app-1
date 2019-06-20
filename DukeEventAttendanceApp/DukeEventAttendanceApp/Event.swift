@@ -11,7 +11,14 @@ import UIKit
 /**
     Constructor for Event class
  **/
-class Event{
+class Event: Equatable{
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        if lhs.id == rhs.id {
+            return true
+        }
+        return false
+    }
+    
     var id : String
     var summary: String         //event's title
     var description: String
@@ -135,6 +142,8 @@ class Event{
     func makeOngoing(){
         self.ongoing = true
     }
+    
+    
     
 }
 

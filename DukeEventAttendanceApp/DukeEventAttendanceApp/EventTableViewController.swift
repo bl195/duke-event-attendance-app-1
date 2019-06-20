@@ -157,7 +157,7 @@ class EventTableViewController: UITableViewController {
                         self.eventArray.append( event0 )
                     }
                     
-                    
+                    Items.sharedInstance.id_event_dict[event0.id] = event0
                 }
                 Items.sharedInstance.eventArray = self.eventArray
                 // Downloading data from network is asynchronous, after download is done, need to inform table view to reload data to refresh UI.
