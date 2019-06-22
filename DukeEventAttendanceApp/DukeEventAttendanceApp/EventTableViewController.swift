@@ -39,7 +39,9 @@ class EventTableViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.loadSampleEvents(filter: filtername, date: encodedate, ongoing: ongoing)
+        //self.postRequest(x: "https://localhost:3000/createArticleMobile")
 
+        //self.hitAPI(_for: "http://localhost:3000/createArticleMobile")
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Events"
@@ -53,7 +55,56 @@ class EventTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    
+//    func postRequest(x: String) {
+//        let string = "https://localhost:3000/createArticleMobile"
+//        let url = NSURL(string: string)
+//        let session = URLSession.shared
+//        let request = NSMutableURLRequest(url: url! as URL)
+//        let params = ["title": "Jessica", "text": "loves to code"]
+//        request.setValue("XXXXXXXXXX", forHTTPHeaderField: "Authorization")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.httpMethod = "POST"
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions.prettyPrinted)
+//            print(request)
+//        }
+//        catch {
+//
+//        }
+//
+//
+//    }
+    func hitAPI(_for URLString:String, title: String, text: String) {
+       
+        guard let url = URL(string: URLString) else {return}
+        
+        var request : URLRequest = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let params = ["title": title, "text": text]
+
+        let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = jsonData
+        print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+        
+     
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+
+            // APIs usually respond with the data you just sent in your POST request
+            if let responseData = responseData {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    print(json)
+                } catch {
+                    print(responseError)
+                }
+            }
+        }
+        task.resume()
+
+    }
     
     
     // MARK: - Table view data source
@@ -158,6 +209,7 @@ class EventTableViewController: UITableViewController {
                     }
                     
                     Items.sharedInstance.id_event_dict[event0.id] = event0
+                    self.hitAPI(_for: "http://localhost:3000/createArticleMobile", title: event0.start_date, text: event0.summary)
                 }
                 Items.sharedInstance.eventArray = self.eventArray
                 // Downloading data from network is asynchronous, after download is done, need to inform table view to reload data to refresh UI.
