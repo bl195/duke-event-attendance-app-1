@@ -209,7 +209,7 @@ class EventTableViewController: UITableViewController {
                     }
                     
                     Items.sharedInstance.id_event_dict[event0.id] = event0
-                    self.hitAPI(_for: "http://localhost:3000/createArticleMobile", title: event0.start_date, text: event0.summary)
+                    //self.hitAPI(_for: "http://localhost:3000/createArticleMobile", title: event0.start_date, text: event0.summary)
                 }
                 Items.sharedInstance.eventArray = self.eventArray
                 // Downloading data from network is asynchronous, after download is done, need to inform table view to reload data to refresh UI.

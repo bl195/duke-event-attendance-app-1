@@ -79,26 +79,29 @@ class MyAgendaTableViewController: UITableViewController {
         
         let agendaEv = agendaEvents[indexPath.row]
         cell.nameLabel.text = agendaEv.summary
-        if let imageUrl = URL(string: agendaEv.image_url) {
-            DispatchQueue.global().async {
-                let imageData = try! Data(contentsOf: imageUrl)
-                let image = UIImage(data:imageData)
-                DispatchQueue.main.async {
-                    cell.photoImageView.image = image
-                }
-            }
-        }
-        
-        cell.photoImageView.contentMode = UIView.ContentMode.scaleAspectFill
-        cell.photoImageView.layer.cornerRadius = 10.0
-        cell.photoImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        cell.photoImageView.clipsToBounds = true
-        
-        cell.backgroundImage.layer.cornerRadius = 10.0
-        cell.backgroundImage.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        cell.backgroundImage.clipsToBounds = true
-        
-        cell.dateLabel.text = agendaEv.start_date
+//        if let imageUrl = URL(string: agendaEv.image_url) {
+//            DispatchQueue.global().async {
+//                let imageData = try! Data(contentsOf: imageUrl)
+//                let image = UIImage(data:imageData)
+//                DispatchQueue.main.async {
+//                    cell.photoImageView.image = image
+//                }
+//            }
+//        }
+//
+//        cell.photoImageView.contentMode = UIView.ContentMode.scaleAspectFill
+//        cell.photoImageView.layer.cornerRadius = 10.0
+//        cell.photoImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        cell.photoImageView.clipsToBounds = true
+//
+//        cell.backgroundImage.layer.cornerRadius = 10.0
+//        cell.backgroundImage.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        cell.backgroundImage.clipsToBounds = true
+//
+//        cell.dateLabel.text = agendaEv.start_date
+        cell.timeLabel.text = agendaEv.starttime + "-" + agendaEv.endtime
+        cell.monthLabel.text = agendaEv.startmonth
+        cell.dayLabel.text = agendaEv.startday
         cell.locationLabel.text = agendaEv.address
         return cell
     }

@@ -9,13 +9,18 @@
 import UIKit
 
 class AgendaTableViewCell: UITableViewCell {
+    
 
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    @IBOutlet weak var monthLabel: UILabel!
+    
+    
+    @IBOutlet weak var dayLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
