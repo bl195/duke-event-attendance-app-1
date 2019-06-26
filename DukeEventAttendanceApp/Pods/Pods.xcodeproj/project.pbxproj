@@ -1,0 +1,697 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13C8C3534151B59D00047147906C9142 /* ContextMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCBB586A4A0F0AE04D7D5D6D3E6D663 /* ContextMaker.m */; };
+		18094FD45BEB7EA8684FE6AFC895654D /* RSEANGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9021242E3FEFF6A2597B70D63AF41083 /* RSEANGenerator.swift */; };
+		1D419A5C2E53594F2930DEFC336F9D48 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA4C0A295E67BD725246FFED5A18D5 /* StringExtension.swift */; };
+		249AE454314078DB3409D0BE2C3E30A9 /* RSITF14Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF1F55F1885016ECA82FE679E5E0CA /* RSITF14Generator.swift */; };
+		2A711774F1FCCF681D299C7DCF2F690C /* RSITFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471E6AE97F17FF819AB8E11C093A0F26 /* RSITFGenerator.swift */; };
+		324DB9CF497C305A9672C4F1FA4C05E6 /* RSFocusMarkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3F867F7E9B9FB8BDDB76EF3B3BA55 /* RSFocusMarkLayer.swift */; };
+		32BA856C2E05FA6DA7F1C992565739C5 /* RSCode93Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472CE7AA978425423B87D29F959A54A /* RSCode93Generator.swift */; };
+		3E2C144DBAEF0AFA16129B50BAB8E37E /* RSBarcodes-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = D599BFB36919B8CFFB4357C9D4A9A475 /* RSBarcodes-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45A8B3331527521E56149E326263CA78 /* RSUnifiedCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EB148FCA608A2A92D0EDD4A9671ADA /* RSUnifiedCodeGenerator.swift */; };
+		4ACA5B6C975E3DC4D9A334B12E2DA667 /* RSCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E24A4ACD5CD7A622D01E95503CEC02 /* RSCodeGenerator.swift */; };
+		4AECD52EFC0EB2A11DD0F8D3EAD32864 /* RSBarcodes_Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7FC5E141584C222DA146EC4936488C /* RSBarcodes_Swift-dummy.m */; };
+		4B43B164AEC14E69DCD2157DB686C2E7 /* Pods-DukeEventAttendanceApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EC30091AACD222DA0D1396A715310D6 /* Pods-DukeEventAttendanceApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56B5F08D51615881D8B60250D3EB120F /* RSCodeDataMatrixGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CABA61219FD16E146DD0B739214CA2 /* RSCodeDataMatrixGenerator.swift */; };
+		618E1E566ACFE380BE85A75AE4543A52 /* RSCode39Mod43Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6413F37DD4830EA1CCC263361FAC035 /* RSCode39Mod43Generator.swift */; };
+		73699E6125501F84EAF64F5AAAB2B5CE /* RSBarcodes_Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 438BC74BF5CE756FB0E22B3472E9F3B3 /* RSBarcodes_Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7507EFA97FE9438034DE0DE90A558B11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE89F946F1EC864E6FB398B64EF76B7 /* UIColorExtension.swift */; };
+		7A5B4FB63D6FB3B5DAC80FEC8E2614CF /* RSCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DE408D34C02B9B08192E0976D1A3C /* RSCodeReaderViewController.swift */; };
+		7CF244CFA31463A2A253C4BB8E089201 /* RSCode39Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C91262AB6C79AC35975C5FEBE0D3 /* RSCode39Generator.swift */; };
+		883F0FB17DA1B81FA161FB3616DABA96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51104069CDC4AB82C05079152E5BEA1 /* Foundation.framework */; };
+		8BCB1ACD8F0F4BDAA7CAB93C5827DC77 /* RSUnifiedCodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A4EC9DB933F9A929DA2AB4C7E67BA /* RSUnifiedCodeValidator.swift */; };
+		8DD2203AB1CACB6A396C66DEE5817630 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07416E38F5BF34B6C295E149BCF497AA /* QuartzCore.framework */; };
+		B18565DBBD964F6882790216A846904E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51104069CDC4AB82C05079152E5BEA1 /* Foundation.framework */; };
+		BCF646BD845F2BC8270ED005BA0267B0 /* ContextMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B372AF08B5E17EECC0C4607EBE2021D /* ContextMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C40536AF0A48858947EE4AC3184BCF10 /* Pods-DukeEventAttendanceApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BD0D6465A0366E44A14F59F0AEAE5F /* Pods-DukeEventAttendanceApp-dummy.m */; };
+		C6EBFE20B61064BD792DF8F679CC05C6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F50B84184B5F764BE81981C7C177E7 /* CoreImage.framework */; };
+		C97E7ED003068DA9D6E6F2D65D6126CA /* RSCode128Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A4B880DFD4EC145669D9EFE5A291F /* RSCode128Generator.swift */; };
+		D56B51D443352E04E5562A61F1614EA2 /* RSCornersLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CF899B71411CA321EFD1C0F03EB523 /* RSCornersLayer.swift */; };
+		D61166878318AB9AA4D1FC9A536553EF /* RSCodeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5190F180FDAE9D5116DE485D034FB89 /* RSCodeLayer.swift */; };
+		DD665E88C0A4C8C6242F01781EA9F49B /* RSUPCEGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D684AC92F8218C896FD1129EF0E891B4 /* RSUPCEGenerator.swift */; };
+		E96BB1BE7C724FD951E4276BA9EA819E /* RSExtendedCode39Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C67689570CE2B858B9F443CE0A8ED6 /* RSExtendedCode39Generator.swift */; };
+		F4CA64FE91E35F44AA66CBF07F0CE0E5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BEEEB17144108692580374F27C8353 /* AVFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6C7F643789E0DD889845199EDCC54224 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C896FA0C00DEA19240C4BFD2C54E0D3;
+			remoteInfo = RSBarcodes_Swift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01A1F62273F1710780023D93100628D9 /* Pods-DukeEventAttendanceApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DukeEventAttendanceApp-frameworks.sh"; sourceTree = "<group>"; };
+		0472CE7AA978425423B87D29F959A54A /* RSCode93Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCode93Generator.swift; path = Source/RSCode93Generator.swift; sourceTree = "<group>"; };
+		07416E38F5BF34B6C295E149BCF497AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		18BF2DA5E6915F9241E5BBFC2765477A /* Pods-DukeEventAttendanceApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeEventAttendanceApp-Info.plist"; sourceTree = "<group>"; };
+		19339B825B613033E33676BAAA75F1F9 /* Pods-DukeEventAttendanceApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeEventAttendanceApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1EDDD8B55771F4D22D73295EB52A2F21 /* Pods-DukeEventAttendanceApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeEventAttendanceApp.modulemap"; sourceTree = "<group>"; };
+		26BEEEB17144108692580374F27C8353 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		2A86C91262AB6C79AC35975C5FEBE0D3 /* RSCode39Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCode39Generator.swift; path = Source/RSCode39Generator.swift; sourceTree = "<group>"; };
+		33350D89813FDC0792B0D0B114B76A33 /* RSBarcodes_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RSBarcodes_Swift.framework; path = RSBarcodes_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AEA3DCC1633DAD11551B2145F0FA226 /* RSBarcodes_Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RSBarcodes_Swift.modulemap; sourceTree = "<group>"; };
+		3F3DE408D34C02B9B08192E0976D1A3C /* RSCodeReaderViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCodeReaderViewController.swift; path = Source/RSCodeReaderViewController.swift; sourceTree = "<group>"; };
+		40E3F867F7E9B9FB8BDDB76EF3B3BA55 /* RSFocusMarkLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSFocusMarkLayer.swift; path = Source/RSFocusMarkLayer.swift; sourceTree = "<group>"; };
+		438BC74BF5CE756FB0E22B3472E9F3B3 /* RSBarcodes_Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RSBarcodes_Swift-umbrella.h"; sourceTree = "<group>"; };
+		471E6AE97F17FF819AB8E11C093A0F26 /* RSITFGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSITFGenerator.swift; path = Source/RSITFGenerator.swift; sourceTree = "<group>"; };
+		474A4B880DFD4EC145669D9EFE5A291F /* RSCode128Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCode128Generator.swift; path = Source/RSCode128Generator.swift; sourceTree = "<group>"; };
+		52FA4C0A295E67BD725246FFED5A18D5 /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = Source/StringExtension.swift; sourceTree = "<group>"; };
+		542F1A0D61A0926D06F8AE038F95EE3D /* RSBarcodes_Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RSBarcodes_Swift.xcconfig; sourceTree = "<group>"; };
+		584D1F4B0860D0B39BE42A625F0E77D8 /* Pods_DukeEventAttendanceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DukeEventAttendanceApp.framework; path = "Pods-DukeEventAttendanceApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59CABA61219FD16E146DD0B739214CA2 /* RSCodeDataMatrixGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCodeDataMatrixGenerator.swift; path = Source/RSCodeDataMatrixGenerator.swift; sourceTree = "<group>"; };
+		5B372AF08B5E17EECC0C4607EBE2021D /* ContextMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ContextMaker.h; path = Source/ContextMaker.h; sourceTree = "<group>"; };
+		5EC30091AACD222DA0D1396A715310D6 /* Pods-DukeEventAttendanceApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeEventAttendanceApp-umbrella.h"; sourceTree = "<group>"; };
+		60BEAD93D0BF1EF6FB74669928CA6383 /* RSBarcodes_Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RSBarcodes_Swift-Info.plist"; sourceTree = "<group>"; };
+		6A4A4EC9DB933F9A929DA2AB4C7E67BA /* RSUnifiedCodeValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSUnifiedCodeValidator.swift; path = Source/RSUnifiedCodeValidator.swift; sourceTree = "<group>"; };
+		6E596A91DCA9B0B29A9E200F031186E5 /* Pods-DukeEventAttendanceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeEventAttendanceApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9021242E3FEFF6A2597B70D63AF41083 /* RSEANGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSEANGenerator.swift; path = Source/RSEANGenerator.swift; sourceTree = "<group>"; };
+		94BD0D6465A0366E44A14F59F0AEAE5F /* Pods-DukeEventAttendanceApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeEventAttendanceApp-dummy.m"; sourceTree = "<group>"; };
+		96DB6F747F5827E232BF075E825D9FFB /* RSBarcodes_Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RSBarcodes_Swift-prefix.pch"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A2C67689570CE2B858B9F443CE0A8ED6 /* RSExtendedCode39Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSExtendedCode39Generator.swift; path = Source/RSExtendedCode39Generator.swift; sourceTree = "<group>"; };
+		A6413F37DD4830EA1CCC263361FAC035 /* RSCode39Mod43Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCode39Mod43Generator.swift; path = Source/RSCode39Mod43Generator.swift; sourceTree = "<group>"; };
+		A6CF899B71411CA321EFD1C0F03EB523 /* RSCornersLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCornersLayer.swift; path = Source/RSCornersLayer.swift; sourceTree = "<group>"; };
+		A84FB2FA35E2FD0B26DF79D5108B7C92 /* Pods-DukeEventAttendanceApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeEventAttendanceApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		ABE89F946F1EC864E6FB398B64EF76B7 /* UIColorExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Source/UIColorExtension.swift; sourceTree = "<group>"; };
+		AFAF1F55F1885016ECA82FE679E5E0CA /* RSITF14Generator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSITF14Generator.swift; path = Source/RSITF14Generator.swift; sourceTree = "<group>"; };
+		BFCBB586A4A0F0AE04D7D5D6D3E6D663 /* ContextMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ContextMaker.m; path = Source/ContextMaker.m; sourceTree = "<group>"; };
+		C51104069CDC4AB82C05079152E5BEA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D599BFB36919B8CFFB4357C9D4A9A475 /* RSBarcodes-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RSBarcodes-Bridging-Header.h"; path = "Source/RSBarcodes-Bridging-Header.h"; sourceTree = "<group>"; };
+		D684AC92F8218C896FD1129EF0E891B4 /* RSUPCEGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSUPCEGenerator.swift; path = Source/RSUPCEGenerator.swift; sourceTree = "<group>"; };
+		E8F50B84184B5F764BE81981C7C177E7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
+		EE7FC5E141584C222DA146EC4936488C /* RSBarcodes_Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RSBarcodes_Swift-dummy.m"; sourceTree = "<group>"; };
+		F1EB148FCA608A2A92D0EDD4A9671ADA /* RSUnifiedCodeGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSUnifiedCodeGenerator.swift; path = Source/RSUnifiedCodeGenerator.swift; sourceTree = "<group>"; };
+		F3E24A4ACD5CD7A622D01E95503CEC02 /* RSCodeGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCodeGenerator.swift; path = Source/RSCodeGenerator.swift; sourceTree = "<group>"; };
+		F42E83F4B9CF3AAC47FA68B427C03186 /* Pods-DukeEventAttendanceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeEventAttendanceApp.release.xcconfig"; sourceTree = "<group>"; };
+		F5190F180FDAE9D5116DE485D034FB89 /* RSCodeLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSCodeLayer.swift; path = Source/RSCodeLayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2DEECA1E290F04E3688011F79CBAB5C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4CA64FE91E35F44AA66CBF07F0CE0E5 /* AVFoundation.framework in Frameworks */,
+				C6EBFE20B61064BD792DF8F679CC05C6 /* CoreImage.framework in Frameworks */,
+				B18565DBBD964F6882790216A846904E /* Foundation.framework in Frameworks */,
+				8DD2203AB1CACB6A396C66DEE5817630 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D973BE5C5D2307BC7095BA83FB61A6D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883F0FB17DA1B81FA161FB3616DABA96 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42DD1A56023FA04DBB5F8B875BBF92EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				584D1F4B0860D0B39BE42A625F0E77D8 /* Pods_DukeEventAttendanceApp.framework */,
+				33350D89813FDC0792B0D0B114B76A33 /* RSBarcodes_Swift.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5AB66B40E99881E60E23B9A12F94A0E5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				26BEEEB17144108692580374F27C8353 /* AVFoundation.framework */,
+				E8F50B84184B5F764BE81981C7C177E7 /* CoreImage.framework */,
+				C51104069CDC4AB82C05079152E5BEA1 /* Foundation.framework */,
+				07416E38F5BF34B6C295E149BCF497AA /* QuartzCore.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		5CA60453B203D76D78A36DFEDDC7FB1C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3B3AC9BC2F9D5F37B40C381D427DC89 /* RSBarcodes_Swift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B3B3AC9BC2F9D5F37B40C381D427DC89 /* RSBarcodes_Swift */ = {
+			isa = PBXGroup;
+			children = (
+				5B372AF08B5E17EECC0C4607EBE2021D /* ContextMaker.h */,
+				BFCBB586A4A0F0AE04D7D5D6D3E6D663 /* ContextMaker.m */,
+				D599BFB36919B8CFFB4357C9D4A9A475 /* RSBarcodes-Bridging-Header.h */,
+				474A4B880DFD4EC145669D9EFE5A291F /* RSCode128Generator.swift */,
+				2A86C91262AB6C79AC35975C5FEBE0D3 /* RSCode39Generator.swift */,
+				A6413F37DD4830EA1CCC263361FAC035 /* RSCode39Mod43Generator.swift */,
+				0472CE7AA978425423B87D29F959A54A /* RSCode93Generator.swift */,
+				59CABA61219FD16E146DD0B739214CA2 /* RSCodeDataMatrixGenerator.swift */,
+				F3E24A4ACD5CD7A622D01E95503CEC02 /* RSCodeGenerator.swift */,
+				F5190F180FDAE9D5116DE485D034FB89 /* RSCodeLayer.swift */,
+				3F3DE408D34C02B9B08192E0976D1A3C /* RSCodeReaderViewController.swift */,
+				A6CF899B71411CA321EFD1C0F03EB523 /* RSCornersLayer.swift */,
+				9021242E3FEFF6A2597B70D63AF41083 /* RSEANGenerator.swift */,
+				A2C67689570CE2B858B9F443CE0A8ED6 /* RSExtendedCode39Generator.swift */,
+				40E3F867F7E9B9FB8BDDB76EF3B3BA55 /* RSFocusMarkLayer.swift */,
+				AFAF1F55F1885016ECA82FE679E5E0CA /* RSITF14Generator.swift */,
+				471E6AE97F17FF819AB8E11C093A0F26 /* RSITFGenerator.swift */,
+				F1EB148FCA608A2A92D0EDD4A9671ADA /* RSUnifiedCodeGenerator.swift */,
+				6A4A4EC9DB933F9A929DA2AB4C7E67BA /* RSUnifiedCodeValidator.swift */,
+				D684AC92F8218C896FD1129EF0E891B4 /* RSUPCEGenerator.swift */,
+				52FA4C0A295E67BD725246FFED5A18D5 /* StringExtension.swift */,
+				ABE89F946F1EC864E6FB398B64EF76B7 /* UIColorExtension.swift */,
+				E959ACF26177DA4BF31BD26F6AB571F3 /* Support Files */,
+			);
+			name = RSBarcodes_Swift;
+			path = RSBarcodes_Swift;
+			sourceTree = "<group>";
+		};
+		BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5AB66B40E99881E60E23B9A12F94A0E5 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C26D0154FD20CAE8D582188EF6F1D967 /* Pods-DukeEventAttendanceApp */ = {
+			isa = PBXGroup;
+			children = (
+				1EDDD8B55771F4D22D73295EB52A2F21 /* Pods-DukeEventAttendanceApp.modulemap */,
+				19339B825B613033E33676BAAA75F1F9 /* Pods-DukeEventAttendanceApp-acknowledgements.markdown */,
+				A84FB2FA35E2FD0B26DF79D5108B7C92 /* Pods-DukeEventAttendanceApp-acknowledgements.plist */,
+				94BD0D6465A0366E44A14F59F0AEAE5F /* Pods-DukeEventAttendanceApp-dummy.m */,
+				01A1F62273F1710780023D93100628D9 /* Pods-DukeEventAttendanceApp-frameworks.sh */,
+				18BF2DA5E6915F9241E5BBFC2765477A /* Pods-DukeEventAttendanceApp-Info.plist */,
+				5EC30091AACD222DA0D1396A715310D6 /* Pods-DukeEventAttendanceApp-umbrella.h */,
+				6E596A91DCA9B0B29A9E200F031186E5 /* Pods-DukeEventAttendanceApp.debug.xcconfig */,
+				F42E83F4B9CF3AAC47FA68B427C03186 /* Pods-DukeEventAttendanceApp.release.xcconfig */,
+			);
+			name = "Pods-DukeEventAttendanceApp";
+			path = "Target Support Files/Pods-DukeEventAttendanceApp";
+			sourceTree = "<group>";
+		};
+		CAE058EA434C05073B8E36E71DC7AF52 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C26D0154FD20CAE8D582188EF6F1D967 /* Pods-DukeEventAttendanceApp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
+				5CA60453B203D76D78A36DFEDDC7FB1C /* Pods */,
+				42DD1A56023FA04DBB5F8B875BBF92EC /* Products */,
+				CAE058EA434C05073B8E36E71DC7AF52 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		E959ACF26177DA4BF31BD26F6AB571F3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3AEA3DCC1633DAD11551B2145F0FA226 /* RSBarcodes_Swift.modulemap */,
+				542F1A0D61A0926D06F8AE038F95EE3D /* RSBarcodes_Swift.xcconfig */,
+				EE7FC5E141584C222DA146EC4936488C /* RSBarcodes_Swift-dummy.m */,
+				60BEAD93D0BF1EF6FB74669928CA6383 /* RSBarcodes_Swift-Info.plist */,
+				96DB6F747F5827E232BF075E825D9FFB /* RSBarcodes_Swift-prefix.pch */,
+				438BC74BF5CE756FB0E22B3472E9F3B3 /* RSBarcodes_Swift-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RSBarcodes_Swift";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		73831B27DB953F6300F7D76D2D7BD276 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B43B164AEC14E69DCD2157DB686C2E7 /* Pods-DukeEventAttendanceApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C019F59A986292907D3A823787D70708 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF646BD845F2BC8270ED005BA0267B0 /* ContextMaker.h in Headers */,
+				3E2C144DBAEF0AFA16129B50BAB8E37E /* RSBarcodes-Bridging-Header.h in Headers */,
+				73699E6125501F84EAF64F5AAAB2B5CE /* RSBarcodes_Swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3C896FA0C00DEA19240C4BFD2C54E0D3 /* RSBarcodes_Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEC6CEBBC54A5DB94220D35EC8B6A6C8 /* Build configuration list for PBXNativeTarget "RSBarcodes_Swift" */;
+			buildPhases = (
+				C019F59A986292907D3A823787D70708 /* Headers */,
+				83CAC25730729BCC6F89F2334AE000B4 /* Sources */,
+				2DEECA1E290F04E3688011F79CBAB5C8 /* Frameworks */,
+				9E7D0958EF0D153C46CDCA782F4E8B87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RSBarcodes_Swift;
+			productName = RSBarcodes_Swift;
+			productReference = 33350D89813FDC0792B0D0B114B76A33 /* RSBarcodes_Swift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E1E6B282CACD959121B223E071325E85 /* Pods-DukeEventAttendanceApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06CF68455884185C8FBF0CBDF03E108E /* Build configuration list for PBXNativeTarget "Pods-DukeEventAttendanceApp" */;
+			buildPhases = (
+				73831B27DB953F6300F7D76D2D7BD276 /* Headers */,
+				96A49A92BD37A8E371A61C0FE027A27B /* Sources */,
+				D973BE5C5D2307BC7095BA83FB61A6D2 /* Frameworks */,
+				B6FE1C8B8D57DBCD3A4EF5F363541DE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9825FE11484D563BC4F87F9FFD95F5A8 /* PBXTargetDependency */,
+			);
+			name = "Pods-DukeEventAttendanceApp";
+			productName = "Pods-DukeEventAttendanceApp";
+			productReference = 584D1F4B0860D0B39BE42A625F0E77D8 /* Pods_DukeEventAttendanceApp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 42DD1A56023FA04DBB5F8B875BBF92EC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1E6B282CACD959121B223E071325E85 /* Pods-DukeEventAttendanceApp */,
+				3C896FA0C00DEA19240C4BFD2C54E0D3 /* RSBarcodes_Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E7D0958EF0D153C46CDCA782F4E8B87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6FE1C8B8D57DBCD3A4EF5F363541DE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83CAC25730729BCC6F89F2334AE000B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13C8C3534151B59D00047147906C9142 /* ContextMaker.m in Sources */,
+				4AECD52EFC0EB2A11DD0F8D3EAD32864 /* RSBarcodes_Swift-dummy.m in Sources */,
+				C97E7ED003068DA9D6E6F2D65D6126CA /* RSCode128Generator.swift in Sources */,
+				7CF244CFA31463A2A253C4BB8E089201 /* RSCode39Generator.swift in Sources */,
+				618E1E566ACFE380BE85A75AE4543A52 /* RSCode39Mod43Generator.swift in Sources */,
+				32BA856C2E05FA6DA7F1C992565739C5 /* RSCode93Generator.swift in Sources */,
+				56B5F08D51615881D8B60250D3EB120F /* RSCodeDataMatrixGenerator.swift in Sources */,
+				4ACA5B6C975E3DC4D9A334B12E2DA667 /* RSCodeGenerator.swift in Sources */,
+				D61166878318AB9AA4D1FC9A536553EF /* RSCodeLayer.swift in Sources */,
+				7A5B4FB63D6FB3B5DAC80FEC8E2614CF /* RSCodeReaderViewController.swift in Sources */,
+				D56B51D443352E04E5562A61F1614EA2 /* RSCornersLayer.swift in Sources */,
+				18094FD45BEB7EA8684FE6AFC895654D /* RSEANGenerator.swift in Sources */,
+				E96BB1BE7C724FD951E4276BA9EA819E /* RSExtendedCode39Generator.swift in Sources */,
+				324DB9CF497C305A9672C4F1FA4C05E6 /* RSFocusMarkLayer.swift in Sources */,
+				249AE454314078DB3409D0BE2C3E30A9 /* RSITF14Generator.swift in Sources */,
+				2A711774F1FCCF681D299C7DCF2F690C /* RSITFGenerator.swift in Sources */,
+				45A8B3331527521E56149E326263CA78 /* RSUnifiedCodeGenerator.swift in Sources */,
+				8BCB1ACD8F0F4BDAA7CAB93C5827DC77 /* RSUnifiedCodeValidator.swift in Sources */,
+				DD665E88C0A4C8C6242F01781EA9F49B /* RSUPCEGenerator.swift in Sources */,
+				1D419A5C2E53594F2930DEFC336F9D48 /* StringExtension.swift in Sources */,
+				7507EFA97FE9438034DE0DE90A558B11 /* UIColorExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96A49A92BD37A8E371A61C0FE027A27B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C40536AF0A48858947EE4AC3184BCF10 /* Pods-DukeEventAttendanceApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9825FE11484D563BC4F87F9FFD95F5A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSBarcodes_Swift;
+			target = 3C896FA0C00DEA19240C4BFD2C54E0D3 /* RSBarcodes_Swift */;
+			targetProxy = 6C7F643789E0DD889845199EDCC54224 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		78BBF2D1D6B57883820FCDFD0D05E3F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F42E83F4B9CF3AAC47FA68B427C03186 /* Pods-DukeEventAttendanceApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		916E0404255105F480DC4950B7625F7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		B5FA1BCB746EE4CDE6820192ABBAB137 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 542F1A0D61A0926D06F8AE038F95EE3D /* RSBarcodes_Swift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RSBarcodes_Swift/RSBarcodes_Swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RSBarcodes_Swift/RSBarcodes_Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/RSBarcodes_Swift/RSBarcodes_Swift.modulemap";
+				PRODUCT_MODULE_NAME = RSBarcodes_Swift;
+				PRODUCT_NAME = RSBarcodes_Swift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C7A06C5D97602D0A8140E7CF2C9C351C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E596A91DCA9B0B29A9E200F031186E5 /* Pods-DukeEventAttendanceApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F923C354FF0B8599C83AB5BF7A619930 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 542F1A0D61A0926D06F8AE038F95EE3D /* RSBarcodes_Swift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RSBarcodes_Swift/RSBarcodes_Swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RSBarcodes_Swift/RSBarcodes_Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/RSBarcodes_Swift/RSBarcodes_Swift.modulemap";
+				PRODUCT_MODULE_NAME = RSBarcodes_Swift;
+				PRODUCT_NAME = RSBarcodes_Swift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06CF68455884185C8FBF0CBDF03E108E /* Build configuration list for PBXNativeTarget "Pods-DukeEventAttendanceApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7A06C5D97602D0A8140E7CF2C9C351C /* Debug */,
+				78BBF2D1D6B57883820FCDFD0D05E3F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916E0404255105F480DC4950B7625F7A /* Debug */,
+				8F17DC3A99F99FBAD606CE6963886315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEC6CEBBC54A5DB94220D35EC8B6A6C8 /* Build configuration list for PBXNativeTarget "RSBarcodes_Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F923C354FF0B8599C83AB5BF7A619930 /* Debug */,
+				B5FA1BCB746EE4CDE6820192ABBAB137 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

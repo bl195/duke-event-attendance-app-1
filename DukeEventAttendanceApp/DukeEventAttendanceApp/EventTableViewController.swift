@@ -39,7 +39,7 @@ class EventTableViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.loadSampleEvents(filter: filtername, date: encodedate, ongoing: ongoing)
-        //self.postRequest(x: "https://localhost:3000/createArticleMobile")
+        
 
         //self.hitAPI(_for: "http://localhost:3000/createArticleMobile")
         searchController.searchResultsUpdater = self
@@ -55,25 +55,7 @@ class EventTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-//    func postRequest(x: String) {
-//        let string = "https://localhost:3000/createArticleMobile"
-//        let url = NSURL(string: string)
-//        let session = URLSession.shared
-//        let request = NSMutableURLRequest(url: url! as URL)
-//        let params = ["title": "Jessica", "text": "loves to code"]
-//        request.setValue("XXXXXXXXXX", forHTTPHeaderField: "Authorization")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.httpMethod = "POST"
-//        do {
-//            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions.prettyPrinted)
-//            print(request)
-//        }
-//        catch {
-//
-//        }
-//
-//
-//    }
+
     func hitAPI(_for URLString:String, title: String, text: String) {
        
         guard let url = URL(string: URLString) else {return}
@@ -307,6 +289,7 @@ class EventTableViewController: UITableViewController {
         else{
             thisArray = eventArray
         }
+        vc?.id = thisArray[indexPath.row].id
         vc?.event = thisArray[indexPath.row]
         vc?.sum = thisArray[indexPath.row].summary
         vc?.sdl = thisArray[indexPath.row].startday

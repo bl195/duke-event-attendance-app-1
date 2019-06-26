@@ -57,6 +57,7 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var id = ""
     var sum = ""
     var sdl = ""
     var sml = ""
@@ -70,9 +71,39 @@ class EventInfoViewController: UIViewController {
     var sl = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     
-    //var agendaArray = [Event]()
-    //var agendavc = MyAgendaTableViewController().myAgendaArray
-    
+ 
+    func hitAPI(_for URLString:String, title: String, text: String) {
+        
+        guard let url = URL(string: URLString) else {return}
+        
+        var request : URLRequest = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let params = ["title": title, "text": text]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = jsonData
+        print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+        
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            if let responseData = responseData {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    print(json)
+                } catch {
+                    print(responseError)
+                }
+            }
+        }
+        task.resume()
+        
+    }
+    @IBAction func checkInButton(_ sender: Any) {
+        //hitAPI(_for: "http://localhost:3000/createArticleMobile", title: sum, text: id)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

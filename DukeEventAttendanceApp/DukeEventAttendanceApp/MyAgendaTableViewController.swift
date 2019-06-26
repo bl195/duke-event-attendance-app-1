@@ -69,6 +69,8 @@ class MyAgendaTableViewController: UITableViewController {
         return agendaEvents.count
     }
     
+   
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AgendaTableViewCell", for: indexPath) as? AgendaTableViewCell else {
@@ -78,27 +80,20 @@ class MyAgendaTableViewController: UITableViewController {
         // Configure the cell...
         
         let agendaEv = agendaEvents[indexPath.row]
-        cell.nameLabel.text = agendaEv.summary
-//        if let imageUrl = URL(string: agendaEv.image_url) {
-//            DispatchQueue.global().async {
-//                let imageData = try! Data(contentsOf: imageUrl)
-//                let image = UIImage(data:imageData)
-//                DispatchQueue.main.async {
-//                    cell.photoImageView.image = image
-//                }
-//            }
+        
+//        @objc func sendtoDB(sender: UIButton) {
+//            print ("yay")
 //        }
 //
-//        cell.photoImageView.contentMode = UIView.ContentMode.scaleAspectFill
-//        cell.photoImageView.layer.cornerRadius = 10.0
-//        cell.photoImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-//        cell.photoImageView.clipsToBounds = true
-//
-//        cell.backgroundImage.layer.cornerRadius = 10.0
-//        cell.backgroundImage.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-//        cell.backgroundImage.clipsToBounds = true
-//
-//        cell.dateLabel.text = agendaEv.start_date
+//        cell.checkInButton.addTarget(self, action:#selector(sendtoDB(sender:)), for: .touchUpInside)
+        
+       
+       
+        cell.id = agendaEv.id
+        cell.title = agendaEv.summary
+        
+        cell.nameLabel.text = agendaEv.summary
+
         cell.timeLabel.text = agendaEv.starttime + "-" + agendaEv.endtime
         cell.monthLabel.text = agendaEv.startmonth
         cell.dayLabel.text = agendaEv.startday
@@ -127,6 +122,30 @@ class MyAgendaTableViewController: UITableViewController {
                 }
             }
         } catch {}
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
+        
+        vc?.event = agendaEvents[indexPath.row]
+        vc?.sum = agendaEvents[indexPath.row].summary
+        vc?.sdl = agendaEvents[indexPath.row].startday
+        vc?.sml = agendaEvents[indexPath.row].startmonth
+        vc?.ll = agendaEvents[indexPath.row].address
+        vc?.imageURL = agendaEvents[indexPath.row].image_url
+        vc?.webEventURL = agendaEvents[indexPath.row].event_url
+        vc?.tl = agendaEvents[indexPath.row].starttime + " - " + self.agendaEvents[indexPath.row].endtime
+        if( agendaEvents[indexPath.row].ongoing ){
+            vc?.tl = "Ongoing"
+        }
+        vc?.dl = agendaEvents[indexPath.row].description
+        vc?.ldl = agendaEvents[indexPath.row].start_date
+        if( agendaEvents[indexPath.row].ongoing ){
+            vc?.ldl = agendaEvents[indexPath.row].start_date + " - " + agendaEvents[indexPath.row].end_date
+        }
+        vc?.sl = agendaEvents[indexPath.row].sponsor
+        self.navigationController?.show(vc!, sender: true)
+        //present(vc!, animated: true)
     }
     
 }

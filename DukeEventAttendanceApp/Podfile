@@ -1,0 +1,9 @@
+platform :ios, '9.0'
+
+target 'DukeEventAttendanceApp' do
+  use_frameworks!
+
+  pod 'RSBarcodes_Swift', '~> 5.0.0'
+
+
+end
