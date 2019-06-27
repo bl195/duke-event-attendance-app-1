@@ -256,6 +256,7 @@ class EventTableViewController: UITableViewController {
             thisArray = eventArray
         }
         vc?.event = thisArray[indexPath.row]
+        vc?.id = thisArray[indexPath.row].id
         vc?.sum = thisArray[indexPath.row].summary
         vc?.sdl = thisArray[indexPath.row].startday
         vc?.sml = thisArray[indexPath.row].startmonth

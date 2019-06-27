@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.970415"
+            timestampString = "583349822.792146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.970488"
+            timestampString = "583349822.7922291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9705369"
+            timestampString = "583349822.7922879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9705811"
+            timestampString = "583349822.792338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.970624"
+            timestampString = "583349822.792384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9706661"
+            timestampString = "583349822.792439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.970755"
+            timestampString = "583349822.792529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
@@ -273,11 +273,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9708101"
+            timestampString = "583349822.792575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -289,11 +289,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.97085"
+            timestampString = "583349822.7926199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -449,7 +449,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9709229"
+            timestampString = "583349822.792701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
@@ -481,7 +481,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9709769"
+            timestampString = "583349822.792761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -513,7 +513,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.971029"
+            timestampString = "583349822.792818"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
@@ -529,7 +529,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.971068"
+            timestampString = "583349822.792861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -545,7 +545,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.9711061"
+            timestampString = "583349822.7929029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
@@ -561,13 +561,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582733996.971145"
+            timestampString = "583349822.792943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "238"
             endingLineNumber = "238"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DukeEventAttendanceApp/EventInfoViewController.swift"
+            timestampString = "583349822.792985"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "EventInfoViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DukeEventAttendanceApp/EventInfoViewController.swift"
+            timestampString = "583349822.793033"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "EventInfoViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DukeEventAttendanceApp/EventInfoViewController.swift"
+            timestampString = "583349822.793079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "String"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

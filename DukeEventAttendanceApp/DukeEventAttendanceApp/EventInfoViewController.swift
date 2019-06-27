@@ -57,6 +57,7 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var id = ""
     var sum = ""
     var sdl = ""
     var sml = ""
@@ -72,6 +73,46 @@ class EventInfoViewController: UIViewController {
     
     //var agendaArray = [Event]()
     //var agendavc = MyAgendaTableViewController().myAgendaArray
+    
+    
+    @IBAction func checkInButton(_ sender: Any) {
+        hitAPI(_for: "http://localhost:3000/", dukecal_id: id, duid: "6033006990214046")
+    }
+    
+    func hitAPI(_for URLString:String, dukecal_id: String, duid: String) {
+        
+        var url_fckbrian = URLString + "events/" + dukecal_id.lowercased() + "/attendees/addAttendee"
+        url_fckbrian = url_fckbrian.replacingOccurrences(of: "@", with: "-")
+        url_fckbrian = url_fckbrian.replacingOccurrences(of: ".", with: "-")
+        print( url_fckbrian )
+        guard let url = URL(string: url_fckbrian) else {return}
+        
+        var request : URLRequest = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let params = ["duid": duid]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = jsonData
+        print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+        
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            if let responseData = responseData {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    print(json)
+                } catch {
+                    print(responseError)
+                }
+            }
+        }
+        task.resume()
+        
+    }
+
     
     
     override func viewDidLoad() {

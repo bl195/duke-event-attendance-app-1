@@ -292,6 +292,9 @@
                                                 <state key="normal" title="CHECK IN">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="checkInButton:" destination="vG1-JB-xAy" eventType="touchUpInside" id="sHY-0r-Qbr"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someday, Month 00, 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77E-6e-tty">
                                                 <rect key="frame" x="106" y="522" width="223" height="23"/>
