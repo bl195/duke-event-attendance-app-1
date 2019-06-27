@@ -10,6 +10,7 @@ import Foundation
 
 class Items{
     static let sharedInstance = Items()
+    var dukecardnumber = ""
     var eventArray = [Event]()
     var id_event_dict = [String:Event]()
 }

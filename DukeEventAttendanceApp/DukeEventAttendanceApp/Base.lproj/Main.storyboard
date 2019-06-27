@@ -451,6 +451,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="calIcon" destination="cSB-QF-2lN" id="xsp-PR-B7u"/>
+                        <outlet property="checkInButtonView" destination="k6N-tk-G2N" id="IM9-Sc-h6M"/>
                         <outlet property="descriptionLabel" destination="pXs-SM-dMZ" id="qrJ-vM-4ne"/>
                         <outlet property="extendButton" destination="VYm-xh-ZgO" id="57P-g0-erL"/>
                         <outlet property="imageLabel" destination="WsT-WK-AeB" id="cLG-ns-lN9"/>

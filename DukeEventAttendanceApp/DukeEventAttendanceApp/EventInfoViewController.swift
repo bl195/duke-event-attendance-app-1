@@ -58,6 +58,7 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var id = ""
+    var checkInStatus = ""
     var sum = ""
     var sdl = ""
     var sml = ""
@@ -74,7 +75,7 @@ class EventInfoViewController: UIViewController {
     //var agendaArray = [Event]()
     //var agendavc = MyAgendaTableViewController().myAgendaArray
     
-    func hitAPI(_for URLString:String, dukecal_id: String, duid: String) {
+    func hitCheckInAPI(_for URLString:String, dukecal_id: String, duid: String) {
         
         var url_temp = URLString + "events/" + dukecal_id.lowercased() + "/attendees/addAttendee"
         url_temp = url_temp.replacingOccurrences(of: "@", with: "-")
@@ -98,7 +99,7 @@ class EventInfoViewController: UIViewController {
             if let responseData = responseData {
                 do {
                     let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? Dictionary<String,String>
-                    print("json mess: " + (json?["message"]!)!)
+                    self.checkInStatus = (json?["message"]!)!
                 } catch {
                     print(responseError)
                 }
@@ -109,12 +110,42 @@ class EventInfoViewController: UIViewController {
     }
 
     
+    func hitCreateAPI(_for URLString:String, dukecal_id: String, title: String) {
+        var url_temp = URLString + "events/create"
+        guard let url = URL(string: url_temp) else {return}
+        
+        var request : URLRequest = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let params = ["dukecal_id": dukecal_id, "title": title]
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
+        request.httpBody = jsonData
+        //print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+        
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            if let responseData = responseData {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? Dictionary<String,String>
+                    print(json)
+                } catch {
+                    print(responseError)
+                }
+            }
+        }
+        task.resume()
+    }
     
     @IBAction func checkInButton(_ sender: Any) {
-        hitAPI(_for: "http://localhost:3000/", dukecal_id: id, duid: "6033006990214046")
+        hitCreateAPI(_for: "http://localhost:3000/", dukecal_id: id, title: sum)
+        hitCheckInAPI(_for: "http://localhost:3000/", dukecal_id: id, duid: "6033006990214046")
     }
 
     
+    @IBOutlet weak var checkInButtonView: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,7 +187,6 @@ class EventInfoViewController: UIViewController {
             webLinkButton.isEnabled = false
             webLinkButton.tintColor = UIColor.white
         }
-        
         
     }
     
