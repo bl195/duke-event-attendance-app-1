@@ -32,6 +32,9 @@
 		C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510922B17A2000FF90DC /* CalendarViewController.swift */; };
 		C76A510C22B17A3B00FF90DC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */; };
 		C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510D22B17A5A00FF90DC /* CalendarVar.swift */; };
+		C8183FE722CA5B2800ABB035 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8183FE522CA5B2800ABB035 /* ShibAuthViewController.swift */; };
+		C8183FE822CA5B2800ABB035 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8183FE622CA5B2800ABB035 /* OAuthService.swift */; };
+		C8183FEA22CA6E8100ABB035 /* GrouperCheck.graphql in Resources */ = {isa = PBXBuildFile; fileRef = C8183FE922CA6E8100ABB035 /* GrouperCheck.graphql */; };
 		C820620622C3DF8D0040E53F /* SelfCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */; };
 		C820620822C3E0490040E53F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C820620722C3E0480040E53F /* CoreLocation.framework */; };
 		C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C680D22C27B01004E919A /* QRCheckInViewController.swift */; };
@@ -88,6 +91,9 @@
 		C76A510922B17A2000FF90DC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		C76A510D22B17A5A00FF90DC /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVar.swift; sourceTree = "<group>"; };
+		C8183FE522CA5B2800ABB035 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../ShibAuthViewController.swift; sourceTree = "<group>"; };
+		C8183FE622CA5B2800ABB035 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../OAuthService.swift; sourceTree = "<group>"; };
+		C8183FE922CA6E8100ABB035 /* GrouperCheck.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GrouperCheck.graphql; sourceTree = "<group>"; };
 		C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckInViewController.swift; sourceTree = "<group>"; };
 		C820620722C3E0480040E53F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C86C680D22C27B01004E919A /* QRCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCheckInViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				C8183FDE22CA534300ABB035 /* DukeOAuth */,
 				07434C4422BAC7A000BC19A0 /* EventID+CoreDataClass.swift */,
 				07434C4522BAC7A000BC19A0 /* EventID+CoreDataProperties.swift */,
 				C70E314B22B82B0D00F2E8D4 /* Animations.swift */,
@@ -173,6 +180,7 @@
 				C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */,
 				C86C680D22C27B01004E919A /* QRCheckInViewController.swift */,
 				C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */,
+				C8183FE922CA6E8100ABB035 /* GrouperCheck.graphql */,
 			);
 			path = DukeEventAttendanceApp;
 			sourceTree = "<group>";
@@ -213,6 +221,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C8183FDE22CA534300ABB035 /* DukeOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				C8183FE622CA5B2800ABB035 /* OAuthService.swift */,
+				C8183FE522CA5B2800ABB035 /* ShibAuthViewController.swift */,
+			);
+			path = DukeOAuth;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,6 +242,7 @@
 				07193E6922A9A300000F5A2C /* Frameworks */,
 				07193E6A22A9A300000F5A2C /* Resources */,
 				696625D3BF451E2493929BC6 /* [CP] Embed Pods Frameworks */,
+				C8183FEB22CA703600ABB035 /* Generate Apollo GraphQL API  */,
 			);
 			buildRules = (
 			);
@@ -322,6 +340,7 @@
 				07193E7A22A9A301000F5A2C /* LaunchScreen.storyboard in Resources */,
 				07193E7722A9A301000F5A2C /* Assets.xcassets in Resources */,
 				07193E7522A9A300000F5A2C /* Main.storyboard in Resources */,
+				C8183FEA22CA6E8100ABB035 /* GrouperCheck.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +400,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8183FEB22CA703600ABB035 /* Generate Apollo GraphQL API  */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API ";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\n\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\n\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -403,8 +440,10 @@
 				07434C4922BAC7D100BC19A0 /* PersistenceService.swift in Sources */,
 				07434C4322BAC77400BC19A0 /* DataModel.xcdatamodeld in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
+				C8183FE822CA5B2800ABB035 /* OAuthService.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
+				C8183FE722CA5B2800ABB035 /* ShibAuthViewController.swift in Sources */,
 				C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */,
 				073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,

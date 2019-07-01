@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/RSBarcodes_Swift"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Apollo" "${PODS_CONFIGURATION_BUILD_DIR}/RSBarcodes_Swift" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftKeychainWrapper"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/RSBarcodes_Swift/RSBarcodes_Swift.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RSBarcodes_Swift/RSBarcodes_Swift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -framework "AVFoundation" -framework "CoreImage" -framework "QuartzCore" -framework "RSBarcodes_Swift"
+OTHER_LDFLAGS = $(inherited) -framework "AVFoundation" -framework "Apollo" -framework "CoreImage" -framework "QuartzCore" -framework "RSBarcodes_Swift" -framework "SwiftKeychainWrapper"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

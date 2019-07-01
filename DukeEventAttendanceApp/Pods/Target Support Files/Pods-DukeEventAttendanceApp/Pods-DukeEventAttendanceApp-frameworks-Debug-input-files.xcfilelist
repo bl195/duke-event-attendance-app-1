@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework
 ${BUILT_PRODUCTS_DIR}/RSBarcodes_Swift/RSBarcodes_Swift.framework
+${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework

@@ -7,8 +7,7 @@
 *.mode2v3
 *.perspective
 *.perspectivev3
-*.pbxuser
-*.xcworkspace
+*.pbxusere
 xcuserdata
 
 # Build products

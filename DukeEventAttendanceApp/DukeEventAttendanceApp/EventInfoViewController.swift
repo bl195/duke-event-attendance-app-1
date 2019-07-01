@@ -70,9 +70,14 @@ class EventInfoViewController: UIViewController {
     var webEventURL = ""
     var sl = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
-    
+    var base_url = "http://localhost:3000/events/"
  
-    func hitAPI(_for URLString:String, title: String, text: String) {
+    func hitAPI(_for URLString:String, dukecal_id: String, duid: String) {
+        var actual_id = dukecal_id.replacingOccurrences(of: "@", with: "-")
+        actual_id = actual_id.replacingOccurrences(of: ".", with: "-")
+        actual_id = actual_id.lowercased()
+        base_url = base_url + actual_id + "/attendees/addAttendee"
+        print(base_url)
         
         guard let url = URL(string: URLString) else {return}
         
@@ -80,7 +85,7 @@ class EventInfoViewController: UIViewController {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        let params = ["title": title, "text": text]
+        let params = ["duid": duid]
         
         let jsonData = try! JSONSerialization.data(withJSONObject: params, options: [])
         request.httpBody = jsonData
@@ -102,7 +107,7 @@ class EventInfoViewController: UIViewController {
         
     }
     @IBAction func checkInButton(_ sender: Any) {
-        //hitAPI(_for: "http://localhost:3000/createArticleMobile", title: sum, text: id)
+        hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
     }
     
     override func viewDidLoad() {
