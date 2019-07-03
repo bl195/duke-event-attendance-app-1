@@ -29,7 +29,6 @@ class EventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view")
         let my_switch = UISwitch(frame: .zero)
         my_switch.isOn = switchOn
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
@@ -54,7 +53,6 @@ class EventTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
 
     func hitAPI(_for URLString:String, title: String, text: String) {
        

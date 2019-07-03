@@ -1,0 +1,13 @@
+query GetData{
+    hostEvents(id:"ahw26"){
+        id
+    }
+}
+
+
+query getAttendees{
+    allAttendees(id: "event6"){
+        id
+        duid
+    }
+}

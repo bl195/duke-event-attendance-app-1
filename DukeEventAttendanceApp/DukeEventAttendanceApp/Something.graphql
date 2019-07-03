@@ -1,0 +1,5 @@
+query HostsEvents($id: ID!) {
+    hostEvents(id: $id) {
+        eventid
+    }
+}
