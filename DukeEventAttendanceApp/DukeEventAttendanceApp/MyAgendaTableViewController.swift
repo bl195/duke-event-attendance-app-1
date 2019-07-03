@@ -17,6 +17,7 @@ class MyAgendaTableViewController: UITableViewController {
     override func viewDidLoad() {
         self.title = "My Agenda"
         super.viewDidLoad()
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.delegate = self //maybe
         self.tableView.dataSource = self //maybe
         self.tableView.reloadData()
@@ -41,19 +42,6 @@ class MyAgendaTableViewController: UITableViewController {
                 }
             }
             var index = 0
-//            for global in globalagendaEvents {
-//                if (agendaArray.count > 0) {
-//                    if global.id == agendaArray[index].id {
-//                        agendaEvents.append(global)
-//                        index += 1
-//                        if( index >= agendaArray.count ){
-//                            break
-//                        }
-//                    }
-//                }
-//
-//
-//            }
             
         } catch {}
         self.tableView.reloadData()
@@ -69,7 +57,9 @@ class MyAgendaTableViewController: UITableViewController {
         return agendaEvents.count
     }
     
-   
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,17 +77,19 @@ class MyAgendaTableViewController: UITableViewController {
 //
 //        cell.checkInButton.addTarget(self, action:#selector(sendtoDB(sender:)), for: .touchUpInside)
         
-       
-       
-        cell.id = agendaEv.id
-        cell.title = agendaEv.summary
+        cell.backgroundCard.layer.backgroundColor = UIColor(white: 1.0, alpha: 0.0).cgColor
+        cell.backgroundCard.layer.borderWidth = 1
+        cell.backgroundCard.layer.borderColor = UIColor(red: 0/255.0, green: 83/255.0, blue: 155/255.0, alpha: 1.0).cgColor
+        cell.backgroundCard.layer.cornerRadius = 10.0
         
-        cell.nameLabel.text = agendaEv.summary
+        cell.checkInButton.layer.cornerRadius = 10.0
 
-        cell.timeLabel.text = agendaEv.starttime + "-" + agendaEv.endtime
-        cell.monthLabel.text = agendaEv.startmonth
+        cell.eventTitle.text = agendaEv.summary
+        cell.timeLabel.text = "Time: " + agendaEv.starttime + " - " + agendaEv.endtime
+        cell.monthLabel.text = agendaEv.startmonth.uppercased()
         cell.dayLabel.text = agendaEv.startday
-        cell.locationLabel.text = agendaEv.address
+        cell.locLabel.text = "Location: " + agendaEv.address
+        
         return cell
     }
 

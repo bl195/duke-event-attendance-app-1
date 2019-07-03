@@ -18,6 +18,7 @@ class Apollo {
     init() {
         // 3
         client = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+        //client = ApolloClient(url: URL(string: "https://events-attendance-backend-test.cloud.duke.edu/graphiql")!)
     }
     
 }

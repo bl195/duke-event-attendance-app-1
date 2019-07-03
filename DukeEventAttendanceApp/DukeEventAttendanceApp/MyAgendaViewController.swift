@@ -22,11 +22,7 @@ class MyAgendaViewController: UIViewController {
 //        attendingButton.isSelected = true
 //        hostingButton.isSelected = false
         
-        var hostingTitle = NSAttributedString(string: "HOSTING", attributes: [NSAttributedString.Key.kern: 3.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 24)!])
-        hostingButton.titleLabel?.attributedText = hostingTitle
-        
-        var attendingTitle = NSAttributedString(string: "ATTENDING", attributes: [NSAttributedString.Key.kern: 3.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 24)!])
-        attendingButton.titleLabel?.attributedText = attendingTitle
+        defaultBold()
         
         pushController(contName: "MyAgendaTableViewController")
 
@@ -43,11 +39,30 @@ class MyAgendaViewController: UIViewController {
 
     @IBAction func hostingAction(_ sender: Any) {
         pushController(contName: "HostTableViewController")
+        toggledBold()
     }
     
     @IBAction func attendingAction(_ sender: Any) {
-        
+        pushController(contName: "MyAgendaTableViewController")
+        defaultBold()
     }
+    
+    func defaultBold(){
+        var hostingTitle = NSAttributedString(string: "HOSTING", attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 24)!])
+        hostingButton.titleLabel?.attributedText = hostingTitle
+        
+        var attendingTitle = NSAttributedString(string: "ATTENDING", attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 24)!])
+        attendingButton.titleLabel?.attributedText = attendingTitle
+    }
+    
+    func toggledBold(){
+        var hostingTitle = NSAttributedString(string: "HOSTING", attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 24)!])
+        hostingButton.titleLabel?.attributedText = hostingTitle
+        
+        var attendingTitle = NSAttributedString(string: "ATTENDING", attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 24)!])
+        attendingButton.titleLabel?.attributedText = attendingTitle
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -12,8 +12,21 @@ class HostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var eventTitle: UILabel!
     
+    @IBOutlet weak var backgroundCard: UIView!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    
+    @IBOutlet weak var allowCheckInButton: UIButton!
+    @IBOutlet weak var locLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    var allowCheckInAction : (() -> ())?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.allowCheckInButton.addTarget(self, action: #selector(checkInTapped(_:)), for: .touchUpInside)
         // Initialization code
     }
 
@@ -23,4 +36,7 @@ class HostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func checkInTapped(_ sender: Any) {
+        allowCheckInAction?()
+    }
 }

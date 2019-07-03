@@ -14,17 +14,32 @@ class HostTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.register(UINib(nibName: "HostTableViewCell", bundle: nil), forCellReuseIdentifier: "HostTableViewCell")
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
         
-                let query = HostsEventsQuery(id: "ahw26")
-                Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-                    let hostevents = results?.data?.hostEvents
-                    for event in hostevents! {
+        let query = HostsEventsQuery(id: "ahw26")
+        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            if let hostevents = results?.data?.hostEvents{
+                for event in hostevents {
                     self.host_events.append( event.resultMap["eventid"]!! as! String )
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
+            } else{
+                //print("no host events")
+                let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+                let messageLabel = UILabel(frame: rect)
+                messageLabel.text = "You are not hosting any events"
+                messageLabel.textColor = UIColor.black
+                messageLabel.textAlignment = .center;
+                messageLabel.font = UIFont(name: "Helvetica-Light", size: 22)
+                messageLabel.sizeToFit()
+                self.tableView.backgroundView = messageLabel
+            }
+            
+            //self.tableView.reloadData()
         }
         
         
@@ -61,12 +76,36 @@ class HostTableViewController: UITableViewController {
             fatalError("the cell is not an instance of the table view cell")
         }
         // Configure the cell...
-        let event_title = self.host_events[indexPath.row]
-        cell.eventTitle.text = event_title
-
-        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_title })
-        print(event?.summary)
+        let event_id = self.host_events[indexPath.row]
+        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
+        if event != nil{
+            cell.eventTitle.text = event?.summary
+            cell.monthLabel.text = event?.startmonth.uppercased()
+            cell.dayLabel.text = event?.startday
+            cell.timeLabel.text = "Time: " + event!.starttime + " - " + event!.endtime
+            cell.locLabel.text = "Location: " + event!.address
+        }
+        cell.backgroundCard.layer.cornerRadius = 10.0
+        cell.allowCheckInButton.layer.cornerRadius = 10.0
+        
+        cell.allowCheckInAction = { [unowned self] in
+           let alert = UIAlertController(title: "Choose Check-in Method", message: "This is the method guests will use to check in to your event", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "QR Code", style: .default, handler: nil))
+            alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: { action in
+                //let controller = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
+                //self.navigationController?.pushViewController(controller!, animated: true)
+                //self.performSegue(withIdentifier: "ViewController", sender: self)
+                
+            } ) )
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     /*
     // Override to support conditional editing of the table view.
