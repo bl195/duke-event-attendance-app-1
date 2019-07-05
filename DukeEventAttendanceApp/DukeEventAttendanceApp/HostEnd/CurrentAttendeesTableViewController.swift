@@ -8,39 +8,88 @@
 
 import UIKit
 
-class CurrentAttendeesTableViewController: UITableViewController {
 
+class CurrentAttendeesTableViewController: UITableViewController {
+    
+    var event_id = ""
+    var current_attendees = [String]()
+    
+    var refreshControl2: UIRefreshControl!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        refreshControl2 = UIRefreshControl()
+        refreshControl2!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl2!.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        tableView.addSubview(refreshControl2)
+        
+        loadAttendees()
+        
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+    }
+    
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        print("Hello World!")
+        
+        // somewhere in your code you might need to call:
+        loadAttendees()
+        refreshControl2.endRefreshing()
+    }
+    
+    func loadAttendees(){
+        self.current_attendees.removeAll()
+        let query = AllAttendeesQuery(id: self.event_id)
+        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            //            print("got here")
+            //            print("event id is " + self.event_id)
+            if let attendees = results?.data?.allAttendees{
+                for attendee in attendees {
+                    self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
+                    //                    print( attendee.resultMap["duid"]!! as! String )
+                    self.tableView.reloadData()
+                }
+            } else{
+                let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+                let messageLabel = UILabel(frame: rect)
+                messageLabel.text = "No attendees have checked in yet"
+                messageLabel.textColor = UIColor.black
+                messageLabel.textAlignment = .center;
+                messageLabel.font = UIFont(name: "Helvetica-Light", size: 22)
+                messageLabel.sizeToFit()
+                self.tableView.backgroundView = messageLabel
+            }
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.current_attendees.count
     }
+    
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentAttendeeCell", for: indexPath) as! CurrentAttendeesTableViewCell
 
         // Configure the cell...
-
+        cell.dukeCardNumber.text = current_attendees[indexPath.row]
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

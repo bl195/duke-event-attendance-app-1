@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 
     @IBAction func logInPressed(_ sender: Any) {
         //oAuthService?.logout()
-        print("yay")
+        //print("yay")
         oAuthService?.setClientName(oAuthClientName: "wearduke")
         if oAuthService!.isAuthenticated() {
             print ("Login")
@@ -109,8 +109,6 @@ class ViewController: UIViewController {
         
         
     }
-    
-    
     
 //    func isInGroup(navController: UINavigationController, completionHandler: @escaping (_ isInGroup: Bool, _ error: String?) -> Void) {
 //

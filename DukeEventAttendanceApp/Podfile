@@ -5,7 +5,7 @@ target 'DukeEventAttendanceApp' do
 
   pod 'RSBarcodes_Swift', '~> 5.0.0'
   pod 'SwiftKeychainWrapper'
-  pod 'Apollo', :git => 'https://github.com/apollographql/apollo-ios.git'
-
+  pod 'Apollo'
+  pod 'PusherSwift', '~> 7.0'
 
 end

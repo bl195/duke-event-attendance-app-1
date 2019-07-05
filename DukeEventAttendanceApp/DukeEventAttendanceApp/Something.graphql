@@ -3,3 +3,9 @@ query HostsEvents($id: ID!) {
         eventid
     }
 }
+
+query AllAttendees($id: ID!){
+    allAttendees(id: $id){
+        duid
+    }
+}

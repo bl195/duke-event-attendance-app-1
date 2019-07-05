@@ -8,8 +8,15 @@
 
 import UIKit
 
-class HostTableViewCell: UITableViewCell {
+protocol HostTableViewCellDelegate {
+    func didTapAllowCheckIn(eventid:String)
+}
 
+class HostTableViewCell: UITableViewCell {
+    
+    var event: Event!
+    var delegate: HostTableViewCellDelegate?
+    
     @IBOutlet weak var eventTitle: UILabel!
     
     @IBOutlet weak var backgroundCard: UIView!
@@ -20,23 +27,21 @@ class HostTableViewCell: UITableViewCell {
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    var allowCheckInAction : (() -> ())?
+    @IBAction func allowCheckInTapped(_ sender: Any) {
+        delegate?.didTapAllowCheckIn(eventid: event.id) //call didTapAllowCheckIn from HostTableViewController
+    }
     
+    //Called by HostTableViewController to store event of current row
+    func setEvent(event: Event){
+        self.event = event 
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.allowCheckInButton.addTarget(self, action: #selector(checkInTapped(_:)), for: .touchUpInside)
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
-    @IBAction func checkInTapped(_ sender: Any) {
-        allowCheckInAction?()
-    }
 }

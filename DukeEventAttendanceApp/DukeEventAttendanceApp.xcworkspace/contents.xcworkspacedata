@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/ahw26/Desktop/Code+/duke-event-attendance-app/DukeEventAttendanceApp/DukeEventAttendanceApp/HostEnd/CurrentAttendeesTableViewCell.swift">
+   </FileRef>
+   <FileRef
       location = "group:DukeEventAttendanceApp.xcodeproj">
    </FileRef>
    <FileRef

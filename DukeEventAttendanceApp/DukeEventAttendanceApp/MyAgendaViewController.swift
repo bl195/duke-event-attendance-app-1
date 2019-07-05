@@ -38,7 +38,7 @@ class MyAgendaViewController: UIViewController {
     }
 
     @IBAction func hostingAction(_ sender: Any) {
-        pushController(contName: "HostTableViewController")
+        pushController(contName: "hostNav")
         toggledBold()
     }
     

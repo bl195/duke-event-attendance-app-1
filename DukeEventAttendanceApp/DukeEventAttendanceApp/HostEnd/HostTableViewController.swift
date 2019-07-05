@@ -8,27 +8,30 @@
 import UIKit
 import Apollo
 
-class HostTableViewController: UITableViewController {
-    
+class HostTableViewController: UITableViewController, HostTableViewCellDelegate {
+
     var host_events = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(UINib(nibName: "HostTableViewCell", bundle: nil), forCellReuseIdentifier: "HostTableViewCell")
+        //self.navigationController?.isNavigationBarHidden = true
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
-        
-        let query = HostsEventsQuery(id: "ahw26")
+        getQuery()
+    }
+    
+    func getQuery(){
+        let query = HostsEventsQuery(id: Items.sharedInstance.my_netid)
         Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            
             if let hostevents = results?.data?.hostEvents{
                 for event in hostevents {
                     self.host_events.append( event.resultMap["eventid"]!! as! String )
                     self.tableView.reloadData()
                 }
+                
             } else{
-                //print("no host events")
                 let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
                 let messageLabel = UILabel(frame: rect)
                 messageLabel.text = "You are not hosting any events"
@@ -38,25 +41,21 @@ class HostTableViewController: UITableViewController {
                 messageLabel.sizeToFit()
                 self.tableView.backgroundView = messageLabel
             }
-            
-            //self.tableView.reloadData()
         }
-        
-        
     }
-
     
-//   func queryHostEvents() {
-//        let query = HostsEventsQuery(id: "ahw26")
-//        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-//            let hostevents = results?.data?.hostEvents
-//            for event in hostevents! {
-//            self.host_events.append( event.resultMap["eventid"]!! as! String )
-//        }
-//        self.tableView.reloadData()
-//    }
-//
-//  }
+    //Delegate method
+    func didTapAllowCheckIn(eventid:String) {
+        let alert = UIAlertController(title: "Choose Check-In Method", message: "Please choose method by which attendees will check in to your event", preferredStyle: .alert)
+        alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: nil) ) //show QR scanner
+        alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
+                       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
+                        self.navigationController?.pushViewController(vc!, animated: true)
+            //self.performSegue(withIdentifier: "vc2", sender: self)
+        } ) )
+        alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Table view data source
 
@@ -87,19 +86,9 @@ class HostTableViewController: UITableViewController {
         }
         cell.backgroundCard.layer.cornerRadius = 10.0
         cell.allowCheckInButton.layer.cornerRadius = 10.0
-        
-        cell.allowCheckInAction = { [unowned self] in
-           let alert = UIAlertController(title: "Choose Check-in Method", message: "This is the method guests will use to check in to your event", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "QR Code", style: .default, handler: nil))
-            alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: { action in
-                //let controller = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
-                //self.navigationController?.pushViewController(controller!, animated: true)
-                //self.performSegue(withIdentifier: "ViewController", sender: self)
-                
-            } ) )
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        }
+
+        cell.delegate = self
+        cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         
         return cell
     }
