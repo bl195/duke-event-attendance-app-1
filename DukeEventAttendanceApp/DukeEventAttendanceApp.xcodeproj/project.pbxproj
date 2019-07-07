@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		070AADB322CD63F100148811 /* CurrentAttendeesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070AADB222CD63F100148811 /* CurrentAttendeesTableViewController.swift */; };
-		070AADB522CD641C00148811 /* CurrentAttendeesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070AADB422CD641C00148811 /* CurrentAttendeesTableViewCell.swift */; };
 		07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E6F22A9A300000F5A2C /* AppDelegate.swift */; };
 		07193E7222A9A300000F5A2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07193E7122A9A300000F5A2C /* ViewController.swift */; };
 		07193E7522A9A300000F5A2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07193E7322A9A300000F5A2C /* Main.storyboard */; };
@@ -30,6 +29,10 @@
 		0744ABAF22CBF8CE00F51EDD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0744ABAE22CBF8CE00F51EDD /* API.swift */; };
 		0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */; };
 		0750692422AB36DB0094A577 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750692322AB36DB0094A577 /* EventInfoViewController.swift */; };
+		078C56A922CFF355003DC4F4 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078C56A822CFF355003DC4F4 /* CustomHeader.swift */; };
+		078C56AB22D06295003DC4F4 /* AllEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078C56AA22D06295003DC4F4 /* AllEventsViewController.swift */; };
+		078C56AD22D14746003DC4F4 /* CheckInOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078C56AC22D14746003DC4F4 /* CheckInOptionViewController.swift */; };
+		078C56B022D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078C56AF22D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift */; };
 		07A772C322CC58B8004302AD /* Something.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 07A772C222CC58B8004302AD /* Something.graphql */; };
 		07A772C522CC6399004302AD /* HostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A772C422CC6399004302AD /* HostTableViewCell.swift */; };
 		07CBCDA322CAA6B2007F1BDF /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CBCDA222CAA6B2007F1BDF /* OAuthService.swift */; };
@@ -68,7 +71,6 @@
 
 /* Begin PBXFileReference section */
 		070AADB222CD63F100148811 /* CurrentAttendeesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAttendeesTableViewController.swift; sourceTree = "<group>"; };
-		070AADB422CD641C00148811 /* CurrentAttendeesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentAttendeesTableViewCell.swift; path = "/Users/ahw26/Desktop/Code+/duke-event-attendance-app/DukeEventAttendanceApp/DukeEventAttendanceApp/HostEnd/CurrentAttendeesTableViewCell.swift"; sourceTree = "<absolute>"; };
 		07193E6C22A9A300000F5A2C /* DukeEventAttendanceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventAttendanceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07193E6F22A9A300000F5A2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07193E7122A9A300000F5A2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,10 @@
 		0744ABAE22CBF8CE00F51EDD /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0750692322AB36DB0094A577 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
+		078C56A822CFF355003DC4F4 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
+		078C56AA22D06295003DC4F4 /* AllEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEventsViewController.swift; sourceTree = "<group>"; };
+		078C56AC22D14746003DC4F4 /* CheckInOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInOptionViewController.swift; sourceTree = "<group>"; };
+		078C56AF22D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentAttendeesTableViewCell.swift; sourceTree = "<group>"; };
 		07A772C222CC58B8004302AD /* Something.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Something.graphql; sourceTree = "<group>"; };
 		07A772C422CC6399004302AD /* HostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTableViewCell.swift; sourceTree = "<group>"; };
 		07CBCDA222CAA6B2007F1BDF /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
@@ -180,7 +186,7 @@
 				C70E314B22B82B0D00F2E8D4 /* Animations.swift */,
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
-				07D418A922CBAB27005B1A78 /* EventsTable */,
+				07D418A922CBAB27005B1A78 /* All Events */,
 				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
 				07434C4822BAC7D100BC19A0 /* PersistenceService.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
@@ -190,11 +196,9 @@
 				07434C3F22BAC74200BC19A0 /* Items.swift */,
 				07434C4122BAC77400BC19A0 /* DataModel.xcdatamodeld */,
 				07193E9F22A9AB4B000F5A2C /* Event.swift */,
-				0750692322AB36DB0094A577 /* EventInfoViewController.swift */,
-				073283CC22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift */,
-				07D418A722CBAB0C005B1A78 /* MyAgendaViewController.swift */,
-				07D418AC22CBE421005B1A78 /* HostEnd */,
-				07434C4A22BAC98D00BC19A0 /* AgendaTableViewCell.swift */,
+				078C56A822CFF355003DC4F4 /* CustomHeader.swift */,
+				078C56AE22D1A662003DC4F4 /* Agenda */,
+				07D418AC22CBE421005B1A78 /* Host End */,
 				0744ABB022CC50A500F51EDD /* Check In */,
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
@@ -228,28 +232,41 @@
 			children = (
 				C86C680D22C27B01004E919A /* QRCheckInViewController.swift */,
 				C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */,
+				078C56AC22D14746003DC4F4 /* CheckInOptionViewController.swift */,
 			);
 			path = "Check In";
 			sourceTree = "<group>";
 		};
-		07D418A922CBAB27005B1A78 /* EventsTable */ = {
+		078C56AE22D1A662003DC4F4 /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				07D418A722CBAB0C005B1A78 /* MyAgendaViewController.swift */,
+				073283CC22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift */,
+				07434C4A22BAC98D00BC19A0 /* AgendaTableViewCell.swift */,
+			);
+			path = Agenda;
+			sourceTree = "<group>";
+		};
+		07D418A922CBAB27005B1A78 /* All Events */ = {
 			isa = PBXGroup;
 			children = (
 				07193E9D22A9AB27000F5A2C /* EventTableViewController.swift */,
 				07193EA122A9ABA5000F5A2C /* EventTableViewCell.swift */,
+				078C56AA22D06295003DC4F4 /* AllEventsViewController.swift */,
+				0750692322AB36DB0094A577 /* EventInfoViewController.swift */,
 			);
-			path = EventsTable;
+			path = "All Events";
 			sourceTree = "<group>";
 		};
-		07D418AC22CBE421005B1A78 /* HostEnd */ = {
+		07D418AC22CBE421005B1A78 /* Host End */ = {
 			isa = PBXGroup;
 			children = (
-				070AADB422CD641C00148811 /* CurrentAttendeesTableViewCell.swift */,
+				078C56AF22D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift */,
 				07D418AA22CBC1E5005B1A78 /* HostTableViewController.swift */,
 				070AADB222CD63F100148811 /* CurrentAttendeesTableViewController.swift */,
 				07A772C422CC6399004302AD /* HostTableViewCell.swift */,
 			);
-			path = HostEnd;
+			path = "Host End";
 			sourceTree = "<group>";
 		};
 		07D418AE22CBE564005B1A78 /* GraphQL */ = {
@@ -489,6 +506,8 @@
 				07D418B022CBE582005B1A78 /* Apollo.swift in Sources */,
 				07193EA022A9AB4B000F5A2C /* Event.swift in Sources */,
 				0744ABAF22CBF8CE00F51EDD /* API.swift in Sources */,
+				078C56AD22D14746003DC4F4 /* CheckInOptionViewController.swift in Sources */,
+				078C56B022D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift in Sources */,
 				07D418AB22CBC1E5005B1A78 /* HostTableViewController.swift in Sources */,
 				07193E7222A9A300000F5A2C /* ViewController.swift in Sources */,
 				07193E9E22A9AB27000F5A2C /* EventTableViewController.swift in Sources */,
@@ -499,6 +518,7 @@
 				C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */,
 				C70E314C22B82B0D00F2E8D4 /* Animations.swift in Sources */,
 				C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */,
+				078C56A922CFF355003DC4F4 /* CustomHeader.swift in Sources */,
 				07434C4922BAC7D100BC19A0 /* PersistenceService.swift in Sources */,
 				07434C4322BAC77400BC19A0 /* DataModel.xcdatamodeld in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
@@ -506,8 +526,8 @@
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
 				C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */,
 				073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */,
-				070AADB522CD641C00148811 /* CurrentAttendeesTableViewCell.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
+				078C56AB22D06295003DC4F4 /* AllEventsViewController.swift in Sources */,
 				07D418A822CBAB0C005B1A78 /* MyAgendaViewController.swift in Sources */,
 				07A772C522CC6399004302AD /* HostTableViewCell.swift in Sources */,
 				07CBCDA322CAA6B2007F1BDF /* OAuthService.swift in Sources */,

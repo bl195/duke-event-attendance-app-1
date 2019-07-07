@@ -19,6 +19,10 @@ class CurrentAttendeesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
+        
+      self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "WORK", style: UIBarButtonItem.Style.plain, target: self, action: #selector(goBack))
+        
         
         refreshControl2 = UIRefreshControl()
         refreshControl2!.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -28,6 +32,10 @@ class CurrentAttendeesTableViewController: UITableViewController {
         loadAttendees()
         
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+    }
+    
+    @objc func goBack(){
         
     }
     

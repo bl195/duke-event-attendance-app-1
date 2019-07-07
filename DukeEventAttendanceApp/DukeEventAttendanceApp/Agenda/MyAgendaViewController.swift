@@ -21,6 +21,7 @@ class MyAgendaViewController: UIViewController {
         
 //        attendingButton.isSelected = true
 //        hostingButton.isSelected = false
+        self.navigationController?.isNavigationBarHidden = true
         
         defaultBold()
         
@@ -38,7 +39,7 @@ class MyAgendaViewController: UIViewController {
     }
 
     @IBAction func hostingAction(_ sender: Any) {
-        pushController(contName: "hostNav")
+        pushController(contName: "HostTableViewController")
         toggledBold()
     }
     

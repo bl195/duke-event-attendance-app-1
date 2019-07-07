@@ -10,7 +10,14 @@ import UIKit
 import CoreData
 
 
-class MyAgendaTableViewController: UITableViewController {
+class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDelegate {
+    
+    func didTapCheckIn(event: Event) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
+        vc?.eventLoc = event.address
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     
     var agendaEvents: [Event] = []
     
@@ -89,6 +96,9 @@ class MyAgendaTableViewController: UITableViewController {
         cell.monthLabel.text = agendaEv.startmonth.uppercased()
         cell.dayLabel.text = agendaEv.startday
         cell.locLabel.text = "Location: " + agendaEv.address
+        
+        cell.delegate = self
+        cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         
         return cell
     }

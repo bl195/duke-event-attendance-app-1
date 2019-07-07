@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol AgendaTableViewCellDelegate {
+    func didTapCheckIn(event:Event)
+}
+
 class AgendaTableViewCell: UITableViewCell {
     
+    var event: Event!
+    var delegate: AgendaTableViewCellDelegate?
 
     @IBOutlet weak var monthLabel: UILabel!
     
@@ -21,7 +27,15 @@ class AgendaTableViewCell: UITableViewCell {
     @IBOutlet weak var checkInButton: UIButton!
     @IBOutlet weak var backgroundCard: UIView!
     
-//    @IBAction func sendToDB(_ sender: Any) {
+    @IBAction func checkInTapped(_ sender: Any) {
+        delegate?.didTapCheckIn(event: self.event)
+    }
+    
+    func setEvent(event: Event){
+        self.event = event
+    }
+    
+    //    @IBAction func sendToDB(_ sender: Any) {
 //        //hitAPI(_for: "http://localhost:3000/events/create", title: title, text: id)
 //        hitAPI2(_for: base_url, dukecal_id: id, duid: "6033006990222254")
 //    }

@@ -8,17 +8,26 @@
 import UIKit
 import Apollo
 
+
 class HostTableViewController: UITableViewController, HostTableViewCellDelegate {
 
     var host_events = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
         getQuery()
+        
+        // Register the custom header view.
+        tableView.register(CustomHeader.self,
+                           forHeaderFooterViewReuseIdentifier: "sectionHeader")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func getQuery(){
@@ -50,7 +59,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: nil) ) //show QR scanner
         alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
-                        self.navigationController?.pushViewController(vc!, animated: true)
+                        //self.navigationController?.pushViewController(vc!, animated: true)
+            self.navigationController?.show(vc!, sender: true)
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
@@ -63,6 +73,21 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
+    
+//    // Create a standard header that includes the returned text.
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection
+//        section: Int) -> String? {
+//
+//        return "Header \(section)"
+//    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+            "sectionHeader") as! CustomHeader
+        view.month.text = "\(section)" //sections[section]
+        return view
+    }
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

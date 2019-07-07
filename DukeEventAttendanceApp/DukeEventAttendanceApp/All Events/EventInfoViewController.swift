@@ -107,7 +107,10 @@ class EventInfoViewController: UIViewController {
         
     }
     @IBAction func checkInButton(_ sender: Any) {
-        hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
+        //hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
+        vc?.eventLoc = self.ll
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func viewDidLoad() {
