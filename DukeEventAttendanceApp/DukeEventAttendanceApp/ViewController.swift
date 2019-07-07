@@ -8,7 +8,6 @@
 
 import UIKit
 
-import Apollo
 
 
 class ViewController: UIViewController {

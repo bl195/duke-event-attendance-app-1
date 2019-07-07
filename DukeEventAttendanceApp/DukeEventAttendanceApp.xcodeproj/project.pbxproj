@@ -32,8 +32,8 @@
 		C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510922B17A2000FF90DC /* CalendarViewController.swift */; };
 		C76A510C22B17A3B00FF90DC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */; };
 		C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510D22B17A5A00FF90DC /* CalendarVar.swift */; };
-		C8183FE722CA5B2800ABB035 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8183FE522CA5B2800ABB035 /* ShibAuthViewController.swift */; };
-		C8183FE822CA5B2800ABB035 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8183FE622CA5B2800ABB035 /* OAuthService.swift */; };
+		C78569EA22CAABB000562E26 /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78569E822CAABAF00562E26 /* ShibAuthViewController.swift */; };
+		C78569EB22CAABB000562E26 /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78569E922CAABAF00562E26 /* OAuthService.swift */; };
 		C8183FEA22CA6E8100ABB035 /* GrouperCheck.graphql in Resources */ = {isa = PBXBuildFile; fileRef = C8183FE922CA6E8100ABB035 /* GrouperCheck.graphql */; };
 		C820620622C3DF8D0040E53F /* SelfCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */; };
 		C820620822C3E0490040E53F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C820620722C3E0480040E53F /* CoreLocation.framework */; };
@@ -91,8 +91,8 @@
 		C76A510922B17A2000FF90DC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		C76A510D22B17A5A00FF90DC /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVar.swift; sourceTree = "<group>"; };
-		C8183FE522CA5B2800ABB035 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../ShibAuthViewController.swift; sourceTree = "<group>"; };
-		C8183FE622CA5B2800ABB035 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../OAuthService.swift; sourceTree = "<group>"; };
+		C78569E822CAABAF00562E26 /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShibAuthViewController.swift; path = ../../../../../../Downloads/ShibAuthViewController.swift; sourceTree = "<group>"; };
+		C78569E922CAABAF00562E26 /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthService.swift; path = ../../../../../../Downloads/OAuthService.swift; sourceTree = "<group>"; };
 		C8183FE922CA6E8100ABB035 /* GrouperCheck.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GrouperCheck.graphql; sourceTree = "<group>"; };
 		C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckInViewController.swift; sourceTree = "<group>"; };
 		C820620722C3E0480040E53F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -224,8 +224,8 @@
 		C8183FDE22CA534300ABB035 /* DukeOAuth */ = {
 			isa = PBXGroup;
 			children = (
-				C8183FE622CA5B2800ABB035 /* OAuthService.swift */,
-				C8183FE522CA5B2800ABB035 /* ShibAuthViewController.swift */,
+				C78569E922CAABAF00562E26 /* OAuthService.swift */,
+				C78569E822CAABAF00562E26 /* ShibAuthViewController.swift */,
 			);
 			path = DukeOAuth;
 			sourceTree = "<group>";
@@ -440,10 +440,10 @@
 				07434C4922BAC7D100BC19A0 /* PersistenceService.swift in Sources */,
 				07434C4322BAC77400BC19A0 /* DataModel.xcdatamodeld in Sources */,
 				C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */,
-				C8183FE822CA5B2800ABB035 /* OAuthService.swift in Sources */,
+				C78569EB22CAABB000562E26 /* OAuthService.swift in Sources */,
 				07193EA222A9ABA5000F5A2C /* EventTableViewCell.swift in Sources */,
 				07193E7022A9A300000F5A2C /* AppDelegate.swift in Sources */,
-				C8183FE722CA5B2800ABB035 /* ShibAuthViewController.swift in Sources */,
+				C78569EA22CAABB000562E26 /* ShibAuthViewController.swift in Sources */,
 				C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */,
 				073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
