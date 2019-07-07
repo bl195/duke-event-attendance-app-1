@@ -10,9 +10,26 @@ import UIKit
 import MapKit
 import CoreLocation
 
+import Apollo
+
 class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate {
 
+    var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
+    var attendees_array:[String] = []
     
+
+    @IBOutlet weak var blueBackground: UIImageView!
+    
+    @IBOutlet weak var whiteBackground: UIImageView!
+    @IBOutlet weak var eventTitle: UILabel!
+    
+    
+    @IBOutlet weak var eventTime: UILabel!
+    
+    @IBOutlet weak var eventLocation: UILabel!
+    
+    
+    @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     
     let manager = CLLocationManager()
@@ -31,10 +48,7 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate {
         myLat = location.coordinate.latitude
         myLong = location.coordinate.longitude
     }
-    
-    func checkLocation() {
-        
-    }
+   
     
     
     override func viewDidLoad() {
@@ -44,8 +58,26 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        eventTitle.text = event.summary
+        print ("something")
+        print (event.summary)
+        eventTitle.numberOfLines = 5
         
-        // Do any additional setup after loading the view.
+        eventTime.text = "TIME: " + event.starttime + "-" + event.endtime
+        eventLocation.text = "LOCATION: " + event.address
+        
+        blueBackground.layer.cornerRadius = 10.0
+        blueBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        blueBackground.clipsToBounds = true
+        
+        whiteBackground.layer.cornerRadius = 10.0
+        whiteBackground.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        whiteBackground.clipsToBounds = true
+        confirmButton.layer.cornerRadius = 20
+        //confirmButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        //confirmButton.clipsToBounds = true
+        
     }
     
 
@@ -59,4 +91,53 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate {
     }
     */
 
+    
+    @IBAction func confirmCheckIn(_ sender: Any) {
+        //queryAllAttendees()
+        //print (attendees_array)
+        loadAttendee(event_id: event.summary)
+    }
+    
+    //let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    func loadAttendee (event_id: String) {
+        //indicator.startAnimating()
+        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: "6033006990241122")
+        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if (result?.data?.attendeeCheckIn?.id != nil) {
+                print("success")
+                print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
+                let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                
+            }
+            else {
+                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
+                print ("not valid check in")
+                let alert = UIAlertController(title: "Your check-in cannot be validated", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                
+            }
+            
+        }
+    
+    }
+    func queryAllAttendees() {
+        let allAttendeesQuery = AllAttendeesQuery (id: "burger event")
+        Apollo.shared.client.fetch(query: allAttendeesQuery, cachePolicy: .fetchIgnoringCacheData) { [unowned self] result, error in
+            if let attendees  = result?.data?.allAttendees {
+                for attendee in attendees {
+                    self.attendees_array.append(attendee.resultMap["duid"]!! as! String)
+                    self.reloadInputViews()
+                }
+            }
+            
+        }
+    }
+    
 }

@@ -1,0 +1,12 @@
+mutation CheckInAttendee ($eventid: String!, $duid: String!){
+   attendeeCheckIn(eventid: $eventid, duid: $duid){
+     id
+   }
+ }
+
+
+ mutation CheckInHost($eventid: String!, $hostid: String!){
+    hostCheckIn(eventid: $eventid, hostid: $hostid){
+     id
+   }
+ }

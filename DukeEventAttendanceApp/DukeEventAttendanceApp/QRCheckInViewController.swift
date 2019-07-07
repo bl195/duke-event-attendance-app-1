@@ -12,6 +12,7 @@ import RSBarcodes_Swift
 import AVFoundation
 
 
+
 class QRCheckInViewController: UIViewController {
     
     var cardNumber = "6033006990222254"

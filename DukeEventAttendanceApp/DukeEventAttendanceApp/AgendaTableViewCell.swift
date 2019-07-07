@@ -10,6 +10,10 @@ import UIKit
 
 class AgendaTableViewCell: UITableViewCell {
     
+    var tapAction: ((UITableViewCell) -> Void)?
+    var allowTapAction: ((UITableViewCell) -> Void)?
+    
+    var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -24,6 +28,7 @@ class AgendaTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var checkInButton: UIButton!
+    
     var id = ""
     var title = ""
     var base_url = "http://localhost:3000/events/"
@@ -34,10 +39,17 @@ class AgendaTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func sendToDB(_ sender: Any) {
-        //hitAPI(_for: "http://localhost:3000/events/create", title: title, text: id)
-        hitAPI2(_for: base_url, dukecal_id: id, duid: "6033006990222254")
+    @IBAction func buttonTap(_ sender: Any) {
+        tapAction?(self)
     }
+    
+    
+    @IBAction func allowButtonTap(_ sender: Any) {
+        allowTapAction?(self)
+    }
+    
+    
+//    let indexPath :NSIndexPath = (self.superview?.superview as! UITableView).indexPath(for: self)! as NSIndexPath
     
     func hitAPI2(_for URLString:String, dukecal_id: String, duid: String) {
         var actual_id = dukecal_id.replacingOccurrences(of: "@", with: "-")

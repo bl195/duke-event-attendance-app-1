@@ -1,0 +1,6 @@
+query allAttendees ($id: ID!) {
+allAttendees(id: $id) {
+id
+duid
+}
+}

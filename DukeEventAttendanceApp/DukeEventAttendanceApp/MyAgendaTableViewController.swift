@@ -14,6 +14,7 @@ class MyAgendaTableViewController: UITableViewController {
     
     var agendaEvents: [Event] = []
     
+    
     override func viewDidLoad() {
         self.title = "My Agenda"
         super.viewDidLoad()
@@ -22,6 +23,24 @@ class MyAgendaTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    
+    func performHostCheckIn(event_id: String, host_id: String) {
+        let hostMutation = CheckInHostMutation(eventid: event_id, hostid: host_id)
+        Apollo.shared.client.perform(mutation: hostMutation) { [unowned self] result, error in
+            if let error = error {
+                print (error.localizedDescription)
+                return
+            }
+            if (result?.data?.hostCheckIn?.id != nil) {
+                print ("success")
+                print(result?.data?.hostCheckIn?.id ?? "no host")
+            }
+            else {
+                print ("error")
+            }
+        }
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -71,8 +90,10 @@ class MyAgendaTableViewController: UITableViewController {
     
    
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AgendaTableViewCell", for: indexPath) as? AgendaTableViewCell else {
             fatalError ("the cell is not an instance of agenda table view cell")
         }
@@ -80,17 +101,21 @@ class MyAgendaTableViewController: UITableViewController {
         // Configure the cell...
         
         let agendaEv = agendaEvents[indexPath.row]
+        cell.tapAction = { (cell) in
+            let cvc = self.storyboard?.instantiateViewController(withIdentifier: "CheckInChoicesViewController") as? CheckInChoicesViewController
+            cvc!.event = self.agendaEvents[indexPath.row]
+            self.navigationController?.show(cvc!, sender: true)
+        }
         
-//        @objc func sendtoDB(sender: UIButton) {
-//            print ("yay")
-//        }
-//
-//        cell.checkInButton.addTarget(self, action:#selector(sendtoDB(sender:)), for: .touchUpInside)
+        cell.allowTapAction = { (cell) in
+            self.performHostCheckIn (event_id: self.agendaEvents[indexPath.row].summary, host_id: "js803")
+        }
         
-       
+
        
         cell.id = agendaEv.id
         cell.title = agendaEv.summary
+        cell.event = agendaEv
         
         cell.nameLabel.text = agendaEv.summary
 

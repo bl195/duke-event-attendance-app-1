@@ -7,12 +7,19 @@
 //
 
 import UIKit
+//import Apollo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    //let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphiql")!)
+    
+    
+    //let graphQLEndpoint = "http://localhost:3000/graphql"
+    //let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!
+    //let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -42,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PersistenceService.saveContext()
     }
 
+    
+    
 
 }
 
