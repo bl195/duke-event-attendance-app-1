@@ -22,6 +22,7 @@ class SelfCheckInViewController: UIViewController {
     var myLocation = CLLocation()
     var eventLocation = ""
     var isInBounds = false
+    var eventid = ""
     
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        let location = locations[0]
@@ -72,7 +73,9 @@ class SelfCheckInViewController: UIViewController {
             var alert = UIAlertController()
             if( self.isInBounds ){
                 alert = UIAlertController(title: "Would you like to check in?", message: "You are within a designated self check-in location", preferredStyle: .alert)
-                alert.addAction( UIAlertAction(title: "Check In", style: .default, handler: nil))
+                alert.addAction( UIAlertAction(title: "Check In", style: .default, handler: {(action) -> Void in
+                    self.loadAttendee(event_id: self.eventid)
+                } ) )
                 alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
                 //self.present(alert, animated: true, completion: nil)
             } else {
@@ -88,6 +91,36 @@ class SelfCheckInViewController: UIViewController {
         
         
     }
+    
+    func loadAttendee (event_id: String) {
+        //indicator.startAnimating()
+        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: Items.sharedInstance.my_dukecardnumber)
+        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if (result?.data?.attendeeCheckIn?.id != nil) {
+                print("success")
+                print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
+                let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                
+            }
+            else {
+                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
+                print ("not valid check in")
+                let alert = UIAlertController(title: "Your check-in cannot be validated", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                
+            }
+            
+        }
+        
+    }
+
     
     
     override func viewDidLoad() {

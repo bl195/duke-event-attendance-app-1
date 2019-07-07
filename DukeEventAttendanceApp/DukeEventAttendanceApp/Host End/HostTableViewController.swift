@@ -60,6 +60,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
                         //self.navigationController?.pushViewController(vc!, animated: true)
+            vc?.event_id = eventid
             self.navigationController?.show(vc!, sender: true)
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )

@@ -240,11 +240,11 @@ class EventTableViewController: UITableViewController {
         if let imageUrl = URL(string: event.image_url) {
             // This is a network call and needs to be run on non-UI thread
             DispatchQueue.global().async {
-                let imageData = try! Data(contentsOf: imageUrl)
-                let image = UIImage(data: imageData)
-                DispatchQueue.main.async {
-                    cell.photoImageView.image = image
-                }
+//                let imageData = try! Data(contentsOf: imageUrl)
+//                let image = UIImage(data: imageData)
+//                DispatchQueue.main.async {
+//                    cell.photoImageView.image = image
+//                }
             }
         }
         //cell.photoImageView.image = event.getImage()

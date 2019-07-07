@@ -11,6 +11,7 @@ import UIKit
 class CheckInOptionViewController: UIViewController {
     
     var eventLoc = ""
+    var eventID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class CheckInOptionViewController: UIViewController {
     @IBAction func selfCheckInButton(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelfCheckInViewController") as? SelfCheckInViewController
         vc?.eventLocation = eventLoc
+        vc?.eventid = eventID
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     /*

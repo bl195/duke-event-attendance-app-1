@@ -15,6 +15,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     func didTapCheckIn(event: Event) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
         vc?.eventLoc = event.address
+        vc?.eventID = event.id
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

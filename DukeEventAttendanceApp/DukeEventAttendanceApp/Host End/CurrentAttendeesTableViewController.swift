@@ -52,11 +52,11 @@ class CurrentAttendeesTableViewController: UITableViewController {
         let query = AllAttendeesQuery(id: self.event_id)
         Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
             //            print("got here")
-            //            print("event id is " + self.event_id)
+                        print("event id is " + self.event_id)
             if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
-                    //                    print( attendee.resultMap["duid"]!! as! String )
+                                        print( attendee.resultMap["duid"]!! as! String )
                     self.tableView.reloadData()
                 }
             } else{
