@@ -48,6 +48,7 @@ class Event: Equatable{
     var maps_link: String
     
     var ongoing: Bool
+    var sorted_date: Date
 
     
     init?(id: String, start_date: String, end_date: String, summary: String, description: String, status: String, sponsor: String, co_sponsors: String, location: Dictionary<String, String>, contact: Dictionary<String, String>, categories: [String], link: String, event_url: String, series_name: String, image_url: String) {
@@ -90,10 +91,11 @@ class Event: Equatable{
         self.starttime = ""
         self.endtime = ""
         self.ongoing = false
-        
+        self.sorted_date = Date()
         
         //call method to initialize startmonth, startday, starttime, and endtime
-        simpTimeStamp(starttimestamp: start_date, endtimestamp: end_date)
+        simpTimeStamp(starttimestamp: start_date, endtimestamp: end_date, sorteddate: sorted_date)
+        
         
         //intitialize with information from dictionaries
         self.contact_name = contact["name"] ?? ""
@@ -107,15 +109,17 @@ class Event: Equatable{
     /**
         Mutator method to assign formatted values to start_date, startmonth, startday, starttime, endtime
      **/
-    func simpTimeStamp(starttimestamp: String, endtimestamp: String){
+    func simpTimeStamp(starttimestamp: String, endtimestamp: String, sorteddate: Date){
         let formatterInput = ISO8601DateFormatter()
         if let date = formatterInput.date(from: starttimestamp){
             let formatterOutput = DateFormatter()
             formatterOutput.dateFormat = "MMM d, yyyy"
+            
             formatterOutput.locale = Locale(identifier: "en_US")
             //formatterOutput.dateStyle = .short
             //formatterOutput.timeStyle = .short
             start_date = formatterOutput.string(from: date)
+            sorted_date = formatterOutput.date(from: start_date) ?? Date()
             formatterOutput.dateFormat = "MMM"
             startmonth = formatterOutput.string(from: date)
             formatterOutput.dateFormat = "d"

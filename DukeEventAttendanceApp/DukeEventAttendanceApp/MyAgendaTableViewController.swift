@@ -75,6 +75,9 @@ class MyAgendaTableViewController: UITableViewController {
 //            }
             
         } catch {}
+        
+        agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
+        
         self.tableView.reloadData()
     }
     
@@ -123,6 +126,7 @@ class MyAgendaTableViewController: UITableViewController {
         cell.monthLabel.text = agendaEv.startmonth
         cell.dayLabel.text = agendaEv.startday
         cell.locationLabel.text = agendaEv.address
+        print (agendaEv.sorted_date)
         return cell
     }
 
