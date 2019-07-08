@@ -35,6 +35,7 @@
 		078C56B022D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078C56AF22D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift */; };
 		07A772C322CC58B8004302AD /* Something.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 07A772C222CC58B8004302AD /* Something.graphql */; };
 		07A772C522CC6399004302AD /* HostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A772C422CC6399004302AD /* HostTableViewCell.swift */; };
+		07AB395A22D2CDCC005C75ED /* jessweek6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07AB395922D2CDCC005C75ED /* jessweek6.storyboard */; };
 		07CBCDA322CAA6B2007F1BDF /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CBCDA222CAA6B2007F1BDF /* OAuthService.swift */; };
 		07CBCDA522CAA6C3007F1BDF /* ShibAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CBCDA422CAA6C3007F1BDF /* ShibAuthViewController.swift */; };
 		07D418A822CBAB0C005B1A78 /* MyAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D418A722CBAB0C005B1A78 /* MyAgendaViewController.swift */; };
@@ -104,6 +105,7 @@
 		078C56AF22D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentAttendeesTableViewCell.swift; sourceTree = "<group>"; };
 		07A772C222CC58B8004302AD /* Something.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Something.graphql; sourceTree = "<group>"; };
 		07A772C422CC6399004302AD /* HostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTableViewCell.swift; sourceTree = "<group>"; };
+		07AB395922D2CDCC005C75ED /* jessweek6.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = jessweek6.storyboard; sourceTree = "<group>"; };
 		07CBCDA222CAA6B2007F1BDF /* OAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		07CBCDA422CAA6C3007F1BDF /* ShibAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShibAuthViewController.swift; sourceTree = "<group>"; };
 		07D418A722CBAB0C005B1A78 /* MyAgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAgendaViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				0744ABB022CC50A500F51EDD /* Check In */,
 				07193E7322A9A300000F5A2C /* Main.storyboard */,
 				07193E7622A9A301000F5A2C /* Assets.xcassets */,
+				07AB395922D2CDCC005C75ED /* jessweek6.storyboard */,
 				07193E7822A9A301000F5A2C /* LaunchScreen.storyboard */,
 				07193E7B22A9A301000F5A2C /* Info.plist */,
 				C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */,
@@ -410,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07AB395A22D2CDCC005C75ED /* jessweek6.storyboard in Resources */,
 				07A772C322CC58B8004302AD /* Something.graphql in Resources */,
 				07193E7A22A9A301000F5A2C /* LaunchScreen.storyboard in Resources */,
 				07D418B422CBEA02005B1A78 /* schema.json in Resources */,

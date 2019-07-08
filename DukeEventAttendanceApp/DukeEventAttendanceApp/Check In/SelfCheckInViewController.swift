@@ -2,7 +2,7 @@
 //  SelfCheckInViewController.swift
 //  DukeEventAttendanceApp
 //
-//  Created by Jessica Su on 6/26/19.
+//  Created by Jessica Su and Luiza Wolf on 6/26/19.
 //  Copyright © 2019 Duke OIT. All rights reserved.
 //
 
@@ -10,12 +10,29 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class SelfCheckInViewController: UIViewController {
+import Apollo
 
+class SelfCheckInViewController: UIViewController{
     
+    var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
+    var attendees_array:[String] = []
+    var circlecolor = ""
+    
+    
+    @IBOutlet weak var blueBackground: UIImageView!
+    
+    @IBOutlet weak var whiteBackground: UIImageView!
+    @IBOutlet weak var eventTitle: UILabel!
+    
+    
+    @IBOutlet weak var eventTime: UILabel!
+    
+    @IBOutlet weak var eventLocationLabel: UILabel!
+    
+    @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     
-    let locationManager = CLLocationManager()
+    let manager = CLLocationManager()
     
     var myLat = CLLocationDegrees()
     var myLong = CLLocationDegrees()
@@ -24,27 +41,111 @@ class SelfCheckInViewController: UIViewController {
     var isInBounds = false
     var eventid = ""
     
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let location = locations[0]
-//        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-//        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-//        let region: MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: span)
-//        map.setRegion(region, animated: true)
-//
-//        self.map.showsUserLocation = true
-//        myLat = location.coordinate.latitude
-//        myLong = location.coordinate.longitude
-//    }
-//
-//    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-//        print("error:: (error)")
-//    }
-//
-//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-//        if status == .authorizedWhenInUse {
-//            manager.requestLocation()
-//        }
-//    }
+    override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = false
+        super.viewDidLoad()
+        
+        
+        self.map.delegate = self
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.requestLocation()
+        manager.startUpdatingLocation()
+        manager.stopUpdatingLocation()
+        
+        
+        eventTitle.text = event.summary
+        print ("something")
+        print (event.summary)
+        eventTitle.numberOfLines = 5
+        
+        eventTime.text = "TIME: " + event.starttime + "-" + event.endtime
+        eventLocationLabel.text = "LOCATION: " + event.address
+        
+        blueBackground.layer.cornerRadius = 10.0
+        blueBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        blueBackground.clipsToBounds = true
+        
+        whiteBackground.layer.cornerRadius = 10.0
+        whiteBackground.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        whiteBackground.clipsToBounds = true
+        confirmButton.layer.cornerRadius = 20
+        //confirmButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        //confirmButton.clipsToBounds = true
+        
+        checkLocation(eventlocation: self.eventLocation + ", Durham", userlocation: myLocation)
+        
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    
+    @IBAction func confirmCheckIn(_ sender: Any) {
+        //queryAllAttendees()
+        //print (attendees_array)
+        loadAttendee(event_id: event.id)
+    }
+    
+    func loadAttendee (event_id: String) {
+        //indicator.startAnimating()
+        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: Items.sharedInstance.my_dukecardnumber)
+        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            if (result?.data?.attendeeCheckIn?.id != nil) {
+                print("success")
+                print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
+                let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                self.blueBackground.isHidden = true
+                self.whiteBackground.isHidden = true
+                self.eventLocationLabel.isHidden = true
+                self.eventTime.isHidden = true
+                self.confirmButton.isHidden = true
+                self.eventTitle.isHidden = true
+            }
+            else {
+                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
+                self.invalidityCheck()
+            }
+            
+        }
+        
+    }
+    
+    func invalidityCheck(){
+        var alertMessage = ""
+        let query = AllAttendeesQuery(id: self.eventid)
+        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            if let attendees = results?.data?.allAttendees{
+                for attendee in attendees {
+                    var att = attendee.resultMap["duid"]!! as! String
+                    if( att == Items.sharedInstance.my_dukecardnumber ) {
+                        alertMessage = "You have already checked in"
+                    } else {
+                        alertMessage = "Your card number is invalid or the host has not opened the event for check-in"
+                    }
+                }
+            }
+            let alert = UIAlertController(title: "Your check-in cannot be validated", message: alertMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
     
     func checkLocation(eventlocation:String, userlocation:CLLocation) {
         let searchRequest = MKLocalSearch.Request()
@@ -62,134 +163,61 @@ class SelfCheckInViewController: UIViewController {
             for item in response.mapItems {
                 print(item)
                 desiredLoc = item.placemark.location!
-                self.drawCircle(location: desiredLoc)
                 desiredCoords = item.placemark.coordinate
                 print(item.placemark.coordinate ?? "No phone number.")
                 var distance = self.myLocation.distance(from: desiredLoc)
                 if( distance <= 100){
                     self.isInBounds = true
+                    self.drawCircle(location: desiredLoc, color: "green")
                 }
             }
-            var alert = UIAlertController()
-            if( self.isInBounds ){
-                alert = UIAlertController(title: "Would you like to check in?", message: "You are within a designated self check-in location", preferredStyle: .alert)
-                alert.addAction( UIAlertAction(title: "Check In", style: .default, handler: {(action) -> Void in
-                    self.loadAttendee(event_id: self.eventid)
-                } ) )
-                alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
-                //self.present(alert, animated: true, completion: nil)
-            } else {
-                alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
+            if ( !self.isInBounds ){
+                var alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
                 alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                //self.present(alert, animated: true, completion: nil)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.present(alert, animated: true, completion: nil)
-            }
-        }
-        
-        
-    }
-    
-    func loadAttendee (event_id: String) {
-        //indicator.startAnimating()
-        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: Items.sharedInstance.my_dukecardnumber)
-        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            if (result?.data?.attendeeCheckIn?.id != nil) {
-                print("success")
-                print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
-                let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
+                self.blueBackground.isHidden = true
+                self.whiteBackground.isHidden = true
+                self.eventLocationLabel.isHidden = true
+                self.eventTime.isHidden = true
+                self.confirmButton.isHidden = true
+                self.eventTitle.isHidden = true
                 
-            }
-            else {
-                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
-                self.invalidityCheck()
-            }
-            
-        }
-        
-    }
-
-    func invalidityCheck(){
-        var alertMessage = "Your Duke Card number is invalid"
-        let query = AllAttendeesQuery(id: self.eventid)
-        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            if let attendees = results?.data?.allAttendees{
-                for attendee in attendees {
-                    var att = attendee.resultMap["duid"]!! as! String
-                    if att == Items.sharedInstance.my_dukecardnumber {
-                        alertMessage = "You have already checked in"
-                    }
-                }
+                let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                let region: MKCoordinateRegion = MKCoordinateRegion(center: desiredLoc.coordinate, span: span)
+                self.map.setRegion(region, animated: true)
+                self.map.showsUserLocation = true
+                self.drawCircle(location: desiredLoc, color: "red")
             }
         }
-        //print ("not valid check in")
-        let alert = UIAlertController(title: "Your check-in cannot be validated", message: alertMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
-    override func viewDidLoad() {
         
-        self.map.delegate = self;
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        //locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.stopUpdatingLocation()
-        checkLocation(eventlocation: self.eventLocation + ", Durham", userlocation: myLocation)
-
-        
-        super.viewDidLoad()
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension SelfCheckInViewController : MKMapViewDelegate{
-    func drawCircle(location:CLLocation) {
+    func drawCircle(location:CLLocation, color:String) {
         var circle = MKCircle(center: location.coordinate, radius: 100 as CLLocationDistance)
+        circlecolor = color
         self.map.addOverlay(circle)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKCircle {
             var circle = MKCircleRenderer(overlay: overlay)
-            circle.strokeColor = UIColor.green
-            circle.fillColor = UIColor(red: 0, green: 255, blue: 0, alpha: 0.1)
+            if( circlecolor == "green"){
+                circle.strokeColor = UIColor.green
+                circle.fillColor = UIColor(red: 0, green: 255, blue: 0, alpha: 0.1)
+            }
+            if( circlecolor == "red"){
+                circle.strokeColor = UIColor.red
+                circle.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
+            }
             circle.lineWidth = 1
             return circle
         }
         return MKOverlayRenderer()
     }
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        if( ){
-//            let circleView = MKCircleRenderer(overlay: <#T##MKOverlay#>)
-//            return circleView }
-//
-//        return MKOverlayRenderer()
-//    }
 }
 
 extension SelfCheckInViewController : CLLocationManagerDelegate {

@@ -16,6 +16,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
         vc?.eventLoc = event.address
         vc?.eventID = event.id
+        vc?.event = event
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -32,6 +33,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
         super.viewWillAppear(animated)
         
         let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()

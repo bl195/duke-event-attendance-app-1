@@ -12,10 +12,12 @@ class CheckInOptionViewController: UIViewController {
     
     var eventLoc = ""
     var eventID = ""
+    var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
 
     override func viewDidLoad() {
+         self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -26,6 +28,7 @@ class CheckInOptionViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelfCheckInViewController") as? SelfCheckInViewController
         vc?.eventLocation = eventLoc
         vc?.eventid = eventID
+        vc?.event = self.event
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     /*

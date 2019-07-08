@@ -14,9 +14,9 @@ import AVFoundation
 
 class QRCheckInViewController: UIViewController {
     
-    var cardNumber = "6033006990222254"
     var qrcodeImage = CIImage()
     var isBarCode:Bool = false
+    var cardNumber = Items.sharedInstance.my_dukecardnumber
 
     @IBOutlet weak var qrImage: UIImageView!
     
