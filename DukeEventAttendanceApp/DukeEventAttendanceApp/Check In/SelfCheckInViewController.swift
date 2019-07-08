@@ -110,18 +110,31 @@ class SelfCheckInViewController: UIViewController {
             }
             else {
                 //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
-                print ("not valid check in")
-                let alert = UIAlertController(title: "Your check-in cannot be validated", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-                
+                self.invalidityCheck()
             }
             
         }
         
     }
 
-    
+    func invalidityCheck(){
+        var alertMessage = "Your Duke Card number is invalid"
+        let query = AllAttendeesQuery(id: self.eventid)
+        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            if let attendees = results?.data?.allAttendees{
+                for attendee in attendees {
+                    var att = attendee.resultMap["duid"]!! as! String
+                    if att == Items.sharedInstance.my_dukecardnumber {
+                        alertMessage = "You have already checked in"
+                    }
+                }
+            }
+        }
+        //print ("not valid check in")
+        let alert = UIAlertController(title: "Your check-in cannot be validated", message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
     
     override func viewDidLoad() {
         
