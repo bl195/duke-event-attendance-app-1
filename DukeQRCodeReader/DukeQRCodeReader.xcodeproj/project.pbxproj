@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F58B4FE61C76F0F54AC382A /* Pods_DukeQRCodeReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10FE69552C555F336AF9D21 /* Pods_DukeQRCodeReader.framework */; };
+		55DFDB39AEF6002E9A6D0B5B /* Pods_DukeQRCodeReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A25CAE5C6260DFADBCDE4457 /* Pods_DukeQRCodeReaderTests.framework */; };
+		C5D80ABFF3D5B02F6C3FE85C /* Pods_DukeQRCodeReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0DE467C151BB638042A8B9 /* Pods_DukeQRCodeReaderUITests.framework */; };
 		C7151F2D22D2A8FD003A18AF /* DukeQRCodeReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7151F2C22D2A8FD003A18AF /* DukeQRCodeReaderTests.swift */; };
 		C7151F3822D2A8FD003A18AF /* DukeQRCodeReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7151F3722D2A8FD003A18AF /* DukeQRCodeReaderUITests.swift */; };
 		C7151F4A22D2A939003A18AF /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7151F4522D2A939003A18AF /* QRCodeViewController.swift */; };
@@ -35,6 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F925F491417467491CAE76D /* Pods-DukeQRCodeReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeQRCodeReaderTests.debug.xcconfig"; path = "Target Support Files/Pods-DukeQRCodeReaderTests/Pods-DukeQRCodeReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		63D8C0D13D788CFB6CD5A255 /* Pods-DukeQRCodeReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeQRCodeReader.release.xcconfig"; path = "Target Support Files/Pods-DukeQRCodeReader/Pods-DukeQRCodeReader.release.xcconfig"; sourceTree = "<group>"; };
+		7F03DF1E7DFACA950490C20B /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeQRCodeReaderUITests.debug.xcconfig"; path = "Target Support Files/Pods-DukeQRCodeReaderUITests/Pods-DukeQRCodeReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A25CAE5C6260DFADBCDE4457 /* Pods_DukeQRCodeReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeQRCodeReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C63FBB7CBD0CC76ACA6BC693 /* Pods-DukeQRCodeReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeQRCodeReader.debug.xcconfig"; path = "Target Support Files/Pods-DukeQRCodeReader/Pods-DukeQRCodeReader.debug.xcconfig"; sourceTree = "<group>"; };
 		C7151F1422D2A8FC003A18AF /* DukeQRCodeReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeQRCodeReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7151F2322D2A8FD003A18AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7151F2822D2A8FD003A18AF /* DukeQRCodeReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeQRCodeReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +57,10 @@
 		C7151F4922D2A939003A18AF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../QRCodeReader/AppDelegate.swift; sourceTree = "<group>"; };
 		C7151F5022D2A9C8003A18AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../../../Downloads/duke-event-attendance-app-finalWeek6-QRCodeReader/QRCodeReader/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		C7151F5222D2A9E3003A18AF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CA46942AD9E4A1E540614714 /* Pods-DukeQRCodeReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeQRCodeReaderTests.release.xcconfig"; path = "Target Support Files/Pods-DukeQRCodeReaderTests/Pods-DukeQRCodeReaderTests.release.xcconfig"; sourceTree = "<group>"; };
+		E1AFC3B5947E9D7E454A6782 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeQRCodeReaderUITests.release.xcconfig"; path = "Target Support Files/Pods-DukeQRCodeReaderUITests/Pods-DukeQRCodeReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EA0DE467C151BB638042A8B9 /* Pods_DukeQRCodeReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeQRCodeReaderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10FE69552C555F336AF9D21 /* Pods_DukeQRCodeReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeQRCodeReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F58B4FE61C76F0F54AC382A /* Pods_DukeQRCodeReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DFDB39AEF6002E9A6D0B5B /* Pods_DukeQRCodeReaderTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5D80ABFF3D5B02F6C3FE85C /* Pods_DukeQRCodeReaderUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FB119C9718970C40676113A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F10FE69552C555F336AF9D21 /* Pods_DukeQRCodeReader.framework */,
+				A25CAE5C6260DFADBCDE4457 /* Pods_DukeQRCodeReaderTests.framework */,
+				EA0DE467C151BB638042A8B9 /* Pods_DukeQRCodeReaderUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C7151F0B22D2A8FC003A18AF = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +108,8 @@
 				C7151F2B22D2A8FD003A18AF /* DukeQRCodeReaderTests */,
 				C7151F3622D2A8FD003A18AF /* DukeQRCodeReaderUITests */,
 				C7151F1522D2A8FC003A18AF /* Products */,
+				FEDAC9748551C3494D020C05 /* Pods */,
+				2FB119C9718970C40676113A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +155,19 @@
 			path = DukeQRCodeReaderUITests;
 			sourceTree = "<group>";
 		};
+		FEDAC9748551C3494D020C05 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C63FBB7CBD0CC76ACA6BC693 /* Pods-DukeQRCodeReader.debug.xcconfig */,
+				63D8C0D13D788CFB6CD5A255 /* Pods-DukeQRCodeReader.release.xcconfig */,
+				0F925F491417467491CAE76D /* Pods-DukeQRCodeReaderTests.debug.xcconfig */,
+				CA46942AD9E4A1E540614714 /* Pods-DukeQRCodeReaderTests.release.xcconfig */,
+				7F03DF1E7DFACA950490C20B /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */,
+				E1AFC3B5947E9D7E454A6782 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7151F3C22D2A8FD003A18AF /* Build configuration list for PBXNativeTarget "DukeQRCodeReader" */;
 			buildPhases = (
+				8D11EA51C9D8C6C1F6E293FC /* [CP] Check Pods Manifest.lock */,
 				C7151F1022D2A8FC003A18AF /* Sources */,
 				C7151F1122D2A8FC003A18AF /* Frameworks */,
 				C7151F1222D2A8FC003A18AF /* Resources */,
+				C7F75A8522D2BAA4007974D9 /* GraphQL */,
 			);
 			buildRules = (
 			);
@@ -152,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7151F3F22D2A8FD003A18AF /* Build configuration list for PBXNativeTarget "DukeQRCodeReaderTests" */;
 			buildPhases = (
+				20888DDD8B4009693110DD1C /* [CP] Check Pods Manifest.lock */,
 				C7151F2422D2A8FD003A18AF /* Sources */,
 				C7151F2522D2A8FD003A18AF /* Frameworks */,
 				C7151F2622D2A8FD003A18AF /* Resources */,
@@ -170,6 +213,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7151F4222D2A8FD003A18AF /* Build configuration list for PBXNativeTarget "DukeQRCodeReaderUITests" */;
 			buildPhases = (
+				2C79172A2A77470AEF07B7E5 /* [CP] Check Pods Manifest.lock */,
 				C7151F2F22D2A8FD003A18AF /* Sources */,
 				C7151F3022D2A8FD003A18AF /* Frameworks */,
 				C7151F3122D2A8FD003A18AF /* Resources */,
@@ -254,6 +298,93 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20888DDD8B4009693110DD1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DukeQRCodeReaderTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C79172A2A77470AEF07B7E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DukeQRCodeReaderUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D11EA51C9D8C6C1F6E293FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DukeQRCodeReader-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7F75A8522D2BAA4007974D9 /* GraphQL */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = GraphQL;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7151F1022D2A8FC003A18AF /* Sources */ = {
@@ -427,6 +558,7 @@
 		};
 		C7151F3D22D2A8FD003A18AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C63FBB7CBD0CC76ACA6BC693 /* Pods-DukeQRCodeReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -446,6 +578,7 @@
 		};
 		C7151F3E22D2A8FD003A18AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63D8C0D13D788CFB6CD5A255 /* Pods-DukeQRCodeReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -464,6 +597,7 @@
 		};
 		C7151F4022D2A8FD003A18AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F925F491417467491CAE76D /* Pods-DukeQRCodeReaderTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +618,7 @@
 		};
 		C7151F4122D2A8FD003A18AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA46942AD9E4A1E540614714 /* Pods-DukeQRCodeReaderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,6 +639,7 @@
 		};
 		C7151F4322D2A8FD003A18AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F03DF1E7DFACA950490C20B /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +659,7 @@
 		};
 		C7151F4422D2A8FD003A18AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1AFC3B5947E9D7E454A6782 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

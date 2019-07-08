@@ -1,0 +1,6 @@
+framework module Pods_DukeQRCodeReaderUITests {
+  umbrella header "Pods-DukeQRCodeReaderUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
