@@ -7,15 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02503B4CCB35190F35EBAB6A99177563 /* Pods-DukeQRCodeReaderTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 488D095E88523A6C3EE4C668D4E954D1 /* Pods-DukeQRCodeReaderTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02503B4CCB35190F35EBAB6A99177563 /* Pods-DukeQRCodeReaderTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A0F962F71419A3D0F9D76D9D8D4EBEA /* Pods-DukeQRCodeReaderTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05006B498A58D7F8A26BDAC0EA3FA64B /* ResultOrPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2F736B08A11D9C2F31D720C51DA68 /* ResultOrPromise.swift */; };
+		0E57A0FCD033DCF2591EE89A5E9A95E0 /* check-and-run-apollo-codegen.sh in Resources */ = {isa = PBXBuildFile; fileRef = 42B15C5B56E2ACE47632619C2B22112A /* check-and-run-apollo-codegen.sh */; };
+		0F52D2EEF4D3CB5B8BCC8D33BD699BB6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3BE5CF2B35EF0191FB76EB13117E0 /* Utilities.swift */; };
+		120ABB8E306A42CB349EAE5C0C37ECCA /* RecordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DD968E592F1A07D8FC926813C28651 /* RecordSet.swift */; };
+		2139F3CD00F2798F57FA6B63A27C11F8 /* NormalizedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408F42BA6B25A32CCD462273C9A156C8 /* NormalizedCache.swift */; };
+		261C5C30E9F8CA98AD23B3F4BE7C09D8 /* GraphQLQueryWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DFAFFBAF4C65CE6A12ED124A26E76 /* GraphQLQueryWatcher.swift */; };
 		2C742DF95370C5CFE4ED33FE3804A8DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		3D0019A1A77AC44F0C6832D7FCD649E1 /* Pods-DukeQRCodeReaderTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30332E2A1C81580FE13B410FC29E12AC /* Pods-DukeQRCodeReaderTests-dummy.m */; };
-		40288868E86A2E7CC20A976E1F4567AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		4F6D27ED013148761A16EFDE18B6A64C /* Pods-DukeQRCodeReaderUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F94F9D7B933BA94FC0775925FCA636E /* Pods-DukeQRCodeReaderUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		30B7EC5CCBAFC80A2D721A50BAF1C938 /* GraphQLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1210B4DA4789F27EEC06627545D08099 /* GraphQLError.swift */; };
+		3D0019A1A77AC44F0C6832D7FCD649E1 /* Pods-DukeQRCodeReaderTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DA1F5C63C584050794771CD5F680B /* Pods-DukeQRCodeReaderTests-dummy.m */; };
+		40EDBFE770257924149D1EB6C29C9B64 /* GraphQLDependencyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB795206769055CA96F42B953BF46BF8 /* GraphQLDependencyTracker.swift */; };
+		470F8C7C8422E1C8FBD7DC3F22EE7856 /* Pods-DukeQRCodeReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1305EADAC4A14F49B30E872040DC1 /* Pods-DukeQRCodeReader-dummy.m */; };
+		4F6D27ED013148761A16EFDE18B6A64C /* Pods-DukeQRCodeReaderUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD8A7D06CD191799184530422996F0A /* Pods-DukeQRCodeReaderUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		597D74F292EF51A7B0D14CE8D77287E7 /* GraphQLSelectionSetMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB4E0F1299F20D4C3FF442DAD91944 /* GraphQLSelectionSetMapper.swift */; };
+		751A13CA1F2D6B41555E7C4D8586FACD /* JSONStandardTypeConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE18422F97A95B5BC845BB84FA9F0C3 /* JSONStandardTypeConversions.swift */; };
+		7B7401ECF183CDACF3470F282AB6118D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		7E89BB52104E5C9A071A9CC48B65AEF2 /* GraphQLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BBF68D1A3E02336D2E68A1E3744521 /* GraphQLResponse.swift */; };
 		813E8241C108104473FC9E7DF2AAD6D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		AFFE1BD7340A7749AD0EBD220C4C5E83 /* Pods-DukeQRCodeReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F49896033643FD51E33FC80AE761E56 /* Pods-DukeQRCodeReader-dummy.m */; };
-		B92D4E0921A54353B63E8DD8E0324503 /* Pods-DukeQRCodeReader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FEC80575E1F50919182CCC4960836E93 /* Pods-DukeQRCodeReader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE065A76060420ABD5185456D7A4F754 /* Pods-DukeQRCodeReaderUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E97BD425D5BBFC8C92743DC3988E67FC /* Pods-DukeQRCodeReaderUITests-dummy.m */; };
+		8787F5B632CF9A0F302CED90AFB694F1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A4D3862DBFAAF3EB50F3748C58F129 /* Record.swift */; };
+		87E7EB3791F61374EFD8E63E4545FDB9 /* InMemoryNormalizedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1797721C1A147CEE72BC9AD4B0575AD /* InMemoryNormalizedCache.swift */; };
+		95680EC9226653178A302E6FEB244454 /* HTTPNetworkTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334361EB660B055B20703DFA9D8EDAD2 /* HTTPNetworkTransport.swift */; };
+		95B16F88F11EA91821A745A488501F01 /* GraphQLResultNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441318A28738573AD827F8E78C29A3E /* GraphQLResultNormalizer.swift */; };
+		9674E10F14B21179B45026979006FE19 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53701444B1B700279872B620269A40 /* Collections.swift */; };
+		973F72124FAB66C4120931656A1D5EC5 /* GraphQLExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062318EA125AA69E29F3AF97A4D175 /* GraphQLExecutor.swift */; };
+		9AA759B4D4311BCA2E01256C322C48C2 /* GraphQLSelectionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D721269B27737BADD6B4569DBAC5C342 /* GraphQLSelectionSet.swift */; };
+		A95D757DE0D3A243A6B261524FE3584E /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854D4AB5B711B78FF83880FC1C3AD89 /* AsynchronousOperation.swift */; };
+		AAD3E591C7836677D61E48ED1B067151 /* Locking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4117B3C840B710E65E343C33D6B527 /* Locking.swift */; };
+		AC0A0E44588B0523DEED06BE2003D5D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		B02D7FF97A812594E57E36998242D83F /* GraphQLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84D8DC047ACE507E4DD9932829235B /* GraphQLOperation.swift */; };
+		B0E3C5B5FFE47D8E0DF2E5F1E01D0D44 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392C08E4C6605663AE0C7FEC4574C897 /* Result.swift */; };
+		B35F5B7C07D5FBC9D33D561BD7DC8B01 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2C3346A62B17F0059407A40B5C609B /* JSON.swift */; };
+		B751C06583B9F408F3C76410759CA6EA /* GraphQLResponseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CCF1FC7B5C3ED10398E465ADD324F4 /* GraphQLResponseGenerator.swift */; };
+		C774A69F0F79A828351A109548619CFE /* GraphQLInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81612EF7D8D92D39968F1FA3577382 /* GraphQLInputValue.swift */; };
+		C7BA21EB285B98FE70C39FC6BE8923B7 /* ApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFE8A94E9DD2CDE54BFB1D8AE360A8B /* ApolloClient.swift */; };
+		CB2C2AC79E10889EC840CD6C3D24F96F /* Apollo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8416136B265D3BB9A048FB43C44261EF /* Apollo-dummy.m */; };
+		CE065A76060420ABD5185456D7A4F754 /* Pods-DukeQRCodeReaderUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E209F6E7EA3B8862900A6F02717A57A /* Pods-DukeQRCodeReaderUITests-dummy.m */; };
+		D05B95B0818C14DBB6EDE674B636A995 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563A3D5BD805BF1E37BF8BAC1731F783 /* Promise.swift */; };
+		D07C40C35E6D7667770BE02E7058B932 /* Apollo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F1BFEA2476FE0D58D24C67E255431A2D /* Apollo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D96A02B8657B7BCB64C3211E44EF4825 /* JSONSerializationFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D928133F9A4D155BA1A4E71B1A1ABE /* JSONSerializationFormat.swift */; };
+		D9A6ED89859B7845939B3C864D7EA759 /* check-and-run-apollo-cli.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9E561E480060B06483768CD5A03F5656 /* check-and-run-apollo-cli.sh */; };
+		E34397576034B1C9687958BF190E3A5C /* Pods-DukeQRCodeReader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BCFE2D69CC0FC38CFA0E92FAE71D13 /* Pods-DukeQRCodeReader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E54965381A172A8BA53D4049B7FEDD41 /* ApolloStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A330D7599A68B6C242D5B6DDF1E94366 /* ApolloStore.swift */; };
+		E80A257C39F55BEDB0AF6F4AF035674E /* NetworkTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E638568A68192FE5091ED29341C6A8 /* NetworkTransport.swift */; };
+		EECD898523E8110738B378422D93B69F /* GraphQLResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388BE45AAB0CA9C430F80F30C742105 /* GraphQLResult.swift */; };
+		FC5B4DE6F6AD773481EABECF2AA4C6AC /* GraphQLResultAccumulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CBC386ED6DF37F31042A78802FF66A /* GraphQLResultAccumulator.swift */; };
+		FFF1EA5D590D8EF4780539985010797F /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85722FF24016C9CAF69CA39A5E9F649D /* DataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +62,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9B55B5BF4996C90296AD9156BA7FCA52;
 			remoteInfo = "Pods-DukeQRCodeReader";
+		};
+		9F7D9454A06AF3049EA30C6C1CC6DAB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30EE3CABB612307A688C40B61BFA74CC;
+			remoteInfo = Apollo;
 		};
 		BAC7EFE59B86E4A2CE44B6481410D678 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -36,38 +80,88 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0443B39C3A751AEAED5C1CA26AA62A14 /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		0F49896033643FD51E33FC80AE761E56 /* Pods-DukeQRCodeReader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeQRCodeReader-dummy.m"; sourceTree = "<group>"; };
-		1C5B4DBF18AE98F421F139450FD393B5 /* Pods-DukeQRCodeReader-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReader-acknowledgements.plist"; sourceTree = "<group>"; };
-		2254E10EEDAC23421D9290E6708985CE /* Pods-DukeQRCodeReader-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReader-Info.plist"; sourceTree = "<group>"; };
-		30332E2A1C81580FE13B410FC29E12AC /* Pods-DukeQRCodeReaderTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeQRCodeReaderTests-dummy.m"; sourceTree = "<group>"; };
+		01E638568A68192FE5091ED29341C6A8 /* NetworkTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkTransport.swift; path = Sources/Apollo/NetworkTransport.swift; sourceTree = "<group>"; };
+		02FA7060A45E70BA0E72513AC96373B9 /* Pods-DukeQRCodeReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReader.debug.xcconfig"; sourceTree = "<group>"; };
+		091007D51B549DA78856728A4B156DC8 /* Pods-DukeQRCodeReaderTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeQRCodeReaderTests.modulemap"; sourceTree = "<group>"; };
+		0FFE8A94E9DD2CDE54BFB1D8AE360A8B /* ApolloClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ApolloClient.swift; path = Sources/Apollo/ApolloClient.swift; sourceTree = "<group>"; };
+		1210B4DA4789F27EEC06627545D08099 /* GraphQLError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLError.swift; path = Sources/Apollo/GraphQLError.swift; sourceTree = "<group>"; };
+		14B3BE5CF2B35EF0191FB76EB13117E0 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Sources/Apollo/Utilities.swift; sourceTree = "<group>"; };
+		168D1224BDF48EF3C862AA835ECD6AB9 /* Pods-DukeQRCodeReader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeQRCodeReader.modulemap"; sourceTree = "<group>"; };
+		1D189875C47EF78F4C63C2DCE7F4BDE2 /* Pods-DukeQRCodeReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReader.release.xcconfig"; sourceTree = "<group>"; };
+		1E209F6E7EA3B8862900A6F02717A57A /* Pods-DukeQRCodeReaderUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeQRCodeReaderUITests-dummy.m"; sourceTree = "<group>"; };
+		1FFBEC01408A888894DD8EFEDDC5A2F0 /* Pods-DukeQRCodeReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderTests.release.xcconfig"; sourceTree = "<group>"; };
+		23CBC386ED6DF37F31042A78802FF66A /* GraphQLResultAccumulator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLResultAccumulator.swift; path = Sources/Apollo/GraphQLResultAccumulator.swift; sourceTree = "<group>"; };
+		2441318A28738573AD827F8E78C29A3E /* GraphQLResultNormalizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLResultNormalizer.swift; path = Sources/Apollo/GraphQLResultNormalizer.swift; sourceTree = "<group>"; };
+		28C1305EADAC4A14F49B30E872040DC1 /* Pods-DukeQRCodeReader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeQRCodeReader-dummy.m"; sourceTree = "<group>"; };
+		2A0F962F71419A3D0F9D76D9D8D4EBEA /* Pods-DukeQRCodeReaderTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeQRCodeReaderTests-umbrella.h"; sourceTree = "<group>"; };
+		2AF2F736B08A11D9C2F31D720C51DA68 /* ResultOrPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResultOrPromise.swift; path = Sources/Apollo/ResultOrPromise.swift; sourceTree = "<group>"; };
 		30F8DE8EBAF8B31599A0C706C0ADC080 /* Pods_DukeQRCodeReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DukeQRCodeReader.framework; path = "Pods-DukeQRCodeReader.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		334361EB660B055B20703DFA9D8EDAD2 /* HTTPNetworkTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPNetworkTransport.swift; path = Sources/Apollo/HTTPNetworkTransport.swift; sourceTree = "<group>"; };
+		35DD968E592F1A07D8FC926813C28651 /* RecordSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordSet.swift; path = Sources/Apollo/RecordSet.swift; sourceTree = "<group>"; };
+		392C08E4C6605663AE0C7FEC4574C897 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Sources/Apollo/Result.swift; sourceTree = "<group>"; };
+		3A6C56B32DCFB5A71C483395A6441E68 /* Pods-DukeQRCodeReader-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReader-acknowledgements.plist"; sourceTree = "<group>"; };
+		3BFFB119431EF25A6548F9826ABE9504 /* Apollo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Apollo.modulemap; sourceTree = "<group>"; };
 		3DF6A8742C0DF8E1D4FC3E5FE7F2B6CB /* Pods_DukeQRCodeReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DukeQRCodeReaderUITests.framework; path = "Pods-DukeQRCodeReaderUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F94F9D7B933BA94FC0775925FCA636E /* Pods-DukeQRCodeReaderUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeQRCodeReaderUITests-umbrella.h"; sourceTree = "<group>"; };
-		488D095E88523A6C3EE4C668D4E954D1 /* Pods-DukeQRCodeReaderTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeQRCodeReaderTests-umbrella.h"; sourceTree = "<group>"; };
-		50D0CBFAB4F2CE59DB3B9F25DB4E4D7C /* Pods-DukeQRCodeReaderTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeQRCodeReaderTests.modulemap"; sourceTree = "<group>"; };
-		5B4F54006D532927AEE0362D8B50B2B6 /* Pods-DukeQRCodeReaderUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeQRCodeReaderUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5E23BAA21CAECDF237FE59F99A24499D /* Pods-DukeQRCodeReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderTests.release.xcconfig"; sourceTree = "<group>"; };
+		408F42BA6B25A32CCD462273C9A156C8 /* NormalizedCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NormalizedCache.swift; path = Sources/Apollo/NormalizedCache.swift; sourceTree = "<group>"; };
+		40CCF1FC7B5C3ED10398E465ADD324F4 /* GraphQLResponseGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLResponseGenerator.swift; path = Sources/Apollo/GraphQLResponseGenerator.swift; sourceTree = "<group>"; };
+		42B15C5B56E2ACE47632619C2B22112A /* check-and-run-apollo-codegen.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = "check-and-run-apollo-codegen.sh"; path = "scripts/check-and-run-apollo-codegen.sh"; sourceTree = "<group>"; };
+		438DFAFFBAF4C65CE6A12ED124A26E76 /* GraphQLQueryWatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLQueryWatcher.swift; path = Sources/Apollo/GraphQLQueryWatcher.swift; sourceTree = "<group>"; };
+		5414175BF75009DF529CD1DAEE45826A /* Pods-DukeQRCodeReaderUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeQRCodeReaderUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		563A3D5BD805BF1E37BF8BAC1731F783 /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = Sources/Apollo/Promise.swift; sourceTree = "<group>"; };
+		58DB4E0F1299F20D4C3FF442DAD91944 /* GraphQLSelectionSetMapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLSelectionSetMapper.swift; path = Sources/Apollo/GraphQLSelectionSetMapper.swift; sourceTree = "<group>"; };
+		5B4117B3C840B710E65E343C33D6B527 /* Locking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Locking.swift; path = Sources/Apollo/Locking.swift; sourceTree = "<group>"; };
 		6086CE06977AD74C471DCCC33ECE7B96 /* Pods_DukeQRCodeReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DukeQRCodeReaderTests.framework; path = "Pods-DukeQRCodeReaderTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		82E3D34D94E86BDFC239AD8126711F01 /* Pods-DukeQRCodeReaderTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderTests-Info.plist"; sourceTree = "<group>"; };
-		838B8B235F7C8327C99AE99D1FA51244 /* Pods-DukeQRCodeReaderUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		89DFD511365E191A52F0D1EC4A2638E6 /* Pods-DukeQRCodeReaderUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderUITests-Info.plist"; sourceTree = "<group>"; };
-		932299DC7F30E9CD39A7A319A87F2ED5 /* Pods-DukeQRCodeReader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeQRCodeReader.modulemap"; sourceTree = "<group>"; };
+		6388BE45AAB0CA9C430F80F30C742105 /* GraphQLResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLResult.swift; path = Sources/Apollo/GraphQLResult.swift; sourceTree = "<group>"; };
+		6508E9E8F31B77205AA742AEAAAC7194 /* Pods-DukeQRCodeReaderUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderUITests-Info.plist"; sourceTree = "<group>"; };
+		68D928133F9A4D155BA1A4E71B1A1ABE /* JSONSerializationFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONSerializationFormat.swift; path = Sources/Apollo/JSONSerializationFormat.swift; sourceTree = "<group>"; };
+		71278E73041E269C9D51C0B8C1444E09 /* Pods-DukeQRCodeReaderUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		7B84D8DC047ACE507E4DD9932829235B /* GraphQLOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLOperation.swift; path = Sources/Apollo/GraphQLOperation.swift; sourceTree = "<group>"; };
+		7D6636AA772E75E4CDB82ABFE4D4890A /* Pods-DukeQRCodeReaderTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderTests-Info.plist"; sourceTree = "<group>"; };
+		83720452FED24B48D2CA52745BBF399E /* Pods-DukeQRCodeReaderUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeQRCodeReaderUITests.modulemap"; sourceTree = "<group>"; };
+		8416136B265D3BB9A048FB43C44261EF /* Apollo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Apollo-dummy.m"; sourceTree = "<group>"; };
+		85722FF24016C9CAF69CA39A5E9F649D /* DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataLoader.swift; path = Sources/Apollo/DataLoader.swift; sourceTree = "<group>"; };
+		86BBF68D1A3E02336D2E68A1E3744521 /* GraphQLResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLResponse.swift; path = Sources/Apollo/GraphQLResponse.swift; sourceTree = "<group>"; };
+		8DE18422F97A95B5BC845BB84FA9F0C3 /* JSONStandardTypeConversions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONStandardTypeConversions.swift; path = Sources/Apollo/JSONStandardTypeConversions.swift; sourceTree = "<group>"; };
+		8F1FA46A3C7AA9081BA3650A49BDE9FE /* Apollo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Apollo.framework; path = Apollo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FD8A7D06CD191799184530422996F0A /* Pods-DukeQRCodeReaderUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeQRCodeReaderUITests-umbrella.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A907569D0454D11F9C78B4E4CC368721 /* Pods-DukeQRCodeReaderUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DukeQRCodeReaderUITests.modulemap"; sourceTree = "<group>"; };
-		BCF65FCE48E4CC2FCEBC23D927A41E08 /* Pods-DukeQRCodeReader-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeQRCodeReader-acknowledgements.markdown"; sourceTree = "<group>"; };
-		CE6C1D70006C807574BF55A985BCACB8 /* Pods-DukeQRCodeReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D02A048FF929937DAC0F57101DA61087 /* Pods-DukeQRCodeReaderTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeQRCodeReaderTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D9323EFB1F3AD68D26437E8182802ABA /* Pods-DukeQRCodeReaderTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E1C4C76EA20ADC851F0385C9E08DF2A0 /* Pods-DukeQRCodeReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReader.debug.xcconfig"; sourceTree = "<group>"; };
-		E21BEBEFA7399EE7FA204DB224FB10B3 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
-		E8189404F466305FA5361B2385FA1DCF /* Pods-DukeQRCodeReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReader.release.xcconfig"; sourceTree = "<group>"; };
-		E97BD425D5BBFC8C92743DC3988E67FC /* Pods-DukeQRCodeReaderUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeQRCodeReaderUITests-dummy.m"; sourceTree = "<group>"; };
-		FEC80575E1F50919182CCC4960836E93 /* Pods-DukeQRCodeReader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeQRCodeReader-umbrella.h"; sourceTree = "<group>"; };
+		9E561E480060B06483768CD5A03F5656 /* check-and-run-apollo-cli.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = "check-and-run-apollo-cli.sh"; path = "scripts/check-and-run-apollo-cli.sh"; sourceTree = "<group>"; };
+		A330D7599A68B6C242D5B6DDF1E94366 /* ApolloStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ApolloStore.swift; path = Sources/Apollo/ApolloStore.swift; sourceTree = "<group>"; };
+		A42C57ADD9C158D6E2026ED24EE696F2 /* Pods-DukeQRCodeReader-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DukeQRCodeReader-frameworks.sh"; sourceTree = "<group>"; };
+		A558DC53B9A5D3BDC60492506C7D2342 /* Pods-DukeQRCodeReader-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeQRCodeReader-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B412A5999F942BAD55A053A0D2A49213 /* Pods-DukeQRCodeReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B5062318EA125AA69E29F3AF97A4D175 /* GraphQLExecutor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLExecutor.swift; path = Sources/Apollo/GraphQLExecutor.swift; sourceTree = "<group>"; };
+		BB85573827482EA5AEC975BB75551424 /* Pods-DukeQRCodeReaderTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DukeQRCodeReaderTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BC2C3346A62B17F0059407A40B5C609B /* JSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Sources/Apollo/JSON.swift; sourceTree = "<group>"; };
+		BCDAFE6100055EAD92826491BF447105 /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BF245865616EAC0F6D5EE430A059B6E0 /* Apollo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Apollo-prefix.pch"; sourceTree = "<group>"; };
+		C854D4AB5B711B78FF83880FC1C3AD89 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsynchronousOperation.swift; path = Sources/Apollo/AsynchronousOperation.swift; sourceTree = "<group>"; };
+		CE53701444B1B700279872B620269A40 /* Collections.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Collections.swift; path = Sources/Apollo/Collections.swift; sourceTree = "<group>"; };
+		D0B192192619F096CCD3B495214C94D0 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DukeQRCodeReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D19DA1F5C63C584050794771CD5F680B /* Pods-DukeQRCodeReaderTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DukeQRCodeReaderTests-dummy.m"; sourceTree = "<group>"; };
+		D721269B27737BADD6B4569DBAC5C342 /* GraphQLSelectionSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLSelectionSet.swift; path = Sources/Apollo/GraphQLSelectionSet.swift; sourceTree = "<group>"; };
+		D9ADBA3EEC9DF6BED2196516B52FD75B /* Pods-DukeQRCodeReaderTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReaderTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		DB795206769055CA96F42B953BF46BF8 /* GraphQLDependencyTracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLDependencyTracker.swift; path = Sources/Apollo/GraphQLDependencyTracker.swift; sourceTree = "<group>"; };
+		E4311F98D6325B12EB52B6ADFAF83EBD /* Pods-DukeQRCodeReader-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DukeQRCodeReader-Info.plist"; sourceTree = "<group>"; };
+		E6506BC4BF40647149DD375EC3189207 /* Apollo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Apollo-Info.plist"; sourceTree = "<group>"; };
+		E8A4D3862DBFAAF3EB50F3748C58F129 /* Record.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Sources/Apollo/Record.swift; sourceTree = "<group>"; };
+		EF81612EF7D8D92D39968F1FA3577382 /* GraphQLInputValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphQLInputValue.swift; path = Sources/Apollo/GraphQLInputValue.swift; sourceTree = "<group>"; };
+		F1797721C1A147CEE72BC9AD4B0575AD /* InMemoryNormalizedCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InMemoryNormalizedCache.swift; path = Sources/Apollo/InMemoryNormalizedCache.swift; sourceTree = "<group>"; };
+		F1BFEA2476FE0D58D24C67E255431A2D /* Apollo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Apollo-umbrella.h"; sourceTree = "<group>"; };
+		F2DA6CC2434FDF7DB9F57F845205BEFA /* Apollo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Apollo.xcconfig; sourceTree = "<group>"; };
+		F6BCFE2D69CC0FC38CFA0E92FAE71D13 /* Pods-DukeQRCodeReader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DukeQRCodeReader-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		639FC3965BBB88BE699571C3A4C449E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC0A0E44588B0523DEED06BE2003D5D8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6B12DDE837A211BC917094649C3050B6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,11 +170,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD94F63C04D83215D7963B2F955E2D1E /* Frameworks */ = {
+		A2F77B8D67BB2A81DADE27AC4D16E9ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40288868E86A2E7CC20A976E1F4567AD /* Foundation.framework in Frameworks */,
+				7B7401ECF183CDACF3470F282AB6118D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,56 +189,112 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D2AF815980B102AD288E97EFFCE967D /* Targets Support Files */ = {
+		12839252D84F9B73C338C66767BF4DED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B540E2E5614E00367FE323BA51288D04 /* Pods-DukeQRCodeReader */,
-				E86B86983F3CDC4EEADAFEB3593A8D13 /* Pods-DukeQRCodeReaderTests */,
-				4DF3D56A9BCCB853A373D9D1AD2E204E /* Pods-DukeQRCodeReaderUITests */,
+				9E561E480060B06483768CD5A03F5656 /* check-and-run-apollo-cli.sh */,
+				42B15C5B56E2ACE47632619C2B22112A /* check-and-run-apollo-codegen.sh */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		147A2010CD3A05F1BC5938DBAC7B4D9C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E15CD0EBD3480315633C81242C2EC026 /* Apollo */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		15AB84BA48DBF8C87A65D7969CA8EB9C /* Pods-DukeQRCodeReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				091007D51B549DA78856728A4B156DC8 /* Pods-DukeQRCodeReaderTests.modulemap */,
+				BB85573827482EA5AEC975BB75551424 /* Pods-DukeQRCodeReaderTests-acknowledgements.markdown */,
+				D9ADBA3EEC9DF6BED2196516B52FD75B /* Pods-DukeQRCodeReaderTests-acknowledgements.plist */,
+				D19DA1F5C63C584050794771CD5F680B /* Pods-DukeQRCodeReaderTests-dummy.m */,
+				7D6636AA772E75E4CDB82ABFE4D4890A /* Pods-DukeQRCodeReaderTests-Info.plist */,
+				2A0F962F71419A3D0F9D76D9D8D4EBEA /* Pods-DukeQRCodeReaderTests-umbrella.h */,
+				B412A5999F942BAD55A053A0D2A49213 /* Pods-DukeQRCodeReaderTests.debug.xcconfig */,
+				1FFBEC01408A888894DD8EFEDDC5A2F0 /* Pods-DukeQRCodeReaderTests.release.xcconfig */,
+			);
+			name = "Pods-DukeQRCodeReaderTests";
+			path = "Target Support Files/Pods-DukeQRCodeReaderTests";
+			sourceTree = "<group>";
+		};
+		25AD0CDEE3E0780AD8AD542DC330BEFD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0FFE8A94E9DD2CDE54BFB1D8AE360A8B /* ApolloClient.swift */,
+				A330D7599A68B6C242D5B6DDF1E94366 /* ApolloStore.swift */,
+				C854D4AB5B711B78FF83880FC1C3AD89 /* AsynchronousOperation.swift */,
+				CE53701444B1B700279872B620269A40 /* Collections.swift */,
+				85722FF24016C9CAF69CA39A5E9F649D /* DataLoader.swift */,
+				DB795206769055CA96F42B953BF46BF8 /* GraphQLDependencyTracker.swift */,
+				1210B4DA4789F27EEC06627545D08099 /* GraphQLError.swift */,
+				B5062318EA125AA69E29F3AF97A4D175 /* GraphQLExecutor.swift */,
+				EF81612EF7D8D92D39968F1FA3577382 /* GraphQLInputValue.swift */,
+				7B84D8DC047ACE507E4DD9932829235B /* GraphQLOperation.swift */,
+				438DFAFFBAF4C65CE6A12ED124A26E76 /* GraphQLQueryWatcher.swift */,
+				86BBF68D1A3E02336D2E68A1E3744521 /* GraphQLResponse.swift */,
+				40CCF1FC7B5C3ED10398E465ADD324F4 /* GraphQLResponseGenerator.swift */,
+				6388BE45AAB0CA9C430F80F30C742105 /* GraphQLResult.swift */,
+				23CBC386ED6DF37F31042A78802FF66A /* GraphQLResultAccumulator.swift */,
+				2441318A28738573AD827F8E78C29A3E /* GraphQLResultNormalizer.swift */,
+				D721269B27737BADD6B4569DBAC5C342 /* GraphQLSelectionSet.swift */,
+				58DB4E0F1299F20D4C3FF442DAD91944 /* GraphQLSelectionSetMapper.swift */,
+				334361EB660B055B20703DFA9D8EDAD2 /* HTTPNetworkTransport.swift */,
+				F1797721C1A147CEE72BC9AD4B0575AD /* InMemoryNormalizedCache.swift */,
+				BC2C3346A62B17F0059407A40B5C609B /* JSON.swift */,
+				68D928133F9A4D155BA1A4E71B1A1ABE /* JSONSerializationFormat.swift */,
+				8DE18422F97A95B5BC845BB84FA9F0C3 /* JSONStandardTypeConversions.swift */,
+				5B4117B3C840B710E65E343C33D6B527 /* Locking.swift */,
+				01E638568A68192FE5091ED29341C6A8 /* NetworkTransport.swift */,
+				408F42BA6B25A32CCD462273C9A156C8 /* NormalizedCache.swift */,
+				563A3D5BD805BF1E37BF8BAC1731F783 /* Promise.swift */,
+				E8A4D3862DBFAAF3EB50F3748C58F129 /* Record.swift */,
+				35DD968E592F1A07D8FC926813C28651 /* RecordSet.swift */,
+				392C08E4C6605663AE0C7FEC4574C897 /* Result.swift */,
+				2AF2F736B08A11D9C2F31D720C51DA68 /* ResultOrPromise.swift */,
+				14B3BE5CF2B35EF0191FB76EB13117E0 /* Utilities.swift */,
+				12839252D84F9B73C338C66767BF4DED /* Resources */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		55A99899581E97D1436E1DFDF790D695 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCA2017D1F0F7E7A02D078339C26C7C4 /* Pods-DukeQRCodeReader */,
+				15AB84BA48DBF8C87A65D7969CA8EB9C /* Pods-DukeQRCodeReaderTests */,
+				FF58CC1979C391E1A2E6CDB58EC5A664 /* Pods-DukeQRCodeReaderUITests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		4DF3D56A9BCCB853A373D9D1AD2E204E /* Pods-DukeQRCodeReaderUITests */ = {
+		7A90394827B4BC4F6EC4CA558E271213 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A907569D0454D11F9C78B4E4CC368721 /* Pods-DukeQRCodeReaderUITests.modulemap */,
-				5B4F54006D532927AEE0362D8B50B2B6 /* Pods-DukeQRCodeReaderUITests-acknowledgements.markdown */,
-				838B8B235F7C8327C99AE99D1FA51244 /* Pods-DukeQRCodeReaderUITests-acknowledgements.plist */,
-				E97BD425D5BBFC8C92743DC3988E67FC /* Pods-DukeQRCodeReaderUITests-dummy.m */,
-				89DFD511365E191A52F0D1EC4A2638E6 /* Pods-DukeQRCodeReaderUITests-Info.plist */,
-				3F94F9D7B933BA94FC0775925FCA636E /* Pods-DukeQRCodeReaderUITests-umbrella.h */,
-				0443B39C3A751AEAED5C1CA26AA62A14 /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */,
-				E21BEBEFA7399EE7FA204DB224FB10B3 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */,
+				3BFFB119431EF25A6548F9826ABE9504 /* Apollo.modulemap */,
+				F2DA6CC2434FDF7DB9F57F845205BEFA /* Apollo.xcconfig */,
+				8416136B265D3BB9A048FB43C44261EF /* Apollo-dummy.m */,
+				E6506BC4BF40647149DD375EC3189207 /* Apollo-Info.plist */,
+				BF245865616EAC0F6D5EE430A059B6E0 /* Apollo-prefix.pch */,
+				F1BFEA2476FE0D58D24C67E255431A2D /* Apollo-umbrella.h */,
 			);
-			name = "Pods-DukeQRCodeReaderUITests";
-			path = "Target Support Files/Pods-DukeQRCodeReaderUITests";
+			name = "Support Files";
+			path = "../Target Support Files/Apollo";
 			sourceTree = "<group>";
 		};
-		9229D6F7B5B2EEE2EC2C744ED88AC170 /* Products */ = {
+		B8147DE13A39C0761F5E992D43A0AF7A /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				8F1FA46A3C7AA9081BA3650A49BDE9FE /* Apollo.framework */,
 				30F8DE8EBAF8B31599A0C706C0ADC080 /* Pods_DukeQRCodeReader.framework */,
 				6086CE06977AD74C471DCCC33ECE7B96 /* Pods_DukeQRCodeReaderTests.framework */,
 				3DF6A8742C0DF8E1D4FC3E5FE7F2B6CB /* Pods_DukeQRCodeReaderUITests.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B540E2E5614E00367FE323BA51288D04 /* Pods-DukeQRCodeReader */ = {
-			isa = PBXGroup;
-			children = (
-				932299DC7F30E9CD39A7A319A87F2ED5 /* Pods-DukeQRCodeReader.modulemap */,
-				BCF65FCE48E4CC2FCEBC23D927A41E08 /* Pods-DukeQRCodeReader-acknowledgements.markdown */,
-				1C5B4DBF18AE98F421F139450FD393B5 /* Pods-DukeQRCodeReader-acknowledgements.plist */,
-				0F49896033643FD51E33FC80AE761E56 /* Pods-DukeQRCodeReader-dummy.m */,
-				2254E10EEDAC23421D9290E6708985CE /* Pods-DukeQRCodeReader-Info.plist */,
-				FEC80575E1F50919182CCC4960836E93 /* Pods-DukeQRCodeReader-umbrella.h */,
-				E1C4C76EA20ADC851F0385C9E08DF2A0 /* Pods-DukeQRCodeReader.debug.xcconfig */,
-				E8189404F466305FA5361B2385FA1DCF /* Pods-DukeQRCodeReader.release.xcconfig */,
-			);
-			name = "Pods-DukeQRCodeReader";
-			path = "Target Support Files/Pods-DukeQRCodeReader";
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -160,8 +310,9 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				9229D6F7B5B2EEE2EC2C744ED88AC170 /* Products */,
-				2D2AF815980B102AD288E97EFFCE967D /* Targets Support Files */,
+				147A2010CD3A05F1BC5938DBAC7B4D9C /* Pods */,
+				B8147DE13A39C0761F5E992D43A0AF7A /* Products */,
+				55A99899581E97D1436E1DFDF790D695 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,33 +324,52 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E86B86983F3CDC4EEADAFEB3593A8D13 /* Pods-DukeQRCodeReaderTests */ = {
+		DCA2017D1F0F7E7A02D078339C26C7C4 /* Pods-DukeQRCodeReader */ = {
 			isa = PBXGroup;
 			children = (
-				50D0CBFAB4F2CE59DB3B9F25DB4E4D7C /* Pods-DukeQRCodeReaderTests.modulemap */,
-				D02A048FF929937DAC0F57101DA61087 /* Pods-DukeQRCodeReaderTests-acknowledgements.markdown */,
-				D9323EFB1F3AD68D26437E8182802ABA /* Pods-DukeQRCodeReaderTests-acknowledgements.plist */,
-				30332E2A1C81580FE13B410FC29E12AC /* Pods-DukeQRCodeReaderTests-dummy.m */,
-				82E3D34D94E86BDFC239AD8126711F01 /* Pods-DukeQRCodeReaderTests-Info.plist */,
-				488D095E88523A6C3EE4C668D4E954D1 /* Pods-DukeQRCodeReaderTests-umbrella.h */,
-				CE6C1D70006C807574BF55A985BCACB8 /* Pods-DukeQRCodeReaderTests.debug.xcconfig */,
-				5E23BAA21CAECDF237FE59F99A24499D /* Pods-DukeQRCodeReaderTests.release.xcconfig */,
+				168D1224BDF48EF3C862AA835ECD6AB9 /* Pods-DukeQRCodeReader.modulemap */,
+				A558DC53B9A5D3BDC60492506C7D2342 /* Pods-DukeQRCodeReader-acknowledgements.markdown */,
+				3A6C56B32DCFB5A71C483395A6441E68 /* Pods-DukeQRCodeReader-acknowledgements.plist */,
+				28C1305EADAC4A14F49B30E872040DC1 /* Pods-DukeQRCodeReader-dummy.m */,
+				A42C57ADD9C158D6E2026ED24EE696F2 /* Pods-DukeQRCodeReader-frameworks.sh */,
+				E4311F98D6325B12EB52B6ADFAF83EBD /* Pods-DukeQRCodeReader-Info.plist */,
+				F6BCFE2D69CC0FC38CFA0E92FAE71D13 /* Pods-DukeQRCodeReader-umbrella.h */,
+				02FA7060A45E70BA0E72513AC96373B9 /* Pods-DukeQRCodeReader.debug.xcconfig */,
+				1D189875C47EF78F4C63C2DCE7F4BDE2 /* Pods-DukeQRCodeReader.release.xcconfig */,
 			);
-			name = "Pods-DukeQRCodeReaderTests";
-			path = "Target Support Files/Pods-DukeQRCodeReaderTests";
+			name = "Pods-DukeQRCodeReader";
+			path = "Target Support Files/Pods-DukeQRCodeReader";
+			sourceTree = "<group>";
+		};
+		E15CD0EBD3480315633C81242C2EC026 /* Apollo */ = {
+			isa = PBXGroup;
+			children = (
+				25AD0CDEE3E0780AD8AD542DC330BEFD /* Core */,
+				7A90394827B4BC4F6EC4CA558E271213 /* Support Files */,
+			);
+			name = Apollo;
+			path = Apollo;
+			sourceTree = "<group>";
+		};
+		FF58CC1979C391E1A2E6CDB58EC5A664 /* Pods-DukeQRCodeReaderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				83720452FED24B48D2CA52745BBF399E /* Pods-DukeQRCodeReaderUITests.modulemap */,
+				5414175BF75009DF529CD1DAEE45826A /* Pods-DukeQRCodeReaderUITests-acknowledgements.markdown */,
+				71278E73041E269C9D51C0B8C1444E09 /* Pods-DukeQRCodeReaderUITests-acknowledgements.plist */,
+				1E209F6E7EA3B8862900A6F02717A57A /* Pods-DukeQRCodeReaderUITests-dummy.m */,
+				6508E9E8F31B77205AA742AEAAAC7194 /* Pods-DukeQRCodeReaderUITests-Info.plist */,
+				8FD8A7D06CD191799184530422996F0A /* Pods-DukeQRCodeReaderUITests-umbrella.h */,
+				BCDAFE6100055EAD92826491BF447105 /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */,
+				D0B192192619F096CCD3B495214C94D0 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */,
+			);
+			name = "Pods-DukeQRCodeReaderUITests";
+			path = "Target Support Files/Pods-DukeQRCodeReaderUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		43702E685E55ECD9EC137DC0229E79FD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B92D4E0921A54353B63E8DD8E0324503 /* Pods-DukeQRCodeReader-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		78A4A3409A85F6F68D29D006F957E84D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,9 +386,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8681F152D4917EC69489F37244423CF2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D07C40C35E6D7667770BE02E7058B932 /* Apollo-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF96E11FA4540346F0C363E407E3E4BC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E34397576034B1C9687958BF190E3A5C /* Pods-DukeQRCodeReader-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		30EE3CABB612307A688C40B61BFA74CC /* Apollo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB544C8EEC7EFBB69948BA3082B81D1 /* Build configuration list for PBXNativeTarget "Apollo" */;
+			buildPhases = (
+				8681F152D4917EC69489F37244423CF2 /* Headers */,
+				85E38EB9A9E24418DDC0903AB2464BCE /* Sources */,
+				A2F77B8D67BB2A81DADE27AC4D16E9ED /* Frameworks */,
+				A7574E33FA1E960A24A9BDFC606B754A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Apollo;
+			productName = Apollo;
+			productReference = 8F1FA46A3C7AA9081BA3650A49BDE9FE /* Apollo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		95E049CA19966F9CEBB8A40212D55EC4 /* Pods-DukeQRCodeReaderTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8615F52F890CBF9B4926462725A57F4F /* Build configuration list for PBXNativeTarget "Pods-DukeQRCodeReaderTests" */;
@@ -240,16 +444,17 @@
 		};
 		9B55B5BF4996C90296AD9156BA7FCA52 /* Pods-DukeQRCodeReader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7ACEA84A896A0AD243880BF5949E7E01 /* Build configuration list for PBXNativeTarget "Pods-DukeQRCodeReader" */;
+			buildConfigurationList = 1D5A8AB62CEF24CFA89DB0AFD098623F /* Build configuration list for PBXNativeTarget "Pods-DukeQRCodeReader" */;
 			buildPhases = (
-				43702E685E55ECD9EC137DC0229E79FD /* Headers */,
-				F93AFAA08579ECA6052BC023D41DE3B5 /* Sources */,
-				CD94F63C04D83215D7963B2F955E2D1E /* Frameworks */,
-				A24ACBC4C24AD16AB1B3BA7A55CC41F1 /* Resources */,
+				DF96E11FA4540346F0C363E407E3E4BC /* Headers */,
+				827934DA1FD9D239E2048F24B0C06076 /* Sources */,
+				639FC3965BBB88BE699571C3A4C449E1 /* Frameworks */,
+				BE14CDCE922E9A1AE032AF4801877A99 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C107275AF5B454C604FFD7E525D3BB6D /* PBXTargetDependency */,
 			);
 			name = "Pods-DukeQRCodeReader";
 			productName = "Pods-DukeQRCodeReader";
@@ -292,10 +497,11 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 9229D6F7B5B2EEE2EC2C744ED88AC170 /* Products */;
+			productRefGroup = B8147DE13A39C0761F5E992D43A0AF7A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				30EE3CABB612307A688C40B61BFA74CC /* Apollo */,
 				9B55B5BF4996C90296AD9156BA7FCA52 /* Pods-DukeQRCodeReader */,
 				95E049CA19966F9CEBB8A40212D55EC4 /* Pods-DukeQRCodeReaderTests */,
 				CABC9DC469CC0A22D0B843238F02A7E3 /* Pods-DukeQRCodeReaderUITests */,
@@ -304,14 +510,23 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A24ACBC4C24AD16AB1B3BA7A55CC41F1 /* Resources */ = {
+		A7574E33FA1E960A24A9BDFC606B754A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9A6ED89859B7845939B3C864D7EA759 /* check-and-run-apollo-cli.sh in Resources */,
+				0E57A0FCD033DCF2591EE89A5E9A95E0 /* check-and-run-apollo-codegen.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB51A04539828130E71AC3340FDBE2DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BB51A04539828130E71AC3340FDBE2DE /* Resources */ = {
+		BE14CDCE922E9A1AE032AF4801877A99 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,6 +551,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		827934DA1FD9D239E2048F24B0C06076 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				470F8C7C8422E1C8FBD7DC3F22EE7856 /* Pods-DukeQRCodeReader-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85E38EB9A9E24418DDC0903AB2464BCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB2C2AC79E10889EC840CD6C3D24F96F /* Apollo-dummy.m in Sources */,
+				C7BA21EB285B98FE70C39FC6BE8923B7 /* ApolloClient.swift in Sources */,
+				E54965381A172A8BA53D4049B7FEDD41 /* ApolloStore.swift in Sources */,
+				A95D757DE0D3A243A6B261524FE3584E /* AsynchronousOperation.swift in Sources */,
+				9674E10F14B21179B45026979006FE19 /* Collections.swift in Sources */,
+				FFF1EA5D590D8EF4780539985010797F /* DataLoader.swift in Sources */,
+				40EDBFE770257924149D1EB6C29C9B64 /* GraphQLDependencyTracker.swift in Sources */,
+				30B7EC5CCBAFC80A2D721A50BAF1C938 /* GraphQLError.swift in Sources */,
+				973F72124FAB66C4120931656A1D5EC5 /* GraphQLExecutor.swift in Sources */,
+				C774A69F0F79A828351A109548619CFE /* GraphQLInputValue.swift in Sources */,
+				B02D7FF97A812594E57E36998242D83F /* GraphQLOperation.swift in Sources */,
+				261C5C30E9F8CA98AD23B3F4BE7C09D8 /* GraphQLQueryWatcher.swift in Sources */,
+				7E89BB52104E5C9A071A9CC48B65AEF2 /* GraphQLResponse.swift in Sources */,
+				B751C06583B9F408F3C76410759CA6EA /* GraphQLResponseGenerator.swift in Sources */,
+				EECD898523E8110738B378422D93B69F /* GraphQLResult.swift in Sources */,
+				FC5B4DE6F6AD773481EABECF2AA4C6AC /* GraphQLResultAccumulator.swift in Sources */,
+				95B16F88F11EA91821A745A488501F01 /* GraphQLResultNormalizer.swift in Sources */,
+				9AA759B4D4311BCA2E01256C322C48C2 /* GraphQLSelectionSet.swift in Sources */,
+				597D74F292EF51A7B0D14CE8D77287E7 /* GraphQLSelectionSetMapper.swift in Sources */,
+				95680EC9226653178A302E6FEB244454 /* HTTPNetworkTransport.swift in Sources */,
+				87E7EB3791F61374EFD8E63E4545FDB9 /* InMemoryNormalizedCache.swift in Sources */,
+				B35F5B7C07D5FBC9D33D561BD7DC8B01 /* JSON.swift in Sources */,
+				D96A02B8657B7BCB64C3211E44EF4825 /* JSONSerializationFormat.swift in Sources */,
+				751A13CA1F2D6B41555E7C4D8586FACD /* JSONStandardTypeConversions.swift in Sources */,
+				AAD3E591C7836677D61E48ED1B067151 /* Locking.swift in Sources */,
+				E80A257C39F55BEDB0AF6F4AF035674E /* NetworkTransport.swift in Sources */,
+				2139F3CD00F2798F57FA6B63A27C11F8 /* NormalizedCache.swift in Sources */,
+				D05B95B0818C14DBB6EDE674B636A995 /* Promise.swift in Sources */,
+				8787F5B632CF9A0F302CED90AFB694F1 /* Record.swift in Sources */,
+				120ABB8E306A42CB349EAE5C0C37ECCA /* RecordSet.swift in Sources */,
+				B0E3C5B5FFE47D8E0DF2E5F1E01D0D44 /* Result.swift in Sources */,
+				05006B498A58D7F8A26BDAC0EA3FA64B /* ResultOrPromise.swift in Sources */,
+				0F52D2EEF4D3CB5B8BCC8D33BD699BB6 /* Utilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B2DDEAE21039225C7BF836308261B98E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,17 +607,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F93AFAA08579ECA6052BC023D41DE3B5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AFFE1BD7340A7749AD0EBD220C4C5E83 /* Pods-DukeQRCodeReader-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C107275AF5B454C604FFD7E525D3BB6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Apollo;
+			target = 30EE3CABB612307A688C40B61BFA74CC /* Apollo */;
+			targetProxy = 9F7D9454A06AF3049EA30C6C1CC6DAB7 /* PBXContainerItemProxy */;
+		};
 		ECC2E840848C565F5974E6417D5DB801 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-DukeQRCodeReader";
@@ -370,9 +631,45 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0F488026BE6F086F651B6CC168645494 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2DA6CC2434FDF7DB9F57F845205BEFA /* Apollo.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Apollo/Apollo-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Apollo/Apollo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Apollo/Apollo.modulemap";
+				PRODUCT_MODULE_NAME = Apollo;
+				PRODUCT_NAME = Apollo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		1444F152728B56FF384E03C932ECC763 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E23BAA21CAECDF237FE59F99A24499D /* Pods-DukeQRCodeReaderTests.release.xcconfig */;
+			baseConfigurationReference = 1FFBEC01408A888894DD8EFEDDC5A2F0 /* Pods-DukeQRCodeReaderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -411,7 +708,7 @@
 		};
 		148F1B9C8B37A5C17FF62657CB8DD476 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0443B39C3A751AEAED5C1CA26AA62A14 /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */;
+			baseConfigurationReference = BCDAFE6100055EAD92826491BF447105 /* Pods-DukeQRCodeReaderUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -571,9 +868,9 @@
 			};
 			name = Release;
 		};
-		3E52FBBD117DDACB0A6854B10AED172E /* Debug */ = {
+		589299B8A1F4D994B0AA7F0B49A763B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1C4C76EA20ADC851F0385C9E08DF2A0 /* Pods-DukeQRCodeReader.debug.xcconfig */;
+			baseConfigurationReference = 02FA7060A45E70BA0E72513AC96373B9 /* Pods-DukeQRCodeReader.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -609,12 +906,10 @@
 			};
 			name = Debug;
 		};
-		EF72670094F2EA7BF8C51A5C8D9DEFFE /* Debug */ = {
+		69C5AA646D377295511DD0B088CBACCC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE6C1D70006C807574BF55A985BCACB8 /* Pods-DukeQRCodeReaderTests.debug.xcconfig */;
+			baseConfigurationReference = F2DA6CC2434FDF7DB9F57F845205BEFA /* Apollo.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -624,32 +919,31 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-DukeQRCodeReaderTests/Pods-DukeQRCodeReaderTests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Apollo/Apollo-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Apollo/Apollo-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-DukeQRCodeReaderTests/Pods-DukeQRCodeReaderTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/Apollo/Apollo.modulemap";
+				PRODUCT_MODULE_NAME = Apollo;
+				PRODUCT_NAME = Apollo;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		F0DF6D8F5ED387E3D7E7FCA9D02D8642 /* Release */ = {
+		C01B3AF04614C5C9B242FBA39AEB99DB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8189404F466305FA5361B2385FA1DCF /* Pods-DukeQRCodeReader.release.xcconfig */;
+			baseConfigurationReference = 1D189875C47EF78F4C63C2DCE7F4BDE2 /* Pods-DukeQRCodeReader.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -686,9 +980,47 @@
 			};
 			name = Release;
 		};
+		EF72670094F2EA7BF8C51A5C8D9DEFFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B412A5999F942BAD55A053A0D2A49213 /* Pods-DukeQRCodeReaderTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DukeQRCodeReaderTests/Pods-DukeQRCodeReaderTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DukeQRCodeReaderTests/Pods-DukeQRCodeReaderTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		FA46EE0B70641751A29A1E59BB900591 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E21BEBEFA7399EE7FA204DB224FB10B3 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */;
+			baseConfigurationReference = D0B192192619F096CCD3B495214C94D0 /* Pods-DukeQRCodeReaderUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -728,6 +1060,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1D5A8AB62CEF24CFA89DB0AFD098623F /* Build configuration list for PBXNativeTarget "Pods-DukeQRCodeReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				589299B8A1F4D994B0AA7F0B49A763B4 /* Debug */,
+				C01B3AF04614C5C9B242FBA39AEB99DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -737,20 +1078,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7ACEA84A896A0AD243880BF5949E7E01 /* Build configuration list for PBXNativeTarget "Pods-DukeQRCodeReader" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E52FBBD117DDACB0A6854B10AED172E /* Debug */,
-				F0DF6D8F5ED387E3D7E7FCA9D02D8642 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		8615F52F890CBF9B4926462725A57F4F /* Build configuration list for PBXNativeTarget "Pods-DukeQRCodeReaderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF72670094F2EA7BF8C51A5C8D9DEFFE /* Debug */,
 				1444F152728B56FF384E03C932ECC763 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDB544C8EEC7EFBB69948BA3082B81D1 /* Build configuration list for PBXNativeTarget "Apollo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69C5AA646D377295511DD0B088CBACCC /* Debug */,
+				0F488026BE6F086F651B6CC168645494 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

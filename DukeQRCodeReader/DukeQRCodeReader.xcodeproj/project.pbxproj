@@ -180,6 +180,7 @@
 				C7151F1122D2A8FC003A18AF /* Frameworks */,
 				C7151F1222D2A8FC003A18AF /* Resources */,
 				C7F75A8522D2BAA4007974D9 /* GraphQL */,
+				1D57838A965B11A8F40719B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,6 +301,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D57838A965B11A8F40719B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DukeQRCodeReader/Pods-DukeQRCodeReader-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DukeQRCodeReader/Pods-DukeQRCodeReader-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DukeQRCodeReader/Pods-DukeQRCodeReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		20888DDD8B4009693110DD1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
