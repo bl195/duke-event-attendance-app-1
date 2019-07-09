@@ -12,6 +12,11 @@ class Items{
     static let sharedInstance = Items()
     var eventArray = [Event]()
     var id_event_dict = [String:Event]()
+    
     let my_netid = "ahw26"
-    let my_dukecardnumber = "6033006990241122"
+    
+    let my_dukecardnumber = "6033006990214046"
+    
+    
+    //let jess_netid = "js803"
 }

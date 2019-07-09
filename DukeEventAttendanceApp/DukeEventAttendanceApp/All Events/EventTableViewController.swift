@@ -110,6 +110,7 @@ class EventTableViewController: UITableViewController {
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        //print ("here")
         filteredEvents = eventArray.filter({( event:Event) -> Bool in
             return event.summary.lowercased().contains(searchText.lowercased())
         })
@@ -240,11 +241,11 @@ class EventTableViewController: UITableViewController {
         if let imageUrl = URL(string: event.image_url) {
             // This is a network call and needs to be run on non-UI thread
             DispatchQueue.global().async {
-//                let imageData = try! Data(contentsOf: imageUrl)
-//                let image = UIImage(data: imageData)
-//                DispatchQueue.main.async {
-//                    cell.photoImageView.image = image
-//                }
+                let imageData = try! Data(contentsOf: imageUrl)
+                let image = UIImage(data: imageData)
+                DispatchQueue.main.async {
+                    cell.photoImageView.image = image
+                }
             }
         }
         //cell.photoImageView.image = event.getImage()
@@ -311,9 +312,17 @@ class EventTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        print ("add")
+        var currArray = [Event]()
+        if isFiltering() {
+            currArray = filteredEvents
+        }
+        else {
+            currArray = eventArray
+        }
         let agendaAction = UITableViewRowAction (style: .default, title: "Add to Agenda"){ [weak self] (_, indexPath ) in
             let ev = EventID(context: PersistenceService.context )
-            ev.id = self?.eventArray[indexPath.row].id
+            ev.id = currArray[indexPath.row].id
             PersistenceService.saveContext()
         }
         agendaAction.backgroundColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)

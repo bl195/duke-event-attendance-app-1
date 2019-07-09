@@ -56,7 +56,14 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     //Delegate method
     func didTapAllowCheckIn(eventid:String) {
         let alert = UIAlertController(title: "Choose Check-In Method", message: "Please choose method by which attendees will check in to your event", preferredStyle: .alert)
-        alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: nil) ) //show QR scanner
+        alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: {(action) -> Void in
+            let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
+            //self.navigationController?.pushViewController(vc!, animated: true)
+            qvc?.event_id = eventid
+            self.navigationController?.show(qvc!, sender: true)
+            //self.performSegue(withIdentifier: "vc2", sender: self)
+        } ) )
+        
         alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
                         //self.navigationController?.pushViewController(vc!, animated: true)

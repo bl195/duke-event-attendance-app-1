@@ -99,12 +99,15 @@ class SelfCheckInViewController: UIViewController{
     
     func loadAttendee (event_id: String) {
         //indicator.startAnimating()
+        print (event_id)
         let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: Items.sharedInstance.my_dukecardnumber)
         Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
+            print (result?.data?.attendeeCheckIn?.id)
+            print (result?.errors)
             if (result?.data?.attendeeCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
@@ -171,6 +174,7 @@ class SelfCheckInViewController: UIViewController{
                     self.drawCircle(location: desiredLoc, color: "green")
                 }
             }
+            self.isInBounds = true
             if ( !self.isInBounds ){
                 var alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
                 alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))

@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     @IBAction func logInPressed(_ sender: Any) {
         //oAuthService?.logout()
         //print("yay")
-        oAuthService?.setClientName(oAuthClientName: "wearduke")
+        oAuthService?.setClientName(oAuthClientName: "dukeeventattendance")
         if oAuthService!.isAuthenticated() {
             print ("Login")
             oAuthService?.refreshToken(navController: self.navigationController!) { success, statusCode in
@@ -110,7 +110,20 @@ class ViewController: UIViewController {
         
     }
     
-//    func isInGroup(navController: UINavigationController, completionHandler: @escaping (_ isInGroup: Bool, _ error: String?) -> Void) {
+//    func isInGroup (navController: UINavigationController, completionHandler: @escaping (_ isInGroup: Bool, _ error: String?) -> Void) {
+//
+//        let apollo: ApolloClient = {
+//            let token = OAuthService.shared.getAccessToken() ?? ""
+//            let configuration = URLSessionConfiguration.default
+//            configuration.httpAdditionalHeaders = [AUTH_HEADER: "Bearer \(token)", "Content-Type": "application/json"]
+//            let kongURL = "https://events-attendance-backend-test.api.oit.duke.edu"
+//            let url = URL(string: kongURL)!
+//            return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+//
+//        }()
+//
+//    }
+//    func practiceGroup(navController: UINavigationController, completionHandler: @escaping (_ isInGroup: Bool, _ error: String?) -> Void) {
 //
 //        // Setup applo client
 //
@@ -264,8 +277,8 @@ class ViewController: UIViewController {
 //        }
 //
 //    }
-    
-    
+//
+//
 
 
 

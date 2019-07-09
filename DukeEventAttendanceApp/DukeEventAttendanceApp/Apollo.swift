@@ -7,18 +7,36 @@
 //
 
 import Apollo
+//let AUTH_HEADER = "Authorization"
 
 class Apollo {
     
     // 1
     static let shared = Apollo()
     // 2
-    let client: ApolloClient
+    //let client: ApolloClient
+    //var token: OAuthService.shared.getAccessToken() ?? ""
     
-    init() {
-        // 3
-        client = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
-        //client = ApolloClient(url: URL(string: "https://events-attendance-backend-test.cloud.duke.edu/graphiql")!)
-    }
+    var oAuthService: OAuthService?
+   
+    // = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+    
+    let client: ApolloClient = {
+        let token = OAuthService.shared.getAccessToken() ?? ""
+        print (token)
+        let configuration = URLSessionConfiguration.default
+
+        configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
+        let kongURL = "https://events-attendance-backend.api-test.oit.duke.edu/graphql"
+        let url = URL(string: kongURL)!
+        return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+
+    }()
+    
+//    init() {
+//        client = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
+//    }
+    
+
     
 }

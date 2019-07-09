@@ -54,6 +54,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
             var index = 0
             
         } catch {}
+        agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
         self.tableView.reloadData()
     }
     

@@ -17,6 +17,7 @@ class CheckInOptionViewController: UIViewController {
     override func viewDidLoad() {
          self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
+        print(eventID)
         //self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }
