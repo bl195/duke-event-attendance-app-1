@@ -33,7 +33,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     func getQuery(){
         let query = HostsEventsQuery(id: Items.sharedInstance.my_netid)
         Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            
+            print(results)
             if let hostevents = results?.data?.hostEvents{
                 for event in hostevents {
                     self.host_events.append( event.resultMap["eventid"]!! as! String )

@@ -72,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		070AADB222CD63F100148811 /* CurrentAttendeesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAttendeesTableViewController.swift; sourceTree = "<group>"; };
+		0712F68D22D6542B00422E56 /* DukeEventAttendanceApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DukeEventAttendanceApp.entitlements; sourceTree = "<group>"; };
 		07193E6C22A9A300000F5A2C /* DukeEventAttendanceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventAttendanceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07193E6F22A9A300000F5A2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07193E7122A9A300000F5A2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				0712F68D22D6542B00422E56 /* DukeEventAttendanceApp.entitlements */,
 				0744ABAE22CBF8CE00F51EDD /* API.swift */,
 				07D418B322CBEA02005B1A78 /* schema.json */,
 				07A772C222CC58B8004302AD /* Something.graphql */,
@@ -377,6 +379,11 @@
 				TargetAttributes = {
 					07193E6B22A9A300000F5A2C = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					07193E7F22A9A301000F5A2C = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -455,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
 		};
 		696625D3BF451E2493929BC6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -712,7 +719,9 @@
 			baseConfigurationReference = 0C5205F53CEFCA24A8894E52 /* Pods-DukeEventAttendanceApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DukeEventAttendanceApp/DukeEventAttendanceApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DG5G3Q88RG;
 				INFOPLIST_FILE = DukeEventAttendanceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -730,7 +739,9 @@
 			baseConfigurationReference = DA3223593F2032CE8A1691B5 /* Pods-DukeEventAttendanceApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DukeEventAttendanceApp/DukeEventAttendanceApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DG5G3Q88RG;
 				INFOPLIST_FILE = DukeEventAttendanceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
