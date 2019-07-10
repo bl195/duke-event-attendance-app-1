@@ -17,7 +17,7 @@ class Apollo {
     //let client: ApolloClient
     //var token: OAuthService.shared.getAccessToken() ?? ""
     
-    var oAuthService: OAuthService?
+    //var oAuthService: OAuthService?
    
     // = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
     

@@ -28,7 +28,6 @@ class QRScannerController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (event_id)
 
         // Get the back-facing camera for capturing videos
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -90,6 +89,7 @@ class QRScannerController: UIViewController {
     }
     
     // MARK: - Helper methods
+    var alertPrompt = UIAlertController()
 
     func launchApp(decodedURL: String) {
         
@@ -97,18 +97,19 @@ class QRScannerController: UIViewController {
             return
         }
         
-        let alertPrompt = UIAlertController(title: "Result", message: "Duke ID: \(decodedURL)", preferredStyle: .actionSheet)
+        alertPrompt = UIAlertController(title: "Result", message: "Duke ID: \(decodedURL)", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Check in", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            self.loadAttendee(event_id: self.event_id)
-            
+            self.alertPrompt.dismiss(animated: true)
+            self.loadAttendee(event_id: self.event_id, cardNumber: "\(decodedURL)")
         })
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
         alertPrompt.addAction(confirmAction)
         alertPrompt.addAction(cancelAction)
         
-        present(alertPrompt, animated: true, completion: nil)
+        //DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.present(self.alertPrompt, animated: true, completion: nil)
+        //}
     }
 
 }
@@ -141,9 +142,10 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    func loadAttendee (event_id: String) {
+    func loadAttendee (event_id: String, cardNumber: String) {
         //indicator.startAnimating()
-        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: Items.sharedInstance.my_dukecardnumber)
+        print(cardNumber)
+        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: cardNumber)
         Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -152,12 +154,29 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
             if (result?.data?.attendeeCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
+                
+                //self.alertPrompt.dismiss(animated: true, completion: nil)
+                
+                
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
                 
+                //self.launchApp(decodedURL: cardNumber)
             }
             else {
+                print("failed")
+                print(result?.data?.attendeeCheckIn?.id)
+                
+                //self.alertPrompt.dismiss(animated: true, completion: nil)
+                
+                let alert = UIAlertController(title: "Check-in denied", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                //self.viewDidLoad()
+                //self.launchApp(decodedURL: cardNumber)
+                
+                //self.present(self.alertPrompt, animated: true)
                 //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
                 //self.invalidityCheck()
             }

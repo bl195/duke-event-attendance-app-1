@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import Apollo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let apollo = ApolloClient(url: URL(string: "http://localhost:3000/graphql")!)
 
     var window: UIWindow?
 

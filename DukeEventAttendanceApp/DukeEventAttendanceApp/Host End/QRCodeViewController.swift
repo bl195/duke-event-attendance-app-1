@@ -19,10 +19,6 @@ class QRCodeViewController: UIViewController {
 
     
     // MARK: - Navigation
-
-    @IBAction func unwindToHomeScreen(segue: UIStoryboardSegue) {
-        dismiss(animated: true, completion: nil)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showScan") {

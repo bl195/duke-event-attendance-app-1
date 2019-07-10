@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "exit button.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "exit button.png",
       "scale" : "2x"
     },
     {
