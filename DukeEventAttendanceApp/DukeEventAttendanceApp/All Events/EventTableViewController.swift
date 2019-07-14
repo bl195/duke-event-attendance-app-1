@@ -131,6 +131,10 @@ class EventTableViewController: UITableViewController {
             let menuVC = segue.destination as? MenuViewController
             menuVC?.thisDateCode = encodedate
         }
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = "BACK"
+        navigationItem.backBarButtonItem = backItem // This will show in the
     }
 
     

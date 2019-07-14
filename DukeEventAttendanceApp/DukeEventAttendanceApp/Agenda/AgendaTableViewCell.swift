@@ -29,6 +29,7 @@ class AgendaTableViewCell: UITableViewCell {
     
     @IBAction func checkInTapped(_ sender: Any) {
         delegate?.didTapCheckIn(event: self.event)
+        //eventTitle.textAlignment = NSTextAlignment.natural
     }
     
     func setEvent(event: Event){
