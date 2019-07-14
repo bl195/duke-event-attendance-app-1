@@ -19,6 +19,7 @@ class AllEventsViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
+        
 
         var image = UIImage(named: "menu")?.withRenderingMode(.alwaysTemplate)
         filterButton.setImage(image, for: .normal)

@@ -24,7 +24,7 @@ class ViewController: UIViewController {
  
 
     @IBAction func logInPressed(_ sender: Any) {
-        oAuthService?.logout()
+        //oAuthService?.logout()
         //print("yay")
         oAuthService?.setClientName(oAuthClientName: "dukeeventattendance")
         if oAuthService!.isAuthenticated() {

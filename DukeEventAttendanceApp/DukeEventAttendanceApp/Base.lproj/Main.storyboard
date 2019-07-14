@@ -15,7 +15,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="EventTableViewController" title="EventTableViewController" id="LON-r7-gSW" customClass="EventTableViewController" customModule="DukeEventAttendanceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="360" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hbB-JE-6hs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -100,15 +100,15 @@
                             <outlet property="delegate" destination="LON-r7-gSW" id="EwJ-mq-YXy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="e1u-bx-Lsq">
+                    <navigationItem key="navigationItem" title="ALL EVENTS" id="e1u-bx-Lsq">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="ocE-9H-c1h">
-                            <color key="tintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="cu6-fU-hsK" kind="show" identifier="menuSegue" id="uB5-Jf-wC6"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="calendar-icon" id="4Kw-2F-scW">
-                            <color key="tintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="HQg-Ed-Jqc" kind="show" identifier="calendarSegue " id="KR9-w9-ss6"/>
                             </connections>
@@ -126,41 +126,41 @@
         <scene sceneID="gxq-IX-kyt">
             <objects>
                 <tableViewController storyboardIdentifier="MenuViewController" title="MenuViewController" id="cu6-fU-hsK" customClass="MenuViewController" customModule="DukeEventAttendanceApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Hd3-Vx-U6g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hd3-Vx-U6g">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" rowHeight="93" id="rvR-s8-MeY" customClass="MenuTableViewCell" customModule="DukeEventAttendanceApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="93"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuTableViewCell" rowHeight="100" id="rvR-s8-MeY" customClass="MenuTableViewCell" customModule="DukeEventAttendanceApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rvR-s8-MeY" id="G7c-AS-oJc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqg-LV-aTf">
-                                            <rect key="frame" x="37" y="36" width="357" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="8cd-1C-VoX"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="357" id="EYf-4k-6PP"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDd-Au-MTg">
-                                            <rect key="frame" x="16" y="91" width="398" height="2"/>
+                                            <rect key="frame" x="16" y="98" width="398" height="2"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="2" id="IxU-lB-8B0"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqg-LV-aTf">
+                                            <rect key="frame" x="37" y="5" width="357" height="90"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="8cd-1C-VoX"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="357" id="EYf-4k-6PP"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                            <color key="textColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="rDd-Au-MTg" firstAttribute="leading" secondItem="G7c-AS-oJc" secondAttribute="leading" constant="16" id="4aK-UC-Xvs"/>
+                                        <constraint firstItem="Tqg-LV-aTf" firstAttribute="centerY" secondItem="G7c-AS-oJc" secondAttribute="centerY" id="7hu-to-cXb"/>
                                         <constraint firstAttribute="trailing" secondItem="rDd-Au-MTg" secondAttribute="trailing" id="DyC-Cc-SFc"/>
-                                        <constraint firstItem="Tqg-LV-aTf" firstAttribute="top" secondItem="G7c-AS-oJc" secondAttribute="topMargin" constant="25" id="HO3-aA-e3g"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Tqg-LV-aTf" secondAttribute="bottom" constant="25" id="XRe-bK-gUr"/>
                                         <constraint firstItem="Tqg-LV-aTf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="G7c-AS-oJc" secondAttribute="leadingMargin" id="cWv-iP-boF"/>
                                         <constraint firstAttribute="trailing" secondItem="Tqg-LV-aTf" secondAttribute="trailing" constant="20" id="r7t-Df-b5y"/>
                                         <constraint firstAttribute="bottom" secondItem="rDd-Au-MTg" secondAttribute="bottom" id="xeH-Ru-eXo"/>
@@ -487,10 +487,21 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yoa-2t-f03" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ALL EVENTS" image="home" id="H0M-zd-1dm"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="fRa-J8-KSt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="fRa-J8-KSt">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="35"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -504,18 +515,21 @@
         <!--Navigation Controller-->
         <scene sceneID="sCZ-4g-tKM">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZ1-jc-if1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pTU-ye-Sru" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6qf-Ox-NP4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage=" nextIcon" largeTitles="YES" id="6qf-Ox-NP4">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="cu6-fU-hsK" kind="relationship" relationship="rootViewController" id="qht-n7-EA4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kZ1-jc-if1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873.91304347826099" y="-486.16071428571428"/>
         </scene>
@@ -524,7 +538,7 @@
             <objects>
                 <viewController storyboardIdentifier="CalendarViewController" title="CalendarViewController" id="HQg-Ed-Jqc" customClass="CalendarViewController" customModule="DukeEventAttendanceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gpO-a4-ZWC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="MonthLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLs-dn-ew8">
@@ -536,7 +550,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cOB-Zy-fxt">
-                                <rect key="frame" x="57" y="320" width="300" height="255"/>
+                                <rect key="frame" x="57" y="180" width="300" height="255"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="D3h-fr-MRw">
                                     <size key="itemSize" width="37" height="37"/>
@@ -1523,6 +1537,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name=" nextIcon" width="176" height="168"/>
         <image name="DukeCheck" width="534" height="396"/>
         <image name="Screen Shot 2019-06-13 at 2.13.02 PM" width="55" height="51"/>
         <image name="Screen Shot 2019-06-13 at 2.13.14 PM" width="54" height="53"/>
@@ -1539,6 +1554,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aN5-B8-aAN"/>
-        <segue reference="qht-n7-EA4"/>
+        <segue reference="uB5-Jf-wC6"/>
     </inferredMetricsTieBreakers>
 </document>

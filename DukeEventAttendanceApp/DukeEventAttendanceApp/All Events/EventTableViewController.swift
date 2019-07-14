@@ -29,6 +29,9 @@ class EventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        
+//        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 24)!]
+        
         let my_switch = UISwitch(frame: .zero)
         my_switch.isOn = switchOn
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)

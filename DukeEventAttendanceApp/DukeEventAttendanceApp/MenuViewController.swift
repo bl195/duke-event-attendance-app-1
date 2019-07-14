@@ -18,7 +18,9 @@ class MenuViewController: UITableViewController {
     var menuArray = ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"]
     
     override func viewDidLoad() {
-        self.title = "Topic"
+        self.title = "Topic".uppercased()
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 35)]
+        self.automaticallyAdjustsScrollViewInsets = false
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -35,6 +37,10 @@ class MenuViewController: UITableViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuArray.count
     }
@@ -43,7 +49,7 @@ class MenuViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewcontroller = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
-        viewcontroller?.title = menuArray[indexPath.row]
+        viewcontroller?.title = menuArray[indexPath.row].uppercased()
         viewcontroller?.filtername = menuArray[indexPath.row]
         viewcontroller?.encodedate = thisDateCode
         self.navigationController?.pushViewController(viewcontroller!, animated:true)
