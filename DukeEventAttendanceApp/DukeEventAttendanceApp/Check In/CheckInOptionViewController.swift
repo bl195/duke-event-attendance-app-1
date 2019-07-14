@@ -10,6 +10,8 @@ import UIKit
 
 class CheckInOptionViewController: UIViewController {
     
+    @IBOutlet weak var QRButton: UIButton!
+    @IBOutlet weak var SelfCheckInButton: UIButton!
     var eventLoc = ""
     var eventID = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
@@ -18,6 +20,10 @@ class CheckInOptionViewController: UIViewController {
          self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
         print(eventID)
+        
+        SelfCheckInButton.layer.cornerRadius = 20.0
+        QRButton.layer.cornerRadius = 20.0
+        
         //self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }

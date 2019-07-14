@@ -71,7 +71,7 @@ class SelfCheckInViewController: UIViewController{
         whiteBackground.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
         whiteBackground.clipsToBounds = true
-        confirmButton.layer.cornerRadius = 20
+        confirmButton.layer.cornerRadius = 30.0
         //confirmButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         //confirmButton.clipsToBounds = true
         
@@ -100,17 +100,17 @@ class SelfCheckInViewController: UIViewController{
     func loadAttendee (event_id: String) {
         //indicator.startAnimating()
         print (event_id)
-        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: Items.sharedInstance.my_dukecardnumber)
+        let createAttendeeMutation = SelfCheckInMutation(eventid: event_id)
         Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            print (result?.data?.attendeeCheckIn?.id)
+            print (result?.data?.selfCheckIn?.id)
             print (result?.errors)
-            if (result?.data?.attendeeCheckIn?.id != nil) {
+            if (result?.data?.selfCheckIn?.id != nil) {
                 print("success")
-                print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
+                print(result?.data?.selfCheckIn?.id ?? "no attendee")
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -137,7 +137,7 @@ class SelfCheckInViewController: UIViewController{
             if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     var att = attendee.resultMap["duid"]!! as! String
-                    if( att == Items.sharedInstance.my_dukecardnumber ) {
+                    if( att == Items.sharedInstance.my_dukecardnumber ) { //needs to be changed
                         alertMessage = "You have already checked in"
                     } else {
                         alertMessage = "Your card number is invalid or the host has not opened the event for check-in"

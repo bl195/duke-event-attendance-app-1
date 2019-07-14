@@ -16,29 +16,31 @@ class QRCheckInViewController: UIViewController {
     
     var qrcodeImage = CIImage()
     var isBarCode:Bool = false
-    var cardNumber = Items.sharedInstance.my_dukecardnumber
+    
 
     @IBOutlet weak var qrImage: UIImageView!
     
     func showBarCode (barCode: Bool) {
-    
-        var data: Data
-        var filter: CIFilter
-        if (self.cardNumber != nil) {
-            if (barCode) {
-                qrImage.image = RSUnifiedCodeGenerator.shared.generateCode(self.cardNumber, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
-            }
-           else {
-                /*QR code options*/
-                data = self.cardNumber.data(using:String.Encoding.isoLatin1, allowLossyConversion: false)!
-                filter = CIFilter(name: "CIQRCodeGenerator")!
-                filter.setValue(data, forKey: "inputMessage")
-                
-                if (data.count > 0) {
-                    qrcodeImage = filter.outputImage!
-                    displayQRCodeImage()
+        
+        Items.sharedInstance.getCard(){ cardnumber in
+            var data: Data
+            var filter: CIFilter
+            if (cardnumber != nil) {
+                if (barCode) {
+                    self.qrImage.image = RSUnifiedCodeGenerator.shared.generateCode(cardnumber, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
                 }
-            
+                else {
+                    /*QR code options*/
+                    data = cardnumber.data(using:String.Encoding.isoLatin1, allowLossyConversion: false)!
+                    filter = CIFilter(name: "CIQRCodeGenerator")!
+                    filter.setValue(data, forKey: "inputMessage")
+                    
+                    if (data.count > 0) {
+                        self.qrcodeImage = filter.outputImage!
+                        self.displayQRCodeImage()
+                    }
+                    
+                }
             }
         }
     
@@ -82,6 +84,7 @@ class QRCheckInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Check In"
+        //print (cardNumber)
         showBarCode(barCode: isBarCode)
 
         // Do any additional setup after loading the view.

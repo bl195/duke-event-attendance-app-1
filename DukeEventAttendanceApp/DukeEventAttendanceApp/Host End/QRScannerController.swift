@@ -100,7 +100,7 @@ class QRScannerController: UIViewController {
         alertPrompt = UIAlertController(title: "Result", message: "Duke ID: \(decodedURL)", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Check in", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             self.alertPrompt.dismiss(animated: true)
-            self.loadAttendee(event_id: self.event_id, cardNumber: "\(decodedURL)")
+            self.loadAttendee(event_id: self.event_id, duid: "\(decodedURL)")
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
@@ -142,18 +142,19 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    func loadAttendee (event_id: String, cardNumber: String) {
+    func loadAttendee(event_id: String, duid: String) {
         //indicator.startAnimating()
-        print(cardNumber)
-        let createAttendeeMutation = CheckInAttendeeMutation (eventid: event_id, duid: cardNumber)
+        print(event_id)
+        print(duid)
+        let createAttendeeMutation = QrCheckInMutation(eventid: event_id, duid: duid)
         Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            if (result?.data?.attendeeCheckIn?.id != nil) {
+            if (result?.data?.qrCheckIn?.id != nil) {
                 print("success")
-                print(result?.data?.attendeeCheckIn?.id ?? "no attendee")
+                print(result?.data?.qrCheckIn?.id ?? "no attendee")
                 
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
                 
@@ -166,7 +167,7 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
             }
             else {
                 print("failed")
-                print(result?.data?.attendeeCheckIn?.id)
+                print(result?.data?.qrCheckIn?.id)
                 
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
                 

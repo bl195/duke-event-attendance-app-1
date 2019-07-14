@@ -11,6 +11,7 @@ import Apollo
 
 class HostTableViewController: UITableViewController, HostTableViewCellDelegate {
 
+    
     var host_events = [String]()
     
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     func getQuery(){
+        //
         let query = HostsEventsQuery(id: Items.sharedInstance.my_netid)
         Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
             print(results)
@@ -89,12 +91,12 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 //        return "Header \(section)"
 //    }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-            "sectionHeader") as! CustomHeader
-        view.month.text = "\(section)" //sections[section]
-        return view
-    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+//            "sectionHeader") as! CustomHeader
+//        view.month.text = "\(section)" //sections[section]
+//        return view
+//    }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

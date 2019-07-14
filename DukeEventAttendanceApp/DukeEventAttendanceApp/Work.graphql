@@ -1,0 +1,35 @@
+query getCardQuery {
+getDukeCardNumber
+}
+
+query HostsEvents($id: ID!) {
+hostEvents(id: $id) {
+eventid
+}
+}
+
+query AllAttendees($id: ID!){
+allAttendees(id: $id){
+duid
+}
+}
+
+mutation SelfCheckIn ($eventid: String!){
+selfCheckIn(eventid: $eventid){
+id
+}
+}
+
+mutation QRCheckIn ($eventid: String!, $duid: String!){
+qrCheckIn(eventid: $eventid, duid: $duid){
+id
+}
+}
+
+
+mutation CheckInHost($eventid: String!, $title: String!, $hostid: String!){
+hostCheckIn(eventid: $eventid, title: $title, hostid: $hostid){
+id
+}
+}
+
