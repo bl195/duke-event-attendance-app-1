@@ -22,6 +22,7 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var extendButton: UIButton!
     var tapCount = 0
     @IBAction func extendText(_ sender: Any) {
+        print ("tapped")
         if( tapCount%2 == 0){
             descriptionLabel.numberOfLines = 0
             tapCount += 1
@@ -117,12 +118,12 @@ class EventInfoViewController: UIViewController {
         super.viewDidLoad()
         self.title = ""
         //descriptionLabel.numberOfLines = 0
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 1000)
             //CGSizeMake(self.view.frame.width, self.view.frame.height + 100)
         
         summaryLabel.text = sum
-        shortDayLabel.text = sdl
-        shortMonthLabel.text = sml
+        //shortDayLabel.text = sdl
+        //shortMonthLabel.text = sml
         locationLabel.text = ll
         timeLabel.text = tl
         descriptionLabel.numberOfLines = 4
@@ -157,6 +158,16 @@ class EventInfoViewController: UIViewController {
         
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated:animated)
+//
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
     
 
     /*

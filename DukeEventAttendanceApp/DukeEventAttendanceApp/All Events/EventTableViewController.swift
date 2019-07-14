@@ -55,7 +55,18 @@ class EventTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //let bounds = self.navigationController!.navigationBar.bounds
+        //self.navigationController?.navigationBar.frame = CGRect (x: 0, y: 0, width: bounds.width, height: bounds.height + 150)
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        let height: CGFloat = 70 //whatever height you want to add to the existing height
+//        let bounds = self.navigationController!.navigationBar.bounds
+//        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
+//        //self.navigationController?.navigationBar.barTintColor = UIColor.blue
+//
+//    }
 
     func hitAPI(_for URLString:String, title: String, text: String) {
        
