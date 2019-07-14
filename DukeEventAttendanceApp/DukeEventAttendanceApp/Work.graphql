@@ -1,23 +1,31 @@
 query getCardQuery {
-getDukeCardNumber
+    getDukeCardNumber
+}
+
+query getMyName {
+    getMyname
+}
+
+query getName($cardnumber: ID!) {
+    getName(id: $cardnumber)
 }
 
 query HostsEvents($id: ID!) {
-hostEvents(id: $id) {
-eventid
-}
+    hostEvents(id: $id) {
+        eventid
+    }
 }
 
 query AllAttendees($id: ID!){
-allAttendees(id: $id){
-duid
-}
+    allAttendees(id: $id){
+        duid
+    }
 }
 
 mutation SelfCheckIn ($eventid: String!){
-selfCheckIn(eventid: $eventid){
-id
-}
+    selfCheckIn(eventid: $eventid){
+        id
+    }
 }
 
 mutation QRCheckIn ($eventid: String!, $duid: String!){
