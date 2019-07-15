@@ -304,8 +304,8 @@
                                                     <constraint firstAttribute="height" constant="21" id="xcv-ct-hxz"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXs-SM-dMZ">
-                                                <rect key="frame" x="32" y="583" width="374" height="81.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXs-SM-dMZ">
+                                                <rect key="frame" x="32" y="583" width="374" height="122"/>
                                                 <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus urna justo, condimentum at lectus nec, feugiat mollis magna. Suspendisse aliquam enim a luctus tempor. Aenean nulla enim, efficitur gravida sapien at, pharetra scelerisque nulla.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -318,13 +318,6 @@
                                                     <constraint firstAttribute="width" constant="22" id="sqQ-mQ-fSM"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYm-xh-ZgO">
-                                                <rect key="frame" x="390" y="634.5" width="30" height="30"/>
-                                                <state key="normal" title="▼"/>
-                                                <connections>
-                                                    <action selector="extendText:" destination="vG1-JB-xAy" eventType="touchUpInside" id="AAq-q3-m26"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMi-lv-5Ty">
                                                 <rect key="frame" x="228" y="396" width="178" height="29"/>
                                                 <color key="backgroundColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
@@ -380,7 +373,6 @@
                                             <constraint firstItem="ULA-5G-6Sr" firstAttribute="leading" secondItem="RT8-Lu-Yyi" secondAttribute="leading" constant="62" id="9TY-Ab-QeV"/>
                                             <constraint firstItem="8Vr-OO-W6F" firstAttribute="leading" secondItem="RT8-Lu-Yyi" secondAttribute="leading" constant="32" id="Arl-Br-ggZ"/>
                                             <constraint firstItem="pXs-SM-dMZ" firstAttribute="top" secondItem="8Vr-OO-W6F" secondAttribute="bottom" constant="8" id="Bo8-Te-uaE"/>
-                                            <constraint firstAttribute="trailing" secondItem="VYm-xh-ZgO" secondAttribute="trailing" constant="5" id="C70-y7-eaL"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8FX-rD-EjI" secondAttribute="trailing" constant="20" symbolic="YES" id="D79-xY-Fyv"/>
                                             <constraint firstItem="WsT-WK-AeB" firstAttribute="top" secondItem="RT8-Lu-Yyi" secondAttribute="top" constant="45" id="EQQ-te-cM2"/>
                                             <constraint firstItem="77E-6e-tty" firstAttribute="centerY" secondItem="cSB-QF-2lN" secondAttribute="centerY" id="EpM-gx-ydh"/>
@@ -399,7 +391,6 @@
                                             <constraint firstItem="cSB-QF-2lN" firstAttribute="leading" secondItem="RT8-Lu-Yyi" secondAttribute="leading" constant="32" id="ifi-dg-hiR"/>
                                             <constraint firstAttribute="trailing" secondItem="CMi-lv-5Ty" secondAttribute="trailing" constant="19" id="jFj-26-krJ"/>
                                             <constraint firstItem="kdi-hz-xYj" firstAttribute="top" secondItem="cSB-QF-2lN" secondAttribute="bottom" constant="30" id="jbl-n4-OQo"/>
-                                            <constraint firstItem="VYm-xh-ZgO" firstAttribute="bottom" secondItem="pXs-SM-dMZ" secondAttribute="bottom" id="k2G-5B-q8j"/>
                                             <constraint firstItem="WsT-WK-AeB" firstAttribute="leading" secondItem="RT8-Lu-Yyi" secondAttribute="leading" id="kTQ-G4-Wel"/>
                                             <constraint firstItem="z3q-dw-LQp" firstAttribute="top" secondItem="WsT-WK-AeB" secondAttribute="bottom" constant="15" id="lwW-2j-rN9"/>
                                             <constraint firstItem="77E-6e-tty" firstAttribute="top" secondItem="k6N-tk-G2N" secondAttribute="bottom" constant="31" id="mqJ-mZ-0XF"/>
@@ -439,7 +430,6 @@
                     <connections>
                         <outlet property="calIcon" destination="cSB-QF-2lN" id="xsp-PR-B7u"/>
                         <outlet property="descriptionLabel" destination="pXs-SM-dMZ" id="qrJ-vM-4ne"/>
-                        <outlet property="extendButton" destination="VYm-xh-ZgO" id="57P-g0-erL"/>
                         <outlet property="imageLabel" destination="WsT-WK-AeB" id="cLG-ns-lN9"/>
                         <outlet property="locIcon" destination="kdi-hz-xYj" id="24h-pB-Sby"/>
                         <outlet property="locationLabel" destination="8FX-rD-EjI" id="8yl-fp-fbO"/>
