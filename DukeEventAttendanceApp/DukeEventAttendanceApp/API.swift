@@ -38,140 +38,18 @@ public final class GetCardQueryQuery: GraphQLQuery {
   }
 }
 
-public final class GetMyNameQuery: GraphQLQuery {
-  public let operationDefinition =
-    "query getMyName {\n  getMyname\n}"
-
-  public init() {
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Query"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("getMyname", type: .nonNull(.scalar(String.self))),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(getMyname: String) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getMyname": getMyname])
-    }
-
-    /// Returns name by user's duke unique id from headers
-    public var getMyname: String {
-      get {
-        return resultMap["getMyname"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "getMyname")
-      }
-    }
-  }
-}
-
-public final class GetNetIdQuery: GraphQLQuery {
-  public let operationDefinition =
-    "query getNetID {\n  getNetid\n}"
-
-  public init() {
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Query"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("getNetid", type: .nonNull(.scalar(String.self))),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(getNetid: String) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getNetid": getNetid])
-    }
-
-    /// Returns netid by duke unique id
-    public var getNetid: String {
-      get {
-        return resultMap["getNetid"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "getNetid")
-      }
-    }
-  }
-}
-
-public final class GetNameQuery: GraphQLQuery {
-  public let operationDefinition =
-    "query getName($cardnumber: ID!) {\n  getName(id: $cardnumber)\n}"
-
-  public var cardnumber: GraphQLID
-
-  public init(cardnumber: GraphQLID) {
-    self.cardnumber = cardnumber
-  }
-
-  public var variables: GraphQLMap? {
-    return ["cardnumber": cardnumber]
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Query"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("getName", arguments: ["id": GraphQLVariable("cardnumber")], type: .nonNull(.scalar(String.self))),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(getName: String) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getName": getName])
-    }
-
-    /// Returns name by duke unique id
-    public var getName: String {
-      get {
-        return resultMap["getName"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "getName")
-      }
-    }
-  }
-}
-
 public final class HostsEventsQuery: GraphQLQuery {
   public let operationDefinition =
-    "query HostsEvents($id: ID!) {\n  hostEvents(id: $id) {\n    __typename\n    eventid\n  }\n}"
+    "query HostsEvents {\n  hostEvents {\n    __typename\n    eventid\n  }\n}"
 
-  public var id: GraphQLID
-
-  public init(id: GraphQLID) {
-    self.id = id
-  }
-
-  public var variables: GraphQLMap? {
-    return ["id": id]
+  public init() {
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("hostEvents", arguments: ["id": GraphQLVariable("id")], type: .nonNull(.list(.nonNull(.object(HostEvent.selections))))),
+      GraphQLField("hostEvents", type: .nonNull(.list(.nonNull(.object(HostEvent.selections))))),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -228,6 +106,51 @@ public final class HostsEventsQuery: GraphQLQuery {
         set {
           resultMap.updateValue(newValue, forKey: "eventid")
         }
+      }
+    }
+  }
+}
+
+public final class GetInfoQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetInfo($eventid: ID!, $attendeeid: ID!) {\n  getInfo(eventid: $eventid, attendeeid: $attendeeid)\n}"
+
+  public var eventid: GraphQLID
+  public var attendeeid: GraphQLID
+
+  public init(eventid: GraphQLID, attendeeid: GraphQLID) {
+    self.eventid = eventid
+    self.attendeeid = attendeeid
+  }
+
+  public var variables: GraphQLMap? {
+    return ["eventid": eventid, "attendeeid": attendeeid]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getInfo", arguments: ["eventid": GraphQLVariable("eventid"), "attendeeid": GraphQLVariable("attendeeid")], type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getInfo: [String]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getInfo": getInfo])
+    }
+
+    /// Returns name by duke unique id
+    public var getInfo: [String] {
+      get {
+        return resultMap["getInfo"]! as! [String]
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getInfo")
       }
     }
   }

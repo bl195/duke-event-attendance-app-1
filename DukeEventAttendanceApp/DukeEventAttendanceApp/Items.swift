@@ -33,7 +33,7 @@ class Items{
     
     
     
-    let my_netid = "ahw26"
+    //let my_netid = "ahw26"
     
     
     

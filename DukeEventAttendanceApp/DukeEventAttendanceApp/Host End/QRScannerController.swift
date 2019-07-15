@@ -7,6 +7,16 @@ class QRScannerController: UIViewController {
     @IBOutlet var messageLabel:UILabel!
     @IBOutlet var topbar: UIView!
     
+    @IBAction func homeButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyAgendaViewController") as? MyAgendaViewController
+
+        self.navigationController?.pushViewController(vc!, animated: false)
+    }
+    @IBAction func attendeesButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
+        vc?.event_id = event_id
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
     var captureSession = AVCaptureSession()
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -28,6 +38,7 @@ class QRScannerController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Get the back-facing camera for capturing videos
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -86,6 +97,11 @@ class QRScannerController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Helper methods
