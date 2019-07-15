@@ -2,6 +2,10 @@ query getCardQuery {
 getDukeCardNumber
 }
 
+query getMyName{
+getMyname
+}
+
 query HostsEvents{
 hostEvents{
 eventid

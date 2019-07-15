@@ -38,6 +38,42 @@ public final class GetCardQueryQuery: GraphQLQuery {
   }
 }
 
+public final class GetMyNameQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query getMyName {\n  getMyname\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getMyname", type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getMyname: String) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getMyname": getMyname])
+    }
+
+    /// Returns name by user's duke unique id from headers
+    public var getMyname: String {
+      get {
+        return resultMap["getMyname"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getMyname")
+      }
+    }
+  }
+}
+
 public final class HostsEventsQuery: GraphQLQuery {
   public let operationDefinition =
     "query HostsEvents {\n  hostEvents {\n    __typename\n    eventid\n  }\n}"
