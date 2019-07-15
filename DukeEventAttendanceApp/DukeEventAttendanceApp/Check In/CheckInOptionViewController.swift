@@ -29,6 +29,10 @@ class CheckInOptionViewController: UIViewController {
     }
     
     @IBAction func QRCodeButton(_ sender: Any) {
+        let qvc = self.storyboard?.instantiateViewController(withIdentifier: "QRCheckInViewController") as? QRCheckInViewController
+        qvc?.event = self.event
+        self.navigationController?.pushViewController(qvc!, animated: true)
+        
     }
     
     @IBAction func selfCheckInButton(_ sender: Any) {
@@ -38,6 +42,18 @@ class CheckInOptionViewController: UIViewController {
         vc?.event = self.event
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toQRCheck") {
+            let qvc = self.storyboard?.instantiateViewController(withIdentifier: "QRCheckInViewController") as? QRCheckInViewController
+            qvc?.event = self.event
+            
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

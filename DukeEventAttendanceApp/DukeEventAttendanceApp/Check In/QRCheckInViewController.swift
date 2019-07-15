@@ -13,18 +13,31 @@ import AVFoundation
 
 
 class QRCheckInViewController: UIViewController {
+    var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     
     var qrcodeImage = CIImage()
     var isBarCode:Bool = false
+    var dukeCard:String = ""
     
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var cardLabel: UILabel!
+    @IBOutlet weak var eventLabel: UILabel!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var qrImage: UIImageView!
     
     func showBarCode (barCode: Bool) {
-        
+        print ("HERE")
         Items.sharedInstance.getCard(){ cardnumber in
             var data: Data
             var filter: CIFilter
+            print ("I AM HERE")
+            print ("CARD NUMBER:" + cardnumber)
+            self.dukeCard = cardnumber
+            self.cardLabel.text = cardnumber
             if (cardnumber != nil) {
                 if (barCode) {
                     self.qrImage.image = RSUnifiedCodeGenerator.shared.generateCode(cardnumber, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
@@ -41,6 +54,7 @@ class QRCheckInViewController: UIViewController {
                     }
                     
                 }
+                
             }
         }
     
@@ -84,8 +98,14 @@ class QRCheckInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Check In"
+        print (dukeCard)
+        print("THE EVENT IS" + event.summary)
         //print (cardNumber)
         showBarCode(barCode: isBarCode)
+        eventLabel.text = event.summary
+        dateLabel.text = event.start_date
+        locationLabel.text = event.address
+        cardLabel.text = "CARD: " + self.dukeCard
 
         // Do any additional setup after loading the view.
     }
