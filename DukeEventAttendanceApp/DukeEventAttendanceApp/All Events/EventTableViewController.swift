@@ -47,7 +47,17 @@ class EventTableViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Events"
+        
+        
+       
+        
         navigationItem.searchController = searchController
+        
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        
+        textFieldInsideSearchBar?.textColor = UIColor.white
+        searchController.searchBar.tintColor = UIColor.white
+        
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         // Uncomment the following line to preserve selection between presentations
@@ -67,6 +77,15 @@ class EventTableViewController: UITableViewController {
 //        //self.navigationController?.navigationBar.barTintColor = UIColor.blue
 //
 //    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        
+        textFieldInsideSearchBar?.textColor = UIColor.white
+        searchController.searchBar.tintColor = UIColor.white
+        
+    }
 
     func hitAPI(_for URLString:String, title: String, text: String) {
        
@@ -125,6 +144,9 @@ class EventTableViewController: UITableViewController {
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         //print ("here")
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        
+        textFieldInsideSearchBar?.textColor = UIColor.white
         filteredEvents = eventArray.filter({( event:Event) -> Bool in
             return event.summary.lowercased().contains(searchText.lowercased())
         })

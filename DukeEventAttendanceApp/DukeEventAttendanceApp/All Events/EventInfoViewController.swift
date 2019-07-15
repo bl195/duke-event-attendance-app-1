@@ -118,7 +118,7 @@ class EventInfoViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = ""
         //descriptionLabel.numberOfLines = 0
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 1000)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 2500)
             //CGSizeMake(self.view.frame.width, self.view.frame.height + 100)
         
         summaryLabel.text = sum

@@ -174,7 +174,7 @@ class SelfCheckInViewController: UIViewController{
                     self.drawCircle(location: desiredLoc, color: "green")
                 }
             }
-            self.isInBounds = true
+            //self.isInBounds = true
             if ( !self.isInBounds ){
                 var alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
                 alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))

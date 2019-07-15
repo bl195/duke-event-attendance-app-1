@@ -34,8 +34,8 @@ class Items{
     func getName(completionHandler: @escaping (_ returnname: String) -> Void ){
         let query = GetMyNameQuery()
         Apollo.shared.client.fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
-            let name = results?.data?.getMyname
-            completionHandler(name!)
+            let name = results?.data?.getMyname ?? ""
+            completionHandler(name)
         }
     }
     

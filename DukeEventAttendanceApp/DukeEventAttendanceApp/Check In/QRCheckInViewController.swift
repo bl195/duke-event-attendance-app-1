@@ -102,6 +102,10 @@ class QRCheckInViewController: UIViewController {
         print("THE EVENT IS" + event.summary)
         //print (cardNumber)
         showBarCode(barCode: isBarCode)
+        
+        Items.sharedInstance.getName { name in
+            self.nameLabel.text = name
+        }
         eventLabel.text = event.summary
         dateLabel.text = event.start_date
         locationLabel.text = event.address
@@ -109,6 +113,8 @@ class QRCheckInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
     
     
     
