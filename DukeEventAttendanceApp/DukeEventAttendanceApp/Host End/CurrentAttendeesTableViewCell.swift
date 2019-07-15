@@ -10,7 +10,8 @@ import UIKit
 class CurrentAttendeesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dukeCardNumber: UILabel!
-    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var checkInTime: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

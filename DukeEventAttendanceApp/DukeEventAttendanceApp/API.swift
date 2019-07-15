@@ -74,6 +74,42 @@ public final class GetMyNameQuery: GraphQLQuery {
   }
 }
 
+public final class GetNetIdQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query getNetID {\n  getNetid\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getNetid", type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getNetid: String) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getNetid": getNetid])
+    }
+
+    /// Returns netid by duke unique id
+    public var getNetid: String {
+      get {
+        return resultMap["getNetid"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getNetid")
+      }
+    }
+  }
+}
+
 public final class GetNameQuery: GraphQLQuery {
   public let operationDefinition =
     "query getName($cardnumber: ID!) {\n  getName(id: $cardnumber)\n}"

@@ -70,7 +70,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
                         //self.navigationController?.pushViewController(vc!, animated: true)
             vc?.event_id = eventid
-            self.navigationController?.show(vc!, sender: true)
+            self.navigationController?.pushViewController(vc!, animated: true)
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )

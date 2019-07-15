@@ -6,6 +6,10 @@ query getMyName {
     getMyname
 }
 
+query getNetID {
+getNetid
+}
+
 query getName($cardnumber: ID!) {
     getName(id: $cardnumber)
 }

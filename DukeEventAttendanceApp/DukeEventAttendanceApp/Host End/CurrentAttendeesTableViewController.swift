@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Apollo
 
 
 class CurrentAttendeesTableViewController: UITableViewController {
@@ -56,7 +57,6 @@ class CurrentAttendeesTableViewController: UITableViewController {
             if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
-                                        print( attendee.resultMap["duid"]!! as! String )
                     self.tableView.reloadData()
                 }
             } else{
@@ -84,18 +84,28 @@ class CurrentAttendeesTableViewController: UITableViewController {
         return self.current_attendees.count
     }
     
+    func getName( cardNumber:String, completionHandler: @escaping (_ cardnumber: String) -> Void ){
+        let query = GetNameQuery(cardnumber: cardNumber)
+        Apollo.shared.client.fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+            let name = results?.data?.resultMap["getName"] as! String
+            completionHandler(name)
+        }
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let name = "Loading Name..."
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentAttendeeCell", for: indexPath) as! CurrentAttendeesTableViewCell
-
-        // Configure the cell...
-        cell.dukeCardNumber.text = current_attendees[indexPath.row]
+        self.getName(cardNumber: current_attendees[indexPath.row]){ name in
+            cell.name.text = name
+        }
+        cell.name.text = name
+        cell.dukeCardNumber.text = "CARD: " + current_attendees[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
     
 
