@@ -2,10 +2,18 @@ query getCardQuery {
 getDukeCardNumber
 }
 
-query HostsEvents($id: ID!) {
-hostEvents(id: $id) {
+query getMyName{
+getMyname
+}
+
+query HostsEvents{
+hostEvents{
 eventid
 }
+}
+
+query GetInfo($eventid: ID!, $attendeeid: ID!){
+getInfo(eventid: $eventid, attendeeid: $attendeeid)
 }
 
 query AllAttendees($id: ID!){
@@ -32,4 +40,5 @@ hostCheckIn(eventid: $eventid, title: $title, hostid: $hostid){
 id
 }
 }
+
 

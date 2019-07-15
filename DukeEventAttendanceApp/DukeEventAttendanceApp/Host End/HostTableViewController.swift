@@ -33,7 +33,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     
     func getQuery(){
         //
-        let query = HostsEventsQuery(id: Items.sharedInstance.my_netid)
+        //let query = HostsEventsQuery()
+        let query = HostsEventsQuery()
         Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
             print(results)
             if let hostevents = results?.data?.hostEvents{
@@ -70,7 +71,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
                         //self.navigationController?.pushViewController(vc!, animated: true)
             vc?.event_id = eventid
-            self.navigationController?.show(vc!, sender: true)
+            self.navigationController?.pushViewController(vc!, animated: true)
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )

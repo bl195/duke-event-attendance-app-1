@@ -19,19 +19,18 @@ class EventInfoViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var extendButton: UIButton!
-    var tapCount = 0
-    @IBAction func extendText(_ sender: Any) {
-        print ("tapped")
-        if( tapCount%2 == 0){
-            descriptionLabel.numberOfLines = 0
-            tapCount += 1
-        }
-        else{
-            descriptionLabel.numberOfLines = 4
-            tapCount += 1
-        }
-    }
+//    @IBOutlet weak var extendButton: UIButton!
+//    var tapCount = 0
+//    @IBAction func extendText(_ sender: Any) {
+//        if( tapCount%2 == 0){
+//            descriptionLabel.numberOfLines = 0
+//            tapCount += 1
+//        }
+//        else{
+//            descriptionLabel.numberOfLines = 4
+//            tapCount += 1
+//        }
+//    }
     
     @IBAction func onShareTapped(_ sender: Any) {
         let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: nil)
@@ -116,6 +115,7 @@ class EventInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = ""
         //descriptionLabel.numberOfLines = 0
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 1000)
@@ -126,7 +126,7 @@ class EventInfoViewController: UIViewController {
         //shortMonthLabel.text = sml
         locationLabel.text = ll
         timeLabel.text = tl
-        descriptionLabel.numberOfLines = 4
+        descriptionLabel.numberOfLines = 0
         descriptionLabel.attributedText = dl.htmlToAttributedString
         descriptionLabel.font = UIFont.systemFont(ofSize: 17.0)
         descriptionLabel.textColor = UIColor(red: 102/255, green: 102/255, blue:102/255, alpha: 1.0)

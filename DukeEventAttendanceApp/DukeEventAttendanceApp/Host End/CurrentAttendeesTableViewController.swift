@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Apollo
 
 
 class CurrentAttendeesTableViewController: UITableViewController {
@@ -20,8 +21,14 @@ class CurrentAttendeesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        //self.navigationController?.navigationBar.isOpaque = true
         
-      self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "WORK", style: UIBarButtonItem.Style.plain, target: self, action: #selector(goBack))
+        // Register the custom header view.
+        tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        
         
         
         refreshControl2 = UIRefreshControl()
@@ -56,7 +63,6 @@ class CurrentAttendeesTableViewController: UITableViewController {
             if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
-                                        print( attendee.resultMap["duid"]!! as! String )
                     self.tableView.reloadData()
                 }
             } else{
@@ -84,18 +90,61 @@ class CurrentAttendeesTableViewController: UITableViewController {
         return self.current_attendees.count
     }
     
+//    func getName( cardNumber:String, completionHandler: @escaping (_ cardnumber: String) -> Void ){
+//        let query = GetNameQuery(cardnumber: cardNumber)
+//        Apollo.shared.client.fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in            let name = results?.data?.resultMap["getName"] as! String
+//            completionHandler(name)
+//        }
+//    }
+    
+    func getInfo( cardNumber:String, completionHandler: @escaping (_ cardnumber: [String:String]) -> Void ){
+        let query = GetInfoQuery(eventid: self.event_id, attendeeid: cardNumber)
+        Apollo.shared.client.fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+            let infoarr = results?.data?.resultMap["getInfo"] as! [String]
+            let name = infoarr[1]
+            let time = infoarr[0]
+            completionHandler(["name": name,"time": time])
+        }
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let name = "Loading Name..."
+        let time = "..."
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentAttendeeCell", for: indexPath) as! CurrentAttendeesTableViewCell
-
-        // Configure the cell...
-        cell.dukeCardNumber.text = current_attendees[indexPath.row]
+//        self.getName(cardNumber: current_attendees[indexPath.row]){ name in
+//            cell.name.text = name
+//        }
+        self.getInfo(cardNumber: current_attendees[indexPath.row]){ dic in
+            cell.name.text = dic["name"]
+            cell.checkInTime.text = dic["time"]
+        }
+        cell.checkInTime.text = time
+        cell.name.text = name
+        cell.dukeCardNumber.text = "CARD: " + current_attendees[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+            "sectionHeader") as! CustomHeader
+        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
+        view.title.attributedText = NSAttributedString(string: event!.summary, attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 23)!, NSAttributedString.Key.foregroundColor: UIColor.white])
+        view.title.numberOfLines = 2
+        view.checkintime.attributedText = NSAttributedString(string: "Start Check-In: " + event!.starttime, attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 18)!, NSAttributedString.Key.foregroundColor: UIColor.white])
+        view.checkintime.numberOfLines = 0
+        view.title.textAlignment = .center
+        
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 130
     }
     
 
