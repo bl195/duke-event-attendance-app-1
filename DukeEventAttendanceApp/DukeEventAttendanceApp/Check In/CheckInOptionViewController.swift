@@ -23,7 +23,7 @@ class CheckInOptionViewController: UIViewController {
         
         SelfCheckInButton.layer.cornerRadius = 20.0
         QRButton.layer.cornerRadius = 20.0
-        
+        print (event.id)
         //self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
     }
