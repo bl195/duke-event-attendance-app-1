@@ -75,7 +75,7 @@ class SelfCheckInViewController: UIViewController{
         //confirmButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         //confirmButton.clipsToBounds = true
         
-        checkLocation(eventlocation: self.eventLocation + ", Durham", userlocation: myLocation)
+        checkLocation(eventlocation: self.eventLocation + ", Durham")
         
     }
     
@@ -167,7 +167,7 @@ class SelfCheckInViewController: UIViewController{
         }
     }
     
-    func checkLocation(eventlocation:String, userlocation:CLLocation) {
+    func checkLocation(eventlocation:String) {
         let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = eventlocation
         var desiredLoc = CLLocation()
@@ -181,10 +181,11 @@ class SelfCheckInViewController: UIViewController{
             }
             
             for item in response.mapItems {
+                print("mapitems ")
                 print(item)
                 desiredLoc = item.placemark.location!
                 desiredCoords = item.placemark.coordinate
-                print(item.placemark.coordinate ?? "No phone number.")
+                print(item.placemark.coordinate ?? "No phone number." )
                 var distance = self.myLocation.distance(from: desiredLoc)
                 if( distance <= 100){
                     self.isInBounds = true
@@ -258,7 +259,8 @@ extension SelfCheckInViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            print(location)
+            print("my location: ")
+                print(location)
             let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
             let region: MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: span)
