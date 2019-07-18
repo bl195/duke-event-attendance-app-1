@@ -94,7 +94,10 @@ class SelfCheckInViewController: UIViewController{
     @IBAction func confirmCheckIn(_ sender: Any) {
         //queryAllAttendees()
         //print (attendees_array)
-        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+        if (hnc == nil) {
+            hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        }
         loadAttendee(nav: hnc!, event_id: event.id)
     }
     
