@@ -110,6 +110,7 @@ class EventInfoViewController: UIViewController {
         //hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
         vc?.eventLoc = self.ll
+        vc?.event = self.event
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -118,7 +119,7 @@ class EventInfoViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = ""
         //descriptionLabel.numberOfLines = 0
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 2500)
+        
             //CGSizeMake(self.view.frame.width, self.view.frame.height + 100)
         
         summaryLabel.text = sum
@@ -155,6 +156,7 @@ class EventInfoViewController: UIViewController {
             webLinkButton.tintColor = UIColor.white
         }
         
+        //scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 2500)
         
     }
     

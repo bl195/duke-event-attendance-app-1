@@ -180,7 +180,7 @@ public final class GetInfoQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "getInfo": getInfo])
     }
 
-    /// Returns name by duke unique id
+    /// Returns name and check in time by duke unique id
     public var getInfo: [String] {
       get {
         return resultMap["getInfo"]! as! [String]
@@ -267,6 +267,42 @@ public final class AllAttendeesQuery: GraphQLQuery {
         set {
           resultMap.updateValue(newValue, forKey: "duid")
         }
+      }
+    }
+  }
+}
+
+public final class GetDukeUniqueQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query getDukeUnique {\n  getDuid\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getDuid", type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getDuid: String) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getDuid": getDuid])
+    }
+
+    /// Returns duke unique id
+    public var getDuid: String {
+      get {
+        return resultMap["getDuid"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getDuid")
       }
     }
   }
@@ -396,90 +432,6 @@ public final class QrCheckInMutation: GraphQLMutation {
     }
 
     public struct QrCheckIn: GraphQLSelectionSet {
-      public static let possibleTypes = ["Host"]
-
-      public static let selections: [GraphQLSelection] = [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-      ]
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(id: GraphQLID) {
-        self.init(unsafeResultMap: ["__typename": "Host", "id": id])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      public var id: GraphQLID {
-        get {
-          return resultMap["id"]! as! GraphQLID
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "id")
-        }
-      }
-    }
-  }
-}
-
-public final class CheckInHostMutation: GraphQLMutation {
-  public let operationDefinition =
-    "mutation CheckInHost($eventid: String!, $title: String!, $hostid: String!) {\n  hostCheckIn(eventid: $eventid, title: $title, hostid: $hostid) {\n    __typename\n    id\n  }\n}"
-
-  public var eventid: String
-  public var title: String
-  public var hostid: String
-
-  public init(eventid: String, title: String, hostid: String) {
-    self.eventid = eventid
-    self.title = title
-    self.hostid = hostid
-  }
-
-  public var variables: GraphQLMap? {
-    return ["eventid": eventid, "title": title, "hostid": hostid]
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Mutation"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("hostCheckIn", arguments: ["eventid": GraphQLVariable("eventid"), "title": GraphQLVariable("title"), "hostid": GraphQLVariable("hostid")], type: .object(HostCheckIn.selections)),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(hostCheckIn: HostCheckIn? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "hostCheckIn": hostCheckIn.flatMap { (value: HostCheckIn) -> ResultMap in value.resultMap }])
-    }
-
-    /// Check in as host
-    public var hostCheckIn: HostCheckIn? {
-      get {
-        return (resultMap["hostCheckIn"] as? ResultMap).flatMap { HostCheckIn(unsafeResultMap: $0) }
-      }
-      set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "hostCheckIn")
-      }
-    }
-
-    public struct HostCheckIn: GraphQLSelectionSet {
       public static let possibleTypes = ["Host"]
 
       public static let selections: [GraphQLSelection] = [

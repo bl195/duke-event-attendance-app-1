@@ -13,6 +13,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 
     
     var host_events = [String]()
+    var actual_events = [Event]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,19 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
-        getQuery()
+        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        getQuery(nav: hnc!) { hostEvents, error in
+            self.host_events = hostEvents
+            for event in self.host_events {
+                let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
+                if (ev != nil) {
+                    self.actual_events.append(ev!)
+                }
+                
+            }
+            self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
+            self.tableView.reloadData()
+        }
         
         // Register the custom header view.
         tableView.register(CustomHeader.self,
@@ -28,20 +41,52 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        getQuery() { hostEvents in
+//            self.host_events = hostEvents
+//            self.tableView.reloadData()
+//        }
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    func getQuery(){
-        //
-        //let query = HostsEventsQuery()
+    func getQuery(nav: UINavigationController, completionHandler: @escaping (_ hostEvents: [String], _ error: String?) -> Void){
+        
         let query = HostsEventsQuery()
-        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
             print(results)
-            if let hostevents = results?.data?.hostEvents{
-                for event in hostevents {
-                    self.host_events.append( event.resultMap["eventid"]!! as! String )
-                    self.tableView.reloadData()
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                    case 401:
+                        //request unauthorized due to bad token
+                        
+                        OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                            if success {
+                        
+                                self.getQuery(nav: nav) { hostEvents, error in
+                                    completionHandler(hostEvents, error)
+                                }
+                            } else {
+                                //handle error
+                            }
+                            
+                        }
+                    default:
+                        print ("error")
                 }
+            }
+            else if let hostevents = results?.data?.hostEvents{
+                for event in hostevents {
+                    
+                    self.host_events.append( event.resultMap["eventid"]!! as! String )
+                    
+                    //self.tableView.reloadData()
+                }
+
+                DispatchQueue.main.async {
+                    print (self.host_events.count)
+                    completionHandler(self.host_events, nil)
+                }
+                
+                
                 
             } else{
                 let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
@@ -102,7 +147,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.host_events.count
+        return self.actual_events.count
     }
 
     
@@ -111,14 +156,16 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             fatalError("the cell is not an instance of the table view cell")
         }
         // Configure the cell...
-        let event_id = self.host_events[indexPath.row]
-        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
+//        let event_id = self.host_events[indexPath.row]
+//        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
+       
+        let event = self.actual_events[indexPath.row]
         if event != nil{
-            cell.eventTitle.text = event?.summary
-            cell.monthLabel.text = event?.startmonth.uppercased()
-            cell.dayLabel.text = event?.startday
-            cell.timeLabel.text = "Time: " + event!.starttime + " - " + event!.endtime
-            cell.locLabel.text = "Location: " + event!.address
+            cell.eventTitle.text = event.summary
+            cell.monthLabel.text = event.startmonth.uppercased()
+            cell.dayLabel.text = event.startday
+            cell.timeLabel.text = "Time: " + event.starttime + " - " + event.endtime
+            cell.locLabel.text = "Location: " + event.address
         }
         cell.backgroundCard.layer.cornerRadius = 10.0
         cell.allowCheckInButton.layer.cornerRadius = 10.0

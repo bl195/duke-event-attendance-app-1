@@ -89,7 +89,7 @@ class OAuthService {
      * @return the access token.
      */
     func getAccessToken() -> String? {
-        print( KeychainWrapper.standard.string(forKey: ACCESS_TOKEN_KEY) )
+        //print( KeychainWrapper.standard.string(forKey: ACCESS_TOKEN_KEY) )
         return KeychainWrapper.standard.string(forKey: ACCESS_TOKEN_KEY)
     }
     

@@ -21,7 +21,27 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var logInButton: UIButton!
     
- 
+    override func viewDidLoad() {
+        oAuthService = OAuthService.shared
+        if ((oAuthService?.isAuthenticated())!) {
+            let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "mainFeed") as? UITabBarController
+            self.present(feedVC!, animated: true, completion: nil)
+        }
+        else {
+            self.photoImageView.image = UIImage(named: "DukeCheck")
+            photoImageView.translatesAutoresizingMaskIntoConstraints = false
+            photoImageView.contentMode = .scaleAspectFit
+            setUpLayout()
+            
+        }
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        
+        
+      
+        
+    }
 
     @IBAction func logInPressed(_ sender: Any) {
         //oAuthService?.logout()
@@ -62,17 +82,7 @@ class ViewController: UIViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.photoImageView.image = UIImage(named: "DukeCheck")
-        photoImageView.translatesAutoresizingMaskIntoConstraints = false
-        photoImageView.contentMode = .scaleAspectFit
-        setUpLayout()
-        
-        oAuthService = OAuthService.shared
-        
-    }
+    
     
     private func setUpLayout() {
         let topImageContainerView = UIView()

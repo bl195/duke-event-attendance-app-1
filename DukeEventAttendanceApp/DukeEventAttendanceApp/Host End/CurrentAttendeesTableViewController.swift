@@ -36,7 +36,11 @@ class CurrentAttendeesTableViewController: UITableViewController {
         refreshControl2!.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         tableView.addSubview(refreshControl2)
         
-        loadAttendees()
+        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        loadAttendees(nav: hnc!) { attendees,error in
+            self.current_attendees = attendees
+            self.tableView.reloadData()
+        }
         
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
@@ -50,20 +54,44 @@ class CurrentAttendeesTableViewController: UITableViewController {
         print("Hello World!")
         
         // somewhere in your code you might need to call:
-        loadAttendees()
+        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        loadAttendees(nav: hnc!) {attendees,error in
+            self.current_attendees = attendees
+            self.tableView.reloadData()
+        }
         refreshControl2.endRefreshing()
     }
     
-    func loadAttendees(){
+    func loadAttendees(nav: UINavigationController, completionHandler: @escaping (_ attendees: [String],_ error: String?) -> Void){
         self.current_attendees.removeAll()
         let query = AllAttendeesQuery(id: self.event_id)
-        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            //            print("got here")
-                        print("event id is " + self.event_id)
-            if let attendees = results?.data?.allAttendees{
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.loadAttendees(nav: nav) { attendees, error in
+                                completionHandler(attendees, error)
+                            }
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print ("error")
+                }
+            }
+            else if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
-                    self.tableView.reloadData()
+                    
+                    //self.tableView.reloadData()
+                }
+                DispatchQueue.main.async {
+                    completionHandler(self.current_attendees,nil)
                 }
             } else{
                 let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
@@ -97,13 +125,35 @@ class CurrentAttendeesTableViewController: UITableViewController {
 //        }
 //    }
     
-    func getInfo( cardNumber:String, completionHandler: @escaping (_ cardnumber: [String:String]) -> Void ){
+    func getInfo(nav: UINavigationController, cardNumber:String, completionHandler: @escaping (_ cardnumber: [String:String], _ error: String?) -> Void ){
         let query = GetInfoQuery(eventid: self.event_id, attendeeid: cardNumber)
-        Apollo.shared.client.fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
-            let infoarr = results?.data?.resultMap["getInfo"] as! [String]
-            let name = infoarr[1]
-            let time = infoarr[0]
-            completionHandler(["name": name,"time": time])
+        Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.getInfo(nav: nav, cardNumber: cardNumber) { cardnumber, error in
+                                completionHandler(cardnumber, error)
+                            }
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print ("error")
+                }
+            }
+            else {
+                let infoarr = results?.data?.resultMap["getInfo"] as! [String]
+                let name = infoarr[1]
+                let time = infoarr[0]
+                completionHandler(["name": name,"time": time], nil)
+                
+            }
+            
         }
     }
 
@@ -115,7 +165,9 @@ class CurrentAttendeesTableViewController: UITableViewController {
 //        self.getName(cardNumber: current_attendees[indexPath.row]){ name in
 //            cell.name.text = name
 //        }
-        self.getInfo(cardNumber: current_attendees[indexPath.row]){ dic in
+        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        
+        self.getInfo(nav: hnc!, cardNumber: current_attendees[indexPath.row]){ dic,error in
             cell.name.text = dic["name"]
             cell.checkInTime.text = dic["time"]
         }

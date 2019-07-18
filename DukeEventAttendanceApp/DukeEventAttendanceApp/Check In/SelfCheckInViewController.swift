@@ -75,7 +75,7 @@ class SelfCheckInViewController: UIViewController{
         //confirmButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         //confirmButton.clipsToBounds = true
         
-        checkLocation(eventlocation: self.eventLocation + ", Durham", userlocation: myLocation)
+        checkLocation(eventlocation: self.eventLocation + ", Durham")
         
     }
     
@@ -94,21 +94,41 @@ class SelfCheckInViewController: UIViewController{
     @IBAction func confirmCheckIn(_ sender: Any) {
         //queryAllAttendees()
         //print (attendees_array)
-        loadAttendee(event_id: event.id)
+        var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+        if (hnc == nil) {
+            hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        }
+        loadAttendee(nav: hnc!, event_id: event.id)
     }
     
-    func loadAttendee (event_id: String) {
+    func loadAttendee (nav: UINavigationController, event_id: String) {
         //indicator.startAnimating()
         print (event_id)
         let createAttendeeMutation = SelfCheckInMutation(eventid: event_id)
-        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        Apollo().getClient().perform(mutation: createAttendeeMutation) { [unowned self] result, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.loadAttendee(nav: nav, event_id: event_id)
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print ("error")
+                }
             }
-            print (result?.data?.selfCheckIn?.id)
-            print (result?.errors)
-            if (result?.data?.selfCheckIn?.id != nil) {
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+            
+            else if (result?.data?.selfCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.selfCheckIn?.id ?? "no attendee")
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
@@ -133,7 +153,7 @@ class SelfCheckInViewController: UIViewController{
     func invalidityCheck(){
         var alertMessage = ""
         let query = AllAttendeesQuery(id: self.eventid)
-        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
             if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     var att = attendee.resultMap["duid"]!! as! String
@@ -150,7 +170,7 @@ class SelfCheckInViewController: UIViewController{
         }
     }
     
-    func checkLocation(eventlocation:String, userlocation:CLLocation) {
+    func checkLocation(eventlocation:String) {
         let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = eventlocation
         var desiredLoc = CLLocation()
@@ -164,10 +184,11 @@ class SelfCheckInViewController: UIViewController{
             }
             
             for item in response.mapItems {
+                print("mapitems ")
                 print(item)
                 desiredLoc = item.placemark.location!
                 desiredCoords = item.placemark.coordinate
-                print(item.placemark.coordinate ?? "No phone number.")
+                print(item.placemark.coordinate ?? "No phone number." )
                 var distance = self.myLocation.distance(from: desiredLoc)
                 if( distance <= 100){
                     self.isInBounds = true
@@ -241,7 +262,8 @@ extension SelfCheckInViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            print(location)
+            print("my location: ")
+                print(location)
             let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
             let region: MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: span)
