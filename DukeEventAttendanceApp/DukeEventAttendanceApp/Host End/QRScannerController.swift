@@ -107,8 +107,10 @@ class QRScannerController: UIViewController {
     
     // MARK: - Helper methods
     var alertPrompt = UIAlertController()
-
+    
     func launchApp(decodedURL: String) {
+        
+        captureSession.stopRunning()
         
         if presentedViewController != nil {
             return
@@ -122,7 +124,10 @@ class QRScannerController: UIViewController {
             self.alertPrompt.dismiss(animated: true)
             self.loadAttendee(nav: hnc!, event_id: self.event_id, duid: "\(decodedURL)")
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {
+            (action) -> Void in
+            self.captureSession.startRunning()
+        })
         
         alertPrompt.addAction(confirmAction)
         alertPrompt.addAction(cancelAction)
@@ -156,7 +161,7 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                launchApp(decodedURL: metadataObj.stringValue!)
+                launchApp(decodedURL: metadataObj.stringValue!) //completion handler heref
                 messageLabel.text = metadataObj.stringValue
             }
         }
@@ -194,7 +199,10 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
                 
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
+                    (action) -> Void in
+                    self.captureSession.startRunning()
+                    }))
                 self.present(alert, animated: true)
                 
                 //self.launchApp(decodedURL: cardNumber)
@@ -206,7 +214,10 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
                 
                 let alert = UIAlertController(title: "Check-in denied", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
+                    (action) -> Void in
+                    self.captureSession.startRunning()
+                }))
                 self.present(alert, animated: true)
                 //self.viewDidLoad()
                 //self.launchApp(decodedURL: cardNumber)
