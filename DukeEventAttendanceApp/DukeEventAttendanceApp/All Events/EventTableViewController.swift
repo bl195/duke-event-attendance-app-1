@@ -328,6 +328,7 @@ class EventTableViewController: UITableViewController {
         else{
             thisArray = eventArray
         }
+        vc?.event = thisArray[indexPath.row]
         vc?.id = thisArray[indexPath.row].id
         vc?.event = thisArray[indexPath.row]
         vc?.sum = thisArray[indexPath.row].summary

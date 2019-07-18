@@ -103,7 +103,11 @@ class QRCheckInViewController: UIViewController {
         print("THE EVENT IS" + event.summary)
         
     
-         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        
+         var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+        if (hnc == nil) {
+            hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        }
         
         showBarCode(barCode: isBarCode, nav: hnc!)
         
