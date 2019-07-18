@@ -23,20 +23,32 @@ class EventTableViewController: UITableViewController {
     var dateFilter: Bool = false
     
     
-    
-    @IBOutlet weak var cal: UIBarButtonItem!
+    //initialize calendar
+    @IBOutlet weak var topicfilter: UIBarButtonItem!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 24)!]
+        
+        //switch bar
         
         let my_switch = UISwitch(frame: .zero)
         my_switch.isOn = switchOn
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
         let switch_display = UIBarButtonItem(customView: my_switch)
-        navigationItem.rightBarButtonItems = [cal, switch_display]
+        navigationItem.rightBarButtonItems = [switch_display]
+   
+        
+        //settings bar
+//        let settings_display = UIBarButtonItem(image: UIImage(named: "icons8-settings-24"), style: .done, target: self, action: #selector(tapButton))
+//
+//        navigationItem.leftBarButtonItems = [topicfilter, settings_display]
+        
+        
+        
+   //-------------------------------------------------------------------------------------------
+        
+        
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -119,6 +131,9 @@ class EventTableViewController: UITableViewController {
 
     }
     
+    @objc func tapButton(){
+        print("tapped")
+    }
     
     // MARK: - Table view data source
     

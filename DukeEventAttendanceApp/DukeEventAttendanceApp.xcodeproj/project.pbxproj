@@ -45,6 +45,8 @@
 		C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510922B17A2000FF90DC /* CalendarViewController.swift */; };
 		C76A510C22B17A3B00FF90DC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */; };
 		C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510D22B17A5A00FF90DC /* CalendarVar.swift */; };
+		C7F19D0B22DFA27C00548B29 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F19D0A22DFA27C00548B29 /* SideBarTableViewController.swift */; };
+		C7F19D0D22DFAAFB00548B29 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F19D0C22DFAAFB00548B29 /* MessageCell.swift */; };
 		C820620622C3DF8D0040E53F /* SelfCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */; };
 		C820620822C3E0490040E53F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C820620722C3E0480040E53F /* CoreLocation.framework */; };
 		C84420C422D5302500FF4DA0 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */; };
@@ -118,6 +120,8 @@
 		C76A510922B17A2000FF90DC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		C76A510D22B17A5A00FF90DC /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVar.swift; sourceTree = "<group>"; };
+		C7F19D0A22DFA27C00548B29 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideBarTableViewController.swift; path = "All Events/SideBarTableViewController.swift"; sourceTree = "<group>"; };
+		C7F19D0C22DFAAFB00548B29 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckInViewController.swift; sourceTree = "<group>"; };
 		C820620722C3E0480040E53F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
 				07D418A922CBAB27005B1A78 /* All Events */,
 				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
+				C7F19D0A22DFA27C00548B29 /* SideBarTableViewController.swift */,
+				C7F19D0C22DFAAFB00548B29 /* MessageCell.swift */,
 				07434C4822BAC7D100BC19A0 /* PersistenceService.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
 				C76A510D22B17A5A00FF90DC /* CalendarVar.swift */,
@@ -538,8 +544,10 @@
 				C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */,
 				073283CD22B2C85F00E9A9D8 /* MyAgendaTableViewController.swift in Sources */,
 				0744B1B722AEEE8700DB6A88 /* MenuViewController.swift in Sources */,
+				C7F19D0D22DFAAFB00548B29 /* MessageCell.swift in Sources */,
 				078C56AB22D06295003DC4F4 /* AllEventsViewController.swift in Sources */,
 				07D418A822CBAB0C005B1A78 /* MyAgendaViewController.swift in Sources */,
+				C7F19D0B22DFA27C00548B29 /* SideBarTableViewController.swift in Sources */,
 				C872D26022DCE61E003AA82C /* CustomHeader.swift in Sources */,
 				07A772C522CC6399004302AD /* HostTableViewCell.swift in Sources */,
 				07CBCDA322CAA6B2007F1BDF /* OAuthService.swift in Sources */,
