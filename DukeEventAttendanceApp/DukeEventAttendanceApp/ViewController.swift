@@ -27,13 +27,12 @@ class ViewController: UIViewController {
             let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "mainFeed") as? UITabBarController
             self.present(feedVC!, animated: true, completion: nil)
         }
-        else {
-            self.photoImageView.image = UIImage(named: "DukeCheck")
-            photoImageView.translatesAutoresizingMaskIntoConstraints = false
-            photoImageView.contentMode = .scaleAspectFit
-            setUpLayout()
-            
-        }
+       
+        self.photoImageView.image = UIImage(named: "DukeCheck")
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        photoImageView.contentMode = .scaleAspectFit
+        setUpLayout()
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -42,6 +41,8 @@ class ViewController: UIViewController {
       
         
     }
+    
+    
 
     @IBAction func logInPressed(_ sender: Any) {
         //oAuthService?.logout()

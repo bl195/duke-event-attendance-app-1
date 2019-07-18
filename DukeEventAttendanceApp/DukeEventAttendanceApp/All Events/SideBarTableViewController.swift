@@ -14,6 +14,7 @@ struct cellData {
     var sectionData = [String]()
 }
 
+
 class SideBarTableViewController: UITableViewController {
     
     var oAuthService: OAuthService?
@@ -37,6 +38,8 @@ class SideBarTableViewController: UITableViewController {
         super.viewDidLoad()
         
          tableViewData = [cellData(opened: false, sectionData: ["cell1","cell2","cell3"])]
+        
+        oAuthService = OAuthService.shared
        
     }
     
@@ -85,18 +88,28 @@ class SideBarTableViewController: UITableViewController {
         }
         
         if(indexPath.row == 0){
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "") as? 
-            let alert  = UIAlertController(title: "Logout", message: "Do you want to Log out?", preferredStyle: .alert)
-            let subButton = UIAlertAction(title: "Yes", style: .default, handler: nil)
+            
+            let alert = UIAlertController(title: "Logout", message: "Do you want to Log out?", preferredStyle: .alert)
+            let subButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+                self.oAuthService?.logout()
+                print (self.oAuthService?.isAuthenticated())
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+                self.navigationController?.present(vc!, animated: true)
+                
+                print("logged out")
+                
+            })
             let cancelButton = UIAlertAction(title: "No", style: .cancel, handler: nil)
             alert.addAction(subButton)
             alert.addAction(cancelButton)
             self.present(alert, animated: true, completion: nil)
-            if(subButton.isEnabled == true){
-                oAuthService?.logout()
-                self.navigationController?.pushViewController(vc!, animated: true)
-                print("logged out")
-            }
+//            if(subButton.isEnabled == true){
+//                oAuthService?.logout()
+//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? UIViewController
+//                self.navigationController?.present(vc!, animated: true)
+//
+//                print("logged out")
+//            }
         }
         
         if(indexPath.row == 2){
