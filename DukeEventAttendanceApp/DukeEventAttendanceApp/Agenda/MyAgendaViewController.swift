@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyAgendaViewController: UIViewController {
+class MyAgendaViewController: UIViewController{
 
     @IBOutlet weak var hostingButton: UIButton!
 
@@ -16,8 +16,11 @@ class MyAgendaViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
 //        attendingButton.isSelected = true
 //        hostingButton.isSelected = false
@@ -34,6 +37,11 @@ class MyAgendaViewController: UIViewController {
         addChild(controller)
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(controller.view)
+        //print (controller.view.frame.height)
+        
+        scrollView.contentSize = CGSize(width: containerView.frame.width, height: controller.view.frame.height)
+        print (scrollView.frame.height)
+        print (scrollView.contentSize.height)
         controller.didMove(toParent: self)
 
     }

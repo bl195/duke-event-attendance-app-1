@@ -39,7 +39,6 @@
 		07D418A822CBAB0C005B1A78 /* MyAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D418A722CBAB0C005B1A78 /* MyAgendaViewController.swift */; };
 		07D418AB22CBC1E5005B1A78 /* HostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D418AA22CBC1E5005B1A78 /* HostTableViewController.swift */; };
 		07D418B022CBE582005B1A78 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D418AF22CBE582005B1A78 /* Apollo.swift */; };
-		07D418B422CBEA02005B1A78 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 07D418B322CBEA02005B1A78 /* schema.json */; };
 		C34D61F2F07CDA5F240DF5AB /* Pods_DukeEventAttendanceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217E6606F16B3E1224A095A9 /* Pods_DukeEventAttendanceApp.framework */; };
 		C70E314C22B82B0D00F2E8D4 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E314B22B82B0D00F2E8D4 /* Animations.swift */; };
 		C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510922B17A2000FF90DC /* CalendarViewController.swift */; };
@@ -49,9 +48,10 @@
 		C820620822C3E0490040E53F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C820620722C3E0480040E53F /* CoreLocation.framework */; };
 		C84420C422D5302500FF4DA0 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */; };
 		C84420C622D5302C00FF4DA0 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84420C522D5302C00FF4DA0 /* QRScannerController.swift */; };
+		C862E48C22DE5CDD00748D35 /* PleaseWork.graphql in Resources */ = {isa = PBXBuildFile; fileRef = C862E48B22DE5CDD00748D35 /* PleaseWork.graphql */; };
+		C862E48E22DE5EA200748D35 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = C862E48D22DE5EA200748D35 /* schema.json */; };
 		C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C680D22C27B01004E919A /* QRCheckInViewController.swift */; };
 		C872D26022DCE61E003AA82C /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C872D25F22DCE61D003AA82C /* CustomHeader.swift */; };
-		C872D26222DCE7FB003AA82C /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = C872D26122DCE7FA003AA82C /* Queries.graphql */; };
 		C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +111,6 @@
 		07D418A722CBAB0C005B1A78 /* MyAgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAgendaViewController.swift; sourceTree = "<group>"; };
 		07D418AA22CBC1E5005B1A78 /* HostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostTableViewController.swift; sourceTree = "<group>"; };
 		07D418AF22CBE582005B1A78 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
-		07D418B322CBEA02005B1A78 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		0C5205F53CEFCA24A8894E52 /* Pods-DukeEventAttendanceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeEventAttendanceApp.debug.xcconfig"; path = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp.debug.xcconfig"; sourceTree = "<group>"; };
 		217E6606F16B3E1224A095A9 /* Pods_DukeEventAttendanceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeEventAttendanceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70E314B22B82B0D00F2E8D4 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
@@ -122,9 +121,10 @@
 		C820620722C3E0480040E53F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		C84420C522D5302C00FF4DA0 /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
+		C862E48B22DE5CDD00748D35 /* PleaseWork.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = PleaseWork.graphql; sourceTree = "<group>"; };
+		C862E48D22DE5EA200748D35 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		C86C680D22C27B01004E919A /* QRCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCheckInViewController.swift; sourceTree = "<group>"; };
 		C872D25F22DCE61D003AA82C /* CustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomHeader.swift; path = "Host End/CustomHeader.swift"; sourceTree = "<group>"; };
-		C872D26122DCE7FA003AA82C /* Queries.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
 		C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		DA3223593F2032CE8A1691B5 /* Pods-DukeEventAttendanceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeEventAttendanceApp.release.xcconfig"; path = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,10 +181,10 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
-				C872D26122DCE7FA003AA82C /* Queries.graphql */,
+				C862E48D22DE5EA200748D35 /* schema.json */,
+				C862E48B22DE5CDD00748D35 /* PleaseWork.graphql */,
 				C872D25F22DCE61D003AA82C /* CustomHeader.swift */,
 				0744ABAE22CBF8CE00F51EDD /* API.swift */,
-				07D418B322CBEA02005B1A78 /* schema.json */,
 				07D418AF22CBE582005B1A78 /* Apollo.swift */,
 				07D418AE22CBE564005B1A78 /* GraphQL */,
 				C8183FDE22CA534300ABB035 /* DukeOAuth */,
@@ -420,10 +420,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				07AB395A22D2CDCC005C75ED /* jessweek6.storyboard in Resources */,
-				C872D26222DCE7FB003AA82C /* Queries.graphql in Resources */,
 				07193E7A22A9A301000F5A2C /* LaunchScreen.storyboard in Resources */,
-				07D418B422CBEA02005B1A78 /* schema.json in Resources */,
+				C862E48C22DE5CDD00748D35 /* PleaseWork.graphql in Resources */,
 				07193E7722A9A301000F5A2C /* Assets.xcassets in Resources */,
+				C862E48E22DE5EA200748D35 /* schema.json in Resources */,
 				07193E7522A9A300000F5A2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,7 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
 		};
 		696625D3BF451E2493929BC6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

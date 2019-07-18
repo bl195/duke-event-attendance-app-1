@@ -1,5 +1,6 @@
 import UIKit
 import AVFoundation
+import Apollo
 
 class QRScannerController: UIViewController {
 
@@ -113,10 +114,13 @@ class QRScannerController: UIViewController {
             return
         }
         
+        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        
+        
         alertPrompt = UIAlertController(title: "Result", message: "Duke ID: \(decodedURL)", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Check in", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             self.alertPrompt.dismiss(animated: true)
-            self.loadAttendee(event_id: self.event_id, duid: "\(decodedURL)")
+            self.loadAttendee(nav: hnc!, event_id: self.event_id, duid: "\(decodedURL)")
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
@@ -158,22 +162,36 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    func loadAttendee(event_id: String, duid: String) {
-        //indicator.startAnimating()
+    func loadAttendee(nav: UINavigationController, event_id: String, duid: String) {
         print(event_id)
         print(duid)
         let createAttendeeMutation = QrCheckInMutation(eventid: event_id, duid: duid)
-        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        Apollo().getClient().perform(mutation: createAttendeeMutation) { [unowned self] result, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.loadAttendee(nav: nav, event_id: event_id, duid: duid)
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print ("error")
+                }
             }
-            if (result?.data?.qrCheckIn?.id != nil) {
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+            else if (result?.data?.qrCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.qrCheckIn?.id ?? "no attendee")
                 
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
-                
                 
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))

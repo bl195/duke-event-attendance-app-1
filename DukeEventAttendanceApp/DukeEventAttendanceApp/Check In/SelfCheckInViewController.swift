@@ -94,21 +94,38 @@ class SelfCheckInViewController: UIViewController{
     @IBAction func confirmCheckIn(_ sender: Any) {
         //queryAllAttendees()
         //print (attendees_array)
-        loadAttendee(event_id: event.id)
+        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        loadAttendee(nav: hnc!, event_id: event.id)
     }
     
-    func loadAttendee (event_id: String) {
+    func loadAttendee (nav: UINavigationController, event_id: String) {
         //indicator.startAnimating()
         print (event_id)
         let createAttendeeMutation = SelfCheckInMutation(eventid: event_id)
-        Apollo.shared.client.perform(mutation: createAttendeeMutation) { [unowned self] result, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        Apollo().getClient().perform(mutation: createAttendeeMutation) { [unowned self] result, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.loadAttendee(nav: nav, event_id: event_id)
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print ("error")
+                }
             }
-            print (result?.data?.selfCheckIn?.id)
-            print (result?.errors)
-            if (result?.data?.selfCheckIn?.id != nil) {
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+            
+            else if (result?.data?.selfCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.selfCheckIn?.id ?? "no attendee")
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
@@ -133,7 +150,7 @@ class SelfCheckInViewController: UIViewController{
     func invalidityCheck(){
         var alertMessage = ""
         let query = AllAttendeesQuery(id: self.eventid)
-        Apollo.shared.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
             if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     var att = attendee.resultMap["duid"]!! as! String

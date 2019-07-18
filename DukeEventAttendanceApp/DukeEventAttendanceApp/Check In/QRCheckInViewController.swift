@@ -18,6 +18,7 @@ class QRCheckInViewController: UIViewController {
     var qrcodeImage = CIImage()
     var isBarCode:Bool = false
     var dukeCard:String = ""
+    var dukeUnique:String = ""
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var cardLabel: UILabel!
@@ -29,22 +30,22 @@ class QRCheckInViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var qrImage: UIImageView!
     
-    func showBarCode (barCode: Bool) {
+    func showBarCode (barCode: Bool, nav: UINavigationController) {
         print ("HERE")
-        Items.sharedInstance.getCard(){ cardnumber in
+        Items.sharedInstance.getDuid(nav: nav){ duid, error in
             var data: Data
             var filter: CIFilter
             print ("I AM HERE")
-            print ("CARD NUMBER:" + cardnumber)
-            self.dukeCard = cardnumber
-            self.cardLabel.text = cardnumber
-            if (cardnumber != nil) {
+            print ("DUID:" + duid)
+            self.dukeUnique = duid
+            self.cardLabel.text = "DUID: " + duid
+            if (duid != nil) {
                 if (barCode) {
-                    self.qrImage.image = RSUnifiedCodeGenerator.shared.generateCode(cardnumber, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
+                    self.qrImage.image = RSUnifiedCodeGenerator.shared.generateCode(duid, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
                 }
                 else {
                     /*QR code options*/
-                    data = cardnumber.data(using:String.Encoding.isoLatin1, allowLossyConversion: false)!
+                    data = duid.data(using:String.Encoding.isoLatin1, allowLossyConversion: false)!
                     filter = CIFilter(name: "CIQRCodeGenerator")!
                     filter.setValue(data, forKey: "inputMessage")
                     
@@ -98,18 +99,23 @@ class QRCheckInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Check In"
-        print (dukeCard)
-        print("THE EVENT IS" + event.summary)
-        //print (cardNumber)
-        showBarCode(barCode: isBarCode)
         
-        Items.sharedInstance.getName { name in
+        print("THE EVENT IS" + event.summary)
+        
+    
+         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        
+        showBarCode(barCode: isBarCode, nav: hnc!)
+        
+        Items.sharedInstance.getName (nav: hnc!) { name, error in
+            print("NAME" + name)
             self.nameLabel.text = name
         }
         eventLabel.text = event.summary
         dateLabel.text = event.start_date
         locationLabel.text = event.address
-        cardLabel.text = "CARD: " + self.dukeCard
+        
+        cardLabel.text = "CARD: " + self.dukeUnique
 
         // Do any additional setup after loading the view.
     }

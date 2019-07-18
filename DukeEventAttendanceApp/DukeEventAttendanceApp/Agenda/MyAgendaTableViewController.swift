@@ -26,6 +26,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     override func viewDidLoad() {
         self.title = "My Agenda"
         super.viewDidLoad()
+        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.delegate = self //maybe
         self.tableView.dataSource = self //maybe
