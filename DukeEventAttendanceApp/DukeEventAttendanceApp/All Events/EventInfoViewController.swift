@@ -12,6 +12,7 @@ class EventInfoViewController: UIViewController {
 
     @IBOutlet weak var summaryLabel: UILabel!
     
+
     @IBOutlet weak var webLinkButton: UIButton!
     
     @IBAction func webLink(_ sender: Any) {
@@ -19,41 +20,17 @@ class EventInfoViewController: UIViewController {
     }
     
     
-//    @IBOutlet weak var extendButton: UIButton!
-//    var tapCount = 0
-//    @IBAction func extendText(_ sender: Any) {
-//        if( tapCount%2 == 0){
-//            descriptionLabel.numberOfLines = 0
-//            tapCount += 1
-//        }
-//        else{
-//            descriptionLabel.numberOfLines = 4
-//            tapCount += 1
-//        }
-//    }
-    
     @IBAction func onShareTapped(_ sender: Any) {
         let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: nil)
         present(activityController, animated: true, completion: nil)
     }
     
-    @IBOutlet weak var shortDayLabel: UILabel!
-    @IBOutlet weak var shortMonthLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var longDateLabel: UILabel!
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var sponsorLabel: UILabel!
-    
-
-    
-    
-    
-    @IBOutlet weak var calIcon: UIImageView!
-    @IBOutlet weak var timeIcon: UIImageView!
-    @IBOutlet weak var locIcon: UIImageView!
-    
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -118,22 +95,19 @@ class EventInfoViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.title = ""
-        //descriptionLabel.numberOfLines = 0
-        
-            //CGSizeMake(self.view.frame.width, self.view.frame.height + 100)
-        
+        descriptionLabel.numberOfLines = 0
+        locationLabel.text = ll
         summaryLabel.text = sum
         //shortDayLabel.text = sdl
         //shortMonthLabel.text = sml
-        locationLabel.text = ll
-        timeLabel.text = tl
         descriptionLabel.numberOfLines = 0
         descriptionLabel.attributedText = dl.htmlToAttributedString
         descriptionLabel.font = UIFont.systemFont(ofSize: 17.0)
         descriptionLabel.textColor = UIColor(red: 102/255, green: 102/255, blue:102/255, alpha: 1.0)
         longDateLabel.text = ldl
-        //imageLabel.image = image
+        imageLabel.image = image
         sponsorLabel.text = sl
+        timeLabel.text = tl
         
         if let imageUrl = URL(string: imageURL) {
             // This is a network call and needs to be run on non-UI thread
@@ -156,32 +130,7 @@ class EventInfoViewController: UIViewController {
             webLinkButton.tintColor = UIColor.white
         }
         
-        //scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 2500)
-        
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated:animated)
-//
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
-//    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     
     
 }
