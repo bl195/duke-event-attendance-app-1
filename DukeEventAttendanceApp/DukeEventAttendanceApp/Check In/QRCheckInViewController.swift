@@ -104,7 +104,7 @@ class QRCheckInViewController: UIViewController {
         
     
         
-         var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+        var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
         if (hnc == nil) {
             hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
         }
