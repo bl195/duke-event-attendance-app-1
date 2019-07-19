@@ -14,9 +14,12 @@ struct cellData {
     var sectionData = [String]()
 }
 
-
 class SideBarTableViewController: UITableViewController {
     
+    var menuFilterSelected: Bool = false
+    var didTapMenuType: ((String) -> Void)?
+    var filtername:String = ""
+    var thisDateCode = ""
     var oAuthService: OAuthService?
     var tableViewData = [cellData]()
     
@@ -33,11 +36,13 @@ class SideBarTableViewController: UITableViewController {
     
     let datas: [Message] = [Message(for: "Logout", UIImage(named: "logout")!), Message(for: "Calendar", UIImage(named: "calendar-icon")!),  Message(for: "Topic Filter", UIImage(named: "topics")!)]
     
+     var menuArray = ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         tableViewData = [cellData(opened: false, sectionData: ["cell1","cell2","cell3"])]
+        
+         tableViewData = [cellData(opened: false, sectionData: ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"])]
         
         oAuthService = OAuthService.shared
        
@@ -57,7 +62,7 @@ class SideBarTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if tableViewData[section].opened == true{
-            return tableViewData[section].sectionData.count
+            return tableViewData[section].sectionData.count + datas.count
         }
         else{
         return datas.count
@@ -66,22 +71,38 @@ class SideBarTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row >= 2{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell")else {return UITableViewCell()}
-            cell.textLabel?.text = tableViewData[indexPath.section].sectionData[indexPath.row]
+        if indexPath.row == 1 || indexPath.row == 0 || indexPath.row == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! MessageCell
+            
+            cell.labelcell.text = datas[indexPath.row].summary
+            cell.imagecell.image = datas[indexPath.row].pic
+            
             return cell
         }
         else{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! MessageCell
-        
-        cell.labelcell.text = datas[indexPath.row].summary
-        cell.imagecell.image = datas[indexPath.row].pic
-        
-        return cell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") else {return UITableViewCell()}
+            cell.textLabel?.text = tableViewData[indexPath.section].sectionData[indexPath.row-3]
+            return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(indexPath.row == 2){
+            //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
+            //            self.navigationController?.pushViewController(vc!, animated: true)
+            
+            if tableViewData[indexPath.section].opened == true{
+                tableViewData[indexPath.section].opened = false
+                let sections = IndexSet.init(integer: indexPath.section)
+                tableView.reloadSections(sections, with: .none)
+            }else{
+                tableViewData[indexPath.section].opened = true
+                let sections = IndexSet.init(integer: indexPath.section)
+                tableView.reloadSections(sections, with: .none)
+            }
+        }
+        
         if (indexPath.row == 1){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController
             self.navigationController?.pushViewController(vc!, animated: true)
@@ -111,20 +132,12 @@ class SideBarTableViewController: UITableViewController {
 //                print("logged out")
 //            }
         }
-        
-        if(indexPath.row == 2){
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
-//            self.navigationController?.pushViewController(vc!, animated: true)
-            
-            if tableViewData[indexPath.section].opened == true{
-                tableViewData[indexPath.section].opened = false
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            }else{
-                tableViewData[indexPath.section].opened = true
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            }
+        if(indexPath.row > 2){
+            let viewcontroller = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
+            viewcontroller?.title = menuArray[indexPath.row-3].uppercased()
+            viewcontroller?.filtername = menuArray[indexPath.row-3]
+            viewcontroller?.encodedate = thisDateCode
+            self.navigationController?.pushViewController(viewcontroller!, animated:true)
         }
         
     }
