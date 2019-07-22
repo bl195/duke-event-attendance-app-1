@@ -25,6 +25,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+      
         getQuery(nav: hnc!) { hostEvents, error in
             self.host_events = hostEvents
             for event in self.host_events {

@@ -44,6 +44,7 @@
 		C76A510A22B17A2000FF90DC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510922B17A2000FF90DC /* CalendarViewController.swift */; };
 		C76A510C22B17A3B00FF90DC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */; };
 		C76A510E22B17A5A00FF90DC /* CalendarVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A510D22B17A5A00FF90DC /* CalendarVar.swift */; };
+		C7C1C76122E611EB008DD10A /* MonthCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C1C76022E611EA008DD10A /* MonthCustomHeader.swift */; };
 		C7F19D0B22DFA27C00548B29 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F19D0A22DFA27C00548B29 /* SideBarTableViewController.swift */; };
 		C7F19D0D22DFAAFB00548B29 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F19D0C22DFAAFB00548B29 /* MessageCell.swift */; };
 		C820620622C3DF8D0040E53F /* SelfCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */; };
@@ -119,6 +120,7 @@
 		C76A510922B17A2000FF90DC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		C76A510D22B17A5A00FF90DC /* CalendarVar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVar.swift; sourceTree = "<group>"; };
+		C7C1C76022E611EA008DD10A /* MonthCustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MonthCustomHeader.swift; path = "Host End/MonthCustomHeader.swift"; sourceTree = "<group>"; };
 		C7F19D0A22DFA27C00548B29 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideBarTableViewController.swift; path = "All Events/SideBarTableViewController.swift"; sourceTree = "<group>"; };
 		C7F19D0C22DFAAFB00548B29 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C820620522C3DF8D0040E53F /* SelfCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckInViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7C1C76022E611EA008DD10A /* MonthCustomHeader.swift */,
 				C862E48D22DE5EA200748D35 /* schema.json */,
 				C862E48B22DE5CDD00748D35 /* PleaseWork.graphql */,
 				C872D25F22DCE61D003AA82C /* CustomHeader.swift */,
@@ -516,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07193EA422A9ABCD000F5A2C /* NetworkManager.swift in Sources */,
+				C7C1C76122E611EB008DD10A /* MonthCustomHeader.swift in Sources */,
 				07434C4022BAC74200BC19A0 /* Items.swift in Sources */,
 				C820620622C3DF8D0040E53F /* SelfCheckInViewController.swift in Sources */,
 				07434C4722BAC7A000BC19A0 /* EventID+CoreDataProperties.swift in Sources */,
