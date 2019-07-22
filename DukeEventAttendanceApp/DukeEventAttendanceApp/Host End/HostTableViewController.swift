@@ -14,6 +14,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     
     var host_events = [String]()
     var actual_events = [Event]()
+    var months = [String]()
+    var month_events = [String: [Event]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
         getQuery(nav: hnc!) { hostEvents, error in
             self.host_events = hostEvents
@@ -28,16 +31,22 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                 let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
                 if (ev != nil) {
                     self.actual_events.append(ev!)
+                    if( !self.months.contains( ev!.longmonth )){
+                        self.months.append(ev!.longmonth)
+                        self.month_events[ev!.longmonth] = [Event]()
+                    }
+                    self.month_events[ev!.longmonth]?.append(ev!)
                 }
                 
             }
+            
             self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
             self.tableView.reloadData()
         }
         
         // Register the custom header view.
-        tableView.register(CustomHeader.self,
-                           forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        tableView.register(MonthCustomHeader.self,
+                           forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +55,11 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 //            self.tableView.reloadData()
 //        }
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.months.count
     }
     
     func getQuery(nav: UINavigationController, completionHandler: @escaping (_ hostEvents: [String], _ error: String?) -> Void){
@@ -124,12 +138,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
 //    // Create a standard header that includes the returned text.
 //    override func tableView(_ tableView: UITableView, titleForHeaderInSection
 //        section: Int) -> String? {
@@ -137,17 +145,18 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 //        return "Header \(section)"
 //    }
     
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-//            "sectionHeader") as! CustomHeader
-//        view.month.text = "\(section)" //sections[section]
-//        return view
-//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+            "MonthCustomHeader") as! MonthCustomHeader
+        //view.customLabel.text = self.months[section]
+        view.customLabel.attributedText = NSAttributedString(string: self.months[section].uppercased(), attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 18)!, NSAttributedString.Key.foregroundColor: UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)])
+        return view
+    }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.actual_events.count
+        return self.month_events[months[section]]!.count
     }
 
     
@@ -158,8 +167,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         // Configure the cell...
 //        let event_id = self.host_events[indexPath.row]
 //        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
-       
-        let event = self.actual_events[indexPath.row]
+        
+        let event = self.month_events[months[indexPath.section]]![indexPath.row]
         if event != nil{
             cell.eventTitle.text = event.summary
             cell.monthLabel.text = event.startmonth.uppercased()
@@ -177,7 +186,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 140
     }
     /*
     // Override to support conditional editing of the table view.

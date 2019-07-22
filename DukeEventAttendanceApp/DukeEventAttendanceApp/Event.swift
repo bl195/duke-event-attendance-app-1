@@ -41,6 +41,7 @@ class Event: Equatable{
     var endday: String
     var starttime: String       //parsed JSON, start time
     var endtime: String         //parsed JSON, end time
+    var longmonth: String
     
     var contact_name: String
     var contact_email: String
@@ -85,6 +86,7 @@ class Event: Equatable{
         self.address = ""
         self.maps_link = ""
         self.startmonth = ""
+        self.longmonth = ""
         self.startday = ""
         self.endmonth = ""
         self.endday = ""
@@ -121,6 +123,8 @@ class Event: Equatable{
             sorted_date = formatterOutput.date(from: start_date) ?? Date()
             formatterOutput.dateFormat = "MMM"
             startmonth = formatterOutput.string(from: date)
+            formatterOutput.dateFormat = "MMMM"
+            longmonth = formatterOutput.string(from: date)
             formatterOutput.dateFormat = "d"
             startday = formatterOutput.string(from: date)
             formatterOutput.dateFormat = "h:mm a"

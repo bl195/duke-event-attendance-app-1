@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleAspectFit
         setUpLayout()
-        
+        self.navigationController?.navigationBar.isHidden = true
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         

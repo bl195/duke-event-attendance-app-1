@@ -22,6 +22,8 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     
     
     var agendaEvents: [Event] = []
+    var months = [String]()
+    var month_events = [String: [Event]]()
     
     override func viewDidLoad() {
         self.title = "My Agenda"
@@ -30,6 +32,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.delegate = self //maybe
         self.tableView.dataSource = self //maybe
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         self.tableView.reloadData()
     }
     
@@ -50,27 +53,44 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
                     if( agendaEvents.contains(ev) == false){
                         agendaEvents.append(ev)
                     }
+                    if( !self.months.contains( ev.longmonth )){
+                        self.months.append(ev.longmonth)
+                        self.month_events[ev.longmonth] = [Event]()
+                    }
+                    self.month_events[ev.longmonth]?.append(ev)
                 }
             }
             var index = 0
             
         } catch {}
         agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
+        
+        // Register the custom header view.
+        tableView.register(MonthCustomHeader.self,
+                           forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
+        
         self.tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return self.months.count
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+            "MonthCustomHeader") as! MonthCustomHeader
+        //view.customLabel.text = self.months[section]
+        view.customLabel.attributedText = NSAttributedString(string: self.months[section].uppercased(), attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 18)!, NSAttributedString.Key.foregroundColor: UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)])
+        return view
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return agendaEvents.count
+        return self.month_events[months[section]]!.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 140
     }
     
     
@@ -81,7 +101,8 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         
         // Configure the cell...
         
-        let agendaEv = agendaEvents[indexPath.row]
+        let agendaEv = self.month_events[months[indexPath.section]]![indexPath.row]
+
         
 //        @objc func sendtoDB(sender: UIButton) {
 //            print ("yay")
@@ -134,7 +155,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
         
-        vc?.event = agendaEvents[indexPath.row]
+        vc?.event = self.month_events[months[indexPath.section]]![indexPath.row]
         vc?.sum = agendaEvents[indexPath.row].summary
         vc?.sdl = agendaEvents[indexPath.row].startday
         vc?.sml = agendaEvents[indexPath.row].startmonth
