@@ -14,6 +14,7 @@ class EventTableViewController: UITableViewController {
     var filteredEvents = [Event]()
     var filtername = ""
     
+    var oAuthService: OAuthService?
     var menuFilterName = ""
     var encodedate = ""
     var ongoing: Bool = false
@@ -30,17 +31,19 @@ class EventTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        oAuthService = OAuthService.shared
         //switch bar
-        
+        let logout = UIBarButtonItem(image: UIImage(named: "logout"), style: .done, target: self, action: #selector(tapButton))
         let my_switch = UISwitch(frame: .zero)
         my_switch.isOn = switchOn
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
         let switch_display = UIBarButtonItem(customView: my_switch)
-        navigationItem.rightBarButtonItems = [switch_display]
+        navigationItem.rightBarButtonItems = [logout,switch_display]
+        
+    
    
         
-        //settings bar
-//        let settings_display = UIBarButtonItem(image: UIImage(named: "icons8-settings-24"), style: .done, target: self, action: #selector(tapButton))
+        
 //
 //        navigationItem.leftBarButtonItems = [topicfilter, settings_display]
         
@@ -132,7 +135,20 @@ class EventTableViewController: UITableViewController {
     }
     
     @objc func tapButton(){
-        print("tapped")
+        let alert = UIAlertController(title: "Logout", message: "Do you want to Log out?", preferredStyle: .alert)
+        let subButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            self.oAuthService?.logout()
+            print (self.oAuthService?.isAuthenticated())
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+            self.navigationController?.present(vc!, animated: true)
+            
+            print("logged out")
+            
+        })
+        let cancelButton = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(subButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source

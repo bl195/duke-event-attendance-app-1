@@ -34,17 +34,16 @@ class SideBarTableViewController: UITableViewController {
         }
     }
     
-    let datas: [Message] = [Message(for: "Logout", UIImage(named: "logout")!), Message(for: "Calendar", UIImage(named: "calendar-icon")!),  Message(for: "Topic Filter", UIImage(named: "topics")!)]
+    let datas: [Message] = [Message(for: "Calendar", UIImage(named: "calendar-icon")!),  Message(for: "Topic Filter", UIImage(named: "topics")!)]
     
-     var menuArray = ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-         tableViewData = [cellData(opened: false, sectionData: ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"])]
+//         tableViewData = [cellData(opened: false, sectionData: ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"])]
         
-        oAuthService = OAuthService.shared
+//        oAuthService = OAuthService.shared
        
     }
     
@@ -56,90 +55,92 @@ class SideBarTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return tableViewData.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if tableViewData[section].opened == true{
-            return tableViewData[section].sectionData.count + datas.count
-        }
-        else{
+//        if tableViewData[section].opened == true{
+//            return tableViewData[section].sectionData.count + datas.count
+//        }
+//        else{
         return datas.count
-        }
+//    }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 1 || indexPath.row == 0 || indexPath.row == 2{
+//        if indexPath.row == 1 || indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! MessageCell
             
             cell.labelcell.text = datas[indexPath.row].summary
             cell.imagecell.image = datas[indexPath.row].pic
             
             return cell
-        }
-        else{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") else {return UITableViewCell()}
-            cell.textLabel?.text = tableViewData[indexPath.section].sectionData[indexPath.row-3]
-            return cell
-        }
+        
+            
+//        else{
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") else {return UITableViewCell()}
+//            cell.textLabel?.text = tableViewData[indexPath.section].sectionData[indexPath.row-3]
+//            return cell
+//        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if(indexPath.row == 2){
-            //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
-            //            self.navigationController?.pushViewController(vc!, animated: true)
+        if(indexPath.row == 1){
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
+                        self.navigationController?.pushViewController(vc!, animated: true)
             
-            if tableViewData[indexPath.section].opened == true{
-                tableViewData[indexPath.section].opened = false
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            }else{
-                tableViewData[indexPath.section].opened = true
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            }
+//            if tableViewData[indexPath.section].opened == true{
+//                tableViewData[indexPath.section].opened = false
+//                let sections = IndexSet.init(integer: indexPath.section)
+//                tableView.reloadSections(sections, with: .none)
+//            }else{
+//                tableViewData[indexPath.section].opened = true
+//                let sections = IndexSet.init(integer: indexPath.section)
+//                tableView.reloadSections(sections, with: .none)
+//            }
         }
         
-        if (indexPath.row == 1){
+        if (indexPath.row == 0){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         
-        if(indexPath.row == 0){
-            
-            let alert = UIAlertController(title: "Logout", message: "Do you want to Log out?", preferredStyle: .alert)
-            let subButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-                self.oAuthService?.logout()
-                print (self.oAuthService?.isAuthenticated())
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
-                self.navigationController?.present(vc!, animated: true)
-                
-                print("logged out")
-                
-            })
-            let cancelButton = UIAlertAction(title: "No", style: .cancel, handler: nil)
-            alert.addAction(subButton)
-            alert.addAction(cancelButton)
-            self.present(alert, animated: true, completion: nil)
-//            if(subButton.isEnabled == true){
-//                oAuthService?.logout()
-//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? UIViewController
+//        if(indexPath.row == 0){
+//
+//            let alert = UIAlertController(title: "Logout", message: "Do you want to Log out?", preferredStyle: .alert)
+//            let subButton = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+//                self.oAuthService?.logout()
+//                print (self.oAuthService?.isAuthenticated())
+//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
 //                self.navigationController?.present(vc!, animated: true)
 //
 //                print("logged out")
-//            }
-        }
-        if(indexPath.row > 2){
-            let viewcontroller = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
-            viewcontroller?.title = menuArray[indexPath.row-3].uppercased()
-            viewcontroller?.filtername = menuArray[indexPath.row-3]
-            viewcontroller?.encodedate = thisDateCode
-            self.navigationController?.pushViewController(viewcontroller!, animated:true)
-        }
+//
+//            })
+//            let cancelButton = UIAlertAction(title: "No", style: .cancel, handler: nil)
+//            alert.addAction(subButton)
+//            alert.addAction(cancelButton)
+//            self.present(alert, animated: true, completion: nil)
+////            if(subButton.isEnabled == true){
+////                oAuthService?.logout()
+////                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? UIViewController
+////                self.navigationController?.present(vc!, animated: true)
+////
+////                print("logged out")
+////            }
+//        }
+//        if(indexPath.row > 2){
+//            let viewcontroller = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
+//            viewcontroller?.title = menuArray[indexPath.row-3].uppercased()
+//            viewcontroller?.filtername = menuArray[indexPath.row-3]
+//            viewcontroller?.encodedate = thisDateCode
+//            self.navigationController?.pushViewController(viewcontroller!, animated:true)
+//        }
         
     }
-
+    
 }
