@@ -32,6 +32,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.delegate = self //maybe
         self.tableView.dataSource = self //maybe
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         self.tableView.reloadData()
     }
     
@@ -89,7 +90,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 140
     }
     
     

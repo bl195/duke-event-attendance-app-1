@@ -20,10 +20,10 @@ class MonthCustomHeader: UITableViewHeaderFooterView {
 
         customLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.backgroundColor = UIColor.white
-        self.contentView.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        self.contentView.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         self.contentView.addSubview(customLabel)
         
-        customLabel.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        customLabel.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         
         let margins = contentView.layoutMarginsGuide
         customLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
