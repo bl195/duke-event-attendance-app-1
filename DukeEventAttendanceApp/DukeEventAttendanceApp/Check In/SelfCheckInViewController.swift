@@ -180,6 +180,9 @@ class SelfCheckInViewController: UIViewController{
         search.start { response, error in
             guard let response = response else {
                 print("Error: \(error?.localizedDescription ?? "Unknown error").")
+                var alert = UIAlertController(title: "Event location not found.", message: "Please alert the event host.", preferredStyle: .alert)
+                alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
