@@ -9,7 +9,7 @@
 *.perspectivev3
 *.pbxusere
 xcuserdata
-
+*.pbxproj
 # Build products
 build/
 *.o
