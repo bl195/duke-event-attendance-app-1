@@ -34,7 +34,7 @@ class SideBarTableViewController: UITableViewController {
         }
     }
     
-    let datas: [Message] = [Message(for: "Calendar", UIImage(named: "calendar-icon")!),  Message(for: "Topic Filter", UIImage(named: "topics")!)]
+    let datas: [Message] = [Message(for: "Calendar", UIImage(named: "icons8")!),  Message(for: "Topic Filter", UIImage(named: "topics")!)]
     
     
     override func viewDidLoad() {
