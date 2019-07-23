@@ -29,7 +29,7 @@ class ViewController: UIViewController {
             self.present(feedVC!, animated: true, completion: nil)
         }
        
-        self.photoImageView.image = UIImage(named: "DukeCheck")
+        self.photoImageView.image = UIImage(named: "dukecheck-1")
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleAspectFit
         setUpLayout()
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
         logInButton.widthAnchor.constraint(equalToConstant: 156).isActive = true
         logInButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         logInButton.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor).isActive = true
-        logInButton.backgroundColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
+        logInButton.backgroundColor = UIColor(red: 255/255, green: 255/255, blue:255/255, alpha: 0.5)
         
         
         
