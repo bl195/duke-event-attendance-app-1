@@ -39,9 +39,28 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                 }
                 
             }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMMM"
+            self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
+            print (self.months)
+            
+            
+            
+            for (month,events) in self.month_events {
+                //var events = self.month_events[month]
+                if (events.count > 0) {
+                    self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
+                    for event in events {
+                        print (event.summary)
+                    }
+                }
+                
+            }
+            
             
             self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
             self.tableView.reloadData()
+            
         }
         
         // Register the custom header view.

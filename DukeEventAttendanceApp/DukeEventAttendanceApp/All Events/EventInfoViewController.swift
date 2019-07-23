@@ -94,6 +94,8 @@ class EventInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
         self.title = ""
         descriptionLabel.numberOfLines = 0
         locationLabel.text = ll
@@ -132,7 +134,10 @@ class EventInfoViewController: UIViewController {
         
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+    }
 }
 
 extension String {

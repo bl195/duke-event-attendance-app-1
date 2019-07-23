@@ -95,6 +95,7 @@ class EventTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
         
         textFieldInsideSearchBar?.textColor = UIColor.white

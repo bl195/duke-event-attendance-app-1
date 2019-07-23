@@ -453,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yun-jM-AJ0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5481.1594202898559" y="95.089285714285708"/>
+            <point key="canvasLocation" x="5906" y="96"/>
         </scene>
         <!--ALL EVENTS-->
         <scene sceneID="pzG-sw-DKU">
@@ -901,11 +901,11 @@
             <objects>
                 <viewController restorationIdentifier="MyAgendaViewController" storyboardIdentifier="MyAgendaViewController" title="MyAgendaViewController" id="QHQ-5k-Edb" userLabel="MyAgendaViewController" customClass="MyAgendaViewController" customModule="DukeEventAttendanceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZqV-AH-jS1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-QE-SgK">
-                                <rect key="frame" x="181.5" y="44" width="232.5" height="31"/>
+                                <rect key="frame" x="181.5" y="0.0" width="232.5" height="31"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="16"/>
                                 <state key="normal" title="HOSTING">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -915,13 +915,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A G E N D A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9X-yb-jcr">
-                                <rect key="frame" x="40" y="129" width="276" height="46"/>
+                                <rect key="frame" x="40" y="85" width="276" height="46"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-Kc-EPH">
-                                <rect key="frame" x="0.0" y="44" width="181.5" height="31"/>
+                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="31"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="16"/>
                                 <state key="normal" title="ATTENDING">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -931,10 +931,10 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZG-dj-0uL">
-                                <rect key="frame" x="0.0" y="192" width="414" height="621"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="577"/>
                                 <subviews>
                                     <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzD-Wm-QCx">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="577"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </containerView>
                                 </subviews>
@@ -947,7 +947,7 @@
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M Y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keW-Bl-Rze">
-                                <rect key="frame" x="40" y="92" width="87" height="32"/>
+                                <rect key="frame" x="40" y="48" width="87" height="32"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1390,6 +1390,9 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <connections>
+                        <segue destination="vG1-JB-xAy" kind="show" id="ndm-ku-Tn4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKh-Bz-wTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1398,11 +1401,14 @@
         <!--hostNav-->
         <scene sceneID="Lob-8h-yB5">
             <objects>
-                <navigationController restorationIdentifier="hostNav" storyboardIdentifier="hostNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hbk-uC-e4q" userLabel="hostNav" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="hostNav" storyboardIdentifier="hostNav" automaticallyAdjustsScrollViewInsets="NO" id="hbk-uC-e4q" userLabel="hostNav" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="MY AGENDA" image="profile" selectedImage="profile" id="fI3-II-3Hx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NmH-2Q-39u">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NmH-2Q-39u">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.0039215686269999999" green="0.12941176469999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1413,6 +1419,7 @@
                         <segue destination="a8e-u7-1PB" kind="show" id="OSi-Zx-LOA"/>
                         <segue destination="jmg-c5-VsR" kind="show" id="fRE-4F-H40"/>
                         <segue destination="ZOH-GW-bJd" kind="show" id="dfh-uB-cLr"/>
+                        <segue destination="so4-dD-8iz" kind="show" id="y9z-dP-8ri"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANu-s7-2iR" userLabel="First Responder" sceneMemberID="firstResponder"/>

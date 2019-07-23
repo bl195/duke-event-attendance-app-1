@@ -24,7 +24,7 @@ class MyAgendaViewController: UIViewController{
         
 //        attendingButton.isSelected = true
 //        hostingButton.isSelected = false
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = false
         
         defaultBold()
         

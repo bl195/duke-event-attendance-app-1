@@ -17,7 +17,7 @@ class CheckInOptionViewController: UIViewController {
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
 
     override func viewDidLoad() {
-         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
         print(eventID)
         

@@ -18,6 +18,8 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         vc?.eventID = event.id
         vc?.event = event
         self.navigationController?.pushViewController(vc!, animated: true)
+        
+        
     }
     
     
@@ -34,6 +36,12 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         self.tableView.dataSource = self //maybe
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         self.tableView.reloadData()
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +52,11 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         
         do {
             let agendaArray = try PersistenceService.context.fetch(fetchRequest)
-            agendaEvents.removeAll()
+            print (agendaArray.count)
+            //agendaEvents.removeAll()
+            month_events.removeAll()
+            months.removeAll()
+            
             var globalagendaEvents = Items.sharedInstance.eventArray
             var globalEventDict = Items.sharedInstance.id_event_dict
             for id in agendaArray{
@@ -54,23 +66,48 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
                         agendaEvents.append(ev)
                     }
                     if( !self.months.contains( ev.longmonth )){
+                        
+                        
                         self.months.append(ev.longmonth)
                         self.month_events[ev.longmonth] = [Event]()
                     }
-                    self.month_events[ev.longmonth]?.append(ev)
+                    if (!self.month_events[ev.longmonth]!.contains(ev) ) {
+                        self.month_events[ev.longmonth]?.append(ev)
+                    }
+                    
                 }
             }
             var index = 0
             
         } catch {}
-        agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
+        print (self.months)
+        
+        
+        
+        for (month,events) in self.month_events {
+            //var events = self.month_events[month]
+            if (events.count > 0) {
+                month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
+                for event in events {
+                    print (event.summary)
+                }
+            }
+            
+        }
+        //agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
         
         // Register the custom header view.
         tableView.register(MonthCustomHeader.self,
                            forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
         
         self.tableView.reloadData()
+        
     }
+    
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.months.count
@@ -102,13 +139,13 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         // Configure the cell...
         
         let agendaEv = self.month_events[months[indexPath.section]]![indexPath.row]
-
         
-//        @objc func sendtoDB(sender: UIButton) {
-//            print ("yay")
-//        }
-//
-//        cell.checkInButton.addTarget(self, action:#selector(sendtoDB(sender:)), for: .touchUpInside)
+        
+        //        @objc func sendtoDB(sender: UIButton) {
+        //            print ("yay")
+        //        }
+        //
+        //        cell.checkInButton.addTarget(self, action:#selector(sendtoDB(sender:)), for: .touchUpInside)
         
         cell.backgroundCard.layer.backgroundColor = UIColor(white: 1.0, alpha: 0.0).cgColor
         cell.backgroundCard.layer.borderWidth = 1
@@ -116,7 +153,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         cell.backgroundCard.layer.cornerRadius = 10.0
         
         cell.checkInButton.layer.cornerRadius = 10.0
-
+        
         cell.eventTitle.text = agendaEv.summary
         cell.timeLabel.text = "Time: " + agendaEv.starttime + " - " + agendaEv.endtime
         cell.monthLabel.text = agendaEv.startmonth.uppercased()
@@ -128,11 +165,11 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete{
-            var delete_id = agendaEvents[indexPath.row].id
-            agendaEvents.remove(at: indexPath.row)
+            var delete_id = self.month_events[months[indexPath.section]]![indexPath.row].id
+            month_events[months[indexPath.section]]!.remove(at: indexPath.row)
             deleteObj(id: delete_id)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
@@ -154,26 +191,33 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EventInfoViewController") as? EventInfoViewController
-        
+        var ev = self.month_events[months[indexPath.section]]![indexPath.row]
         vc?.event = self.month_events[months[indexPath.section]]![indexPath.row]
-        vc?.sum = agendaEvents[indexPath.row].summary
-        vc?.sdl = agendaEvents[indexPath.row].startday
-        vc?.sml = agendaEvents[indexPath.row].startmonth
-        vc?.ll = agendaEvents[indexPath.row].address
-        vc?.imageURL = agendaEvents[indexPath.row].image_url
-        vc?.webEventURL = agendaEvents[indexPath.row].event_url
-        vc?.tl = agendaEvents[indexPath.row].starttime + " - " + self.agendaEvents[indexPath.row].endtime
-        if( agendaEvents[indexPath.row].ongoing ){
+        vc?.sum = ev.summary
+        vc?.sdl = ev.startday
+        vc?.sml = ev.startmonth
+        vc?.ll = ev.address
+        vc?.imageURL = ev.image_url
+        vc?.webEventURL = ev.event_url
+        vc?.tl = ev.starttime + " - " + ev.endtime
+        if( ev.ongoing ){
             vc?.tl = "Ongoing"
         }
-        vc?.dl = agendaEvents[indexPath.row].description
-        vc?.ldl = agendaEvents[indexPath.row].start_date
-        if( agendaEvents[indexPath.row].ongoing ){
-            vc?.ldl = agendaEvents[indexPath.row].start_date + " - " + agendaEvents[indexPath.row].end_date
+        vc?.dl = ev.description
+        vc?.ldl = ev.start_date
+        if( ev.ongoing ){
+            vc?.ldl = ev.start_date + " - " + ev.end_date
         }
         vc?.sl = agendaEvents[indexPath.row].sponsor
-        self.navigationController?.show(vc!, sender: true)
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
+        //self.navigationController?.show(vc!, sender: true)
         //present(vc!, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
 }
+
