@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Apollo
 
 import RSBarcodes_Swift
 import AVFoundation
@@ -32,13 +33,14 @@ class QRCheckInViewController: UIViewController {
     
     func showBarCode (barCode: Bool, nav: UINavigationController) {
         print ("HERE")
-        Items.sharedInstance.getDuid(nav: nav){ duid, error in
+        self.getInfo(nav: nav){ duid, name, error in
             var data: Data
             var filter: CIFilter
-            print ("I AM HERE")
-            print ("DUID:" + duid)
-            self.dukeUnique = duid
+//            print ("I AM HERE")
+//            print ("DUID:" + duid)
+//            self.dukeUnique = duid
             self.cardLabel.text = "DUID: " + duid
+            self.nameLabel.text = name
             if (duid != nil) {
                 if (barCode) {
                     self.qrImage.image = RSUnifiedCodeGenerator.shared.generateCode(duid, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
@@ -109,20 +111,53 @@ class QRCheckInViewController: UIViewController {
             hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
         }
         
-        showBarCode(barCode: isBarCode, nav: hnc!)
-        
-        Items.sharedInstance.getName (nav: hnc!) { name, error in
-            print("NAME" + name)
-            self.nameLabel.text = name
-        }
+        showBarCode(barCode: isBarCode, nav: self.navigationController!)
+
         eventLabel.text = event.summary
         dateLabel.text = event.start_date
         locationLabel.text = event.address
         
-        cardLabel.text = "CARD: " + self.dukeUnique
+        //cardLabel.text = "CARD: " + self.dukeUnique
 
         // Do any additional setup after loading the view.
+        
     }
+    
+    func getInfo(nav: UINavigationController, completionHandler: @escaping (_ cardnumber: String, _ name: String, _ error: String?) -> Void ){
+                let query = GetMyInfoQuery()
+                Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+                    print(results)
+                    print (results?.data?.getMyInfo)
+                    if let error = error as? GraphQLHTTPResponseError {
+                        switch (error.response.statusCode) {
+                        case 401:
+                            //request unauthorized due to bad token
+                            print("REFRESH")
+                            OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                                if success {
+        
+                                    self.getInfo(nav: nav) { cardnumber, name, error in
+                                        completionHandler(cardnumber, name, error)
+                                    }
+                                } else {
+                                    //handle error
+                                }
+        
+                            }
+                        default:
+                            print ("error")
+                        }
+                    }
+                    else if (results?.data?.getMyInfo != nil ) {
+                        let data = results?.data?.getMyInfo
+                        print("HERE")
+                        print(data)
+                        completionHandler(data![3], data![1], nil)
+                        
+                    }
+                }
+    }
+    
     
     
     

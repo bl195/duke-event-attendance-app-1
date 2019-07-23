@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         oAuthService = OAuthService.shared
+        //oAuthService?.logout()
         if ((oAuthService?.isAuthenticated())!) {
             let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "mainFeed") as? UITabBarController
             self.present(feedVC!, animated: true, completion: nil)

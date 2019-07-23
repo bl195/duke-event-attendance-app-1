@@ -110,14 +110,14 @@ class SelfCheckInViewController: UIViewController{
                 switch (error.response.statusCode) {
                 case 401:
                     //request unauthorized due to bad token
-                    
+
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
                             self.loadAttendee(nav: nav, event_id: event_id)
                         } else {
                             //handle error
                         }
-                        
+
                     }
                 default:
                     print ("error")
@@ -127,7 +127,7 @@ class SelfCheckInViewController: UIViewController{
 //                print(error.localizedDescription)
 //                return
 //            }
-            
+
             else if (result?.data?.selfCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.selfCheckIn?.id ?? "no attendee")
@@ -145,7 +145,7 @@ class SelfCheckInViewController: UIViewController{
                 //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
                 self.invalidityCheck()
             }
-            
+
         }
         
     }

@@ -78,7 +78,7 @@ class CurrentAttendeesTableViewController: UITableViewController {
                         } else {
                             //handle error
                         }
-                        
+
                     }
                 default:
                     print ("error")
@@ -87,7 +87,7 @@ class CurrentAttendeesTableViewController: UITableViewController {
             else if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
-                    
+
                     //self.tableView.reloadData()
                 }
                 DispatchQueue.main.async {

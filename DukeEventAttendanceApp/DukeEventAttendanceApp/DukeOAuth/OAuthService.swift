@@ -98,6 +98,7 @@ class OAuthService {
      * @return the session token.
      */
     func getSessionToken() -> String? {
+        print( KeychainWrapper.standard.string(forKey: SESSION_TOKEN_KEY) )
         return KeychainWrapper.standard.string(forKey: SESSION_TOKEN_KEY)
     }
     

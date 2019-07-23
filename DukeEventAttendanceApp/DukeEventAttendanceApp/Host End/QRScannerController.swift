@@ -182,7 +182,7 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                         } else {
                             //handle error
                         }
-                        
+
                     }
                 default:
                     print ("error")
@@ -195,24 +195,24 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
             else if (result?.data?.qrCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.qrCheckIn?.id ?? "no attendee")
-                
+
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
-                
+
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
                     (action) -> Void in
                     self.captureSession.startRunning()
                     }))
                 self.present(alert, animated: true)
-                
+
                 //self.launchApp(decodedURL: cardNumber)
             }
             else {
                 print("failed")
                 print(result?.data?.qrCheckIn?.id)
-                
+
                 //self.alertPrompt.dismiss(animated: true, completion: nil)
-                
+
                 let alert = UIAlertController(title: "Check-in denied", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
                     (action) -> Void in
@@ -221,15 +221,17 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                 self.present(alert, animated: true)
                 //self.viewDidLoad()
                 //self.launchApp(decodedURL: cardNumber)
-                
+
                 //self.present(self.alertPrompt, animated: true)
                 //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
                 //self.invalidityCheck()
             }
-            
+
         }
         
     }
+    
+    
 
     
 }

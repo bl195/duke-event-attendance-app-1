@@ -2,78 +2,6 @@
 
 import Apollo
 
-public final class GetCardQueryQuery: GraphQLQuery {
-  public let operationDefinition =
-    "query getCardQuery {\n  getDukeCardNumber\n}"
-
-  public init() {
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Query"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("getDukeCardNumber", type: .nonNull(.scalar(String.self))),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(getDukeCardNumber: String) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getDukeCardNumber": getDukeCardNumber])
-    }
-
-    /// Returns duke card number by duke unique id
-    public var getDukeCardNumber: String {
-      get {
-        return resultMap["getDukeCardNumber"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "getDukeCardNumber")
-      }
-    }
-  }
-}
-
-public final class GetMyNameQuery: GraphQLQuery {
-  public let operationDefinition =
-    "query getMyName {\n  getMyname\n}"
-
-  public init() {
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Query"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("getMyname", type: .nonNull(.scalar(String.self))),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(getMyname: String) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getMyname": getMyname])
-    }
-
-    /// Returns name by user's duke unique id from headers
-    public var getMyname: String {
-      get {
-        return resultMap["getMyname"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "getMyname")
-      }
-    }
-  }
-}
-
 public final class HostsEventsQuery: GraphQLQuery {
   public let operationDefinition =
     "query HostsEvents {\n  hostEvents {\n    __typename\n    eventid\n  }\n}"
@@ -142,6 +70,42 @@ public final class HostsEventsQuery: GraphQLQuery {
         set {
           resultMap.updateValue(newValue, forKey: "eventid")
         }
+      }
+    }
+  }
+}
+
+public final class GetMyInfoQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetMyInfo {\n  getMyInfo\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getMyInfo", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getMyInfo: [String]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getMyInfo": getMyInfo])
+    }
+
+    /// Returns user info by access token
+    public var getMyInfo: [String] {
+      get {
+        return resultMap["getMyInfo"]! as! [String]
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "getMyInfo")
       }
     }
   }
@@ -267,42 +231,6 @@ public final class AllAttendeesQuery: GraphQLQuery {
         set {
           resultMap.updateValue(newValue, forKey: "duid")
         }
-      }
-    }
-  }
-}
-
-public final class GetDukeUniqueQuery: GraphQLQuery {
-  public let operationDefinition =
-    "query getDukeUnique {\n  getDuid\n}"
-
-  public init() {
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes = ["Query"]
-
-    public static let selections: [GraphQLSelection] = [
-      GraphQLField("getDuid", type: .nonNull(.scalar(String.self))),
-    ]
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(getDuid: String) {
-      self.init(unsafeResultMap: ["__typename": "Query", "getDuid": getDuid])
-    }
-
-    /// Returns duke unique id
-    public var getDuid: String {
-      get {
-        return resultMap["getDuid"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "getDuid")
       }
     }
   }

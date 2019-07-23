@@ -1,0 +1,39 @@
+query HostsEvents{
+    hostEvents{
+        eventid
+    }
+}
+
+query GetMyInfo{
+    getMyInfo
+}
+
+query GetInfo($eventid: ID!, $attendeeid: ID!){
+    getInfo(eventid: $eventid, attendeeid: $attendeeid)
+}
+
+
+query AllAttendees($id: ID!){
+    allAttendees(id: $id){
+        duid
+    }
+}
+
+
+
+mutation SelfCheckIn ($eventid: String!){
+    selfCheckIn(eventid: $eventid){
+        id
+    }
+}
+
+
+
+
+mutation QRCheckIn ($eventid: String!, $duid: String!){
+    qrCheckIn(eventid: $eventid, duid: $duid){
+        id
+    }
+}
+
+
