@@ -16,7 +16,7 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var webLinkButton: UIButton!
     
     @IBAction func webLink(_ sender: Any) {
-        UIApplication.shared.open(URL(string: webEventURL) ?? URL(string: "")!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: webEventURL) ?? URL(string: backupURL)!, options: [:], completionHandler: nil)
     }
     
     
@@ -45,6 +45,7 @@ class EventInfoViewController: UIViewController {
     var image = UIImage()
     var imageURL = ""
     var webEventURL = ""
+    var backupURL = ""
     var sl = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     var base_url = "http://localhost:3000/events/"
@@ -127,10 +128,10 @@ class EventInfoViewController: UIViewController {
         
         webLinkButton.isEnabled = true
         webLinkButton.tintColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
-        if( self.webEventURL == ""){
-            webLinkButton.isEnabled = false
-            webLinkButton.tintColor = UIColor.white
-        }
+//        if( self.webEventURL == ""){
+//            webLinkButton.isEnabled = false
+//            webLinkButton.tintColor = UIColor.white
+//        }
         
     }
     
