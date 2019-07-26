@@ -19,7 +19,24 @@ query AllAttendees($id: ID!){
     }
 }
 
+query GetEvent( $eventid: ID! ){
+    getEvent(eventid: $eventid){
+        status
+        checkintype
+    }
+}
 
+mutation OpenEvent( $eventid: String!, $checkintype: String! ){
+openEvent(eventid: $eventid, checkintype: $checkintype){
+        status
+    }
+}
+
+mutation CloseEvent( $eventid: String! ){
+    closeEvent(eventid: $eventid){
+        status
+    }
+}
 
 mutation SelfCheckIn ($eventid: String!){
     selfCheckIn(eventid: $eventid){

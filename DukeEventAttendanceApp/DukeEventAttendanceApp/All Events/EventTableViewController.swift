@@ -217,7 +217,7 @@ class EventTableViewController: UITableViewController {
             filtername = ""
         }
  */
-        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername1 + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple"
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername1 + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple&local=true"
         
         
         NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in

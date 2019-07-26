@@ -236,6 +236,258 @@ public final class AllAttendeesQuery: GraphQLQuery {
   }
 }
 
+public final class GetEventQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetEvent($eventid: ID!) {\n  getEvent(eventid: $eventid) {\n    __typename\n    status\n    checkintype\n  }\n}"
+
+  public var eventid: GraphQLID
+
+  public init(eventid: GraphQLID) {
+    self.eventid = eventid
+  }
+
+  public var variables: GraphQLMap? {
+    return ["eventid": eventid]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getEvent", arguments: ["eventid": GraphQLVariable("eventid")], type: .nonNull(.object(GetEvent.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getEvent: GetEvent) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getEvent": getEvent.resultMap])
+    }
+
+    /// Returns event info by id
+    public var getEvent: GetEvent {
+      get {
+        return GetEvent(unsafeResultMap: resultMap["getEvent"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "getEvent")
+      }
+    }
+
+    public struct GetEvent: GraphQLSelectionSet {
+      public static let possibleTypes = ["Event"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("status", type: .nonNull(.scalar(String.self))),
+        GraphQLField("checkintype", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(status: String, checkintype: String) {
+        self.init(unsafeResultMap: ["__typename": "Event", "status": status, "checkintype": checkintype])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var status: String {
+        get {
+          return resultMap["status"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "status")
+        }
+      }
+
+      public var checkintype: String {
+        get {
+          return resultMap["checkintype"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "checkintype")
+        }
+      }
+    }
+  }
+}
+
+public final class OpenEventMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation OpenEvent($eventid: String!, $checkintype: String!) {\n  openEvent(eventid: $eventid, checkintype: $checkintype) {\n    __typename\n    status\n  }\n}"
+
+  public var eventid: String
+  public var checkintype: String
+
+  public init(eventid: String, checkintype: String) {
+    self.eventid = eventid
+    self.checkintype = checkintype
+  }
+
+  public var variables: GraphQLMap? {
+    return ["eventid": eventid, "checkintype": checkintype]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("openEvent", arguments: ["eventid": GraphQLVariable("eventid"), "checkintype": GraphQLVariable("checkintype")], type: .object(OpenEvent.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(openEvent: OpenEvent? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "openEvent": openEvent.flatMap { (value: OpenEvent) -> ResultMap in value.resultMap }])
+    }
+
+    /// open event for check in with type
+    public var openEvent: OpenEvent? {
+      get {
+        return (resultMap["openEvent"] as? ResultMap).flatMap { OpenEvent(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "openEvent")
+      }
+    }
+
+    public struct OpenEvent: GraphQLSelectionSet {
+      public static let possibleTypes = ["Event"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("status", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(status: String) {
+        self.init(unsafeResultMap: ["__typename": "Event", "status": status])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var status: String {
+        get {
+          return resultMap["status"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "status")
+        }
+      }
+    }
+  }
+}
+
+public final class CloseEventMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation CloseEvent($eventid: String!) {\n  closeEvent(eventid: $eventid) {\n    __typename\n    status\n  }\n}"
+
+  public var eventid: String
+
+  public init(eventid: String) {
+    self.eventid = eventid
+  }
+
+  public var variables: GraphQLMap? {
+    return ["eventid": eventid]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("closeEvent", arguments: ["eventid": GraphQLVariable("eventid")], type: .object(CloseEvent.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(closeEvent: CloseEvent? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "closeEvent": closeEvent.flatMap { (value: CloseEvent) -> ResultMap in value.resultMap }])
+    }
+
+    /// close event to check in
+    public var closeEvent: CloseEvent? {
+      get {
+        return (resultMap["closeEvent"] as? ResultMap).flatMap { CloseEvent(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "closeEvent")
+      }
+    }
+
+    public struct CloseEvent: GraphQLSelectionSet {
+      public static let possibleTypes = ["Event"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("status", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(status: String) {
+        self.init(unsafeResultMap: ["__typename": "Event", "status": status])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var status: String {
+        get {
+          return resultMap["status"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "status")
+        }
+      }
+    }
+  }
+}
+
 public final class SelfCheckInMutation: GraphQLMutation {
   public let operationDefinition =
     "mutation SelfCheckIn($eventid: String!) {\n  selfCheckIn(eventid: $eventid) {\n    __typename\n    id\n  }\n}"

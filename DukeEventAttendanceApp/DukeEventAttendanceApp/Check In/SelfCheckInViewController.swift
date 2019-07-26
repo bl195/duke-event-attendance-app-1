@@ -80,6 +80,7 @@ class SelfCheckInViewController: UIViewController{
     }
     
     
+    
     /*
      // MARK: - Navigation
      
