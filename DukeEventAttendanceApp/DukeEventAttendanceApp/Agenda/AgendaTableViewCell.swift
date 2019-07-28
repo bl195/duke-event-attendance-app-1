@@ -16,6 +16,7 @@ class AgendaTableViewCell: UITableViewCell {
     
     var event: Event!
     var delegate: AgendaTableViewCellDelegate?
+    var active = true
 
     @IBOutlet weak var monthLabel: UILabel!
     
@@ -34,6 +35,11 @@ class AgendaTableViewCell: UITableViewCell {
     
     func setEvent(event: Event){
         self.event = event
+        if( !self.active ){
+            self.checkInButton.isEnabled = false
+            self.checkInButton.setTitle("C H E C K - I N  N O T  A V A I L A B L E", for: .disabled)
+            self.checkInButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        }
     }
     
     //    @IBAction func sendToDB(_ sender: Any) {

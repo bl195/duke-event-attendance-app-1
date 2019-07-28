@@ -1090,7 +1090,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="ml5-0x-Vc2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
-                                                    <state key="normal" title="A L L O W   C H E C K - I N">
+                                                    <state key="normal" title="A L L O W  C H E C K - I N">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>

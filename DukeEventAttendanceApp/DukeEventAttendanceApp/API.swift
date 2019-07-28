@@ -328,7 +328,7 @@ public final class GetEventQuery: GraphQLQuery {
 
 public final class OpenEventMutation: GraphQLMutation {
   public let operationDefinition =
-    "mutation OpenEvent($eventid: String!, $checkintype: String!) {\n  openEvent(eventid: $eventid, checkintype: $checkintype) {\n    __typename\n    status\n  }\n}"
+    "mutation OpenEvent($eventid: String!, $checkintype: String!) {\n  openEvent(eventid: $eventid, checkintype: $checkintype) {\n    __typename\n    status\n    checkintype\n  }\n}"
 
   public var eventid: String
   public var checkintype: String
@@ -375,6 +375,7 @@ public final class OpenEventMutation: GraphQLMutation {
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("status", type: .nonNull(.scalar(String.self))),
+        GraphQLField("checkintype", type: .nonNull(.scalar(String.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -383,8 +384,8 @@ public final class OpenEventMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(status: String) {
-        self.init(unsafeResultMap: ["__typename": "Event", "status": status])
+      public init(status: String, checkintype: String) {
+        self.init(unsafeResultMap: ["__typename": "Event", "status": status, "checkintype": checkintype])
       }
 
       public var __typename: String {
@@ -402,6 +403,15 @@ public final class OpenEventMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "status")
+        }
+      }
+
+      public var checkintype: String {
+        get {
+          return resultMap["checkintype"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "checkintype")
         }
       }
     }

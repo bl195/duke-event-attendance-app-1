@@ -38,7 +38,7 @@ class Apollo {
     
     func getClient() -> ApolloClient {
         let token = OAuthService.shared.getAccessToken() ?? ""
-        print (token)
+        //print (token)
         let configuration = URLSessionConfiguration.default
         
         configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
