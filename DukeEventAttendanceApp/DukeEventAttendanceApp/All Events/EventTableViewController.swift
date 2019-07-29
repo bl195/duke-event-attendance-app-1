@@ -40,8 +40,7 @@ class EventTableViewController: UITableViewController {
         let switch_display = UIBarButtonItem(customView: my_switch)
         navigationItem.rightBarButtonItems = [logout,switch_display]
         
-    
-   
+        tableView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
         
         
 //
