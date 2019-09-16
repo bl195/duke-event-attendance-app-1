@@ -160,6 +160,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         cell.dayLabel.text = agendaEv.startday
         cell.locLabel.text = "Location: " + agendaEv.address
         
+        
         Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
             if( active ){
                 print(true)

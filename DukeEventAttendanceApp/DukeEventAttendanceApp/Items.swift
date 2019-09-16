@@ -43,9 +43,9 @@ class Items{
                 } else{
                     completionHandler(true, nil)
                 }
-            } else {
-                completionHandler(false, nil)
-            }
+            } //else {
+//                completionHandler(false, nil)
+//            }
         }
     }
     
