@@ -161,6 +161,8 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         cell.locLabel.text = "Location: " + agendaEv.address
         
         
+        print (self.navigationController!.title)
+        
         Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
             if( active ){
                 print(true)

@@ -17,6 +17,7 @@ class SelfCheckInViewController: UIViewController{
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     var attendees_array:[String] = []
     var circlecolor = ""
+    var hasTriedToCheckIn:Bool = false
     
     
     @IBOutlet weak var blueBackground: UIImageView!
@@ -151,6 +152,8 @@ class SelfCheckInViewController: UIViewController{
         
     }
     
+  
+    
     func invalidityCheck(){
         var alertMessage = ""
         let query = AllAttendeesQuery(id: self.eventid)
@@ -197,29 +200,51 @@ class SelfCheckInViewController: UIViewController{
                 if( distance <= 100){
                     self.isInBounds = true
                     self.drawCircle(location: desiredLoc, color: "green")
+                    //start monitoring region
+                   
+                    self.hasTriedToCheckIn = true
+                    self.checkLocation(eventlocation: eventlocation)
                 }
             }
             //self.isInBounds = true
             if ( !self.isInBounds ){
-                var alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
-                alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                self.blueBackground.isHidden = true
-                self.whiteBackground.isHidden = true
-                self.eventLocationLabel.isHidden = true
-                self.eventTime.isHidden = true
-                self.confirmButton.isHidden = true
-                self.eventTitle.isHidden = true
                 
-                let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                let region: MKCoordinateRegion = MKCoordinateRegion(center: desiredLoc.coordinate, span: span)
-                self.map.setRegion(region, animated: true)
-                self.map.showsUserLocation = true
-                self.drawCircle(location: desiredLoc, color: "red")
+                //this is if the user leaves the location AFTER already being in the correct radius
+                if (self.hasTriedToCheckIn == true) {
+                    print ("left location")
+                    //mutaton for when attendee leaves location
+                    self.checkOutAttendee(nav: self.navigationController!, event_id: self.event.id)
+                    
+                } else {
+                    //this is for when the user is not in the right location
+                    var alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
+                    alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    self.blueBackground.isHidden = true
+                    self.whiteBackground.isHidden = true
+                    self.eventLocationLabel.isHidden = true
+                    self.eventTime.isHidden = true
+                    self.confirmButton.isHidden = true
+                    self.eventTitle.isHidden = true
+                    
+                    
+                    let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                    let region: MKCoordinateRegion = MKCoordinateRegion(center: desiredLoc.coordinate, span: span)
+                    self.map.setRegion(region, animated: true)
+                    self.map.showsUserLocation = true
+                    
+                    self.drawCircle(location: desiredLoc, color: "red")
+                    
+                }
+                
+                
             }
         }
         
         
+    }
+    func checkOutAttendee (nav: UINavigationController, event_id: String) {
+        //call the GraphQL Mutation
     }
     
 }

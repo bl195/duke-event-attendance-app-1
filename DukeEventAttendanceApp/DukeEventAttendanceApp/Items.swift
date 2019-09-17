@@ -16,7 +16,38 @@ class Items{
     //private var my_dukecardnumber = ""
     var my_dukecardnumber = ""
     
-    
+    func eventActiveandCheckIn (eventid:String, nav:UINavigationController, completionHandler: @escaping (_ active: Bool, _ checkInType: String?, _ error: String?) -> Void) {
+        let query = GetEventQuery(eventid: eventid)
+        Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.eventActiveandCheckIn(eventid: eventid, nav: nav){ active, checkInType, error in
+                                completionHandler(active, checkInType, error)
+                            }
+                        } else {
+                            //handle error
+                        }
+                    }
+                default:
+                    print ("error")
+                }
+            }
+            else if (results?.data?.getEvent != nil ) {
+                if( results?.data?.getEvent.status == "inactive"){
+                    completionHandler(false, (results?.data?.getEvent.checkintype)!, nil)
+                } else{
+                    completionHandler(true, (results?.data?.getEvent.checkintype)!, nil)
+                }
+            } //else {
+            //                completionHandler(false, nil)
+            //            }
+        }
+        
+    }
     func eventActive(eventid:String, nav:UINavigationController, completionHandler: @escaping (_ active: Bool, _ error: String?) -> Void ){
         let query = GetEventQuery(eventid: eventid)
         Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
