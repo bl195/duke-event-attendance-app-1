@@ -17,6 +17,7 @@ class SelfCheckInViewController: UIViewController{
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     var attendees_array:[String] = []
     var circlecolor = ""
+    var checkedinalready = false
     
     
     @IBOutlet weak var blueBackground: UIImageView!
@@ -131,6 +132,7 @@ class SelfCheckInViewController: UIViewController{
             else if (result?.data?.selfCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.selfCheckIn?.id ?? "no attendee")
+                self.checkedinalready = true
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -200,9 +202,17 @@ class SelfCheckInViewController: UIViewController{
             }
             //self.isInBounds = true
             if ( !self.isInBounds ){
-                var alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
+                if(self.checkedinalready == true){
+                    //addmutation
+                    let alert = UIAlertController(title: "Alert", message: "You have checked-out of your event by leaving the location.", preferredStyle: .alert)
+                    alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else{
+                    let alert = UIAlertController(title: "Invalid", message: "You are not within the designated self check-in location", preferredStyle: .alert)
                 alert.addAction( UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                }
                 self.blueBackground.isHidden = true
                 self.whiteBackground.isHidden = true
                 self.eventLocationLabel.isHidden = true
