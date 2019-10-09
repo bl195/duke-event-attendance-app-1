@@ -1,0 +1,42 @@
+PODS:
+  - Apollo (0.12.0):
+    - Apollo/Core (= 0.12.0)
+  - Apollo/Core (0.12.0)
+  - CryptoSwift (0.15.0)
+  - PusherSwift (7.0.0):
+    - CryptoSwift (~> 0.9)
+    - ReachabilitySwift (= 4.3.0)
+    - Starscream (~> 3.0.5)
+  - ReachabilitySwift (4.3.0)
+  - RSBarcodes_Swift (5.0.0)
+  - Starscream (3.0.6)
+  - SwiftKeychainWrapper (3.4.0)
+
+DEPENDENCIES:
+  - Apollo
+  - PusherSwift (~> 7.0)
+  - RSBarcodes_Swift (~> 5.0.0)
+  - SwiftKeychainWrapper
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Apollo
+    - CryptoSwift
+    - PusherSwift
+    - ReachabilitySwift
+    - RSBarcodes_Swift
+    - Starscream
+    - SwiftKeychainWrapper
+
+SPEC CHECKSUMS:
+  Apollo: 0cf9110b9dc99c5bf38267511c6e40b01808c747
+  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
+  PusherSwift: d15d6290be0b0b57fd9ac80b03661a6ba24623ec
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  RSBarcodes_Swift: b6bee284eef3ee27f67fabb0d7f07459ed68a3de
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
+
+PODFILE CHECKSUM: a916a3a18bac1f6fd671e9b64804ef519775cec7
+
+COCOAPODS: 1.7.4

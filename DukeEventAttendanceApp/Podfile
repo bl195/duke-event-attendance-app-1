@@ -1,0 +1,11 @@
+platform :ios, '9.0'
+
+target 'DukeEventAttendanceApp' do
+  use_frameworks!
+
+  pod 'RSBarcodes_Swift', '~> 5.0.0'
+  pod 'SwiftKeychainWrapper'
+  pod 'Apollo'
+  pod 'PusherSwift', '~> 7.0'
+
+end

@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventInfoViewController.swift"
-            timestampString = "582047911.855818"
+            timestampString = "583682017.194702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            landmarkName = "EventInfoViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,12 +26,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventInfoViewController.swift"
-            timestampString = "582047911.856504"
+            timestampString = "583682017.202382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
             endingLineNumber = "51"
-            landmarkName = "viewDidLoad()"
+            landmarkName = "EventInfoViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
+            timestampString = "583690147.641644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "loadSampleEvents(filter:date:ongoing:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +58,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
-            timestampString = "582053951.851791"
+            timestampString = "583690147.641716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "hitAPI(_for:title:text:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DukeEventAttendanceApp.EventTableViewController.hitAPI(_for: Swift.String) -&gt; ()"
+                  moduleName = "DukeEventAttendanceApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jessicasu/Desktop/Code+/duke-event-attendance-app/DukeEventAttendanceApp/DukeEventAttendanceApp/EventTableViewController.swift"
+                  timestampString = "582840054.503785"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "2591">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DukeEventAttendanceApp.EventTableViewController.hitAPI(_for: Swift.String) -&gt; ()"
+                  moduleName = "DukeEventAttendanceApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jessicasu/Desktop/Code+/duke-event-attendance-app/DukeEventAttendanceApp/DukeEventAttendanceApp/EventTableViewController.swift"
+                  timestampString = "582840054.505897"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "205">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DukeEventAttendanceApp/EventTableViewController.swift"
+            timestampString = "583690147.641767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

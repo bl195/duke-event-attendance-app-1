@@ -4,7 +4,7 @@ var dateString = ""
 
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    var filter = ""
     @IBOutlet weak var Calendar: UICollectionView!
     @IBOutlet weak var MonthLabel: UILabel!
     
@@ -31,11 +31,18 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var dayCounter = 0
     
-    var highlightdate = -1;
+    var highlightdate = -1
     
+    var datemonth = ""
+    
+    var dateday = ""
+    
+    var datecode = ""
+    
+    var cellsArray : [UICollectionViewCell] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Choose Your Date!"
+        self.title = "Choose Your Date"
         currentMonth = Months[month]
         self.MonthLabel.text = "\(currentMonth) \(year)"
         if weekday == 0 {
@@ -104,6 +111,8 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
             
+            MoveAnimationNext(Label: MonthLabel)
+            
             Calendar.reloadData()
         default:
             Direction = 1
@@ -114,7 +123,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
-            
+            MoveAnimationNext(Label: MonthLabel)
             Calendar.reloadData()
         }
     }
@@ -142,6 +151,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
+            MoveAnimationBack(Label: MonthLabel)
             Calendar.reloadData()
             
         default:
@@ -153,6 +163,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
             
             currentMonth = Months[month]
             MonthLabel.text = "\(currentMonth) \(year)"
+            MoveAnimationBack(Label: MonthLabel)
             Calendar.reloadData()
         }
     }
@@ -215,10 +226,11 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         if highlightdate == indexPath.row{
-            cell.backgroundColor = UIColor.red
+            
+            cell.backgroundColor = UIColor.blue
         }
         
-        
+        cellsArray.append(cell)
         return cell
         
         
@@ -230,9 +242,52 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         //performSegue(withIdentifier: "NextView", sender: self)
         
+        dateday = convertdate(date: "\(indexPath.row - PositionIndex + 1)")
+        
+        datemonth = convertdate(date: String(Months.firstIndex(of: currentMonth)!+1))
+        
+        datecode = datemonth + "%2F" + dateday + "%2F" + "\(year)"
+        
+        let viewc2 = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
+        
+        viewc2?.title = dateString
+        viewc2?.encodedate = datecode
+        viewc2?.filtername = filter
+        
+        self.navigationController?.pushViewController(viewc2!, animated: true)
         highlightdate = indexPath.row
         collectionView.reloadData()
     }
     
+    
+    private func convertdate(date: String) -> String{
+        
+        let size = date.count
+        var ans = ""
+        
+        if( size == 1){
+            ans = "0" + date
+        }
+        else{
+            ans = date
+        }
+        return ans
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
+        cell.layer.transform = CATransform3DMakeScale(0.5,0.5,0.5)
+        
+        for x in cellsArray{
+            let cell : UICollectionViewCell = x
+            
+            UIView.animate(withDuration: 1, delay: 0.01 * Double(indexPath.row), usingSpringWithDamping: 0.8, initialSpringVelocity: 0,options: .curveEaseOut, animations: {
+                cell.alpha = 1
+                cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+            })
+        }
+    }
 }
+
+
 

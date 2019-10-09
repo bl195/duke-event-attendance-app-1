@@ -1,0 +1,6 @@
+framework module Pods_DukeEventAttendanceApp {
+  umbrella header "Pods-DukeEventAttendanceApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

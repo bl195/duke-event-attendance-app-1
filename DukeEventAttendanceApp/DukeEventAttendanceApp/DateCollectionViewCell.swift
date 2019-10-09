@@ -17,7 +17,7 @@ class DateCollectionViewCell: UICollectionViewCell {
         
         let CircleLayer = CAShapeLayer()
         CircleLayer.path = circlePath.cgPath
-        CircleLayer.strokeColor = UIColor.red.cgColor
+        CircleLayer.strokeColor = UIColor.blue.cgColor
         CircleLayer.lineWidth = 2
         CircleLayer.strokeEnd = 0
         CircleLayer.fillColor = UIColor.clear.cgColor
