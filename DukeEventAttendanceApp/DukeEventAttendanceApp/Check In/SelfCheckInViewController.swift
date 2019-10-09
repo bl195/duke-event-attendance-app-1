@@ -49,7 +49,7 @@ class SelfCheckInViewController: UIViewController{
         self.map.delegate = self
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
+        manager.requestAlwaysAuthorization()
         manager.requestLocation()
         manager.startUpdatingLocation()
         manager.stopUpdatingLocation()
@@ -151,6 +151,52 @@ class SelfCheckInViewController: UIViewController{
         
     }
     
+    func checkOutAttendee(nav: UINavigationController, event_id: String) {
+        //let checkOutMutation = CheckOutMutation(eventid: event_id)
+//        Apollo().getClient().perform(mutation: checkOutMutation) { [unowned self] result, error in
+//            if let error = error as? GraphQLHTTPResponseError {
+//                switch (error.response.statusCode) {
+//                case 401:
+//                    //request unauthorized due to bad token
+//
+//                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+//                        if success {
+//                            self.checkOutAttendee(nav: nav, event_id: event_id)
+//                        } else {
+//                            //handle error
+//                        }
+//
+//                    }
+//                default:
+//                    print ("error")
+//                }
+//            }
+//                //            if let error = error {
+//                //                print(error.localizedDescription)
+//                //                return
+//                //            }
+//
+//            else if (result?.data?.selfCheckIn?.id != nil) {
+//                print("success")
+//                print(result?.data?.selfCheckIn?.id ?? "no attendee")
+//                let alert = UIAlertController(title: "Thank you for attending.", message: "", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//                self.present(alert, animated: true)
+//                self.blueBackground.isHidden = true
+//                self.whiteBackground.isHidden = true
+//                self.eventLocationLabel.isHidden = true
+//                self.eventTime.isHidden = true
+//                self.confirmButton.isHidden = true
+//                self.eventTitle.isHidden = true
+//            }
+//            else {
+//                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
+//                self.invalidityCheck()
+//            }
+
+        //}
+    }
+    
     func invalidityCheck(){
         var alertMessage = ""
         let query = AllAttendeesQuery(id: self.eventid)
@@ -217,8 +263,42 @@ class SelfCheckInViewController: UIViewController{
                 self.map.showsUserLocation = true
                 self.drawCircle(location: desiredLoc, color: "red")
             }
+            
+            let region = CLCircularRegion(center: desiredLoc.coordinate,
+                                          radius: 100,
+                                          identifier: self.event.summary)
+            // 2
+            region.notifyOnExit = true
+            startMonitoring(region:region)
         }
         
+        func startMonitoring(region:CLCircularRegion) {
+            // 1
+            if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+                //showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
+                return
+            }
+            // 2
+            if CLLocationManager.authorizationStatus() != .authorizedAlways {
+                let message = """
+      Your geotification is saved but will only be activated once you grant
+      Geotify permission to access the device location.
+      """
+               // showAlert(withTitle:"Warning", message: message)
+            }
+            let fenceRegion = region
+            manager.startMonitoring(for: fenceRegion)
+        }
+        
+        func stopMonitoring() {
+            for region in manager.monitoredRegions {
+                guard let circularRegion = region as? CLCircularRegion,
+                    circularRegion.identifier == self.event.summary else { continue }
+                manager.stopMonitoring(for: circularRegion)
+            }
+        }
+
+
         
     }
     
@@ -280,6 +360,22 @@ extension SelfCheckInViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: (error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
+        if (hnc == nil) {
+            hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        }
+        if region is CLCircularRegion {
+            self.checkOutAttendee(nav: hnc!, event_id: event.id) //will need to checkout
+            print("LEFTLEFTLEFT")
+//            mutation CheckOut($eventid: String!, $duid: String!){
+//                checkOut(eventid: $eventid, duid: $duid){
+//                    id
+//                }
+//            }
+        }
     }
     
 }

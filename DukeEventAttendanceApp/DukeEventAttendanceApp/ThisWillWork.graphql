@@ -45,9 +45,6 @@ mutation SelfCheckIn ($eventid: String!){
     }
 }
 
-
-
-
 mutation QRCheckIn ($eventid: String!, $duid: String!){
     qrCheckIn(eventid: $eventid, duid: $duid){
         id
