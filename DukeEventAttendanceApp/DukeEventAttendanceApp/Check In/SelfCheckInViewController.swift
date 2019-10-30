@@ -124,11 +124,6 @@ class SelfCheckInViewController: UIViewController{
                     print ("error")
                 }
             }
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-
             else if (result?.data?.selfCheckIn?.id != nil) {
                 print("success")
                 print(result?.data?.selfCheckIn?.id ?? "no attendee")
@@ -151,50 +146,47 @@ class SelfCheckInViewController: UIViewController{
         
     }
     
-    func checkOutAttendee(nav: UINavigationController, event_id: String) {
-        //let checkOutMutation = CheckOutMutation(eventid: event_id)
-//        Apollo().getClient().perform(mutation: checkOutMutation) { [unowned self] result, error in
-//            if let error = error as? GraphQLHTTPResponseError {
-//                switch (error.response.statusCode) {
-//                case 401:
-//                    //request unauthorized due to bad token
-//
-//                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-//                        if success {
-//                            self.checkOutAttendee(nav: nav, event_id: event_id)
-//                        } else {
-//                            //handle error
-//                        }
-//
-//                    }
-//                default:
-//                    print ("error")
-//                }
-//            }
-//                //            if let error = error {
-//                //                print(error.localizedDescription)
-//                //                return
-//                //            }
-//
-//            else if (result?.data?.selfCheckIn?.id != nil) {
-//                print("success")
-//                print(result?.data?.selfCheckIn?.id ?? "no attendee")
-//                let alert = UIAlertController(title: "Thank you for attending.", message: "", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-//                self.present(alert, animated: true)
-//                self.blueBackground.isHidden = true
-//                self.whiteBackground.isHidden = true
-//                self.eventLocationLabel.isHidden = true
-//                self.eventTime.isHidden = true
-//                self.confirmButton.isHidden = true
-//                self.eventTitle.isHidden = true
-//            }
-//            else {
-//                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
-//                self.invalidityCheck()
-//            }
+    func checkOutAttendee(nav: UINavigationController, event_id: String, time: String) {
+        print("checking out attendee mutation")
+        let checkOutMutation = CheckOutMutation(eventid: event_id, time: time)
+        Apollo().getClient().perform(mutation: checkOutMutation) { [unowned self] result, error in
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
 
-        //}
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            self.checkOutAttendee(nav: nav, event_id: event_id, time: time)
+                        } else {
+                            //handle error
+                        }
+
+                    }
+                default:
+                    print ("error")
+                }
+            }
+            else if (result?.data?.checkOut?.id != nil) {
+                print("success")
+                print(result?.data?.checkOut?.id ?? "no attendee")
+                let alert = UIAlertController(title: "Thank you for attending.", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                self.blueBackground.isHidden = true
+                self.whiteBackground.isHidden = true
+                self.eventLocationLabel.isHidden = true
+                self.eventTime.isHidden = true
+                self.confirmButton.isHidden = true
+                self.eventTitle.isHidden = true
+                
+            }
+            else {
+                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
+                self.invalidityCheck()
+            }
+
+        }
     }
     
     func invalidityCheck(){
@@ -363,18 +355,15 @@ extension SelfCheckInViewController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
-        if (hnc == nil) {
-            hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
-        }
+     
         if region is CLCircularRegion {
-            self.checkOutAttendee(nav: hnc!, event_id: event.id) //will need to checkout
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.dateStyle = .none
+            let curr_time = formatter.string(from: currentDateTime)
+            self.checkOutAttendee(nav: self.navigationController!, event_id: event.id, time: curr_time)
             print("LEFTLEFTLEFT")
-//            mutation CheckOut($eventid: String!, $duid: String!){
-//                checkOut(eventid: $eventid, duid: $duid){
-//                    id
-//                }
-//            }
         }
     }
     

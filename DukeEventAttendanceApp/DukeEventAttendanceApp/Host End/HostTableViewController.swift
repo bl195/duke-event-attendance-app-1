@@ -63,7 +63,13 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             
             
             self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
-            self.tableView.reloadData()
+           
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+            
+            
             
         }
         
@@ -73,7 +79,10 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +91,10 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 //            self.tableView.reloadData()
 //        }
         //self.viewDidLoad()
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -113,7 +125,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                             
                         }
                     default:
-                        print ("error")
+                        print (error.localizedDescription)
                 }
             }
             else if let hostevents = results?.data?.hostEvents{
@@ -125,7 +137,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                 }
 
                 DispatchQueue.main.async {
-                    print (self.host_events.count)
                     completionHandler(self.host_events, nil)
                 }
                 
@@ -169,7 +180,10 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             if( active ){
                 alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
                     Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
                 } ) )
             }
         }

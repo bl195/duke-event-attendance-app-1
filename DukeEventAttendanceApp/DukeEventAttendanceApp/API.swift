@@ -659,3 +659,85 @@ public final class QrCheckInMutation: GraphQLMutation {
     }
   }
 }
+
+public final class CheckOutMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation CheckOut($eventid: String!, $time: String!) {\n  checkOut(eventid: $eventid, time: $time) {\n    __typename\n    id\n  }\n}"
+
+  public var eventid: String
+  public var time: String
+
+  public init(eventid: String, time: String) {
+    self.eventid = eventid
+    self.time = time
+  }
+
+  public var variables: GraphQLMap? {
+    return ["eventid": eventid, "time": time]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("checkOut", arguments: ["eventid": GraphQLVariable("eventid"), "time": GraphQLVariable("time")], type: .object(CheckOut.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(checkOut: CheckOut? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "checkOut": checkOut.flatMap { (value: CheckOut) -> ResultMap in value.resultMap }])
+    }
+
+    /// record check out time of attendee based on when they leave the geofence
+    public var checkOut: CheckOut? {
+      get {
+        return (resultMap["checkOut"] as? ResultMap).flatMap { CheckOut(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "checkOut")
+      }
+    }
+
+    public struct CheckOut: GraphQLSelectionSet {
+      public static let possibleTypes = ["Host"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID) {
+        self.init(unsafeResultMap: ["__typename": "Host", "id": id])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+    }
+  }
+}

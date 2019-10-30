@@ -39,26 +39,12 @@ class EventTableViewController: UITableViewController {
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
         let switch_display = UIBarButtonItem(customView: my_switch)
         navigationItem.rightBarButtonItems = [logout,switch_display]
-        
-    
-   
-        
-        
-//
-//        navigationItem.leftBarButtonItems = [topicfilter, settings_display]
-        
-        
-        
-   //-------------------------------------------------------------------------------------------
-        
-        
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.loadSampleEvents(filter: filtername, date: encodedate, ongoing: ongoing)
         
 
-        //self.hitAPI(_for: "http://localhost:3000/createArticleMobile")
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Events"

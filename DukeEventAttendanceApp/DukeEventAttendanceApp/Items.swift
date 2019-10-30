@@ -18,6 +18,9 @@ class Items{
     
     
     func eventActive(eventid:String, nav:UINavigationController, completionHandler: @escaping (_ active: Bool, _ error: String?) -> Void ){
+        if nav == nil {
+            return
+        }
         let query = GetEventQuery(eventid: eventid)
         Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
             if let error = error as? GraphQLHTTPResponseError {
@@ -34,7 +37,7 @@ class Items{
                         }
                     }
                 default:
-                    print ("error")
+                    print (error.localizedDescription)
                 }
             }
             else if (results?.data?.getEvent != nil ) {

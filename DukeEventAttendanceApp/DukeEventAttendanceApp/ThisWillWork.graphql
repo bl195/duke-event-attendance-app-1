@@ -51,4 +51,10 @@ mutation QRCheckIn ($eventid: String!, $duid: String!){
     }
 }
 
+mutation CheckOut($eventid: String!, $time: String!) {
+    checkOut(eventid: $eventid, time: $time) {
+        id
+    }
+}
+
 
