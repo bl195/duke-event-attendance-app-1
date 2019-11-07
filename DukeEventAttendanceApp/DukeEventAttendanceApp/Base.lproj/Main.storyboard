@@ -442,6 +442,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="414" height="1503"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="check_in_Button" destination="a6q-hh-Kty" id="4Um-jQ-w87"/>
                         <outlet property="descriptionLabel" destination="pXs-SM-dMZ" id="qrJ-vM-4ne"/>
                         <outlet property="imageLabel" destination="WsT-WK-AeB" id="cLG-ns-lN9"/>
                         <outlet property="locationLabel" destination="8MN-zr-67N" id="uRb-9M-x8M"/>

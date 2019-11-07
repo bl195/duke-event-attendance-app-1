@@ -43,6 +43,7 @@ class Apollo {
         
         configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)", "Content-Type": "application/json"]
         let kongURL = "https://events-attendance-backend.api-test.oit.duke.edu/graphql"
+        //let kongURL = "http://localhost:3000/graphql"
         let url = URL(string: kongURL)!
         return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
     }
