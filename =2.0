@@ -1,0 +1,6 @@
+/usr/local/bin/ts-node -> /usr/local/lib/node_modules/ts-node/dist/bin.js
+/usr/local/bin/tsc -> /usr/local/lib/node_modules/typescript/bin/tsc
+/usr/local/bin/tsserver -> /usr/local/lib/node_modules/typescript/bin/tsserver
++ ts-node@8.4.1
++ typescript@3.6.3
+added 9 packages from 41 contributors in 1.855s

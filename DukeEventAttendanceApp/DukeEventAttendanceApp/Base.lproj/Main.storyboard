@@ -442,6 +442,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="414" height="1503"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="check_in_Button" destination="a6q-hh-Kty" id="4Um-jQ-w87"/>
                         <outlet property="descriptionLabel" destination="pXs-SM-dMZ" id="qrJ-vM-4ne"/>
                         <outlet property="imageLabel" destination="WsT-WK-AeB" id="cLG-ns-lN9"/>
                         <outlet property="locationLabel" destination="8MN-zr-67N" id="uRb-9M-x8M"/>
@@ -1091,7 +1092,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="ml5-0x-Vc2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
-                                                    <state key="normal" title="A L L O W   C H E C K - I N">
+                                                    <state key="normal" title="A L L O W  C H E C K - I N">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -1487,7 +1488,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="confirmCheckIn:" destination="jmg-c5-VsR" eventType="touchUpInside" id="lwb-vj-T7E"/>
+                                    <action selector="checkInTapped:" destination="jmg-c5-VsR" eventType="touchUpInside" id="hJt-bA-hpe"/>
                                 </connections>
                             </button>
                         </subviews>

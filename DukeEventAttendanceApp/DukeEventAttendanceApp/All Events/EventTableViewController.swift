@@ -39,25 +39,12 @@ class EventTableViewController: UITableViewController {
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
         let switch_display = UIBarButtonItem(customView: my_switch)
         navigationItem.rightBarButtonItems = [logout,switch_display]
-        
-        tableView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
-        
-        
-//
-//        navigationItem.leftBarButtonItems = [topicfilter, settings_display]
-        
-        
-        
-   //-------------------------------------------------------------------------------------------
-        
-        
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.loadSampleEvents(filter: filtername, date: encodedate, ongoing: ongoing)
         
 
-        //self.hitAPI(_for: "http://localhost:3000/createArticleMobile")
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Events"
@@ -216,7 +203,7 @@ class EventTableViewController: UITableViewController {
             filtername = ""
         }
  */
-        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername1 + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple" + "&local=true"
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filtername1 + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple&local=true"
         
         
         NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in
@@ -309,6 +296,16 @@ class EventTableViewController: UITableViewController {
         // Need to check if url can be created successfully
         //if let imageUrl = URL(string: event.image_url) {
         //  TESTING with a fixed image url as event's image_url is empty
+//        if let imageUrl = URL(string: event.image_url) {
+//            // This is a network call and needs to be run on non-UI thread
+//            DispatchQueue.global().async {
+//                let imageData = try! Data(contentsOf: imageUrl)
+//                let image = UIImage(data: imageData)
+//                DispatchQueue.main.async {
+//                    cell.photoImageView.image = image
+//                }
+//            }
+//        }
         if let imageUrl = URL(string: event.image_url) {
             // This is a network call and needs to be run on non-UI thread
             DispatchQueue.global().async {

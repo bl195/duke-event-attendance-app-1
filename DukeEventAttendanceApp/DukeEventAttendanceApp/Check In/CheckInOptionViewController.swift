@@ -24,8 +24,32 @@ class CheckInOptionViewController: UIViewController {
         SelfCheckInButton.layer.cornerRadius = 20.0
         QRButton.layer.cornerRadius = 20.0
         print (event.id)
-        //self.navigationController?.isNavigationBarHidden = true
-        // Do any additional setup after loading the view.
+        
+        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
+            if( active ){
+                Items.sharedInstance.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, error in
+                    if( type == "qr" ){
+                        self.SelfCheckInButton.isEnabled = false
+                        self.SelfCheckInButton.setTitle("Self Check-in Not Available", for: .disabled)
+                        self.SelfCheckInButton.titleLabel?.attributedText = NSAttributedString(string: "Self Check-in Not Available", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 14)!])
+                        self.SelfCheckInButton.backgroundColor = UIColor.gray
+                    } else if( type == "self"){
+                        self.QRButton.isEnabled = false
+                        self.QRButton.setTitle("QR Check-in Not Available", for: .disabled)
+                        self.QRButton.titleLabel?.attributedText = NSAttributedString(string: "QR Check-in Not Available", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 14)!])
+                        self.QRButton.backgroundColor = UIColor.gray
+                    }
+                }
+            } else {
+                let alert = UIAlertController(title: "Invalid Operation", message: "The host has not opened the event for check in yet", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyAgendaViewController") as? MyAgendaViewController
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                } ) )
+
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func QRCodeButton(_ sender: Any) {

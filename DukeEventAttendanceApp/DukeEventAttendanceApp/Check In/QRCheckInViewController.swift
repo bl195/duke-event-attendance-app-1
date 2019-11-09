@@ -103,36 +103,22 @@ class QRCheckInViewController: UIViewController {
         self.title = "Check In"
         
         print("THE EVENT IS" + event.summary)
-        
-    
-        
-        var hnc = self.storyboard?.instantiateViewController(withIdentifier: "mainNav") as? UINavigationController
-        if (hnc == nil) {
-            hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
-        }
-        
+     
         showBarCode(barCode: isBarCode, nav: self.navigationController!)
 
         eventLabel.text = event.summary
         dateLabel.text = event.start_date
         locationLabel.text = event.address
         
-        //cardLabel.text = "CARD: " + self.dukeUnique
-
-        // Do any additional setup after loading the view.
-        
     }
     
     func getInfo(nav: UINavigationController, completionHandler: @escaping (_ cardnumber: String, _ name: String, _ error: String?) -> Void ){
                 let query = GetMyInfoQuery()
                 Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
-                    print(results)
-                    print (results?.data?.getMyInfo)
                     if let error = error as? GraphQLHTTPResponseError {
                         switch (error.response.statusCode) {
                         case 401:
                             //request unauthorized due to bad token
-                            print("REFRESH")
                             OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                                 if success {
         

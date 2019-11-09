@@ -100,11 +100,12 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         //agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
         
         // Register the custom header view.
-        tableView.register(MonthCustomHeader.self,
-                           forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
+        self.tableView.register(MonthCustomHeader.self,
+                                forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
         
-        self.tableView.reloadData()
-        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -140,13 +141,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         
         let agendaEv = self.month_events[months[indexPath.section]]![indexPath.row]
         
-        
-        //        @objc func sendtoDB(sender: UIButton) {
-        //            print ("yay")
-        //        }
-        //
-        //        cell.checkInButton.addTarget(self, action:#selector(sendtoDB(sender:)), for: .touchUpInside)
-        
         cell.backgroundCard.layer.backgroundColor = UIColor(white: 1.0, alpha: 0.0).cgColor
         cell.backgroundCard.layer.borderWidth = 1
         cell.backgroundCard.layer.borderColor = UIColor(red: 0/255.0, green: 83/255.0, blue: 155/255.0, alpha: 1.0).cgColor
@@ -158,10 +152,14 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         cell.timeLabel.text = "Time: " + agendaEv.starttime + " - " + agendaEv.endtime
         cell.monthLabel.text = agendaEv.startmonth.uppercased()
         cell.dayLabel.text = agendaEv.startday
-        cell.locLabel.text = "Location: " + agendaEv.address
+        cell.locLabel.text = "Location: " + agendaEv.address        
         
-        cell.delegate = self
-        cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+        Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
+            cell.active = active
+            cell.delegate = self
+            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+            
+        }
         
         return cell
     }

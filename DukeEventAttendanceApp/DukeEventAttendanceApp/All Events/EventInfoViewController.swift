@@ -13,6 +13,7 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var summaryLabel: UILabel!
     
 
+    @IBOutlet weak var check_in_Button: UIButton!
     @IBOutlet weak var webLinkButton: UIButton!
     
     @IBAction func webLink(_ sender: Any) {
@@ -49,6 +50,7 @@ class EventInfoViewController: UIViewController {
     var sl = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     var base_url = "http://localhost:3000/events/"
+    var isCheckInActive = true
  
     func hitAPI(_for URLString:String, dukecal_id: String, duid: String) {
         var actual_id = dukecal_id.replacingOccurrences(of: "@", with: "-")
@@ -86,11 +88,28 @@ class EventInfoViewController: UIViewController {
     }
     @IBAction func checkInButton(_ sender: Any) {
         //hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
-        vc?.eventLoc = self.ll
-        vc?.event = self.event
-        self.navigationController?.pushViewController(vc!, animated: true)
+        print(self.event.id)
+        Items.sharedInstance.eventActive(eventid: self.event.id, nav: self.navigationController!){ active, error in
+            if( active ){
+                print(true)
+                self.isCheckInActive = true
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "checkInOption") as? CheckInOptionViewController
+                vc?.eventLoc = self.ll
+                vc?.event = self.event
+                self.navigationController?.pushViewController(vc!, animated: true)
+                
+            }
+            else {
+                print(false)
+                self.isCheckInActive = false
+                self.check_in_Button.backgroundColor = UIColor.gray
+            }
+        }
+  
+        
     }
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +151,7 @@ class EventInfoViewController: UIViewController {
 //            webLinkButton.isEnabled = false
 //            webLinkButton.tintColor = UIColor.white
 //        }
-        
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {

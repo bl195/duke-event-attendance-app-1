@@ -19,7 +19,25 @@ query AllAttendees($id: ID!){
     }
 }
 
+query GetEvent( $eventid: ID! ){
+    getEvent(eventid: $eventid){
+        status
+        checkintype
+    }
+}
 
+mutation OpenEvent( $eventid: String!, $checkintype: String! ){
+openEvent(eventid: $eventid, checkintype: $checkintype){
+        status
+        checkintype
+    }
+}
+
+mutation CloseEvent( $eventid: String! ){
+    closeEvent(eventid: $eventid){
+        status
+    }
+}
 
 mutation SelfCheckIn ($eventid: String!){
     selfCheckIn(eventid: $eventid){
@@ -27,11 +45,14 @@ mutation SelfCheckIn ($eventid: String!){
     }
 }
 
-
-
-
 mutation QRCheckIn ($eventid: String!, $duid: String!){
     qrCheckIn(eventid: $eventid, duid: $duid){
+        id
+    }
+}
+
+mutation CheckOut($eventid: String!, $time: String!) {
+    checkOut(eventid: $eventid, time: $time) {
         id
     }
 }

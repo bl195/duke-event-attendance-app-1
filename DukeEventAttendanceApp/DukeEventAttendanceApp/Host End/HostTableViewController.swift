@@ -25,6 +25,10 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        self.host_events.removeAll()
+        self.actual_events.removeAll()
+        self.months.removeAll()
+        self.month_events.removeAll()
         getQuery(nav: hnc!) { hostEvents, error in
             self.host_events = hostEvents
             for event in self.host_events {
@@ -59,7 +63,13 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             
             
             self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
-            self.tableView.reloadData()
+           
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+            
+            
             
         }
         
@@ -68,11 +78,23 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                            forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
 //        getQuery() { hostEvents in
 //            self.host_events = hostEvents
 //            self.tableView.reloadData()
 //        }
+        //self.viewDidLoad()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -103,7 +125,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                             
                         }
                     default:
-                        print ("error")
+                        print (error.localizedDescription)
                 }
             }
             else if let hostevents = results?.data?.hostEvents{
@@ -115,7 +137,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                 }
 
                 DispatchQueue.main.async {
-                    print (self.host_events.count)
                     completionHandler(self.host_events, nil)
                 }
                 
@@ -141,6 +162,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
             //self.navigationController?.pushViewController(vc!, animated: true)
             qvc?.event_id = eventid
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
@@ -149,9 +171,23 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
                         //self.navigationController?.pushViewController(vc!, animated: true)
             vc?.event_id = eventid
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
+        
+        Items.sharedInstance.eventActive(eventid: eventid, nav: self.navigationController!){ active, error in
+            if( active ){
+                alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
+                    Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                } ) )
+            }
+        }
+        
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
         self.present(alert, animated: true, completion: nil)
     }
@@ -197,10 +233,22 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         }
         cell.backgroundCard.layer.cornerRadius = 10.0
         cell.allowCheckInButton.layer.cornerRadius = 10.0
-
-        cell.delegate = self
-        cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         
+        cell.delegate = self
+        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
+            if( active ){
+                print(true)
+                cell.active = true
+                cell.delegate = self
+                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+            } else {
+                print(false)
+                cell.active = false
+                cell.delegate = self
+                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+            }
+            
+        }
         return cell
     }
     
