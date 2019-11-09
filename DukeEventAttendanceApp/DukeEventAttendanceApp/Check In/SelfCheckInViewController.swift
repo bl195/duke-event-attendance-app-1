@@ -161,6 +161,7 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
             }
             else if (result?.data?.selfCheckIn?.id != nil) {
                 print(result?.data?.selfCheckIn?.id ?? "no attendee")
+                self.checkedinalready = true
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated:true)
