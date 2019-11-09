@@ -1,0 +1,5 @@
++ ts-node@8.4.1
++ typescript@3.6.3
+added 2 packages from 1 contributor, removed 2 packages, updated 12 packages and audited 10532 packages in 4.719s
+found 41 high severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details

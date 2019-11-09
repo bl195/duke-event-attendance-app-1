@@ -155,17 +155,9 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         cell.locLabel.text = "Location: " + agendaEv.address        
         
         Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
-            if( active ){
-                print(true)
-                cell.active = true
-                cell.delegate = self
-                cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-            } else {
-                print(false)
-                cell.active = false
-                cell.delegate = self
-                cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-            }
+            cell.active = active
+            cell.delegate = self
+            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
             
         }
         

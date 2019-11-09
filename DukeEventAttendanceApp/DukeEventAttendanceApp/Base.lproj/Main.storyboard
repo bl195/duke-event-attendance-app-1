@@ -1487,7 +1487,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="confirmCheckIn:" destination="jmg-c5-VsR" eventType="touchUpInside" id="lwb-vj-T7E"/>
+                                    <action selector="checkInTapped:" destination="jmg-c5-VsR" eventType="touchUpInside" id="hJt-bA-hpe"/>
                                 </connections>
                             </button>
                         </subviews>
