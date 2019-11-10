@@ -37,7 +37,8 @@ class AgendaTableViewCell: UITableViewCell {
         self.event = event
         print(event.summary)
         print(self.active)
-        if( !self.active ){
+        
+        if(!self.active){
             self.checkInButton.isEnabled = false
             self.checkInButton.setTitle("C H E C K - I N  N O T  A V A I L A B L E", for: .disabled)
             self.checkInButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)

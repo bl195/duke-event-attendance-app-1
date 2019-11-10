@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+import Apollo
 
 class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDelegate {
     
@@ -27,6 +28,8 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     var months = [String]()
     var month_events = [String: [Event]]()
     
+    var activeEvents: [String] = []
+    
     override func viewDidLoad() {
         self.title = "My Agenda"
         super.viewDidLoad()
@@ -35,10 +38,25 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         self.tableView.delegate = self //maybe
         self.tableView.dataSource = self //maybe
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        self.tableView.reloadData()
+        
+        //self.tableView.reloadData()
+        
         self.navigationController?.navigationBar.isHidden = true
         
+        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
+            self.activeEvents = activeEvents
+            print("MY ACTIVE EVENTS ARE")
+            print(activeEvents)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+      
+       
+        
     }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -52,8 +70,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         
         do {
             let agendaArray = try PersistenceService.context.fetch(fetchRequest)
-            print (agendaArray.count)
-            //agendaEvents.removeAll()
             month_events.removeAll()
             months.removeAll()
             
@@ -77,18 +93,15 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
                     
                 }
             }
-            var index = 0
             
         } catch {}
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
-        print (self.months)
         
         
         
         for (month,events) in self.month_events {
-            //var events = self.month_events[month]
             if (events.count > 0) {
                 month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
                 for event in events {
@@ -97,18 +110,58 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
             }
             
         }
-        //agendaEvents = agendaEvents.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
         
         // Register the custom header view.
         self.tableView.register(MonthCustomHeader.self,
                                 forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
-        
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    
+    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
+        
+        let query = GetActiveEventsQuery()
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            
+                            self.getActiveEvents(nav: nav) { activeEvents, error in
+                                completionHandler(activeEvents, error)
+                            }
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print (error.localizedDescription)
+                }
+            }
+            else if let activeEvents = results?.data?.getActiveEvents{
+                for event in activeEvents {
+                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
+
+                }
+                
+                DispatchQueue.main.async {
+                    completionHandler(self.activeEvents, nil)
+                }
+                
+                
+                
+            } else{
+               
+            }
+        }
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.months.count
@@ -154,12 +207,26 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         cell.dayLabel.text = agendaEv.startday
         cell.locLabel.text = "Location: " + agendaEv.address        
         
-        Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
-            cell.active = active
+       
+        if (self.activeEvents.contains(agendaEv.id)) {
+            cell.active = true
+            cell.delegate = self
+            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+        }
+        
+        if (!self.activeEvents.contains(agendaEv.id)) {
+            cell.active = false
             cell.delegate = self
             cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
             
         }
+        
+//        Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
+//            cell.active = active
+//            cell.delegate = self
+//            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+//
+//        }
         
         return cell
     }

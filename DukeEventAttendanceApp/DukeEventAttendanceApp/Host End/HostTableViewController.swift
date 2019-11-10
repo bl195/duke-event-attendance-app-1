@@ -17,6 +17,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     var months = [String]()
     var month_events = [String: [Event]]()
     
+    var activeEvents = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true        
@@ -25,6 +27,13 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        
+        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
+            self.activeEvents = activeEvents
+            print("MY ACTIVE EVENTS ARE")
+            print(activeEvents)
+        }
+        
         self.host_events.removeAll()
         self.actual_events.removeAll()
         self.months.removeAll()
@@ -73,15 +82,16 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             
         }
         
+        
         // Register the custom header view.
         tableView.register(MonthCustomHeader.self,
                            forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
         
     }
     
@@ -91,9 +101,9 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
 //            self.tableView.reloadData()
 //        }
         //self.viewDidLoad()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -155,6 +165,51 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         }
     }
     
+    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
+        
+        let query = GetActiveEventsQuery()
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            
+                            self.getActiveEvents(nav: nav) { activeEvents, error in
+                                completionHandler(activeEvents, error)
+                            }
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print (error.localizedDescription)
+                }
+            }
+            else if let activeEvents = results?.data?.getActiveEvents{
+                for event in activeEvents {
+                    
+                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
+                    
+                    //self.tableView.reloadData()
+                }
+                
+                DispatchQueue.main.async {
+                    completionHandler(self.activeEvents, nil)
+                }
+                
+                
+                
+            } else{
+                
+            }
+        }
+    }
+    
     //Delegate method
     func didTapAllowCheckIn(eventid:String) {
         let alert = UIAlertController(title: "Choose Check-In Method", message: "Please choose method by which attendees will check in to your event", preferredStyle: .alert)
@@ -176,17 +231,25 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         
-        Items.sharedInstance.eventActive(eventid: eventid, nav: self.navigationController!){ active, error in
-            if( active ){
-                alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
-                    Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    
-                } ) )
-            }
+        if (self.activeEvents.contains(eventid)) {
+            alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
+                Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } ) )
         }
+//        Items.sharedInstance.eventActive(eventid: eventid, nav: self.navigationController!){ active, error in
+//            if( active ){
+//                alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
+//                    Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//
+//                } ) )
+//            }
+//        }
         
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
         self.present(alert, animated: true, completion: nil)
@@ -235,20 +298,32 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         cell.allowCheckInButton.layer.cornerRadius = 10.0
         
         cell.delegate = self
-        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
-            if( active ){
-                print(true)
-                cell.active = true
-                cell.delegate = self
-                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-            } else {
-                print(false)
-                cell.active = false
-                cell.delegate = self
-                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-            }
+        if (self.activeEvents.contains(event.id)) {
+            cell.active = true
+            cell.delegate = self
+            cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+        }
+        
+        if (!self.activeEvents.contains(event.id)) {
+            cell.active = false
+            cell.delegate = self
+            cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
             
         }
+//        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
+//            if( active ){
+//                print(true)
+//                cell.active = true
+//                cell.delegate = self
+//                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+//            } else {
+//                print(false)
+//                cell.active = false
+//                cell.delegate = self
+//                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
+//            }
+//
+//        }
         return cell
     }
     
