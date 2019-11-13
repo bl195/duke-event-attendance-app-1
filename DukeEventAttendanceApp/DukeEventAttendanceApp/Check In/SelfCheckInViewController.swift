@@ -370,15 +370,33 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
         
         print(region.identifier)
         
+        let alert = UIAlertController(title: "Thank you for attending.", message: "", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+        
+        self.blueBackground.isHidden = true
+        
+        self.whiteBackground.isHidden = true
+        
+        self.eventLocationLabel.isHidden = true
+        
+        self.eventTime.isHidden = true
+        
+        self.confirmButton.isHidden = true
+        
+        self.eventTitle.isHidden = true
+        
         let currentDateTime = Date()
         
         let formatter = DateFormatter()
         
-        formatter.timeStyle = .medium
-        
-        formatter.dateStyle = .none
+        formatter.dateFormat = "h:mm a"
         
         let curr_time = formatter.string(from: currentDateTime)
+        
+        print (curr_time)
         
         self.checkOutAttendee(nav: self.navigationController!, event_id: self.eventid, time: curr_time)
         
@@ -548,24 +566,24 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
                 
                 print(result?.data?.checkOut?.id ?? "no attendee")
                 
-                let alert = UIAlertController(title: "Thank you for attending.", message: "", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true)
-                
-                self.blueBackground.isHidden = true
-                
-                self.whiteBackground.isHidden = true
-                
-                self.eventLocationLabel.isHidden = true
-                
-                self.eventTime.isHidden = true
-                
-                self.confirmButton.isHidden = true
-                
-                self.eventTitle.isHidden = true
-                
+//                let alert = UIAlertController(title: "Thank you for attending.", message: "", preferredStyle: .alert)
+//
+//                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//
+//                self.present(alert, animated: true)
+//
+//                self.blueBackground.isHidden = true
+//
+//                self.whiteBackground.isHidden = true
+//
+//                self.eventLocationLabel.isHidden = true
+//
+//                self.eventTime.isHidden = true
+//
+//                self.confirmButton.isHidden = true
+//
+//                self.eventTitle.isHidden = true
+//
                 
                 
             }

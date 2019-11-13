@@ -38,6 +38,17 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         self.tableView.reloadData()
         self.navigationController?.navigationBar.isHidden = true
         
+        let currentDateTime = Date()
+        
+        let formatter = DateFormatter()
+        
+        //formatter.dateFormat = "h:mm a"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let curr_time = formatter.string(from: currentDateTime)
+        
+        print (curr_time)
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
