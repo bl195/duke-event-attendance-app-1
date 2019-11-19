@@ -32,56 +32,51 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             self.activeEvents = activeEvents
             print("MY ACTIVE EVENTS ARE")
             print(activeEvents)
-        }
-        
-        self.host_events.removeAll()
-        self.actual_events.removeAll()
-        self.months.removeAll()
-        self.month_events.removeAll()
-        getQuery(nav: hnc!) { hostEvents, error in
-            self.host_events = hostEvents
-            for event in self.host_events {
-                let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
-                if (ev != nil) {
-                    self.actual_events.append(ev!)
-                    if( !self.months.contains( ev!.longmonth )){
-                        self.months.append(ev!.longmonth)
-                        self.month_events[ev!.longmonth] = [Event]()
+            
+            self.host_events.removeAll()
+            self.actual_events.removeAll()
+            self.months.removeAll()
+            self.month_events.removeAll()
+            self.getQuery(nav: hnc!) { hostEvents, error in
+                self.host_events = hostEvents
+                for event in self.host_events {
+                    let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
+                    if (ev != nil) {
+                        self.actual_events.append(ev!)
+                        if( !self.months.contains( ev!.longmonth )){
+                            self.months.append(ev!.longmonth)
+                            self.month_events[ev!.longmonth] = [Event]()
+                        }
+                        self.month_events[ev!.longmonth]?.append(ev!)
                     }
-                    self.month_events[ev!.longmonth]?.append(ev!)
+                    
+                }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMMM"
+                self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
+                print (self.months)
+                
+                
+                
+                for (month,events) in self.month_events {
+                    //var events = self.month_events[month]
+                    if (events.count > 0) {
+                        self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
+                        for event in events {
+                            print (event.summary)
+                        }
+                    }
+                    
                 }
                 
-            }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMMM"
-            self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
-            print (self.months)
-            
-            
-            
-            for (month,events) in self.month_events {
-                //var events = self.month_events[month]
-                if (events.count > 0) {
-                    self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
-                    for event in events {
-                        print (event.summary)
-                    }
-                }
                 
+                self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
+               
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
-            
-            
-            self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
-           
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-            
-            
-            
         }
-        
         
         // Register the custom header view.
         tableView.register(MonthCustomHeader.self,

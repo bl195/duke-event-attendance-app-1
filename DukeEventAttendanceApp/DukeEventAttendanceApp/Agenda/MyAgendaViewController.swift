@@ -17,6 +17,9 @@ class MyAgendaViewController: UIViewController{
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    var currentController = UIViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,31 +32,41 @@ class MyAgendaViewController: UIViewController{
         defaultBold()
         
         pushController(contName: "MyAgendaTableViewController")
-
     }
     
-    func pushController( contName:String ){
-        let controller = storyboard!.instantiateViewController(withIdentifier: contName)
-        addChild(controller)
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(controller.view)
+    func pushController( contName:String ) {
+        removeChildController()
+        currentController = storyboard!.instantiateViewController(withIdentifier: contName)
+        addChild(currentController)
+        currentController.view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(currentController.view)
         //print (controller.view.frame.height)
         
-        scrollView.contentSize = CGSize(width: containerView.frame.width, height: controller.view.frame.height)
+        scrollView.contentSize = CGSize(width: containerView.frame.width, height: currentController.view.frame.height)
         print (scrollView.frame.height)
         print (scrollView.contentSize.height)
-        controller.didMove(toParent: self)
-
+        currentController.didMove(toParent: self)
+    }
+    
+    func removeChildController() {
+        currentController.willMove(toParent: currentController.parent)
+        currentController.view.removeFromSuperview()
+        currentController.removeFromParent()
     }
 
     @IBAction func hostingAction(_ sender: Any) {
-        pushController(contName: "HostTableViewController")
-        toggledBold()
+        if !(currentController is HostTableViewController) {
+            pushController(contName: "HostTableViewController")
+            toggledBold()
+        }
+        
     }
     
     @IBAction func attendingAction(_ sender: Any) {
-        pushController(contName: "MyAgendaTableViewController")
-        defaultBold()
+        if !(currentController is MyAgendaTableViewController) {
+            pushController(contName: "MyAgendaTableViewController")
+            defaultBold()
+        }
     }
     
     func defaultBold(){
