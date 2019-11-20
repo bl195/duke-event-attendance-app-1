@@ -17,6 +17,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     var months = [String]()
     var month_events = [String: [Event]]()
     
+    var activeEvents = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true        
@@ -25,52 +27,55 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
-        self.host_events.removeAll()
-        self.actual_events.removeAll()
-        self.months.removeAll()
-        self.month_events.removeAll()
-        getQuery(nav: hnc!) { hostEvents, error in
-            self.host_events = hostEvents
-            for event in self.host_events {
-                let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
-                if (ev != nil) {
-                    self.actual_events.append(ev!)
-                    if( !self.months.contains( ev!.longmonth )){
-                        self.months.append(ev!.longmonth)
-                        self.month_events[ev!.longmonth] = [Event]()
+        
+        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
+            self.activeEvents = activeEvents
+            print("MY ACTIVE EVENTS ARE")
+            print(activeEvents)
+            
+            self.host_events.removeAll()
+            self.actual_events.removeAll()
+            self.months.removeAll()
+            self.month_events.removeAll()
+            self.getQuery(nav: hnc!) { hostEvents, error in
+                self.host_events = hostEvents
+                for event in self.host_events {
+                    let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
+                    if (ev != nil) {
+                        self.actual_events.append(ev!)
+                        if( !self.months.contains( ev!.longmonth )){
+                            self.months.append(ev!.longmonth)
+                            self.month_events[ev!.longmonth] = [Event]()
+                        }
+                        self.month_events[ev!.longmonth]?.append(ev!)
                     }
-                    self.month_events[ev!.longmonth]?.append(ev!)
+                    
+                }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMMM"
+                self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
+                print (self.months)
+                
+                
+                
+                for (month,events) in self.month_events {
+                    //var events = self.month_events[month]
+                    if (events.count > 0) {
+                        self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
+                        for event in events {
+                            print (event.summary)
+                        }
+                    }
+                    
                 }
                 
-            }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMMM"
-            self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
-            print (self.months)
-            
-            
-            
-            for (month,events) in self.month_events {
-                //var events = self.month_events[month]
-                if (events.count > 0) {
-                    self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
-                    for event in events {
-                        print (event.summary)
-                    }
-                }
                 
+                self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
+               
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
-            
-            
-            self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
-           
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-            
-            
-            
         }
         
         // Register the custom header view.
@@ -79,21 +84,10 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        getQuery() { hostEvents in
-//            self.host_events = hostEvents
-//            self.tableView.reloadData()
-//        }
-        //self.viewDidLoad()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -155,37 +149,73 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         }
     }
     
+    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
+        
+        let query = GetActiveEventsQuery()
+        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+            
+            if let error = error as? GraphQLHTTPResponseError {
+                switch (error.response.statusCode) {
+                case 401:
+                    //request unauthorized due to bad token
+                    
+                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+                        if success {
+                            
+                            self.getActiveEvents(nav: nav) { activeEvents, error in
+                                completionHandler(activeEvents, error)
+                            }
+                        } else {
+                            //handle error
+                        }
+                        
+                    }
+                default:
+                    print (error.localizedDescription)
+                }
+            }
+            else if let activeEvents = results?.data?.getActiveEvents{
+                for event in activeEvents {
+                    
+                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
+                }
+                
+                DispatchQueue.main.async {
+                    completionHandler(self.activeEvents, nil)
+                }
+                
+                
+                
+            } else{
+                
+            }
+        }
+    }
+    
     //Delegate method
     func didTapAllowCheckIn(eventid:String) {
         let alert = UIAlertController(title: "Choose Check-In Method", message: "Please choose method by which attendees will check in to your event", preferredStyle: .alert)
         alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: {(action) -> Void in
             let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
-            //self.navigationController?.pushViewController(vc!, animated: true)
             qvc?.event_id = eventid
             Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
-            //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         
         alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
-                        //self.navigationController?.pushViewController(vc!, animated: true)
             vc?.event_id = eventid
             Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
-            //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         
-        Items.sharedInstance.eventActive(eventid: eventid, nav: self.navigationController!){ active, error in
-            if( active ){
-                alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
-                    Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    
-                } ) )
-            }
+        if (self.activeEvents.contains(eventid)) {
+            alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
+                Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } ) )
         }
         
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
@@ -220,8 +250,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             fatalError("the cell is not an instance of the table view cell")
         }
         // Configure the cell...
-//        let event_id = self.host_events[indexPath.row]
-//        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
         
         let event = self.month_events[months[indexPath.section]]![indexPath.row]
         if event != nil{
@@ -235,20 +263,16 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         cell.allowCheckInButton.layer.cornerRadius = 10.0
         
         cell.delegate = self
-        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
-            if( active ){
-                print(true)
-                cell.active = true
-                cell.delegate = self
-                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-            } else {
-                print(false)
-                cell.active = false
-                cell.delegate = self
-                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-            }
+        if (self.activeEvents.contains(event.id)) {
+            cell.active = true
+        }
+        
+        if (!self.activeEvents.contains(event.id)) {
+            cell.active = false
             
         }
+        cell.delegate = self
+        cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         return cell
     }
     

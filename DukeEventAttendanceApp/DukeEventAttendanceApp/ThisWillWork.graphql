@@ -26,6 +26,12 @@ query GetEvent( $eventid: ID! ){
     }
 }
 
+query GetActiveEvents {
+    getActiveEvents {
+        eventid
+    }
+}
+
 mutation OpenEvent( $eventid: String!, $checkintype: String! ){
 openEvent(eventid: $eventid, checkintype: $checkintype){
         status
