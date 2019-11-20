@@ -20,7 +20,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         vc?.event = event
         self.navigationController?.pushViewController(vc!, animated: true)
         
-        
     }
     
     
@@ -39,21 +38,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         self.tableView.dataSource = self //maybe
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         
-        //self.tableView.reloadData()
-        
         self.navigationController?.navigationBar.isHidden = true
-        
-        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
-            self.activeEvents = activeEvents
-            print("MY ACTIVE EVENTS ARE")
-            print(activeEvents)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-      
-       
         
     }
     
@@ -66,57 +51,62 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillAppear(animated)
         
-        let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()
-        
-        do {
-            let agendaArray = try PersistenceService.context.fetch(fetchRequest)
-            month_events.removeAll()
-            months.removeAll()
+        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
+            self.activeEvents = activeEvents
+            print("MY ACTIVE EVENTS ARE")
+            print(activeEvents)
             
-            var globalagendaEvents = Items.sharedInstance.eventArray
-            var globalEventDict = Items.sharedInstance.id_event_dict
-            for id in agendaArray{
-                if globalEventDict.keys.contains(id.id!){
-                    var ev = globalEventDict[id.id!]!
-                    if( agendaEvents.contains(ev) == false){
-                        agendaEvents.append(ev)
-                    }
-                    if( !self.months.contains( ev.longmonth )){
+            let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()
+            
+            do {
+                let agendaArray = try PersistenceService.context.fetch(fetchRequest)
+                self.month_events.removeAll()
+                self.months.removeAll()
+                
+                var globalagendaEvents = Items.sharedInstance.eventArray
+                var globalEventDict = Items.sharedInstance.id_event_dict
+                for id in agendaArray{
+                    if globalEventDict.keys.contains(id.id!){
+                        var ev = globalEventDict[id.id!]!
+                        if( self.agendaEvents.contains(ev) == false){
+                            self.agendaEvents.append(ev)
+                        }
+                        if( !self.months.contains( ev.longmonth )){
+                            
+                            
+                            self.months.append(ev.longmonth)
+                            self.month_events[ev.longmonth] = [Event]()
+                        }
+                        if (!self.month_events[ev.longmonth]!.contains(ev) ) {
+                            self.month_events[ev.longmonth]?.append(ev)
+                        }
                         
-                        
-                        self.months.append(ev.longmonth)
-                        self.month_events[ev.longmonth] = [Event]()
                     }
-                    if (!self.month_events[ev.longmonth]!.contains(ev) ) {
-                        self.month_events[ev.longmonth]?.append(ev)
+                }
+                
+            } catch {}
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMMM"
+            self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
+            
+            
+            
+            for (month,events) in self.month_events {
+                if (events.count > 0) {
+                    self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
+                    for event in events {
+                        print (event.summary)
                     }
-                    
                 }
+                
             }
+            // Register the custom header view.
+            self.tableView.register(MonthCustomHeader.self,
+                                    forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
             
-        } catch {}
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
-        
-        
-        
-        for (month,events) in self.month_events {
-            if (events.count > 0) {
-                month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
-                for event in events {
-                    print (event.summary)
-                }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-            
-        }
-        
-        // Register the custom header view.
-        self.tableView.register(MonthCustomHeader.self,
-                                forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
-
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
         }
     }
     
@@ -210,24 +200,15 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
        
         if (self.activeEvents.contains(agendaEv.id)) {
             cell.active = true
-            cell.delegate = self
-            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         }
         
         if (!self.activeEvents.contains(agendaEv.id)) {
             cell.active = false
-            cell.delegate = self
-            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
             
         }
         
-//        Items.sharedInstance.eventActive(eventid: agendaEv.id, nav: self.navigationController!){ active, error in
-//            cell.active = active
-//            cell.delegate = self
-//            cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-//
-//        }
-        
+        cell.delegate = self
+        cell.setEvent(event: agendaEv ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         return cell
     }
     
@@ -276,8 +257,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         vc?.sl = agendaEvents[indexPath.row].sponsor
         
         self.navigationController?.pushViewController(vc!, animated: true)
-        //self.navigationController?.show(vc!, sender: true)
-        //present(vc!, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

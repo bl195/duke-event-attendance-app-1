@@ -84,21 +84,10 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        getQuery() { hostEvents in
-//            self.host_events = hostEvents
-//            self.tableView.reloadData()
-//        }
-        //self.viewDidLoad()
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -189,8 +178,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                 for event in activeEvents {
                     
                     self.activeEvents.append( event.resultMap["eventid"]!! as! String )
-                    
-                    //self.tableView.reloadData()
                 }
                 
                 DispatchQueue.main.async {
@@ -210,20 +197,16 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         let alert = UIAlertController(title: "Choose Check-In Method", message: "Please choose method by which attendees will check in to your event", preferredStyle: .alert)
         alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: {(action) -> Void in
             let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
-            //self.navigationController?.pushViewController(vc!, animated: true)
             qvc?.event_id = eventid
             Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
-            //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         
         alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
-                        //self.navigationController?.pushViewController(vc!, animated: true)
             vc?.event_id = eventid
             Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
-            //self.performSegue(withIdentifier: "vc2", sender: self)
         } ) )
         
         if (self.activeEvents.contains(eventid)) {
@@ -234,17 +217,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
                 }
             } ) )
         }
-//        Items.sharedInstance.eventActive(eventid: eventid, nav: self.navigationController!){ active, error in
-//            if( active ){
-//                alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
-//                    Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//
-//                } ) )
-//            }
-//        }
         
         alert.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler: nil) )
         self.present(alert, animated: true, completion: nil)
@@ -278,8 +250,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             fatalError("the cell is not an instance of the table view cell")
         }
         // Configure the cell...
-//        let event_id = self.host_events[indexPath.row]
-//        let event = Items.sharedInstance.eventArray.first(where: { $0.id == event_id })
         
         let event = self.month_events[months[indexPath.section]]![indexPath.row]
         if event != nil{
@@ -295,30 +265,14 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         cell.delegate = self
         if (self.activeEvents.contains(event.id)) {
             cell.active = true
-            cell.delegate = self
-            cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         }
         
         if (!self.activeEvents.contains(event.id)) {
             cell.active = false
-            cell.delegate = self
-            cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
             
         }
-//        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
-//            if( active ){
-//                print(true)
-//                cell.active = true
-//                cell.delegate = self
-//                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-//            } else {
-//                print(false)
-//                cell.active = false
-//                cell.delegate = self
-//                cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
-//            }
-//
-//        }
+        cell.delegate = self
+        cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         return cell
     }
     
