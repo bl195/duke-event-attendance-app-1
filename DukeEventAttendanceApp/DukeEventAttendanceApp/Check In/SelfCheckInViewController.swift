@@ -37,6 +37,10 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
     var attendees_array:[String] = []
     var circlecolor = ""
     var desiredLoc = CLLocation()
+    var usingHostLoc = false
+    var hostLocLat = ""
+    var hostLocLong = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,6 +241,18 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
                 print(item)
                 desiredLoc = item.placemark.location!
                 var coords = desiredLoc.coordinate
+                if (self.usingHostLoc == true) {
+                    let lat = (self.hostLocLat as NSString).doubleValue as! CLLocationDegrees
+                    let long = (self.hostLocLong as NSString).doubleValue as! CLLocationDegrees
+                    
+                    coords = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    print(coords)
+                    
+                    let hostLoc: CLLocation = CLLocation(latitude: lat,
+                                                          longitude: long)
+                    desiredLoc = hostLoc
+                    
+                }
                 self.geoFenceRegion = CLCircularRegion(center: coords, radius: 100, identifier: eventlocation)
                 self.isInBounds = self.geoFenceRegion.contains(self.myLocation.coordinate)
                 

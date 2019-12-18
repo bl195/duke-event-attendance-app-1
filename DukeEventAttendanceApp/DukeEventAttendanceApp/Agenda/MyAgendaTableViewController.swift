@@ -51,6 +51,8 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillAppear(animated)
         
+        self.activeEvents.removeAll()
+        
         getActiveEvents(nav: self.navigationController!) {activeEvents, error in
             self.activeEvents = activeEvents
             print("MY ACTIVE EVENTS ARE")

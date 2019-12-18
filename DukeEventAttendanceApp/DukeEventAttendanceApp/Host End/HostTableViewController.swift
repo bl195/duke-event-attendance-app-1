@@ -7,9 +7,10 @@
 //
 import UIKit
 import Apollo
+import CoreLocation
 
 
-class HostTableViewController: UITableViewController, HostTableViewCellDelegate {
+class HostTableViewController: UITableViewController, HostTableViewCellDelegate, CLLocationManagerDelegate {
 
     
     var host_events = [String]()
@@ -19,6 +20,8 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     
     var activeEvents = [String]()
     
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true        
@@ -27,6 +30,13 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+        locationManager.distanceFilter = 100
         
         getActiveEvents(nav: self.navigationController!) {activeEvents, error in
             self.activeEvents = activeEvents
@@ -201,11 +211,18 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
             Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
         } ) )
-        
-        alert.addAction( UIAlertAction(title: "Self Check-In", style: .default, handler: {(action) -> Void in
-                       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
+        alert.addAction( UIAlertAction(title: "Self Check-In (Event) ", style: .default, handler: {(action) -> Void in
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
             Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", nav: self.navigationController!)
+            self.navigationController?.pushViewController(vc!, animated: true)
+        } ) )
+        
+        alert.addAction( UIAlertAction(title: "Self Check-In (Host) ", style: .default, handler: {(action) -> Void in
+                       let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
+            vc?.event_id = eventid
+            
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self_host_loc", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
         
@@ -278,6 +295,20 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate 
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        //eventually include guard to not track location unless HOST
+        
+        let userLocation :CLLocation = locations[0] as CLLocation
+        print(userLocation.coordinate)
+       
+        Items.sharedInstance.hostLocLat = "\(userLocation.coordinate.latitude)"
+        Items.sharedInstance.hostLocLong = "\(userLocation.coordinate.latitude)"
+        print(Items.sharedInstance.hostLocLat)
+        
+       
     }
     /*
     // Override to support conditional editing of the table view.
