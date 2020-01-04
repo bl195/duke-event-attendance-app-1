@@ -53,7 +53,7 @@ class Items{
         }
     }
     
-    func checkInType(eventid:String, nav:UINavigationController, completionHandler: @escaping (_ checkInType: String, _ error: String?) -> Void ){
+    func checkInType(eventid:String, nav:UINavigationController, completionHandler: @escaping (_ checkInType: String, _ hostlat: String, _ hostlong: String, _ error: String?) -> Void ){
         let query = GetEventQuery(eventid: eventid)
         Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
             if let error = error as? GraphQLHTTPResponseError {
@@ -62,8 +62,8 @@ class Items{
                     //request unauthorized due to bad token
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            self.checkInType(eventid: eventid, nav: nav){ checkInType, error in
-                                completionHandler(checkInType, error)
+                            self.checkInType(eventid: eventid, nav: nav){ checkInType, hostlat, hostlong, error in
+                                completionHandler(checkInType, hostlat, hostlong, error)
                             }
                         } else {
                             //handle error
@@ -75,13 +75,13 @@ class Items{
             }
             else if (results?.data?.getEvent != nil ) {
                 print( results?.data?.getEvent.checkintype )
-                completionHandler( (results?.data?.getEvent.checkintype)!, nil )
+                completionHandler( (results?.data?.getEvent.checkintype)!, (results?.data?.getEvent.hostlat)!, (results?.data?.getEvent.hostlong)!, nil )
             }
         }
     }
     
-    func openEvent(eventid:String, checkintype:String, nav: UINavigationController) -> Void {
-        let openEventMutation = OpenEventMutation(eventid: eventid, checkintype: checkintype)
+    func openEvent(eventid:String, checkintype:String, hostlat: String, hostlong: String, nav: UINavigationController) -> Void {
+        let openEventMutation = OpenEventMutation(eventid: eventid, checkintype: checkintype, hostlat: hostlat, hostlong: hostlong)
         Apollo().getClient().perform(mutation: openEventMutation) { [unowned self] result, error in
             if let error = error as? GraphQLHTTPResponseError {
                 switch (error.response.statusCode) {
@@ -89,7 +89,7 @@ class Items{
                     //request unauthorized due to bad token
                         OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            self.openEvent(eventid: eventid, checkintype: checkintype, nav: nav)
+                            self.openEvent(eventid: eventid, checkintype: checkintype, hostlat: hostlat, hostlong: hostlong, nav: nav)
                         } else {
                             //handle error
                         }

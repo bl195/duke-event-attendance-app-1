@@ -238,7 +238,7 @@ public final class AllAttendeesQuery: GraphQLQuery {
 
 public final class GetEventQuery: GraphQLQuery {
   public let operationDefinition =
-    "query GetEvent($eventid: ID!) {\n  getEvent(eventid: $eventid) {\n    __typename\n    status\n    checkintype\n  }\n}"
+    "query GetEvent($eventid: ID!) {\n  getEvent(eventid: $eventid) {\n    __typename\n    status\n    checkintype\n    hostlat\n    hostlong\n  }\n}"
 
   public var eventid: GraphQLID
 
@@ -284,6 +284,8 @@ public final class GetEventQuery: GraphQLQuery {
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("status", type: .nonNull(.scalar(String.self))),
         GraphQLField("checkintype", type: .nonNull(.scalar(String.self))),
+        GraphQLField("hostlat", type: .nonNull(.scalar(String.self))),
+        GraphQLField("hostlong", type: .nonNull(.scalar(String.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -292,8 +294,8 @@ public final class GetEventQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(status: String, checkintype: String) {
-        self.init(unsafeResultMap: ["__typename": "Event", "status": status, "checkintype": checkintype])
+      public init(status: String, checkintype: String, hostlat: String, hostlong: String) {
+        self.init(unsafeResultMap: ["__typename": "Event", "status": status, "checkintype": checkintype, "hostlat": hostlat, "hostlong": hostlong])
       }
 
       public var __typename: String {
@@ -320,6 +322,24 @@ public final class GetEventQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "checkintype")
+        }
+      }
+
+      public var hostlat: String {
+        get {
+          return resultMap["hostlat"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "hostlat")
+        }
+      }
+
+      public var hostlong: String {
+        get {
+          return resultMap["hostlong"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "hostlong")
         }
       }
     }
@@ -401,25 +421,29 @@ public final class GetActiveEventsQuery: GraphQLQuery {
 
 public final class OpenEventMutation: GraphQLMutation {
   public let operationDefinition =
-    "mutation OpenEvent($eventid: String!, $checkintype: String!) {\n  openEvent(eventid: $eventid, checkintype: $checkintype) {\n    __typename\n    status\n    checkintype\n  }\n}"
+    "mutation OpenEvent($eventid: String!, $checkintype: String!, $hostlat: String!, $hostlong: String!) {\n  openEvent(eventid: $eventid, checkintype: $checkintype, hostlat: $hostlat, hostlong: $hostlong) {\n    __typename\n    status\n    checkintype\n    hostlat\n    hostlong\n  }\n}"
 
   public var eventid: String
   public var checkintype: String
+  public var hostlat: String
+  public var hostlong: String
 
-  public init(eventid: String, checkintype: String) {
+  public init(eventid: String, checkintype: String, hostlat: String, hostlong: String) {
     self.eventid = eventid
     self.checkintype = checkintype
+    self.hostlat = hostlat
+    self.hostlong = hostlong
   }
 
   public var variables: GraphQLMap? {
-    return ["eventid": eventid, "checkintype": checkintype]
+    return ["eventid": eventid, "checkintype": checkintype, "hostlat": hostlat, "hostlong": hostlong]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("openEvent", arguments: ["eventid": GraphQLVariable("eventid"), "checkintype": GraphQLVariable("checkintype")], type: .object(OpenEvent.selections)),
+      GraphQLField("openEvent", arguments: ["eventid": GraphQLVariable("eventid"), "checkintype": GraphQLVariable("checkintype"), "hostlat": GraphQLVariable("hostlat"), "hostlong": GraphQLVariable("hostlong")], type: .object(OpenEvent.selections)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -432,7 +456,7 @@ public final class OpenEventMutation: GraphQLMutation {
       self.init(unsafeResultMap: ["__typename": "Mutation", "openEvent": openEvent.flatMap { (value: OpenEvent) -> ResultMap in value.resultMap }])
     }
 
-    /// open event for check in with type
+    /// open event for check in with type and host location (lat & long)
     public var openEvent: OpenEvent? {
       get {
         return (resultMap["openEvent"] as? ResultMap).flatMap { OpenEvent(unsafeResultMap: $0) }
@@ -449,6 +473,8 @@ public final class OpenEventMutation: GraphQLMutation {
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("status", type: .nonNull(.scalar(String.self))),
         GraphQLField("checkintype", type: .nonNull(.scalar(String.self))),
+        GraphQLField("hostlat", type: .nonNull(.scalar(String.self))),
+        GraphQLField("hostlong", type: .nonNull(.scalar(String.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -457,8 +483,8 @@ public final class OpenEventMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(status: String, checkintype: String) {
-        self.init(unsafeResultMap: ["__typename": "Event", "status": status, "checkintype": checkintype])
+      public init(status: String, checkintype: String, hostlat: String, hostlong: String) {
+        self.init(unsafeResultMap: ["__typename": "Event", "status": status, "checkintype": checkintype, "hostlat": hostlat, "hostlong": hostlong])
       }
 
       public var __typename: String {
@@ -485,6 +511,24 @@ public final class OpenEventMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "checkintype")
+        }
+      }
+
+      public var hostlat: String {
+        get {
+          return resultMap["hostlat"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "hostlat")
+        }
+      }
+
+      public var hostlong: String {
+        get {
+          return resultMap["hostlong"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "hostlong")
         }
       }
     }

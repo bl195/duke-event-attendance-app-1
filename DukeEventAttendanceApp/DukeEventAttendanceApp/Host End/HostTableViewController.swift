@@ -208,13 +208,13 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: {(action) -> Void in
             let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
             qvc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", nav: self.navigationController!)
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", hostlat: "", hostlong: "", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
         } ) )
         alert.addAction( UIAlertAction(title: "Self Check-In (Event) ", style: .default, handler: {(action) -> Void in
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", nav: self.navigationController!)
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", hostlat: "", hostlong: "", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
         
@@ -222,7 +222,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
             
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self_host_loc", nav: self.navigationController!)
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self_host_loc", hostlat: Items.sharedInstance.hostLocLat, hostlong: Items.sharedInstance.hostLocLong, nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
         

@@ -31,7 +31,7 @@ class CheckInOptionViewController: UIViewController {
         
         Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
             if( active ){
-                Items.sharedInstance.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, error in
+                Items.sharedInstance.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, hostlat, hostlong, error in
                     if( type == "qr" ){
                         self.SelfCheckInButton.isEnabled = false
                         self.SelfCheckInButton.setTitle("Self Check-in Not Available", for: .disabled)
@@ -40,7 +40,9 @@ class CheckInOptionViewController: UIViewController {
                     } else {
                         if (type == "self_host_loc") {
                             self.usingHostLoc = true
-                            //update HostLocLat and HostLocLong depending on query 
+                            //update HostLocLat and HostLocLong depending on query
+                            self.hostLocLat = hostlat
+                            self.hostLocLong = hostlong
                         }
                         
                         self.QRButton.isEnabled = false

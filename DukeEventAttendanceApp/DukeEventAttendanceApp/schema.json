@@ -457,6 +457,38 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "hostlat",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "hostlong",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "hosts",
                         "description": null,
                         "args": [],
@@ -758,7 +790,7 @@
                     },
                     {
                         "name": "openEvent",
-                        "description": "open event for check in with type",
+                        "description": "open event for check in with type and host location (lat & long)",
                         "args": [
                             {
                                 "name": "eventid",
@@ -776,6 +808,34 @@
                             },
                             {
                                 "name": "checkintype",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "String",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "hostlat",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "String",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "hostlong",
                                 "description": null,
                                 "type": {
                                     "kind": "NON_NULL",
