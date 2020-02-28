@@ -13,7 +13,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     let DaysOfMonth = ["Monday","Thuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     
     var DaysInMonths = [31,28,31,30,31,30,31,31,30,31,30,31]
-    
+
     var currentMonth = String()
     
     var NumberOfEmptyBox = Int()
@@ -168,7 +168,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    //----------------------------------(CollectionView)------------------------------------------------------------------------------------
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Direction{
