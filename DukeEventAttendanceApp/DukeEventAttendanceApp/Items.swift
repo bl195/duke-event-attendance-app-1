@@ -16,12 +16,8 @@ class Items{
     var duid = ""
     var hostLocLat = ""
     var hostLocLong = ""
-    
-    
+
     func eventActive(eventid:String, nav:UINavigationController, completionHandler: @escaping (_ active: Bool, _ error: String?) -> Void ){
-        if nav == nil {
-            return
-        }
         let query = GetEventQuery(eventid: eventid)
         Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
             if let error = error as? GraphQLHTTPResponseError {
@@ -47,9 +43,7 @@ class Items{
                 } else{
                     completionHandler(true, nil)
                 }
-            } //else {
-//                completionHandler(false, nil)
-//            }
+            }
         }
     }
     
@@ -74,7 +68,7 @@ class Items{
                 }
             }
             else if (results?.data?.getEvent != nil ) {
-                print( results?.data?.getEvent.checkintype )
+                print( results?.data?.getEvent.checkintype ?? "no check in type" )
                 completionHandler( (results?.data?.getEvent.checkintype)!, (results?.data?.getEvent.hostlat)!, (results?.data?.getEvent.hostlong)!, nil )
             }
         }
@@ -100,8 +94,7 @@ class Items{
             }
             else if (result?.data?.openEvent?.status != nil) {
                 print("success")
-                print(result?.data?.openEvent?.status)
-                //print(result?.data?.openEvent?.checkintype)
+                print(result?.data?.openEvent?.status ?? "no status")
             }
             
         }
@@ -127,7 +120,7 @@ class Items{
             }
             else if (result?.data?.closeEvent?.status != nil) {
                 print("success")
-                print(result?.data?.closeEvent?.status)
+                print(result?.data?.closeEvent?.status ?? "no close event status")
             }
             
         }
@@ -142,7 +135,6 @@ class Items{
                     //request unauthorized due to bad token
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            
                             self.getInfo(nav: nav) { duid, name, error in
                                 completionHandler(duid, name, error)
                             }
@@ -158,8 +150,6 @@ class Items{
             else if (results?.data?.getMyInfo != nil ) {
                 let data = results?.data?.getMyInfo
                 self.duid = data![3]
-                print("HERE")
-                print(data)
                 completionHandler(data![3], data![1], nil)
                 
             }

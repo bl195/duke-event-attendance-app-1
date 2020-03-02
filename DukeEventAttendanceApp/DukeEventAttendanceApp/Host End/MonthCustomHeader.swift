@@ -8,6 +8,12 @@
 
 import UIKit
 
+/*
+    This class is responsible for creating a custom header for the month.
+    For both attendees and hosts, their table views will have a month header,
+    followed by a group of table view cells for events that take place during
+    that month. 
+ */
 class MonthCustomHeader: UITableViewHeaderFooterView {
 
     static let reuseIdentifer = "MonthCustomHeader"
@@ -15,14 +21,10 @@ class MonthCustomHeader: UITableViewHeaderFooterView {
     
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
-        //customLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-
         customLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.backgroundColor = UIColor.white
         self.contentView.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         self.contentView.addSubview(customLabel)
-        
         customLabel.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
         
         let margins = contentView.layoutMarginsGuide
