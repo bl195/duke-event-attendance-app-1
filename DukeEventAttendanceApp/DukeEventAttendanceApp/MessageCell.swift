@@ -1,10 +1,4 @@
-//
-//  MessageCell.swift
-//  DukeEventAttendanceApp
-//
-//  Created by Brian Li on 7/17/19.
-//  Copyright © 2019 Duke OIT. All rights reserved.
-//
+
 
 import UIKit
 

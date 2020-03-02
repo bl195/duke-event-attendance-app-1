@@ -1,11 +1,3 @@
-//
-//  Items.swift
-//  DukeEventAttendanceApp
-//
-//  Created by Luiza Wolf on 6/19/19.
-//  Copyright © 2019 Duke OIT. All rights reserved.
-//
-
 import Foundation
 import Apollo
 
@@ -47,9 +39,7 @@ class Items{
                 } else{
                     completionHandler(true, nil)
                 }
-            } //else {
-//                completionHandler(false, nil)
-//            }
+            }
         }
     }
     
@@ -101,7 +91,6 @@ class Items{
             else if (result?.data?.openEvent?.status != nil) {
                 print("success")
                 print(result?.data?.openEvent?.status)
-                //print(result?.data?.openEvent?.checkintype)
             }
             
         }

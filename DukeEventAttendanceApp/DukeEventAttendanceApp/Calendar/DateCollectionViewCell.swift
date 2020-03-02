@@ -8,7 +8,7 @@ class DateCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var Circle: UIView!
     
-    
+    //creates animated circle for calendar view
     func DrawCircle() {
         
         let circleCenter = Circle.center

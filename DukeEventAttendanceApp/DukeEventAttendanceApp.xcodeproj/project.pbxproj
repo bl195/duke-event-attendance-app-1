@@ -189,6 +189,7 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7FCED7D240CE23200B783D4 /* Calendar */,
 				0782B87622E6453B00AD6C6F /* ThisWillWork.graphql */,
 				0782B87422E6450A00AD6C6F /* API.swift */,
 				C872D25F22DCE61D003AA82C /* CustomHeader.swift */,
@@ -202,14 +203,11 @@
 				07193E6F22A9A300000F5A2C /* AppDelegate.swift */,
 				07193EA322A9ABCD000F5A2C /* NetworkManager.swift */,
 				07D418A922CBAB27005B1A78 /* All Events */,
-				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
 				C7F19D0A22DFA27C00548B29 /* SideBarTableViewController.swift */,
 				0744B1B622AEEE8700DB6A88 /* MenuViewController.swift */,
 				C7F19D0C22DFAAFB00548B29 /* MessageCell.swift */,
 				07434C4822BAC7D100BC19A0 /* PersistenceService.swift */,
 				07193E7122A9A300000F5A2C /* ViewController.swift */,
-				C76A510D22B17A5A00FF90DC /* CalendarVar.swift */,
-				C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */,
 				07434C3F22BAC74200BC19A0 /* Items.swift */,
 				07434C4122BAC77400BC19A0 /* DataModel.xcdatamodeld */,
 				07193E9F22A9AB4B000F5A2C /* Event.swift */,
@@ -313,6 +311,16 @@
 				217E6606F16B3E1224A095A9 /* Pods_DukeEventAttendanceApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C7FCED7D240CE23200B783D4 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C76A510B22B17A3B00FF90DC /* DateCollectionViewCell.swift */,
+				C76A510D22B17A5A00FF90DC /* CalendarVar.swift */,
+				C76A510922B17A2000FF90DC /* CalendarViewController.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		C8183FDE22CA534300ABB035 /* DukeOAuth */ = {
