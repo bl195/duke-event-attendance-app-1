@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Header to be used in CurrentAttendeesViewController
+ */
 class CustomHeader: UITableViewHeaderFooterView {
     let title = UILabel()
     let checkintime = UILabel()
@@ -28,9 +31,6 @@ class CustomHeader: UITableViewHeaderFooterView {
         contentView.backgroundColor = UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)
         contentView.addSubview(title)
         contentView.addSubview(checkintime)
-        
-        // Center the image vertically and place it near the leading
-        // edge of the view. Constrain its width and height to 50 points.
         NSLayoutConstraint.activate([
             title.widthAnchor.constraint(equalToConstant: 370),
             title.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),

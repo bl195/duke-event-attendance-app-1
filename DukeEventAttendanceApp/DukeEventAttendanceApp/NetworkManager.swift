@@ -7,16 +7,17 @@
 //
 
 import Foundation
-
-
+/**
+ Class that contains function to be used globally to fetch JSON data from API
+ Used in EventTableViewController
+ */
 class NetworkManager{
     static func downloadCalendarInfo(specific_url: String, completion:@escaping ([String: Any]) -> () ){
         
         print (specific_url)
         let url = URL(string: specific_url)
        
-        let task = URLSession.shared.dataTask(with: url!){ data, response, error in //respoonse is HTTP response, data is data
-            
+        let task = URLSession.shared.dataTask(with: url!){ data, response, error in //response is HTTP response, data is data
             if let error = error{
                 return
             }
@@ -41,4 +42,3 @@ class NetworkManager{
     }
 }
 
-//class CalendarEvent(summary, date)

@@ -7,8 +7,10 @@
 //
 
 import Apollo
-//let AUTH_HEADER = "Authorization"
 
+/**
+ Class to interact with graphql API
+ */
 class Apollo {
     
     // 1
