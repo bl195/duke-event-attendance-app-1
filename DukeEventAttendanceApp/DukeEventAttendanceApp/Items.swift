@@ -14,6 +14,8 @@ class Items{
     var eventArray = [Event]()
     var id_event_dict = [String:Event]()
     var duid = ""
+    var hostLocLat = ""
+    var hostLocLong = ""
     
     
     func eventActive(eventid:String, nav:UINavigationController, completionHandler: @escaping (_ active: Bool, _ error: String?) -> Void ){

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CheckInOptionViewController: UIViewController {
     
@@ -14,7 +15,10 @@ class CheckInOptionViewController: UIViewController {
     @IBOutlet weak var SelfCheckInButton: UIButton!
     var eventLoc = ""
     var eventID = ""
+    var usingHostLoc = false
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
+    var hostLocLat = ""
+    var hostLocLong = ""
 
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
@@ -33,7 +37,12 @@ class CheckInOptionViewController: UIViewController {
                         self.SelfCheckInButton.setTitle("Self Check-in Not Available", for: .disabled)
                         self.SelfCheckInButton.titleLabel?.attributedText = NSAttributedString(string: "Self Check-in Not Available", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 14)!])
                         self.SelfCheckInButton.backgroundColor = UIColor.gray
-                    } else if( type == "self"){
+                    } else {
+                        if (type == "self_host_loc") {
+                            self.usingHostLoc = true
+                            //update HostLocLat and HostLocLong depending on query 
+                        }
+                        
                         self.QRButton.isEnabled = false
                         self.QRButton.setTitle("QR Check-in Not Available", for: .disabled)
                         self.QRButton.titleLabel?.attributedText = NSAttributedString(string: "QR Check-in Not Available", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 14)!])
@@ -64,6 +73,9 @@ class CheckInOptionViewController: UIViewController {
         vc?.eventLocation = eventLoc
         vc?.eventid = eventID
         vc?.event = self.event
+        vc?.usingHostLoc = self.usingHostLoc
+        vc?.hostLocLat = self.hostLocLat
+        vc?.hostLocLong = self.hostLocLong
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
