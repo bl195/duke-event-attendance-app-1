@@ -270,7 +270,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation :CLLocation = locations[0] as CLLocation
         Items.sharedInstance.hostLocLat = "\(userLocation.coordinate.latitude)"
-        Items.sharedInstance.hostLocLong = "\(userLocation.coordinate.latitude)"
+        Items.sharedInstance.hostLocLong = "\(userLocation.coordinate.longitude)"
     }
 
 }
