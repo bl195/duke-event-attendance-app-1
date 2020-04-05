@@ -1,14 +1,20 @@
+//
+//  MenuViewController.swift
+//  DukeEventAttendanceApp
+//
+//  Created by Luiza Wolf on 6/10/19.
+//  Copyright © 2019 Duke OIT. All rights reserved.
+//
+
 import UIKit
 
 class MenuViewController: UITableViewController {
     
-    //intialize variables
     var menuFilterSelected: Bool = false
     var didTapMenuType: ((String) -> Void)?
     var filtername:String = ""
     var thisDateCode = ""
 
-    //Array of possible topics/categories
     var menuArray = ["Arts", "Athletics/Recreation", "Global Duke", "Civic Engagement/Social Action", "Diversity/Inclusion", "Energy", "Engineering", "Ethics", "Health/Wellness", "Humanities", "Natural Sciences", "Politics", "Religious/Spiritual", "Research", "Social Sciences", "Sustainability", "Teaching & Classroom Learning", "Technology", "University Events"]
     
     override func viewDidLoad() {
@@ -16,9 +22,9 @@ class MenuViewController: UITableViewController {
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 35)]
         self.automaticallyAdjustsScrollViewInsets = false
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
-    
-    //sets up tableview for menuview and sets text label for each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as? MenuTableViewCell else {
             fatalError("the cell is not an instance of the menu table view cell")
@@ -39,7 +45,8 @@ class MenuViewController: UITableViewController {
         return menuArray.count
     }
     
-    //tapped cells cause transition to next view
+    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewcontroller = storyboard?.instantiateViewController(withIdentifier: "EventTableViewController") as? EventTableViewController
         viewcontroller?.title = menuArray[indexPath.row].uppercased()
@@ -48,5 +55,16 @@ class MenuViewController: UITableViewController {
         self.navigationController?.pushViewController(viewcontroller!, animated:true)
         
     }
+ 
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
