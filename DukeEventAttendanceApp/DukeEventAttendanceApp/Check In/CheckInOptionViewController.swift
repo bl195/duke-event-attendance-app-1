@@ -2,13 +2,20 @@
 //  CheckInOptionViewController.swift
 //  DukeEventAttendanceApp
 //
-//  Created by Luiza Wolf on 7/6/19.
+//  Created by Jessica Su on 7/6/19.
 //  Copyright © 2019 Duke OIT. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 
+/*
+    This class is responsible for displaying the check-in options for a
+    particular event for the user. Currently, these options are self check-in and QR code
+    check-in. Depending on the check-in type the host chooses, the attendee will be presented
+    with a blue, enabled button for the designated check-in type and a disabled, greyed-out
+    button for the other type.
+*/
 class CheckInOptionViewController: UIViewController {
     
     @IBOutlet weak var QRButton: UIButton!
@@ -23,15 +30,13 @@ class CheckInOptionViewController: UIViewController {
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
         super.viewDidLoad()
-        print(eventID)
-        
         SelfCheckInButton.layer.cornerRadius = 20.0
         QRButton.layer.cornerRadius = 20.0
-        print (event.id)
         
+        //based on the nature of the event, modifies the check-in option for the attendee.
         Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
             if( active ){
-                Items.sharedInstance.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, error in
+                Items.sharedInstance.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, hostlat, hostlong, error in
                     if( type == "qr" ){
                         self.SelfCheckInButton.isEnabled = false
                         self.SelfCheckInButton.setTitle("Self Check-in Not Available", for: .disabled)
@@ -40,7 +45,9 @@ class CheckInOptionViewController: UIViewController {
                     } else {
                         if (type == "self_host_loc") {
                             self.usingHostLoc = true
-                            //update HostLocLat and HostLocLong depending on query 
+                            //update HostLocLat and HostLocLong depending on query
+                            self.hostLocLat = hostlat
+                            self.hostLocLong = hostlong
                         }
                         
                         self.QRButton.isEnabled = false
@@ -61,13 +68,19 @@ class CheckInOptionViewController: UIViewController {
         }
     }
     
+    /*
+        If the QR code check-in button is selected, goes to screen that displays
+        the attendee's QR code.
+    */
     @IBAction func QRCodeButton(_ sender: Any) {
         let qvc = self.storyboard?.instantiateViewController(withIdentifier: "QRCheckInViewController") as? QRCheckInViewController
         qvc?.event = self.event
         self.navigationController?.pushViewController(qvc!, animated: true)
         
     }
-    
+    /*
+         If the self check-in button is selected, goes to screen that enables self check-in.
+    */
     @IBAction func selfCheckInButton(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelfCheckInViewController") as? SelfCheckInViewController
         vc?.eventLocation = eventLoc
@@ -79,25 +92,14 @@ class CheckInOptionViewController: UIViewController {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    
-    
+    /*
+        Sends the event information to the screen displaying the QR code.
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toQRCheck") {
             let qvc = self.storyboard?.instantiateViewController(withIdentifier: "QRCheckInViewController") as? QRCheckInViewController
             qvc?.event = self.event
-            
         }
-        
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

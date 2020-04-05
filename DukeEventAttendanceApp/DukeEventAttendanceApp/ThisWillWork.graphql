@@ -23,6 +23,8 @@ query GetEvent( $eventid: ID! ){
     getEvent(eventid: $eventid){
         status
         checkintype
+        hostlat
+        hostlong
     }
 }
 
@@ -32,10 +34,12 @@ query GetActiveEvents {
     }
 }
 
-mutation OpenEvent( $eventid: String!, $checkintype: String! ){
-openEvent(eventid: $eventid, checkintype: $checkintype){
+mutation OpenEvent( $eventid: String!, $checkintype: String!, $hostlat: String!, $hostlong: String!){
+    openEvent(eventid: $eventid, checkintype: $checkintype, hostlat: $hostlat, hostlong: $hostlong){
         status
         checkintype
+        hostlat
+        hostlong
     }
 }
 

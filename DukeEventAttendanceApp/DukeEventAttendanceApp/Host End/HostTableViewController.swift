@@ -9,17 +9,16 @@ import UIKit
 import Apollo
 import CoreLocation
 
-
+/*
+    This class is responsible for managing the table view for the hosts.
+    It displays all the events they are currently hosting. 
+ */
 class HostTableViewController: UITableViewController, HostTableViewCellDelegate, CLLocationManagerDelegate {
-
-    
     var host_events = [String]()
     var actual_events = [Event]()
     var months = [String]()
     var month_events = [String: [Event]]()
-    
     var activeEvents = [String]()
-    
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -38,16 +37,15 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 100
         
+        //GraphQL query that fetches a list of active events from the database. Sorted in chronological order by month, then by date within each month.
         getActiveEvents(nav: self.navigationController!) {activeEvents, error in
             self.activeEvents = activeEvents
-            print("MY ACTIVE EVENTS ARE")
-            print(activeEvents)
-            
             self.host_events.removeAll()
             self.actual_events.removeAll()
             self.months.removeAll()
             self.month_events.removeAll()
-            self.getQuery(nav: hnc!) { hostEvents, error in
+            //query to get the host events is nested within this call to prevent threading issues.
+            self.getHostEventsQuery(nav: hnc!) { hostEvents, error in
                 self.host_events = hostEvents
                 for event in self.host_events {
                     let ev = Items.sharedInstance.eventArray.first(where: { $0.id == event})
@@ -64,31 +62,19 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MMMM"
                 self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
-                print (self.months)
-                
-                
-                
+
                 for (month,events) in self.month_events {
-                    //var events = self.month_events[month]
                     if (events.count > 0) {
                         self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
-                        for event in events {
-                            print (event.summary)
-                        }
                     }
-                    
                 }
-                
-                
                 self.actual_events = self.actual_events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending} )
-               
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         }
-        
-        // Register the custom header view.
+ 
         tableView.register(MonthCustomHeader.self,
                            forHeaderFooterViewReuseIdentifier: "MonthCustomHeader")
     }
@@ -98,7 +84,6 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -107,20 +92,22 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         return self.months.count
     }
     
-    func getQuery(nav: UINavigationController, completionHandler: @escaping (_ hostEvents: [String], _ error: String?) -> Void){
-        
+    /*
+        GraphQL query that returns all the events that the user is designated as a host
+        for. If this user is not hosting any events, a blank screen with the message
+        "You are not hosting any events" will appear.
+    */
+    func getHostEventsQuery(nav: UINavigationController, completionHandler: @escaping (_ hostEvents: [String], _ error: String?) -> Void){
         let query = HostsEventsQuery()
         Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            print(results)
             if let error = error as? GraphQLHTTPResponseError {
                 switch (error.response.statusCode) {
                     case 401:
                         //request unauthorized due to bad token
-                        
                         OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                             if success {
                         
-                                self.getQuery(nav: nav) { hostEvents, error in
+                                self.getHostEventsQuery(nav: nav) { hostEvents, error in
                                     completionHandler(hostEvents, error)
                                 }
                             } else {
@@ -134,18 +121,12 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
             }
             else if let hostevents = results?.data?.hostEvents{
                 for event in hostevents {
-                    
                     self.host_events.append( event.resultMap["eventid"]!! as! String )
-                    
-                    //self.tableView.reloadData()
                 }
 
                 DispatchQueue.main.async {
                     completionHandler(self.host_events, nil)
                 }
-                
-                
-                
             } else{
                 let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
                 let messageLabel = UILabel(frame: rect)
@@ -159,26 +140,25 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         }
     }
     
+    /*
+        GraphQL query to server that returns all the events that the host
+        has marked as active.
+    */
     func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
-        
         let query = GetActiveEventsQuery()
         Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            
             if let error = error as? GraphQLHTTPResponseError {
                 switch (error.response.statusCode) {
                 case 401:
                     //request unauthorized due to bad token
-                    
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            
                             self.getActiveEvents(nav: nav) { activeEvents, error in
                                 completionHandler(activeEvents, error)
                             }
                         } else {
                             //handle error
                         }
-                        
                     }
                 default:
                     print (error.localizedDescription)
@@ -186,46 +166,44 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
             }
             else if let activeEvents = results?.data?.getActiveEvents{
                 for event in activeEvents {
-                    
                     self.activeEvents.append( event.resultMap["eventid"]!! as! String )
                 }
-                
                 DispatchQueue.main.async {
                     completionHandler(self.activeEvents, nil)
                 }
-                
-                
-                
             } else{
-                
+                print(error?.localizedDescription)
             }
         }
     }
     
-    //Delegate method
+    /*
+     Creates an alert prompt that allows the host to choose the method of check in:
+     QR code, self-check-in through the event location, or self-check-in based on the host's
+     location. After the event is marked as active, an option appears that allows the host
+     to close the event.
+    */
     func didTapAllowCheckIn(eventid:String) {
         let alert = UIAlertController(title: "Choose Check-In Method", message: "Please choose method by which attendees will check in to your event", preferredStyle: .alert)
         alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: {(action) -> Void in
             let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
             qvc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", nav: self.navigationController!)
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", hostlat: "", hostlong: "", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
         } ) )
         alert.addAction( UIAlertAction(title: "Self Check-In (Event) ", style: .default, handler: {(action) -> Void in
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", nav: self.navigationController!)
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", hostlat: "", hostlong: "", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
         
         alert.addAction( UIAlertAction(title: "Self Check-In (Host) ", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
-            
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self_host_loc", nav: self.navigationController!)
+            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self_host_loc", hostlat: Items.sharedInstance.hostLocLat, hostlong: Items.sharedInstance.hostLocLong, nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
-        
         if (self.activeEvents.contains(eventid)) {
             alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
                 Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
@@ -239,35 +217,32 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Table view data source
-//    // Create a standard header that includes the returned text.
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection
-//        section: Int) -> String? {
-//
-//        return "Header \(section)"
-//    }
-    
+    /*
+        Allowing custom month headers to organize all the hosts' events.
+    */
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
             "MonthCustomHeader") as! MonthCustomHeader
-        //view.customLabel.text = self.months[section]
         view.customLabel.attributedText = NSAttributedString(string: self.months[section].uppercased(), attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 18)!, NSAttributedString.Key.foregroundColor: UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)])
         return view
     }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.month_events[months[section]]!.count
     }
 
     
+    /*
+        Configuring each cell for the host's table view. Each cell should contain
+        the event, month, day, time, and location. If an event is "active", then it
+        should display a white active button. If not, it should be a dark blue
+        button with a message that indicates check-in is not available yet.
+    */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "please", for: indexPath) as? HostTableViewCell else{
             fatalError("the cell is not an instance of the table view cell")
         }
-        // Configure the cell...
-        
         let event = self.month_events[months[indexPath.section]]![indexPath.row]
         if event != nil{
             cell.eventTitle.text = event.summary
@@ -278,16 +253,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         }
         cell.backgroundCard.layer.cornerRadius = 10.0
         cell.allowCheckInButton.layer.cornerRadius = 10.0
-        
-        cell.delegate = self
-        if (self.activeEvents.contains(event.id)) {
-            cell.active = true
-        }
-        
-        if (!self.activeEvents.contains(event.id)) {
-            cell.active = false
-            
-        }
+        cell.active = self.activeEvents.contains(event.id)
         cell.delegate = self
         cell.setEvent(event: event ?? Event.init(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!)
         return cell
@@ -297,62 +263,14 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         return 140
     }
     
+    /*
+        Responsible for keeping track of the host's location to perform
+        geofencing around the host.
+    */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        //eventually include guard to not track location unless HOST
-        
         let userLocation :CLLocation = locations[0] as CLLocation
-        print(userLocation.coordinate)
-       
         Items.sharedInstance.hostLocLat = "\(userLocation.coordinate.latitude)"
-        Items.sharedInstance.hostLocLong = "\(userLocation.coordinate.latitude)"
-        print(Items.sharedInstance.hostLocLat)
-        
-       
+        Items.sharedInstance.hostLocLong = "\(userLocation.coordinate.longitude)"
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

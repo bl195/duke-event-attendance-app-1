@@ -9,14 +9,15 @@
 import UIKit
 import Apollo
 
-
+/*
+    This class is responsible for displaying all the current attendees
+    for an event.
+*/
 class CurrentAttendeesTableViewController: UITableViewController {
     
     var event_id = ""
     var current_attendees = [String]()
-    
     var refreshControl2: UIRefreshControl!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,36 +25,29 @@ class CurrentAttendeesTableViewController: UITableViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        //self.navigationController?.navigationBar.isOpaque = true
-        
-        // Register the custom header view.
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
-        
-        
-        
+
         refreshControl2 = UIRefreshControl()
         refreshControl2!.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl2!.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        refreshControl2!.addTarget(self, action: #selector(refreshAttendees), for: .valueChanged)
         tableView.addSubview(refreshControl2)
         
-        let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        let hnc = storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
+        //calling graphQL query to load all the current attendees for a particular event.
         loadAttendees(nav: hnc!) { attendees,error in
             self.current_attendees = attendees
             self.tableView.reloadData()
         }
-        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
     }
     
-    @objc func goBack(){
-        
-    }
-    
-    @objc func doSomething(refreshControl: UIRefreshControl) {
-        print("Hello World!")
-        
-        // somewhere in your code you might need to call:
+    /*
+        This function is responsible for refreshing the attendees who have checked
+        into the event by using a GraphQL query to obtain all the current attendees
+        from the database.
+    */
+    @objc func refreshAttendees(refreshControl: UIRefreshControl) {
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
         loadAttendees(nav: hnc!) {attendees,error in
             self.current_attendees = attendees
@@ -62,6 +56,10 @@ class CurrentAttendeesTableViewController: UITableViewController {
         refreshControl2.endRefreshing()
     }
     
+    /*
+        GraphQL query to the database to retrieve all the attendees who are checked into
+        a particular event.
+    */
     func loadAttendees(nav: UINavigationController, completionHandler: @escaping (_ attendees: [String],_ error: String?) -> Void){
         self.current_attendees.removeAll()
         let query = AllAttendeesQuery(id: self.event_id)
@@ -78,7 +76,6 @@ class CurrentAttendeesTableViewController: UITableViewController {
                         } else {
                             //handle error
                         }
-
                     }
                 default:
                     print ("error")
@@ -87,8 +84,6 @@ class CurrentAttendeesTableViewController: UITableViewController {
             else if let attendees = results?.data?.allAttendees{
                 for attendee in attendees {
                     self.current_attendees.append( attendee.resultMap["duid"]!! as! String )
-
-                    //self.tableView.reloadData()
                 }
                 DispatchQueue.main.async {
                     completionHandler(self.current_attendees,nil)
@@ -105,26 +100,10 @@ class CurrentAttendeesTableViewController: UITableViewController {
             }
         }
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.current_attendees.count
-    }
-    
-//    func getName( cardNumber:String, completionHandler: @escaping (_ cardnumber: String) -> Void ){
-//        let query = GetNameQuery(cardnumber: cardNumber)
-//        Apollo.shared.client.fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in            let name = results?.data?.resultMap["getName"] as! String
-//            completionHandler(name)
-//        }
-//    }
-    
+    /*
+        GraphQL query that retrieves all the information about a user - cardnumber, name, and
+        time of check-in.
+    */
     func getInfo(nav: UINavigationController, cardNumber:String, completionHandler: @escaping (_ cardnumber: [String:String], _ error: String?) -> Void ){
         let query = GetInfoQuery(eventid: self.event_id, attendeeid: cardNumber)
         Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
@@ -140,7 +119,6 @@ class CurrentAttendeesTableViewController: UITableViewController {
                         } else {
                             //handle error
                         }
-                        
                     }
                 default:
                     print ("error")
@@ -157,16 +135,16 @@ class CurrentAttendeesTableViewController: UITableViewController {
         }
     }
 
-    
+    /*
+        Configures each cell in the table view. Each cell represents a current attendee,
+        and it should have information about each person's name, time of check-in, and
+        DUID. If the information is still loading, a message "Loading name..." is presented.
+    */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let name = "Loading Name..."
         let time = "..."
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentAttendeeCell", for: indexPath) as! CurrentAttendeesTableViewCell
-//        self.getName(cardNumber: current_attendees[indexPath.row]){ name in
-//            cell.name.text = name
-//        }
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
-        
         self.getInfo(nav: hnc!, cardNumber: current_attendees[indexPath.row]){ dic,error in
             cell.name.text = dic["name"]
             cell.checkInTime.text = dic["time"]
@@ -177,10 +155,11 @@ class CurrentAttendeesTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
     
+    /*
+        Creating a header that displays the title of the event and the starting time
+        for check-in.
+    */
     override func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
@@ -191,58 +170,23 @@ class CurrentAttendeesTableViewController: UITableViewController {
         view.checkintime.attributedText = NSAttributedString(string: "Start Check-In: " + event!.starttime, attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica-Light", size: 18)!, NSAttributedString.Key.foregroundColor: UIColor.white])
         view.checkintime.numberOfLines = 0
         view.title.textAlignment = .center
-        
         return view
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.current_attendees.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 130
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

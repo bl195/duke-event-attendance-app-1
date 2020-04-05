@@ -1,28 +1,27 @@
+//
+//  QRScannerController.swift
+//  DukeEventAttendanceApp
+//
+//  Created by Brian Li on 7/2/19.
+//  Copyright © 2019 Duke OIT. All rights reserved.
+//
 import UIKit
 import AVFoundation
 import Apollo
 
+/*
+ This class is responsible for scanning the bar code/QR code
+ of the attendee and sending a GraphQL mutation to the server
+ that will check the attendee in. 
+ */
 class QRScannerController: UIViewController {
 
     var event_id = ""
-    @IBOutlet var messageLabel:UILabel!
-    @IBOutlet var topbar: UIView!
-    
-    @IBAction func homeButton(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyAgendaViewController") as? MyAgendaViewController
-
-        self.navigationController?.pushViewController(vc!, animated: false)
-    }
-    @IBAction func attendeesButton(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
-        vc?.event_id = event_id
-        self.navigationController?.pushViewController(vc!, animated: true)
-    }
     var captureSession = AVCaptureSession()
-    
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-
+    var alertPrompt = UIAlertController()
+    
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
                                       AVMetadataObject.ObjectType.code39Mod43,
@@ -36,10 +35,25 @@ class QRScannerController: UIViewController {
                                       AVMetadataObject.ObjectType.dataMatrix,
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
+    
+    
+    @IBOutlet var messageLabel:UILabel!
+    @IBOutlet var topbar: UIView!
+    
+    @IBAction func homeButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyAgendaViewController") as? MyAgendaViewController
+
+        self.navigationController?.pushViewController(vc!, animated: false)
+    }
+    @IBAction func attendeesButton(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
+        vc?.event_id = event_id
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         // Get the back-facing camera for capturing videos
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
@@ -63,7 +77,6 @@ class QRScannerController: UIViewController {
             // Set delegate and use the default dispatch queue to execute the call back
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
-//            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
@@ -105,11 +118,15 @@ class QRScannerController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    // MARK: - Helper methods
-    var alertPrompt = UIAlertController()
     
+    
+    /*
+     This method is responsible for showing the alert prompt with the DUID of the
+     attendee who has just been scanned. The user (host) has the option of clicking
+     on the check-in button, which will send a mutation to the database, or
+     click on cancel button, which means the attendee's data will NOT be sent to the server.
+    */
     func launchApp(decodedURL: String) {
-        
         captureSession.stopRunning()
         
         if presentedViewController != nil {
@@ -117,7 +134,6 @@ class QRScannerController: UIViewController {
         }
         
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
-        
         
         alertPrompt = UIAlertController(title: "Result", message: "Duke ID: \(decodedURL)", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Check in", style: UIAlertAction.Style.default, handler: { (action) -> Void in
@@ -132,14 +148,11 @@ class QRScannerController: UIViewController {
         alertPrompt.addAction(confirmAction)
         alertPrompt.addAction(cancelAction)
         
-        //DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.present(self.alertPrompt, animated: true, completion: nil)
-        //}
+        self.present(self.alertPrompt, animated: true, completion: nil)
+        
     }
 
 }
-
-
 
 
 extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
@@ -167,9 +180,13 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
+    /*
+     This function is responsible for performing the GraphQL mutation that creates
+     an attendee in the database. If the attendee's check-in is validated, then
+     an alert prompt with a success message appears. However, if the attendee's check-in
+     is not validated, the attendee's check-in will be denied.
+    */
     func loadAttendee(nav: UINavigationController, event_id: String, duid: String) {
-        print(event_id)
-        print(duid)
         let createAttendeeMutation = QrCheckInMutation(eventid: event_id, duid: duid)
         Apollo().getClient().perform(mutation: createAttendeeMutation) { [unowned self] result, error in
             if let error = error as? GraphQLHTTPResponseError {
@@ -188,43 +205,21 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
                     print ("error")
                 }
             }
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
             else if (result?.data?.qrCheckIn?.id != nil) {
-                print("success")
-                print(result?.data?.qrCheckIn?.id ?? "no attendee")
-
-                //self.alertPrompt.dismiss(animated: true, completion: nil)
-
                 let alert = UIAlertController(title: "You have successfully checked in", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
                     (action) -> Void in
                     self.captureSession.startRunning()
                     }))
                 self.present(alert, animated: true)
-
-                //self.launchApp(decodedURL: cardNumber)
             }
             else {
-                print("failed")
-                print(result?.data?.qrCheckIn?.id)
-
-                //self.alertPrompt.dismiss(animated: true, completion: nil)
-
                 let alert = UIAlertController(title: "Check-in denied", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
                     (action) -> Void in
                     self.captureSession.startRunning()
                 }))
                 self.present(alert, animated: true)
-                //self.viewDidLoad()
-                //self.launchApp(decodedURL: cardNumber)
-
-                //self.present(self.alertPrompt, animated: true)
-                //guard for TWO KINDS OF ERRORS: 1) not valid student and 2) already checked in
-                //self.invalidityCheck()
             }
 
         }
