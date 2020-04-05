@@ -1,12 +1,13 @@
 import UIKit
+
 var dateString = ""
+
 class CalendarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    //initialize variables
     
     var filter = ""
     @IBOutlet weak var Calendar: UICollectionView!
     @IBOutlet weak var MonthLabel: UILabel!
+    
     
     let Months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     
@@ -38,7 +39,6 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var datecode = ""
     
-    //initializes clickable cells with dates
     var cellsArray : [UICollectionViewCell] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,6 +168,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    
     //----------------------------------(CollectionView)------------------------------------------------------------------------------------
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -186,7 +187,9 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Calendar", for: indexPath) as! DateCollectionViewCell
         cell.backgroundColor = UIColor.clear
+        
         cell.DateLabel.textColor = UIColor.black
+        
         cell.Circle.isHidden = true
         
         if cell.isHidden{
@@ -223,6 +226,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         if highlightdate == indexPath.row{
+            
             cell.backgroundColor = UIColor.blue
         }
         
@@ -260,6 +264,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let size = date.count
         var ans = ""
+        
         if( size == 1){
             ans = "0" + date
         }
