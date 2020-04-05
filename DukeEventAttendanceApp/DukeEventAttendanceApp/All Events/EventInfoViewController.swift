@@ -8,33 +8,32 @@
 
 import UIKit
 
+/**
+ View controller to display more event information if the cell is tapped on from EventTableViewController
+ */
 class EventInfoViewController: UIViewController {
 
+    //linking elements from storyboard
     @IBOutlet weak var summaryLabel: UILabel!
-    
-
     @IBOutlet weak var check_in_Button: UIButton!
     @IBOutlet weak var webLinkButton: UIButton!
-    
-    @IBAction func webLink(_ sender: Any) {
-        UIApplication.shared.open(URL(string: webEventURL) ?? URL(string: backupURL)!, options: [:], completionHandler: nil)
-    }
-    
-    
-    @IBAction func onShareTapped(_ sender: Any) {
-        let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: nil)
-        present(activityController, animated: true, completion: nil)
-    }
-    
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var longDateLabel: UILabel!
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var sponsorLabel: UILabel!
-
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBAction func webLink(_ sender: Any) {
+        UIApplication.shared.open(URL(string: webEventURL) ?? URL(string: backupURL)!, options: [:], completionHandler: nil)
+    }
+    @IBAction func onShareTapped(_ sender: Any) {
+        let activityController = UIActivityViewController(activityItems: ["hello"], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+    }
     
+    //initializing variables to be assigned to elements in view
+    //variables are instantiated by EventTableViewController with information from cell that is tapped
     var id = ""
     var sum = ""
     var sdl = ""
@@ -49,15 +48,68 @@ class EventInfoViewController: UIViewController {
     var backupURL = ""
     var sl = ""
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
+    //TO-DO: why is this localhost?
     var base_url = "http://localhost:3000/events/"
     var isCheckInActive = true
- 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //settings for view elements
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+        self.title = ""
+        descriptionLabel.numberOfLines = 0
+        locationLabel.text = ll
+        summaryLabel.text = sum
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.attributedText = dl.htmlToAttributedString
+        descriptionLabel.font = UIFont.systemFont(ofSize: 17.0)
+        descriptionLabel.textColor = UIColor(red: 102/255, green: 102/255, blue:102/255, alpha: 1.0)
+        longDateLabel.text = ldl
+        imageLabel.image = image
+        sponsorLabel.text = sl
+        timeLabel.text = tl
+        
+        //network call to get image
+        if let imageUrl = URL(string: imageURL) {
+            // This is a network call and needs to be run on non-UI thread
+            DispatchQueue.global().async {
+                let imageData = try! Data(contentsOf: imageUrl)
+                let image = UIImage(data: imageData)
+                DispatchQueue.main.async {
+                    self.imageLabel.image = image
+                }
+            }
+        }
+        imageLabel.contentMode = UIView.ContentMode.scaleAspectFill
+        imageLabel.clipsToBounds = true
+        
+        webLinkButton.isEnabled = true
+        webLinkButton.tintColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    //TO-DO: this isn't actually hit from anywhere
+    /**
+     Sends POST request to API to check in the attendee for a specific event
+     - parameters:
+     - URLString: url that POST request is sent to
+     - dukecal_id: duke calendar ID of a specific event
+     - duid: unique ID of attendee
+     */
     func hitAPI(_for URLString:String, dukecal_id: String, duid: String) {
         var actual_id = dukecal_id.replacingOccurrences(of: "@", with: "-")
         actual_id = actual_id.replacingOccurrences(of: ".", with: "-")
         actual_id = actual_id.lowercased()
         base_url = base_url + actual_id + "/attendees/addAttendee"
         print(base_url)
+        //TO-DO: base_url actually isn't used
         
         guard let url = URL(string: URLString) else {return}
         
@@ -86,6 +138,11 @@ class EventInfoViewController: UIViewController {
         task.resume()
         
     }
+    
+    /**
+     When the checkInButton is tapped,
+     */
+    //TO-DO: needs to be implemented
     @IBAction func checkInButton(_ sender: Any) {
         //hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
         print(self.event.id)
@@ -105,58 +162,8 @@ class EventInfoViewController: UIViewController {
                 self.check_in_Button.backgroundColor = UIColor.gray
             }
         }
-  
         
-    }
-    
-  
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.isHidden = false
-        self.title = ""
-        descriptionLabel.numberOfLines = 0
-        locationLabel.text = ll
-        summaryLabel.text = sum
-        //shortDayLabel.text = sdl
-        //shortMonthLabel.text = sml
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.attributedText = dl.htmlToAttributedString
-        descriptionLabel.font = UIFont.systemFont(ofSize: 17.0)
-        descriptionLabel.textColor = UIColor(red: 102/255, green: 102/255, blue:102/255, alpha: 1.0)
-        longDateLabel.text = ldl
-        imageLabel.image = image
-        sponsorLabel.text = sl
-        timeLabel.text = tl
         
-        if let imageUrl = URL(string: imageURL) {
-            // This is a network call and needs to be run on non-UI thread
-            DispatchQueue.global().async {
-                let imageData = try! Data(contentsOf: imageUrl)
-                let image = UIImage(data: imageData)
-                DispatchQueue.main.async {
-                    self.imageLabel.image = image
-                }
-            }
-        }
-        
-        imageLabel.contentMode = UIView.ContentMode.scaleAspectFill
-        imageLabel.clipsToBounds = true
-        
-        webLinkButton.isEnabled = true
-        webLinkButton.tintColor = UIColor(red: 1/255, green: 33/255, blue:105/255, alpha: 1.0)
-//        if( self.webEventURL == ""){
-//            webLinkButton.isEnabled = false
-//            webLinkButton.tintColor = UIColor.white
-//        }
-       
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.isHidden = false
     }
 }
 

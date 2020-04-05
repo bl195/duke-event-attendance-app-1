@@ -8,8 +8,12 @@
 
 import UIKit
 import CoreData
-
 import Apollo
+
+/**
+ Manages table view contained within MyAgendaViewController
+ Populated with events the user is designated as a host for or has saved to their personal attending agenda
+ */
 
 class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDelegate {
     
@@ -22,7 +26,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         
     }
     
-    
     var agendaEvents: [Event] = []
     var months = [String]()
     var month_events = [String: [Event]]()
@@ -32,16 +35,12 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     override func viewDidLoad() {
         self.title = "My Agenda"
         super.viewDidLoad()
-        
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.tableView.delegate = self //maybe
-        self.tableView.dataSource = self //maybe
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        
         self.navigationController?.navigationBar.isHidden = true
-        
     }
-    
     
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -50,13 +49,14 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillAppear(animated)
-        
         self.activeEvents.removeAll()
         
         getActiveEvents(nav: self.navigationController!) {activeEvents, error in
             self.activeEvents = activeEvents
-            print("MY ACTIVE EVENTS ARE")
-            print(activeEvents)
+            #if DEBUG
+                print("MY ACTIVE EVENTS ARE")
+                print(activeEvents)
+            #endif
             
             let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()
             
@@ -74,8 +74,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
                             self.agendaEvents.append(ev)
                         }
                         if( !self.months.contains( ev.longmonth )){
-                            
-                            
                             self.months.append(ev.longmonth)
                             self.month_events[ev.longmonth] = [Event]()
                         }
@@ -91,14 +89,9 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
             dateFormatter.dateFormat = "MMMM"
             self.months = self.months.sorted(by: { dateFormatter.date(from:$0)!.compare(dateFormatter.date(from:$1)!) == .orderedAscending })
             
-            
-            
             for (month,events) in self.month_events {
                 if (events.count > 0) {
                     self.month_events[month] = events.sorted(by: { $0.sorted_date.compare($1.sorted_date) == .orderedAscending})
-                    for event in events {
-                        print (event.summary)
-                    }
                 }
                 
             }
@@ -112,6 +105,9 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         }
     }
     
+    /**
+     Fetches events that are designated as active from server and adds them to variable activeEvents
+     */
     func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
         
         let query = GetActiveEventsQuery()
@@ -121,17 +117,14 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
                 switch (error.response.statusCode) {
                 case 401:
                     //request unauthorized due to bad token
-                    
                     OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
                         if success {
-                            
                             self.getActiveEvents(nav: nav) { activeEvents, error in
                                 completionHandler(activeEvents, error)
                             }
                         } else {
                             //handle error
                         }
-                        
                     }
                 default:
                     print (error.localizedDescription)
@@ -140,15 +133,10 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
             else if let activeEvents = results?.data?.getActiveEvents{
                 for event in activeEvents {
                     self.activeEvents.append( event.resultMap["eventid"]!! as! String )
-
                 }
-                
                 DispatchQueue.main.async {
                     completionHandler(self.activeEvents, nil)
                 }
-                
-                
-                
             } else{
                
             }
@@ -162,13 +150,11 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
             "MonthCustomHeader") as! MonthCustomHeader
-        //view.customLabel.text = self.months[section]
         view.customLabel.attributedText = NSAttributedString(string: self.months[section].uppercased(), attributes: [NSAttributedString.Key.kern: 5.0, NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 18)!, NSAttributedString.Key.foregroundColor: UIColor(red:0.00, green:0.13, blue:0.41, alpha:1.0)])
         return view
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.month_events[months[section]]!.count
     }
     
@@ -181,8 +167,6 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AgendaTableViewCell", for: indexPath) as? AgendaTableViewCell else {
             fatalError ("the cell is not an instance of agenda table view cell")
         }
-        
-        // Configure the cell...
         
         let agendaEv = self.month_events[months[indexPath.section]]![indexPath.row]
         
@@ -216,13 +200,18 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete{
-            var delete_id = self.month_events[months[indexPath.section]]![indexPath.row].id
+            let delete_id = self.month_events[months[indexPath.section]]![indexPath.row].id
             month_events[months[indexPath.section]]!.remove(at: indexPath.row)
             deleteObj(id: delete_id)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
     
+    /**
+     Remove event from agenda
+     - parameters:
+        - id: event ID of event to be removed froma agenda
+     */
     func deleteObj(id: String) {
         let fetchRequest: NSFetchRequest<EventID> = EventID.fetchRequest()
         

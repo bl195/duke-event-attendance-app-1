@@ -132,7 +132,7 @@
 		C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		C84420C522D5302C00FF4DA0 /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		C86C680D22C27B01004E919A /* QRCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCheckInViewController.swift; sourceTree = "<group>"; };
-		C872D25F22DCE61D003AA82C /* CustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomHeader.swift; path = "Host End/CustomHeader.swift"; sourceTree = "<group>"; };
+		C872D25F22DCE61D003AA82C /* CustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		DA3223593F2032CE8A1691B5 /* Pods-DukeEventAttendanceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeEventAttendanceApp.release.xcconfig"; path = "Target Support Files/Pods-DukeEventAttendanceApp/Pods-DukeEventAttendanceApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,7 +191,6 @@
 			children = (
 				0782B87622E6453B00AD6C6F /* ThisWillWork.graphql */,
 				0782B87422E6450A00AD6C6F /* API.swift */,
-				C872D25F22DCE61D003AA82C /* CustomHeader.swift */,
 				07D418AF22CBE582005B1A78 /* Apollo.swift */,
 				0782B87C22E64A5900AD6C6F /* schema.json */,
 				07D418AE22CBE564005B1A78 /* GraphQL */,
@@ -282,6 +281,7 @@
 				C84420C522D5302C00FF4DA0 /* QRScannerController.swift */,
 				C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */,
 				078C56AF22D1A855003DC4F4 /* CurrentAttendeesTableViewCell.swift */,
+				C872D25F22DCE61D003AA82C /* CustomHeader.swift */,
 				07D418AA22CBC1E5005B1A78 /* HostTableViewController.swift */,
 				070AADB222CD63F100148811 /* CurrentAttendeesTableViewController.swift */,
 				07A772C422CC6399004302AD /* HostTableViewCell.swift */,
