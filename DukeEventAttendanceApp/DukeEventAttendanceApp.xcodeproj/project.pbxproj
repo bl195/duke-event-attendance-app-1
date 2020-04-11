@@ -52,6 +52,7 @@
 		C820620822C3E0490040E53F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C820620722C3E0480040E53F /* CoreLocation.framework */; };
 		C84420C422D5302500FF4DA0 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */; };
 		C84420C622D5302C00FF4DA0 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84420C522D5302C00FF4DA0 /* QRScannerController.swift */; };
+		C8494F5224424E8A008AA5E8 /* GraphQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8494F5124424E8A008AA5E8 /* GraphQLManager.swift */; };
 		C86C680E22C27B01004E919A /* QRCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C680D22C27B01004E919A /* QRCheckInViewController.swift */; };
 		C872D26022DCE61E003AA82C /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C872D25F22DCE61D003AA82C /* CustomHeader.swift */; };
 		C8760EFA22B0229700CCA2D6 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */; };
@@ -127,6 +128,7 @@
 		C820620722C3E0480040E53F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C84420C322D5302500FF4DA0 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		C84420C522D5302C00FF4DA0 /* QRScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
+		C8494F5124424E8A008AA5E8 /* GraphQLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLManager.swift; sourceTree = "<group>"; };
 		C86C680D22C27B01004E919A /* QRCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCheckInViewController.swift; sourceTree = "<group>"; };
 		C872D25F22DCE61D003AA82C /* CustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		C8760EF922B0229700CCA2D6 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		07193E6E22A9A300000F5A2C /* DukeEventAttendanceApp */ = {
 			isa = PBXGroup;
 			children = (
+				C8494F5024424E55008AA5E8 /* APIManager */,
 				0782B87622E6453B00AD6C6F /* ThisWillWork.graphql */,
 				0782B87422E6450A00AD6C6F /* API.swift */,
 				07D418AF22CBE582005B1A78 /* Apollo.swift */,
@@ -316,6 +319,14 @@
 				07CBCDA222CAA6B2007F1BDF /* OAuthService.swift */,
 			);
 			path = DukeOAuth;
+			sourceTree = "<group>";
+		};
+		C8494F5024424E55008AA5E8 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				C8494F5124424E8A008AA5E8 /* GraphQLManager.swift */,
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,6 +557,7 @@
 				C7F19D0D22DFAAFB00548B29 /* MessageCell.swift in Sources */,
 				078C56AB22D06295003DC4F4 /* AllEventsViewController.swift in Sources */,
 				07D418A822CBAB0C005B1A78 /* MyAgendaViewController.swift in Sources */,
+				C8494F5224424E8A008AA5E8 /* GraphQLManager.swift in Sources */,
 				C7F19D0B22DFA27C00548B29 /* SideBarTableViewController.swift in Sources */,
 				C872D26022DCE61E003AA82C /* CustomHeader.swift in Sources */,
 				0782B87522E6450A00AD6C6F /* API.swift in Sources */,

@@ -18,6 +18,7 @@ class CurrentAttendeesTableViewController: UITableViewController {
     var event_id = ""
     var current_attendees = [String]()
     var refreshControl2: UIRefreshControl!
+    var graphQLManager = GraphQLManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,40 +101,37 @@ class CurrentAttendeesTableViewController: UITableViewController {
             }
         }
     }
-    /*
-        GraphQL query that retrieves all the information about a user - cardnumber, name, and
-        time of check-in.
-    */
-    func getInfo(nav: UINavigationController, cardNumber:String, completionHandler: @escaping (_ cardnumber: [String:String], _ error: String?) -> Void ){
-        let query = GetInfoQuery(eventid: self.event_id, attendeeid: cardNumber)
-        Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
-            if let error = error as? GraphQLHTTPResponseError {
-                switch (error.response.statusCode) {
-                case 401:
-                    //request unauthorized due to bad token
-                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                        if success {
-                            self.getInfo(nav: nav, cardNumber: cardNumber) { cardnumber, error in
-                                completionHandler(cardnumber, error)
-                            }
-                        } else {
-                            //handle error
-                        }
-                    }
-                default:
-                    print ("error")
-                }
-            }
-            else {
-                let infoarr = results?.data?.resultMap["getInfo"] as! [String]
-                let name = infoarr[1]
-                let time = infoarr[0]
-                completionHandler(["name": name,"time": time], nil)
-                
-            }
-            
-        }
-    }
+   
+//    func getInfo(nav: UINavigationController, cardNumber:String, completionHandler: @escaping (_ cardnumber: [String:String], _ error: String?) -> Void ){
+//        let query = GetInfoQuery(eventid: self.event_id, attendeeid: cardNumber)
+//        Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+//            if let error = error as? GraphQLHTTPResponseError {
+//                switch (error.response.statusCode) {
+//                case 401:
+//                    //request unauthorized due to bad token
+//                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+//                        if success {
+//                            self.getInfo(nav: nav, cardNumber: cardNumber) { cardnumber, error in
+//                                completionHandler(cardnumber, error)
+//                            }
+//                        } else {
+//                            //handle error
+//                        }
+//                    }
+//                default:
+//                    print ("error")
+//                }
+//            }
+//            else {
+//                let infoarr = results?.data?.resultMap["getInfo"] as! [String]
+//                let name = infoarr[1]
+//                let time = infoarr[0]
+//                completionHandler(["name": name,"time": time], nil)
+//
+//            }
+//
+//        }
+//    }
 
     /*
         Configures each cell in the table view. Each cell represents a current attendee,
@@ -145,7 +143,7 @@ class CurrentAttendeesTableViewController: UITableViewController {
         let time = "..."
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentAttendeeCell", for: indexPath) as! CurrentAttendeesTableViewCell
         let hnc = self.storyboard?.instantiateViewController(withIdentifier: "hostNav") as? UINavigationController
-        self.getInfo(nav: hnc!, cardNumber: current_attendees[indexPath.row]){ dic,error in
+        graphQLManager.getNameAndTime(nav: hnc!, cardNumber: current_attendees[indexPath.row], event_id: self.event_id){ dic,error in
             cell.name.text = dic["name"]
             cell.checkInTime.text = dic["time"]
         }

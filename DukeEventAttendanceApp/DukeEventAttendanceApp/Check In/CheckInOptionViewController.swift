@@ -26,6 +26,7 @@ class CheckInOptionViewController: UIViewController {
     var event:Event = Event(id: "", start_date: "", end_date: "", summary: "", description: "", status: "", sponsor: "", co_sponsors: "", location: ["":""], contact: ["":""], categories: [""], link: "", event_url: "", series_name: "", image_url: "")!
     var hostLocLat = ""
     var hostLocLong = ""
+    var graphQLManager = GraphQLManager()
 
     override func viewDidLoad() {
         self.navigationController?.isNavigationBarHidden = false
@@ -34,9 +35,9 @@ class CheckInOptionViewController: UIViewController {
         QRButton.layer.cornerRadius = 20.0
         
         //based on the nature of the event, modifies the check-in option for the attendee.
-        Items.sharedInstance.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
+        graphQLManager.eventActive(eventid: event.id, nav: self.navigationController!){ active, error in
             if( active ){
-                Items.sharedInstance.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, hostlat, hostlong, error in
+                self.graphQLManager.checkInType(eventid: self.event.id, nav: self.navigationController!){ type, hostlat, hostlong, error in
                     if( type == "qr" ){
                         self.SelfCheckInButton.isEnabled = false
                         self.SelfCheckInButton.setTitle("Self Check-in Not Available", for: .disabled)

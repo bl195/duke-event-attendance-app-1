@@ -31,6 +31,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
     var month_events = [String: [Event]]()
     
     var activeEvents: [String] = []
+    var graphQLManager = GraphQLManager()
     
     override func viewDidLoad() {
         self.title = "My Agenda"
@@ -51,7 +52,7 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         super.viewWillAppear(animated)
         self.activeEvents.removeAll()
         
-        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
+        graphQLManager.getActiveEvents(nav: self.navigationController!) {activeEvents, error in
             self.activeEvents = activeEvents
             #if DEBUG
                 print("MY ACTIVE EVENTS ARE")
@@ -105,43 +106,41 @@ class MyAgendaTableViewController: UITableViewController, AgendaTableViewCellDel
         }
     }
     
-    /**
-     Fetches events that are designated as active from server and adds them to variable activeEvents
-     */
-    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
-        
-        let query = GetActiveEventsQuery()
-        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            
-            if let error = error as? GraphQLHTTPResponseError {
-                switch (error.response.statusCode) {
-                case 401:
-                    //request unauthorized due to bad token
-                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                        if success {
-                            self.getActiveEvents(nav: nav) { activeEvents, error in
-                                completionHandler(activeEvents, error)
-                            }
-                        } else {
-                            //handle error
-                        }
-                    }
-                default:
-                    print (error.localizedDescription)
-                }
-            }
-            else if let activeEvents = results?.data?.getActiveEvents{
-                for event in activeEvents {
-                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
-                }
-                DispatchQueue.main.async {
-                    completionHandler(self.activeEvents, nil)
-                }
-            } else{
-               
-            }
-        }
-    }
+    
+//    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
+//
+//        let query = GetActiveEventsQuery()
+//        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+//
+//            if let error = error as? GraphQLHTTPResponseError {
+//                switch (error.response.statusCode) {
+//                case 401:
+//                    //request unauthorized due to bad token
+//                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+//                        if success {
+//                            self.getActiveEvents(nav: nav) { activeEvents, error in
+//                                completionHandler(activeEvents, error)
+//                            }
+//                        } else {
+//                            //handle error
+//                        }
+//                    }
+//                default:
+//                    print (error.localizedDescription)
+//                }
+//            }
+//            else if let activeEvents = results?.data?.getActiveEvents{
+//                for event in activeEvents {
+//                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
+//                }
+//                DispatchQueue.main.async {
+//                    completionHandler(self.activeEvents, nil)
+//                }
+//            } else{
+//
+//            }
+//        }
+//    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.months.count
