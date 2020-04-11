@@ -246,16 +246,12 @@ class GraphQLManager {
     }
     
     /**
-     
      TODO:
-     - hostEventsQuery (HostTableViewController)
-     - allAttendeesQuery (CurrentAttendeesTableViewController)
-     - loadAttendee (QRScannerController)
-     - loadAttendee (SelfCheckInViewController)
-     - checkOutAttendee (SelfCheckInViewController)
+     - hostEventsQuery (HostTableViewController) - need boolean check to see if there are host events
+     - allAttendeesQuery (CurrentAttendeesTableViewController) - need boolean check to see if there are attendees
+     - loadAttendee (QRScannerController) - boolean check for success
+     - loadAttendee (SelfCheckInViewController) - boolean check for success
+     - checkOutAttendee (SelfCheckInViewController) - boolean check for success
     */
-    
-    
-    
     
 }
