@@ -239,9 +239,7 @@ class CalendarViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         dateString = "\(indexPath.row - PositionIndex + 1) \(currentMonth) \(year)"
-        
-        //performSegue(withIdentifier: "NextView", sender: self)
-        
+                
         dateday = convertdate(date: "\(indexPath.row - PositionIndex + 1)")
         
         datemonth = convertdate(date: String(Months.firstIndex(of: currentMonth)!+1))
