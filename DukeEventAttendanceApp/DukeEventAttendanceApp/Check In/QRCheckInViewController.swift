@@ -21,6 +21,7 @@ class QRCheckInViewController: UIViewController {
     var isBarCode:Bool = false
     var dukeCard:String = ""
     var dukeUnique:String = ""
+    var graphQLManager = GraphQLManager()
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var cardLabel: UILabel!
@@ -43,7 +44,7 @@ class QRCheckInViewController: UIViewController {
         based on the attendee's DUID.
     */
     func showBarCode (barCode: Bool, nav: UINavigationController) {
-        self.getInfo(nav: nav){ duid, name, error in
+        graphQLManager.getInfo(nav: nav){ duid, name, error in
             var data: Data
             var filter: CIFilter
             self.cardLabel.text = "DUID: " + duid
@@ -90,34 +91,34 @@ class QRCheckInViewController: UIViewController {
     /*
         GraphQL Query that returns the info about an attendee (name, cardnumber).
     */
-    func getInfo(nav: UINavigationController, completionHandler: @escaping (_ cardnumber: String, _ name: String, _ error: String?) -> Void ){
-                let query = GetMyInfoQuery()
-                Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
-                    if let error = error as? GraphQLHTTPResponseError {
-                        switch (error.response.statusCode) {
-                        case 401:
-                            //request unauthorized due to bad token
-                            OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                                if success {
-        
-                                    self.getInfo(nav: nav) { cardnumber, name, error in
-                                        completionHandler(cardnumber, name, error)
-                                    }
-                                } else {
-                                    //handle error
-                                }
-        
-                            }
-                        default:
-                            print (error.localizedDescription)
-                        }
-                    }
-                    else if (results?.data?.getMyInfo != nil ) {
-                        let data = results?.data?.getMyInfo
-                        completionHandler(data![3], data![1], nil)
-                    }
-                }
-    }
+//    func getInfo(nav: UINavigationController, completionHandler: @escaping (_ cardnumber: String, _ name: String, _ error: String?) -> Void ){
+//                let query = GetMyInfoQuery()
+//                Apollo().getClient().fetch(query: query, cachePolicy: .returnCacheDataElseFetch) { [unowned self] results, error in
+//                    if let error = error as? GraphQLHTTPResponseError {
+//                        switch (error.response.statusCode) {
+//                        case 401:
+//                            //request unauthorized due to bad token
+//                            OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+//                                if success {
+//
+//                                    self.getInfo(nav: nav) { cardnumber, name, error in
+//                                        completionHandler(cardnumber, name, error)
+//                                    }
+//                                } else {
+//                                    //handle error
+//                                }
+//
+//                            }
+//                        default:
+//                            print (error.localizedDescription)
+//                        }
+//                    }
+//                    else if (results?.data?.getMyInfo != nil ) {
+//                        let data = results?.data?.getMyInfo
+//                        completionHandler(data![3], data![1], nil)
+//                    }
+//                }
+//    }
    
 
 }

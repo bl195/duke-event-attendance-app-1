@@ -20,6 +20,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
     var month_events = [String: [Event]]()
     var activeEvents = [String]()
     let locationManager = CLLocationManager()
+    var graphQLManager = GraphQLManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         locationManager.distanceFilter = 100
         
         //GraphQL query that fetches a list of active events from the database. Sorted in chronological order by month, then by date within each month.
-        getActiveEvents(nav: self.navigationController!) {activeEvents, error in
+        graphQLManager.getActiveEvents(nav: self.navigationController!) {activeEvents, error in
             self.activeEvents = activeEvents
             self.host_events.removeAll()
             self.actual_events.removeAll()
@@ -140,42 +141,39 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         }
     }
     
-    /*
-        GraphQL query to server that returns all the events that the host
-        has marked as active.
-    */
-    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
-        let query = GetActiveEventsQuery()
-        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
-            if let error = error as? GraphQLHTTPResponseError {
-                switch (error.response.statusCode) {
-                case 401:
-                    //request unauthorized due to bad token
-                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
-                        if success {
-                            self.getActiveEvents(nav: nav) { activeEvents, error in
-                                completionHandler(activeEvents, error)
-                            }
-                        } else {
-                            //handle error
-                        }
-                    }
-                default:
-                    print (error.localizedDescription)
-                }
-            }
-            else if let activeEvents = results?.data?.getActiveEvents{
-                for event in activeEvents {
-                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
-                }
-                DispatchQueue.main.async {
-                    completionHandler(self.activeEvents, nil)
-                }
-            } else{
-                print(error?.localizedDescription)
-            }
-        }
-    }
+
+//    func getActiveEvents(nav: UINavigationController, completionHandler: @escaping (_ activeEvents: [String], _ error: String?) -> Void){
+//        let query = GetActiveEventsQuery()
+//        Apollo().getClient().fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { [unowned self] results, error in
+//            if let error = error as? GraphQLHTTPResponseError {
+//                switch (error.response.statusCode) {
+//                case 401:
+//                    //request unauthorized due to bad token
+//                    OAuthService.shared.refreshToken(navController: nav) { success, statusCode in
+//                        if success {
+//                            self.getActiveEvents(nav: nav) { activeEvents, error in
+//                                completionHandler(activeEvents, error)
+//                            }
+//                        } else {
+//                            //handle error
+//                        }
+//                    }
+//                default:
+//                    print (error.localizedDescription)
+//                }
+//            }
+//            else if let activeEvents = results?.data?.getActiveEvents{
+//                for event in activeEvents {
+//                    self.activeEvents.append( event.resultMap["eventid"]!! as! String )
+//                }
+//                DispatchQueue.main.async {
+//                    completionHandler(self.activeEvents, nil)
+//                }
+//            } else{
+//                print(error?.localizedDescription)
+//            }
+//        }
+//    }
     
     /*
      Creates an alert prompt that allows the host to choose the method of check in:
@@ -188,25 +186,25 @@ class HostTableViewController: UITableViewController, HostTableViewCellDelegate,
         alert.addAction( UIAlertAction(title: "QR Code", style: .default, handler: {(action) -> Void in
             let qvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeViewController") as? QRCodeViewController
             qvc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "qr", hostlat: "", hostlong: "", nav: self.navigationController!)
+            self.graphQLManager.openEvent(eventid: eventid, checkintype: "qr", hostlat: "", hostlong: "", nav: self.navigationController!)
             self.navigationController?.show(qvc!, sender: true)
         } ) )
         alert.addAction( UIAlertAction(title: "Self Check-In (Event) ", style: .default, handler: {(action) -> Void in
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self", hostlat: "", hostlong: "", nav: self.navigationController!)
+            self.graphQLManager.openEvent(eventid: eventid, checkintype: "self", hostlat: "", hostlong: "", nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
         
         alert.addAction( UIAlertAction(title: "Self Check-In (Host) ", style: .default, handler: {(action) -> Void in
                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentAttendees") as? CurrentAttendeesTableViewController
             vc?.event_id = eventid
-            Items.sharedInstance.openEvent(eventid: eventid, checkintype: "self_host_loc", hostlat: Items.sharedInstance.hostLocLat, hostlong: Items.sharedInstance.hostLocLong, nav: self.navigationController!)
+            self.graphQLManager.openEvent(eventid: eventid, checkintype: "self_host_loc", hostlat: Items.sharedInstance.hostLocLat, hostlong: Items.sharedInstance.hostLocLong, nav: self.navigationController!)
             self.navigationController?.pushViewController(vc!, animated: true)
         } ) )
         if (self.activeEvents.contains(eventid)) {
             alert.addAction( UIAlertAction(title: "Close Event", style: .default, handler: {(action) -> Void in
-                Items.sharedInstance.closeEvent(eventid: eventid, nav: self.navigationController!)
+                self.graphQLManager.closeEvent(eventid: eventid, nav: self.navigationController!)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

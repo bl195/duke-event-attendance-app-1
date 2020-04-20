@@ -51,6 +51,7 @@ class EventInfoViewController: UIViewController {
     //TO-DO: why is this localhost?
     var base_url = "http://localhost:3000/events/"
     var isCheckInActive = true
+    var graphQLManager = GraphQLManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,7 +147,7 @@ class EventInfoViewController: UIViewController {
     @IBAction func checkInButton(_ sender: Any) {
         //hitAPI(_for: base_url, dukecal_id: id, duid: "6033006990222254")
         print(self.event.id)
-        Items.sharedInstance.eventActive(eventid: self.event.id, nav: self.navigationController!){ active, error in
+        graphQLManager.eventActive(eventid: self.event.id, nav: self.navigationController!){ active, error in
             if( active ){
                 print(true)
                 self.isCheckInActive = true
