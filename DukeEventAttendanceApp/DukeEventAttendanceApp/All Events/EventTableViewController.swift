@@ -82,7 +82,9 @@ class EventTableViewController: UITableViewController {
         var filter = filter.replacingOccurrences(of: " ", with: "+")
         filter = "&topic=" + filter
         let day_range = "90"
-        let spec_url = "https://calendar.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple&local=true"
+        var spec_url = "https://calendar.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple&local=true"
+        //USE THIS FOR TESTING; REMEMBER TO COMMENT BEFORE PUSHING
+        spec_url = "http://calendar-test.oit.duke.edu/events/index.json?" + filter + "&future_days=" + day_range + "&user_date=" + date + "&feed_type=simple&local=true"
         
         NetworkManager.downloadCalendarInfo(specific_url: spec_url) { jsonData in
             

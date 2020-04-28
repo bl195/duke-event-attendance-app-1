@@ -49,8 +49,9 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
         locationManager.distanceFilter = 100
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
 
         if (usingHostLoc) {
             getHostLocation(eventlocation: self.eventLocation) //setting region based on host
@@ -130,7 +131,7 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
     }
     
     /*
-        Determins whether the attendee has entered the in-bounds region for the event.
+        Determines whether the attendee has entered the in-bounds region for the event.
     */
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         self.isInBounds = true
@@ -308,6 +309,9 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
                 self.eventTime.isHidden = true
                 self.confirmButton.isHidden = true
                 self.eventTitle.isHidden = true
+                self.locationManager.stopUpdatingLocation()
+                self.locationManager.stopMonitoring(for: self.geoFenceRegion)
+                self.locationManager.stopMonitoringSignificantLocationChanges()
             }
             else {
                 let alert = UIAlertController(title: "You cannot be checked out.", message: "", preferredStyle: .alert)
@@ -315,6 +319,23 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
                 self.present(alert, animated: true)
             }
         }
+    }
+    
+    //TODO: COMMENT THESE IF THEY WORK
+    //TODO: TEST IF CHECKOUT WORKS WHEN APP IS TOTALLY CLOSED (i.e. not just switched to another app)
+    //TODO: TEST IF CHECKOUT WORKS WHEN NAVIGATED TO OTHER PLACE IN APP
+    //TODO: TEST IF CHECKOUT WORKS WHEN NAVIGATED TO OTHER PLACE IN APP AND SWITCHED TO ANOTHER APP
+    //TODO: TEST IF CHECKOUT WORKS WHEN NAVIGATED TO OTHER PLACE IN APP AND CLOSED
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
+        print(launchOptions)
+        return true
+    }
+    
+    func application(_ application: UIApplication,
+                     willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
+        print(launchOptions)
+        return true
     }
     
 }
