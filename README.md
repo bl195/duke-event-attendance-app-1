@@ -6,19 +6,20 @@ either by event location or geofencing around the host's location. Additionally,
 in our associated web-app. 
 
 ### Collaborators 
-Jessica Su  
-Brian Li  
-Luiza Wolf  
+* Jessica Su - developer 
+* Brian Li  - developer 
+* Luiza Wolf - developer 
 
 ### Mentors 
-Harry Thakkar 
-Hugh Thomas 
-Philabian Lindo 
-Jen Vizas 
+* Harry Thakkar 
+* Hugh Thomas 
+* Philabian Lindo 
+* Jen Vizas 
 
 ### Timeline 
-Start Date: May 2018 
-End Date: - 
+**Start Date**: May 2018 
+
+**End Date**: - 
 
 ### Features implemented 
 * Log-in/log-out with Shibboleth 
