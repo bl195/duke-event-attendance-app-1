@@ -322,6 +322,10 @@ class SelfCheckInViewController: UIViewController, CLLocationManagerDelegate, MK
     }
     
     //TODO: COMMENT THESE IF THEY WORK
+    //TODO: TEST IF CHECKOUT WORKS WHEN APP IS TOTALLY CLOSED (i.e. not just switched to another app)
+    //TODO: TEST IF CHECKOUT WORKS WHEN NAVIGATED TO OTHER PLACE IN APP
+    //TODO: TEST IF CHECKOUT WORKS WHEN NAVIGATED TO OTHER PLACE IN APP AND SWITCHED TO ANOTHER APP
+    //TODO: TEST IF CHECKOUT WORKS WHEN NAVIGATED TO OTHER PLACE IN APP AND CLOSED
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
         print(launchOptions)
